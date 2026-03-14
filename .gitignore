@@ -1,0 +1,13 @@
+GEMINI.md
+.gemini*
+CLAUDE.md
+.claude*
+
+*.bak
+/.bak
+
+
+cls*
+zzz*
+
+.DS_Store
