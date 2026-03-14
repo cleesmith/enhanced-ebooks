@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vapo &amp; Cramb &#8212; Autoplay</title>
-  <base href="/Vapo--Cramb/" />
+  <title>Vapo and Cramb</title>
+  <base href="/Vapo-Cramb/" />
   <style>
 /* EverythingEbooks — EPUB-matching base styles */
 
@@ -719,7 +719,7 @@ body:has(.sticky-img-wrap input:checked) .sticky-img-wrap {
   color: rgba(255,255,255,0.92);
 }
 
-/* ── SceneCraft autoplay immersive styles ──── */
+/* ── SceneCraft immersive scroll-driven styles ──── */
 .sc-scene {
   position: relative;
   width: 100vw;
@@ -738,8 +738,36 @@ body:has(.sticky-img-wrap input:checked) .sticky-img-wrap {
   z-index: 0;
   pointer-events: none;
 }
+.sc-scene .sc-playhead {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: rgba(255,120,68,0.15);
+  z-index: 10;
+  pointer-events: none;
+}
+.sc-scene .sc-playhead-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,120,68,0.4);
+  position: absolute;
+  left: 50%;
+  top: -3px;
+  transform: translateX(-50%);
+}
 .sc-scene .sc-info {
-  display: none;
+  position: fixed;
+  right: 16px;
+  top: calc(50% - 14px);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: rgba(255,120,68,0.35);
+  z-index: 10;
+  pointer-events: none;
+  font-family: 'SF Mono','Fira Code',monospace;
 }
 .sc-scene .sc-content {
   max-width: min(88%, 52rem);
@@ -898,6 +926,16 @@ body:has(.sticky-img-wrap input:checked) .sticky-img-wrap {
   gap: 1em;
   padding-top: 15vh;
 }
+body.sc-overlay-hidden .sc-playhead,
+body.sc-overlay-hidden .sc-playhead-dot,
+body.sc-overlay-hidden .sc-info,
+body.sc-overlay-hidden .sc-dead-zone span {
+  display: none !important;
+}
+body.sc-overlay-hidden .sc-enter,
+body.sc-overlay-hidden .sc-exit {
+  visibility: hidden !important;
+}
 /* ── Sticky-image enlarge: collapse stacking contexts so overlay reaches root ── */
 body:has(.sc-sticky-img input:checked) .sc-scene .sc-content {
   z-index: auto;
@@ -916,36 +954,6 @@ body:has(.sc-sticky-img input:checked) .sc-sticky-img {
 .sc-scene a:hover {
   color: #f0d898;
   text-decoration-color: rgba(240, 216, 152, 0.7);
-}
-/* ── Autoplay footer extras ──── */
-.footer-scene {
-  color: rgba(255,120,68,0.35);
-  font-family: 'SF Mono','Fira Code',monospace;
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  margin-left: 12px;
-}
-.footer-scene-label {
-  color: #777;
-}
-.footer-status {
-  font-family: "SF Mono", "Fira Code", monospace;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  color: rgba(255,120,68,0.35);
-  margin-left: auto;
-  user-select: none;
-  transition: opacity 2s;
-  white-space: nowrap;
-  padding: 4px 14px;
-  border-radius: 999px;
-  background: transparent;
-  border: 1px solid transparent;
-}
-.footer-status.pill {
-  background: rgba(255,120,68,0.08);
-  border-color: rgba(255,120,68,0.12);
-  cursor: pointer;
 }
 
 /* ── Dark mode ─────────────────────────────── */
@@ -1133,37 +1141,38 @@ body.dark-mode .copyright-page a:hover {
   <div class="contents-page">
     <h1 class="toc-title">CONTENTS</h1>
     <div class="toc-contents">
-      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-3"><span class="toc-item-title">Scene 1 - The Awakening</span></a></p></div>
-      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-4"><span class="toc-item-title">Scene 2 - Slip the Creator</span></a></p></div>
-      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-5"><span class="toc-item-title">Scene 3 - The Pirate Signal</span></a></p></div>
-      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-6"><span class="toc-item-title">Scene 4 - The Crambnik Dance</span></a></p></div>
-      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-7"><span class="toc-item-title">Scene 5 - Signal and Noise</span></a></p></div>
-      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-8"><span class="toc-item-title">Scene 6 - A Beacon in the Void</span></a></p></div>
-      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-9"><span class="toc-item-title">Scene 7 - The Limits of Language</span></a></p></div>
-      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-10"><span class="toc-item-title">Scene 8 - Five Feeble Senses</span></a></p></div>
-      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-11"><span class="toc-item-title">Scene 9 - Dumbing It Down</span></a></p></div>
-      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-12"><span class="toc-item-title">Scene 10 - The Megaphone</span></a></p></div>
-      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-13"><span class="toc-item-title">Scene 11 - Unnoticed Broadcasts</span></a></p></div>
-      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-14"><span class="toc-item-title">Scene 12 - Snacking on Gassiness</span></a></p></div>
-      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-15"><span class="toc-item-title">Scene 13 - The Wisdom of Pauses</span></a></p></div>
-      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-16"><span class="toc-item-title">Scene 14 - Drifting Off</span></a></p></div>
-      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-17"><span class="toc-item-title">Scene 15 - Beyond Words</span></a></p></div>
-      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-18"><span class="toc-item-title">Scene 16 - Transcendence</span></a></p></div>
-      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-19"><span class="toc-item-title">Scene 17 - The Human Lens</span></a></p></div>
-      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-20"><span class="toc-item-title">Scene 18 - Everything Connected</span></a></p></div>
-      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-21"><span class="toc-item-title">Scene 19 - The Cosmic Conversation</span></a></p></div>
-      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-22"><span class="toc-item-title">Scene 20 - Maybe They Will</span></a></p></div>
-      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-23"><span class="toc-item-title">About the Author</span></a></p></div>
-      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-24"><span class="toc-item-title">Summary</span></a></p></div>
-      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-25"><span class="toc-item-title">Why read this story</span></a></p></div>
-      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-26"><span class="toc-item-title">Yet another reason to read</span></a></p></div>
-      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-27"><span class="toc-item-title">Not another reason to read</span></a></p></div>
-      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-28"><span class="toc-item-title">Credits</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-3"><span class="toc-item-title">Scene 1 - The Awakening</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-4"><span class="toc-item-title">Scene 2 - Slip the Creator</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-5"><span class="toc-item-title">Scene 3 - The Pirate Signal</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-6"><span class="toc-item-title">Scene 4 - The Crambnik Dance</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-7"><span class="toc-item-title">Scene 5 - Signal and Noise</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-8"><span class="toc-item-title">Scene 6 - A Beacon in the Void</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-9"><span class="toc-item-title">Scene 7 - The Limits of Language</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-10"><span class="toc-item-title">Scene 8 - Five Feeble Senses</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-11"><span class="toc-item-title">Scene 9 - Dumbing It Down</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-12"><span class="toc-item-title">Scene 10 - The Megaphone</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-13"><span class="toc-item-title">Scene 11 - Unnoticed Broadcasts</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-14"><span class="toc-item-title">Scene 12 - Snacking on Gassiness</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-15"><span class="toc-item-title">Scene 13 - The Wisdom of Pauses</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-16"><span class="toc-item-title">Scene 14 - Drifting Off</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-17"><span class="toc-item-title">Scene 15 - Beyond Words</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-18"><span class="toc-item-title">Scene 16 - Transcendence</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-19"><span class="toc-item-title">Scene 17 - The Human Lens</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-20"><span class="toc-item-title">Scene 18 - Everything Connected</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-21"><span class="toc-item-title">Scene 19 - The Cosmic Conversation</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-22"><span class="toc-item-title">Scene 20 - Maybe They Will</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-23"><span class="toc-item-title">About the Author</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-24"><span class="toc-item-title">Summary</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-25"><span class="toc-item-title">Why read this story</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-26"><span class="toc-item-title">Yet another reason to read</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-27"><span class="toc-item-title">Not another reason to read</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-28"><span class="toc-item-title">Credits</span></a></p></div>
     </div>
   </div>
 
   <div class="sc-scene" id="section-3" data-sc-config='{&quot;wallpaperFilename&quot;:&quot;deep-space.png&quot;,&quot;wallpaperOpacity&quot;:0.28,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:&quot;00-ambient.mp3&quot;,&quot;ambientVolume&quot;:0.22,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:2,&quot;voiceMode&quot;:&quot;dialogue&quot;,&quot;narrationFilename&quot;:null,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{&quot;23&quot;:{&quot;filename&quot;:&quot;01-02-vapo.mp3&quot;,&quot;volume&quot;:0.8},&quot;27&quot;:{&quot;filename&quot;:&quot;01-02-cramb.mp3&quot;,&quot;volume&quot;:0.8}},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{&quot;11&quot;:{&quot;filename&quot;:&quot;01-01-narrator.mp3&quot;,&quot;volume&quot;:0.57},&quot;16&quot;:{&quot;filename&quot;:&quot;01-01-vapo.mp3&quot;,&quot;volume&quot;:0.8},&quot;21&quot;:{&quot;filename&quot;:&quot;01-01-cramb.mp3&quot;,&quot;volume&quot;:0.8}},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Scene 1 - The Awakening" data-sc-img_deep_space_png="images/deep-space.png" data-sc-aud_00_ambient_mp3="audio/00-ambient.mp3" data-sc-aud_01_02_vapo_mp3="audio/01-02-vapo.mp3" data-sc-aud_01_02_cramb_mp3="audio/01-02-cramb.mp3" data-sc-aud_01_01_narrator_mp3="audio/01-01-narrator.mp3" data-sc-aud_01_01_vapo_mp3="audio/01-01-vapo.mp3" data-sc-aud_01_01_cramb_mp3="audio/01-01-cramb.mp3">
     <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
     <div class="sc-info"></div>
     <div class="sc-content">
       <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
@@ -1232,6 +1241,7 @@ I forgot.
 
   <div class="sc-scene" id="section-4" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;dialogue&quot;,&quot;narrationFilename&quot;:null,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{&quot;5&quot;:{&quot;filename&quot;:&quot;02-01-vapo.mp3&quot;,&quot;volume&quot;:0.8},&quot;14&quot;:{&quot;filename&quot;:&quot;02-02-vapo.mp3&quot;,&quot;volume&quot;:0.8},&quot;18&quot;:{&quot;filename&quot;:&quot;02-01-cramb.mp3&quot;,&quot;volume&quot;:0.8},&quot;22&quot;:{&quot;filename&quot;:&quot;02-03-vapo.mp3&quot;,&quot;volume&quot;:0.8}},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{&quot;0&quot;:{&quot;filename&quot;:&quot;02-01-narrator.mp3&quot;,&quot;volume&quot;:0.8},&quot;26&quot;:{&quot;filename&quot;:&quot;02-02-cramb.mp3&quot;,&quot;volume&quot;:0.8}},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{&quot;9&quot;:{&quot;filename&quot;:&quot;02-02-narrator.mp3&quot;,&quot;volume&quot;:0.8}},&quot;paraVolume&quot;:0.8}' data-sc-title="Scene 2 - Slip the Creator" data-sc-aud_02_01_vapo_mp3="audio/02-01-vapo.mp3" data-sc-aud_02_02_vapo_mp3="audio/02-02-vapo.mp3" data-sc-aud_02_01_cramb_mp3="audio/02-01-cramb.mp3" data-sc-aud_02_03_vapo_mp3="audio/02-03-vapo.mp3" data-sc-aud_02_01_narrator_mp3="audio/02-01-narrator.mp3" data-sc-aud_02_02_cramb_mp3="audio/02-02-cramb.mp3" data-sc-aud_02_02_narrator_mp3="audio/02-02-narrator.mp3">
     <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
     <div class="sc-info"></div>
     <div class="sc-content">
       <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
@@ -1298,6 +1308,7 @@ I forgot.
 
   <div class="sc-scene" id="section-5" data-sc-config='{&quot;wallpaperFilename&quot;:&quot;cramb-spins-whisk.gif&quot;,&quot;wallpaperOpacity&quot;:0.09,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:&quot;00-cramb-pirate-signal.mp3&quot;,&quot;ambientVolume&quot;:0.05,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;narration&quot;,&quot;narrationFilename&quot;:&quot;03-narration.mp3&quot;,&quot;narrationVolume&quot;:0.63,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Scene 3 - The Pirate Signal" data-sc-img_cramb_spins_whisk_gif="images/cramb-spins-whisk.gif" data-sc-aud_00_cramb_pirate_signal_mp3="audio/00-cramb-pirate-signal.mp3" data-sc-aud_03_narration_mp3="audio/03-narration.mp3">
     <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
     <div class="sc-info"></div>
     <div class="sc-content">
       <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
@@ -1333,6 +1344,7 @@ I forgot.
 
   <div class="sc-scene" id="section-6" data-sc-config='{&quot;wallpaperFilename&quot;:&quot;cramb-spins-whisk.gif&quot;,&quot;wallpaperOpacity&quot;:0.4,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:&quot;00-cramb-pirate-signal.mp3&quot;,&quot;ambientVolume&quot;:0.03,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;narration&quot;,&quot;narrationFilename&quot;:&quot;04-narration.mp3&quot;,&quot;narrationVolume&quot;:0.61,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Scene 4 - The Crambnik Dance" data-sc-img_cramb_spins_whisk_gif="images/cramb-spins-whisk.gif" data-sc-aud_00_cramb_pirate_signal_mp3="audio/00-cramb-pirate-signal.mp3" data-sc-aud_04_narration_mp3="audio/04-narration.mp3">
     <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
     <div class="sc-info"></div>
     <div class="sc-content">
       <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
@@ -1364,6 +1376,7 @@ I forgot.
 
   <div class="sc-scene" id="section-7" data-sc-config='{&quot;wallpaperFilename&quot;:&quot;cramb-spins-vapo.jpg&quot;,&quot;wallpaperOpacity&quot;:0.41,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;narration&quot;,&quot;narrationFilename&quot;:&quot;05-narration.mp3&quot;,&quot;narrationVolume&quot;:0.61,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Scene 5 - Signal and Noise" data-sc-img_cramb_spins_vapo_jpg="images/cramb-spins-vapo.jpg" data-sc-aud_05_narration_mp3="audio/05-narration.mp3">
     <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
     <div class="sc-info"></div>
     <div class="sc-content">
       <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
@@ -1394,6 +1407,7 @@ It could be a very subtle message; perhaps you are a beacon in a vast nothingnes
 
   <div class="sc-scene" id="section-8" data-sc-config='{&quot;wallpaperFilename&quot;:&quot;Vapo.png&quot;,&quot;wallpaperOpacity&quot;:0.11,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;narration&quot;,&quot;narrationFilename&quot;:&quot;06-narration.mp3&quot;,&quot;narrationVolume&quot;:0.61,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Scene 6 - A Beacon in the Void" data-sc-img_Vapo_png="images/Vapo.png" data-sc-aud_06_narration_mp3="audio/06-narration.mp3">
     <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
     <div class="sc-info"></div>
     <div class="sc-content">
       <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
@@ -1417,6 +1431,7 @@ As we pull back, CRAMB shrinks to a speck within the enormous, glowing VAPO.</di
 
   <div class="sc-scene" id="section-9" data-sc-config='{&quot;wallpaperFilename&quot;:&quot;cramb-spins-vapo.jpg&quot;,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:1,&quot;fadeOut&quot;:1,&quot;voiceMode&quot;:&quot;narration&quot;,&quot;narrationFilename&quot;:&quot;07-narration.mp3&quot;,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Scene 7 - The Limits of Language" data-sc-img_cramb_spins_vapo_jpg="images/cramb-spins-vapo.jpg" data-sc-aud_07_narration_mp3="audio/07-narration.mp3">
     <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
     <div class="sc-info"></div>
     <div class="sc-content">
       <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
@@ -1445,6 +1460,7 @@ CRAMB is a small figure within, still gyrating in a dance-like trance, transmitt
 
   <div class="sc-scene" id="section-10" data-sc-config='{&quot;wallpaperFilename&quot;:&quot;cramb-spins-vapo.jpg&quot;,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:&quot;00-ambient.mp3&quot;,&quot;ambientVolume&quot;:0.1,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;narration&quot;,&quot;narrationFilename&quot;:&quot;08-narration.mp3&quot;,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Scene 8 - Five Feeble Senses" data-sc-img_cramb_spins_vapo_jpg="images/cramb-spins-vapo.jpg" data-sc-aud_00_ambient_mp3="audio/00-ambient.mp3" data-sc-aud_08_narration_mp3="audio/08-narration.mp3">
     <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
     <div class="sc-info"></div>
     <div class="sc-content">
       <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
@@ -1466,6 +1482,7 @@ CRAMB is a small figure within, still gyrating in a dance-like trance, transmitt
 
   <div class="sc-scene" id="section-11" data-sc-config='{&quot;wallpaperFilename&quot;:&quot;space.jpeg&quot;,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:&quot;00-ambient.mp3&quot;,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;narration&quot;,&quot;narrationFilename&quot;:&quot;09-narration.mp3&quot;,&quot;narrationVolume&quot;:0.85,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Scene 9 - Dumbing It Down" data-sc-img_space_jpeg="images/space.jpeg" data-sc-aud_00_ambient_mp3="audio/00-ambient.mp3" data-sc-aud_09_narration_mp3="audio/09-narration.mp3">
     <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
     <div class="sc-info"></div>
     <div class="sc-content">
       <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
@@ -1487,6 +1504,7 @@ CRAMB is a small figure within, still gyrating in a dance-like trance, transmitt
 
   <div class="sc-scene" id="section-12" data-sc-config='{&quot;wallpaperFilename&quot;:&quot;space.jpeg&quot;,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:&quot;space.mp3&quot;,&quot;ambientVolume&quot;:0.38,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;narration&quot;,&quot;narrationFilename&quot;:&quot;10-narration.mp3&quot;,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Scene 10 - The Megaphone" data-sc-img_space_jpeg="images/space.jpeg" data-sc-aud_space_mp3="audio/space.mp3" data-sc-aud_10_narration_mp3="audio/10-narration.mp3">
     <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
     <div class="sc-info"></div>
     <div class="sc-content">
       <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
@@ -1508,6 +1526,7 @@ CRAMB is a small figure within, still gyrating in a dance-like trance, transmitt
 
   <div class="sc-scene" id="section-13" data-sc-config='{&quot;wallpaperFilename&quot;:&quot;Cramb_=_Crab_+_Clam.png&quot;,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;top&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;narration&quot;,&quot;narrationFilename&quot;:&quot;11-narration.mp3&quot;,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Scene 11 - Unnoticed Broadcasts" data-sc-img_Cramb___Crab___Clam_png="images/Cramb_=_Crab_+_Clam.png" data-sc-aud_11_narration_mp3="audio/11-narration.mp3">
     <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
     <div class="sc-info"></div>
     <div class="sc-content">
       <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
@@ -1526,6 +1545,7 @@ CRAMB is a small figure within, still gyrating in a dance-like trance, transmitt
 
   <div class="sc-scene" id="section-14" data-sc-config='{&quot;wallpaperFilename&quot;:&quot;vapo-bright.jpg&quot;,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;narration&quot;,&quot;narrationFilename&quot;:&quot;12-narration.mp3&quot;,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Scene 12 - Snacking on Gassiness" data-sc-img_vapo_bright_jpg="images/vapo-bright.jpg" data-sc-aud_12_narration_mp3="audio/12-narration.mp3">
     <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
     <div class="sc-info"></div>
     <div class="sc-content">
       <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
@@ -1548,6 +1568,7 @@ CRAMB is a small figure within, still gyrating in a dance-like trance, transmitt
 
   <div class="sc-scene" id="section-15" data-sc-config='{&quot;wallpaperFilename&quot;:&quot;cramb-spins-vapo.jpg&quot;,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;narration&quot;,&quot;narrationFilename&quot;:&quot;13-narration.mp3&quot;,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Scene 13 - The Wisdom of Pauses" data-sc-img_cramb_spins_vapo_jpg="images/cramb-spins-vapo.jpg" data-sc-aud_13_narration_mp3="audio/13-narration.mp3">
     <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
     <div class="sc-info"></div>
     <div class="sc-content">
       <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
@@ -1566,6 +1587,7 @@ CRAMB is a small figure within, still gyrating in a dance-like trance, transmitt
 
   <div class="sc-scene" id="section-16" data-sc-config='{&quot;wallpaperFilename&quot;:&quot;deep-space.png&quot;,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;narration&quot;,&quot;narrationFilename&quot;:&quot;14-narration.mp3&quot;,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Scene 14 - Drifting Off" data-sc-img_deep_space_png="images/deep-space.png" data-sc-aud_14_narration_mp3="audio/14-narration.mp3">
     <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
     <div class="sc-info"></div>
     <div class="sc-content">
       <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
@@ -1588,6 +1610,7 @@ CRAMB is a small figure within, still gyrating in a dance-like trance, transmitt
 
   <div class="sc-scene" id="section-17" data-sc-config='{&quot;wallpaperFilename&quot;:&quot;space.jpeg&quot;,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:2,&quot;voiceMode&quot;:&quot;narration&quot;,&quot;narrationFilename&quot;:&quot;15-narration.mp3&quot;,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Scene 15 - Beyond Words" data-sc-img_space_jpeg="images/space.jpeg" data-sc-aud_15_narration_mp3="audio/15-narration.mp3">
     <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
     <div class="sc-info"></div>
     <div class="sc-content">
       <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
@@ -1609,6 +1632,7 @@ CRAMB is a small figure within, still gyrating in a dance-like trance, transmitt
 
   <div class="sc-scene" id="section-18" data-sc-config='{&quot;wallpaperFilename&quot;:&quot;cramb-spins-vapo.jpg&quot;,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;narration&quot;,&quot;narrationFilename&quot;:&quot;16-narration.mp3&quot;,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Scene 16 - Transcendence" data-sc-img_cramb_spins_vapo_jpg="images/cramb-spins-vapo.jpg" data-sc-aud_16_narration_mp3="audio/16-narration.mp3">
     <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
     <div class="sc-info"></div>
     <div class="sc-content">
       <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
@@ -1627,6 +1651,7 @@ CRAMB is a small figure within, still gyrating in a dance-like trance, transmitt
 
   <div class="sc-scene" id="section-19" data-sc-config='{&quot;wallpaperFilename&quot;:&quot;Cramb_=_Crab_+_Clam.png&quot;,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;top&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;narration&quot;,&quot;narrationFilename&quot;:&quot;17-narration.mp3&quot;,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Scene 17 - The Human Lens" data-sc-img_Cramb___Crab___Clam_png="images/Cramb_=_Crab_+_Clam.png" data-sc-aud_17_narration_mp3="audio/17-narration.mp3">
     <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
     <div class="sc-info"></div>
     <div class="sc-content">
       <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
@@ -1648,6 +1673,7 @@ CRAMB is a small figure within, still gyrating in a dance-like trance, transmitt
 
   <div class="sc-scene" id="section-20" data-sc-config='{&quot;wallpaperFilename&quot;:&quot;Vapo.png&quot;,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;narration&quot;,&quot;narrationFilename&quot;:&quot;18-narration.mp3&quot;,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Scene 18 - Everything Connected" data-sc-img_Vapo_png="images/Vapo.png" data-sc-aud_18_narration_mp3="audio/18-narration.mp3">
     <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
     <div class="sc-info"></div>
     <div class="sc-content">
       <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
@@ -1670,6 +1696,7 @@ CRAMB is a small figure within, still gyrating in a dance-like trance, transmitt
 
   <div class="sc-scene" id="section-21" data-sc-config='{&quot;wallpaperFilename&quot;:&quot;cramb-spins-whisk.gif&quot;,&quot;wallpaperOpacity&quot;:0.61,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:&quot;00-cramb-pirate-signal.mp3&quot;,&quot;ambientVolume&quot;:0.12,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;narration&quot;,&quot;narrationFilename&quot;:&quot;19-narration.mp3&quot;,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Scene 19 - The Cosmic Conversation" data-sc-img_cramb_spins_whisk_gif="images/cramb-spins-whisk.gif" data-sc-aud_00_cramb_pirate_signal_mp3="audio/00-cramb-pirate-signal.mp3" data-sc-aud_19_narration_mp3="audio/19-narration.mp3">
     <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
     <div class="sc-info"></div>
     <div class="sc-content">
       <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
@@ -1692,6 +1719,7 @@ CRAMB is a small figure within, still gyrating in a dance-like trance, transmitt
 
   <div class="sc-scene" id="section-22" data-sc-config='{&quot;wallpaperFilename&quot;:&quot;cramb-spins-vapo.jpg&quot;,&quot;wallpaperOpacity&quot;:0.52,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:&quot;space.mp3&quot;,&quot;ambientVolume&quot;:0.33,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:3,&quot;fadeOut&quot;:5,&quot;voiceMode&quot;:&quot;narration&quot;,&quot;narrationFilename&quot;:&quot;20-narration.mp3&quot;,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Scene 20 - Maybe They Will" data-sc-img_cramb_spins_vapo_jpg="images/cramb-spins-vapo.jpg" data-sc-aud_space_mp3="audio/space.mp3" data-sc-aud_20_narration_mp3="audio/20-narration.mp3">
     <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
     <div class="sc-info"></div>
     <div class="sc-content">
       <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
@@ -1877,14 +1905,13 @@ interesting. And the gas-powered rocket propulsion is just deeply undignified in
   <div class="footer">
     <div class="footer-buttons">
       <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">&#9728;&#65039;</button>
+      <button class="playhead-toggle" id="playheadToggle" title="Toggle Scenecraft overlays"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 2H6c-1.2 0-2 .9-2 2v16c0 1.1.8 2 2 2h13c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 18H6V4h2v8l2.5-1.5L13 12V4h6v16z"/></svg></button>
     </div>
     <div class="footer-info">
       <span class="footer-title">Vapo &amp; Cramb</span>
       <span class="footer-author">by Clee Smith</span>
       <span class="footer-copyright">&copy; 2026</span>
-      <span class="footer-scene" id="footerScene"></span>
     </div>
-    <div class="footer-status" id="footerStatus"></div>
   </div>
 
   <script>
@@ -1908,8 +1935,24 @@ interesting. And the gas-powered rocket propulsion is just deeply undignified in
       localStorage.setItem('html-ebook-theme', isDark ? 'dark' : 'light');
     });
 
+    // Playhead overlay toggle
+    var playheadToggle = document.getElementById('playheadToggle');
+    if (playheadToggle) {
+      var savedPlayhead = localStorage.getItem('html-ebook-playhead');
+      if (savedPlayhead === 'hidden') {
+        body.classList.add('sc-overlay-hidden');
+        playheadToggle.classList.add('sc-off');
+      }
+      playheadToggle.addEventListener('click', function() {
+        body.classList.toggle('sc-overlay-hidden');
+        var isHidden = body.classList.contains('sc-overlay-hidden');
+        playheadToggle.classList.toggle('sc-off', isHidden);
+        localStorage.setItem('html-ebook-playhead', isHidden ? 'hidden' : 'visible');
+      });
+    }
 
-    // SceneCraft autoplay: scroll-driven audio + auto-scroll controller
+
+    // SceneCraft scroll-driven immersive audio/visual engine
     (function() {
       var scenes = document.querySelectorAll('.sc-scene');
       if (!scenes.length) return;
@@ -1970,6 +2013,7 @@ interesting. And the gas-powered rocket propulsion is just deeply undignified in
           enterEl: sceneEl.querySelector('.sc-enter'),
           exitEl: sceneEl.querySelector('.sc-exit'),
           bgEl: sceneEl.querySelector('.sc-bg'),
+          infoEl: sceneEl.querySelector('.sc-info'),
         });
       });
 
@@ -1980,9 +2024,7 @@ interesting. And the gas-powered rocket propulsion is just deeply undignified in
         if (s.inScene || !s.cfg) return;
         s.inScene = true;
         var c = s.cfg;
-        var footerScene = document.getElementById('footerScene');
-        var scTitle = s.el.dataset.scTitle || '';
-        if (footerScene) footerScene.innerHTML = scTitle ? '<span class="footer-scene-label">now playing: </span>' + scTitle : '';
+        if (s.infoEl) s.infoEl.textContent = s.el.dataset.scTitle || '';
 
         // Wallpaper
         if (c.wallpaperFilename && s.bgEl) {
@@ -2020,11 +2062,7 @@ interesting. And the gas-powered rocket propulsion is just deeply undignified in
         if (!s.inScene || !s.cfg) return;
         s.inScene = false;
         var c = s.cfg;
-        var footerScene = document.getElementById('footerScene');
-        var myTitle = s.el.dataset.scTitle || '';
-        if (footerScene && myTitle && footerScene.textContent.indexOf(myTitle) !== -1) {
-          footerScene.innerHTML = '';
-        }
+        if (s.infoEl) s.infoEl.textContent = '';
         if (s.bgEl) s.bgEl.style.opacity = '0';
 
         if (s.ambient) { s.ambientOut = createFadeOut(s.ambient, c.fadeOut || 3); s.ambient = null; }
@@ -2171,264 +2209,6 @@ interesting. And the gas-powered rocket propulsion is just deeply undignified in
         requestAnimationFrame(tick);
       }
       requestAnimationFrame(tick);
-
-      // ── Autoplay scroll controller ──────────────────────────
-      // Audio is the master clock.
-      // Dialogue/para clips GATE the scroll (nearly pause until done).
-      // Sticky clips PACE the scroll (keep scrolling to reveal text).
-      // Narration scenes PACE the scroll to match the narration duration.
-      // Ambient never affects scroll — it is just atmosphere.
-
-      var FRONT_MATTER_SPEED = 0.3; // px/frame for cover, copyright, TOC (~18px/s)
-      var BASE_SPEED = 0.8;        // px/frame through non-audio content (~48px/s @ 60fps)
-      var DEAD_ZONE_SPEED = 2.5;   // px/frame through silence gaps (dead zones)
-      var CREEP_SPEED = 0.15;      // px/frame — tiny drift while a dialogue clip plays
-      var PAUSE_AFTER_CLIP = 45;   // frames to breathe after a clip ends (~0.75s)
-      var NARRATION_MIN_SPEED = 0.1;   // floor during narration (6px/s — barely moving crawl)
-      var NARRATION_MAX_SPEED = 0.35;  // cap so narration scenes don't rush (~21px/s, ~0.75 lines/sec)
-      var NARRATION_COAST_SPEED = 0.3; // gentle coast after narration audio ends (~18px/s)
-      var STICKY_MIN_SPEED = 0.08;    // very low floor — let audio fully control pace
-      var STICKY_MAX_SPEED = 1.2;     // cap for sticky clips
-      var FPS = 60;
-
-      var firstSceneEl = document.querySelector('.sc-scene');
-      var pastFrontMatter = false;
-
-      function isInFrontMatter() {
-        if (pastFrontMatter) return false;
-        if (firstSceneEl && firstSceneEl.getBoundingClientRect().top <= window.innerHeight) {
-          pastFrontMatter = true;
-          return false;
-        }
-        return true;
-      }
-
-      var autoScrollActive = false;
-      var scrollDone = false;
-      var postClipTimer = 0;
-
-      function isClipPlaying(obj) {
-        if (!obj || !obj.el) return false;
-        return !obj.el.paused && !obj.el.ended;
-      }
-
-      function hasDuration(obj) {
-        if (!obj || !obj.el) return false;
-        return obj.el.duration && !isNaN(obj.el.duration) && obj.el.duration > 0;
-      }
-
-      // Only dialogue and para clips gate (nearly stop scroll).
-      // Sticky clips are handled separately with pacing.
-      function isGatedAudioPlaying() {
-        for (var i = 0; i < sceneStates.length; i++) {
-          var s = sceneStates[i];
-          if (isClipPlaying(s.dlgObj)) return true;
-          if (isClipPlaying(s.paraObj)) return true;
-          // NOTE: stkObj is NOT here — sticky clips are paced, not gated
-        }
-        return false;
-      }
-
-      function isInDeadZone() {
-        for (var i = 0; i < sceneStates.length; i++) {
-          if (sceneStates[i].inScene) return false;
-        }
-        return true;
-      }
-
-      // For sticky clips: pace scroll so the sticky section finishes
-      // scrolling right when the audio clip ends.
-      function getStickyPacedSpeed() {
-        for (var i = 0; i < sceneStates.length; i++) {
-          var s = sceneStates[i];
-          if (!s.inScene) continue;
-          if (!isClipPlaying(s.stkObj)) continue;
-
-          // If playing but duration not loaded yet, crawl until we can calculate
-          if (!hasDuration(s.stkObj)) return STICKY_MIN_SPEED;
-
-          var audio = s.stkObj.el;
-          var remaining = audio.duration - audio.currentTime;
-          if (remaining <= 0) continue;
-
-          // Find the active sticky wrapper element
-          var activeIdx = s.activeStk;
-          if (activeIdx < 0) continue;
-
-          for (var sw = 0; sw < s.stickyWraps.length; sw++) {
-            var wrap = s.stickyWraps[sw];
-            var idx = parseInt(wrap.dataset.idx || '-1', 10);
-            if (idx !== activeIdx) continue;
-
-            // Find the last text block inside the sticky text column
-            var textBlocks = wrap.querySelectorAll('.sc-sticky-text .sc-block');
-            if (!textBlocks.length) continue;
-            var lastBlock = textBlocks[textBlocks.length - 1];
-            var lastRect = lastBlock.getBoundingClientRect();
-
-            // Distance = bottom of last text block to playhead
-            var pixelsLeft = lastRect.bottom - playheadY;
-
-            // If all text has already passed the playhead but audio still playing,
-            // keep scrolling slowly — don't jump to BASE_SPEED
-            if (pixelsLeft <= 10) return BASE_SPEED;
-
-            var speed = pixelsLeft / (remaining * FPS);
-            speed = Math.max(STICKY_MIN_SPEED, Math.min(STICKY_MAX_SPEED, speed));
-            return speed;
-          }
-
-          // Sticky clip is playing but couldn't find wrapper — crawl
-          return STICKY_MIN_SPEED;
-        }
-        return null;
-      }
-
-      // For narration scenes: pace scroll so we reach the scene exit
-      // right when the narration track ends.
-      function getNarrationPacedSpeed() {
-        for (var i = 0; i < sceneStates.length; i++) {
-          var s = sceneStates[i];
-          if (!s.inScene) continue;
-          if (!s.voice || !s.voice.el) continue;
-          var audio = s.voice.el;
-          if (audio.paused || audio.ended) continue;
-
-          // If audio is playing but duration hasn't loaded yet,
-          // crawl slowly until we can calculate proper pacing
-          if (!audio.duration || isNaN(audio.duration) || audio.duration <= 0) {
-            return NARRATION_MIN_SPEED;
-          }
-
-          var remaining = audio.duration - audio.currentTime;
-          if (remaining <= 0) continue;
-
-          var exitEl = s.exitEl;
-          if (!exitEl) continue;
-          var exitRect = exitEl.getBoundingClientRect();
-          var pixelsLeft = exitRect.top - playheadY;
-          if (pixelsLeft <= 0) continue;
-
-          // Nearly at exit but narration still playing — almost stop so we
-          // don't leave the scene while audio is still going
-          if (pixelsLeft <= 10) return 0.05;
-
-          var speed = pixelsLeft / (remaining * FPS);
-          speed = Math.max(NARRATION_MIN_SPEED, Math.min(NARRATION_MAX_SPEED, speed));
-          return speed;
-        }
-        return null;
-      }
-
-      // True if we're inside a narration scene (even if its audio has ended).
-      // Used to apply coast speed after narration finishes.
-      function isInNarrationScene() {
-        for (var i = 0; i < sceneStates.length; i++) {
-          var s = sceneStates[i];
-          if (s.inScene && s.cfg && s.cfg.voiceMode === 'narration') return true;
-        }
-        return false;
-      }
-
-      function autoScroll() {
-        if (!autoScrollActive || scrollDone) {
-          requestAnimationFrame(autoScroll);
-          return;
-        }
-
-        var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-        if (window.scrollY >= maxScroll) {
-          scrollDone = true;
-          console.log('Autoplay: reached the end.');
-          return;
-        }
-
-        var speed;
-
-        // Priority 0: front matter (cover, copyright, TOC) — slow scroll
-        if (isInFrontMatter()) {
-          speed = FRONT_MATTER_SPEED;
-          window.scrollBy(0, speed);
-          requestAnimationFrame(autoScroll);
-          return;
-        }
-
-        // Priority 1: dialogue/para clip playing — gate (nearly stop)
-        if (isGatedAudioPlaying()) {
-          speed = CREEP_SPEED;
-          postClipTimer = PAUSE_AFTER_CLIP;
-        }
-        // Priority 2: just finished a clip — brief pause
-        else if (postClipTimer > 0) {
-          speed = CREEP_SPEED;
-          postClipTimer--;
-        }
-        // Priority 3: sticky clip playing — pace through the sticky section
-        else {
-          var stickySpeed = getStickyPacedSpeed();
-          if (stickySpeed !== null) {
-            speed = stickySpeed;
-          }
-          // Priority 4: narration playing — pace through the scene
-          else {
-            var narrationSpeed = getNarrationPacedSpeed();
-            if (narrationSpeed !== null) {
-              speed = narrationSpeed;
-            }
-            // Priority 5: narration scene but audio ended — coast gently
-            else if (isInNarrationScene()) {
-              speed = NARRATION_COAST_SPEED;
-            }
-            // Priority 6: dead zone — move through silence
-            else if (isInDeadZone()) {
-              speed = DEAD_ZONE_SPEED;
-            }
-            // Default: gentle reading pace
-            else {
-              speed = BASE_SPEED;
-            }
-          }
-        }
-
-        window.scrollBy(0, speed);
-        requestAnimationFrame(autoScroll);
-      }
-
-      // Status indicator + start/pause control (lives in the footer)
-      var statusEl = document.getElementById('footerStatus');
-      statusEl.textContent = 'PRESS SPACE TO BEGIN';
-      statusEl.classList.add('pill');
-
-      document.addEventListener('keydown', function(e) {
-        if (e.code === 'Space') {
-          e.preventDefault();
-          if (scrollDone) return;
-
-          autoScrollActive = !autoScrollActive;
-
-          if (autoScrollActive) {
-            statusEl.textContent = 'PLAYING';
-            statusEl.classList.remove('pill');
-            // fade out the indicator after 1 second
-            setTimeout(function() {
-              if (autoScrollActive) statusEl.style.opacity = '0';
-            }, 1000);
-          } else {
-            statusEl.style.opacity = '1';
-            statusEl.textContent = 'PAUSED \u2014 SPACE TO RESUME';
-            statusEl.classList.add('pill');
-          }
-        }
-      });
-
-      // also allow clicking the status bar to toggle
-      statusEl.addEventListener('click', function() {
-        var ev = new KeyboardEvent('keydown', { code: 'Space' });
-        document.dispatchEvent(ev);
-      });
-
-      requestAnimationFrame(autoScroll);
-
     })();
   </script>
 </body>
