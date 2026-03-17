@@ -1,0 +1,2097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BOB JOHNSON RIDES AGAIN! &#8212; Autoplay</title>
+  <base href="/Bob-Johnson-Rides-Again/" />
+  <style>
+/* EverythingEbooks — EPUB-matching base styles */
+
+html {
+  font-size: 100%;
+}
+
+body {
+  font-family: serif;
+  line-height: 1.6;
+  margin: 1em auto;
+  padding: 0 1.5rem;
+  padding-bottom: 70px;
+  text-align: left;
+  max-width: min(92%, 1400px);
+  background: #fffaf5;
+  color: #222;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Title page */
+.title-page {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.title-page p {
+  text-indent: 0;
+  text-align: center;
+}
+
+.book-title {
+  text-align: center;
+  font-size: 1.8em;
+  font-weight: bold;
+  margin: 0;
+  padding-top: 25%;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.book-subtitle {
+  text-align: center;
+  font-size: 1.1em;
+  font-style: italic;
+  margin: 0;
+  padding-top: 5%;
+}
+
+.book-author {
+  text-align: center;
+  font-size: 1.3em;
+  margin: 0;
+  padding-top: 20%;
+  font-weight: normal;
+}
+
+.book-publisher {
+  text-align: center;
+  font-size: 1em;
+  margin: 0;
+  padding-top: 20%;
+  font-weight: normal;
+}
+
+/* Copyright page */
+.copyright-page {
+  margin: 2em 0;
+}
+
+.copyright-page p {
+  text-align: left;
+  margin: 0.8em 0;
+  text-indent: 0;
+  font-size: 0.9em;
+}
+
+/* Contents page */
+.contents-page {
+  margin: 2em 0;
+}
+
+.toc-title {
+  text-align: center;
+  font-size: 1.5em;
+  margin: 2em 0;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.toc-contents {
+  margin: 1em 0;
+  padding: 0;
+}
+
+.toc-item {
+  margin: 1em 0;
+  text-align: left;
+}
+
+.toc-content {
+  margin: 0;
+  text-indent: 0;
+}
+
+.toc-content a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s;
+}
+
+.toc-content a:hover {
+  text-decoration: underline;
+}
+
+.toc-item-title {
+  display: inline;
+}
+
+.toc-section-header {
+  margin: 2em 0 0.5em 0;
+}
+
+.toc-section-title {
+  font-weight: bold;
+  font-style: italic;
+  margin: 0;
+  text-indent: 0;
+}
+
+/* Chapter styles */
+.chapter {
+  margin: 0;
+}
+
+h1 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 3em 0 2em 0;
+  text-align: center;
+}
+
+p {
+  margin: 0 0 1em 0;
+  text-indent: 1.5em;
+  text-align: justify;
+  line-height: 1.6;
+}
+
+pre {
+  margin: 1em 0;
+  text-align: left;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-x: auto;
+  font-family: monospace;
+}
+
+/* First paragraph after chapter heading */
+.chapter p:first-of-type {
+  text-indent: 0;
+  margin-top: 1.5em;
+}
+
+/* Inline images */
+.image-container {
+  text-align: center;
+  margin: 1.5em 0;
+}
+
+.image-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Figures (resized images from editor) */
+figure {
+  text-align: center;
+  margin: 1.5em auto;
+  max-width: 100%;
+}
+
+figure img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+figure[data-align="left"] {
+  margin-left: 0;
+  margin-right: auto;
+  text-align: left;
+}
+
+figure[data-align="right"] {
+  margin-left: auto;
+  margin-right: 0;
+  text-align: right;
+}
+
+figcaption {
+  font-size: 0.85em;
+  text-align: center;
+  margin-top: 0.5em;
+  font-style: italic;
+}
+
+/* Audio blocks (non-VN) */
+.audio-block {
+  text-align: center;
+  margin: 1.5em 0;
+}
+
+.audio-block audio {
+  width: 80%;
+  max-width: 400px;
+}
+
+.audio-block .caption {
+  font-size: 0.85em;
+  font-style: italic;
+  margin-top: 0.5em;
+}
+
+/* Scene overrides — no indent, left-aligned */
+.scene p {
+  text-indent: 0;
+  text-align: left;
+}
+
+/* About author page */
+.about-author-page {
+  margin: 2em 0;
+}
+
+.about-author-page h1 {
+  text-align: center;
+  font-size: 1.5em;
+  margin: 2em 0;
+  font-weight: bold;
+}
+
+.about-author-page p {
+  text-align: left;
+  text-indent: 1.5em;
+  margin: 0 0 1em 0;
+}
+
+.about-author-page p:first-of-type {
+  text-indent: 0;
+}
+
+/* Navigation styles */
+nav h1 {
+  text-align: center;
+  font-size: 1.5em;
+  margin: 2em 0;
+  font-weight: bold;
+}
+
+nav ol {
+  list-style: none;
+  margin: 1em 0;
+  padding: 0;
+}
+
+nav li {
+  margin: 1em 0;
+  text-align: left;
+}
+
+nav a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.chapter a,
+.scene a,
+.copyright-page a {
+  color: #1a6fb5;
+  text-decoration: underline;
+  text-decoration-color: rgba(26, 111, 181, 0.4);
+}
+
+.chapter a:hover,
+.scene a:hover,
+.copyright-page a:hover {
+  color: #155a94;
+  text-decoration-color: rgba(21, 90, 148, 0.8);
+}
+
+
+/* ── SceneCraft autoplay immersive styles ──── */
+.sc-scene {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  background: #060608;
+  color: #c8c0b4;
+  overflow: clip;
+}
+.sc-scene .sc-bg {
+  position: fixed;
+  inset: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+  z-index: 0;
+  pointer-events: none;
+}
+.sc-scene .sc-info {
+  display: none;
+}
+.sc-scene .sc-content {
+  max-width: min(88%, 52rem);
+  margin: 0 auto;
+  padding: 50vh 2rem;
+  font-family: Georgia, 'EB Garamond', serif;
+  font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+  line-height: 2;
+  position: relative;
+  z-index: 2;
+}
+.sc-scene .sc-dead-zone {
+  height: 50vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 2rem;
+}
+.sc-scene .sc-dead-zone span {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: #2a2620;
+  font-style: italic;
+  font-family: 'SF Mono','Fira Code',monospace;
+}
+.sc-scene .sc-enter {
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,120,68,0.25);
+  margin-bottom: 3em;
+  padding-bottom: 1em;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  font-family: 'SF Mono','Fira Code',monospace;
+}
+.sc-scene .sc-exit {
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,120,68,0.15);
+  margin-top: 3em;
+  padding-top: 1em;
+  border-top: 1px solid rgba(255,255,255,0.03);
+  font-style: italic;
+  font-family: 'SF Mono','Fira Code',monospace;
+}
+.sc-scene .sc-dead-zone-after {
+  height: 70vh;
+}
+.sc-scene .sc-block {
+  margin-bottom: 1.6em;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  position: relative;
+  z-index: 2;
+}
+.sc-scene .sc-block.sc-vis {
+  opacity: 1;
+  transform: translateY(0);
+}
+.sc-scene .sc-block.sc-past {
+  opacity: 0.3;
+}
+.sc-scene .sc-block-dialogue {
+  color: #d4c090;
+}
+.sc-scene .sc-block-dialogue .sc-speaker {
+  font-family: 'SF Mono','Fira Code',monospace;
+  font-size: 0.65em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #a08040;
+  display: block;
+  margin-bottom: 0.3em;
+}
+.sc-scene .sc-block-emphasis {
+  font-style: italic;
+  color: #e0c8b0;
+  text-align: center;
+}
+.sc-scene .sc-block-quote {
+  border-left: 2px solid rgba(200,192,180,0.3);
+  padding-left: 1.5em;
+}
+.sc-scene .sc-block-internal {
+  font-style: italic;
+  padding-left: 2em;
+}
+.sc-scene .sc-block-break {
+  text-align: center;
+  color: #3a3530;
+  letter-spacing: 0.3em;
+}
+.sc-scene .sc-block-h1 {
+  font-size: 1.8em;
+  font-weight: bold;
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #c8c0b4;
+}
+.sc-scene .sc-block-h2 {
+  font-size: 1.4em;
+  font-weight: bold;
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #c8c0b4;
+}
+.sc-scene .sc-block-h3 {
+  font-size: 1.15em;
+  font-weight: bold;
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #c8c0b4;
+}
+.sc-scene .sc-block-divider {
+  border-top: 1px solid rgba(200,192,180,0.15);
+  margin: 1.6em 0;
+}
+.sc-scene .sc-block-linebreak {
+  height: 1.2em;
+  margin: 0;
+}
+.sc-scene .sc-block-sticky {
+  display: flex;
+  gap: 1.5em;
+  align-items: flex-start;
+  min-height: 300px;
+  margin-bottom: 1.6em;
+  position: relative;
+  z-index: 2;
+}
+.sc-scene .sc-block-sticky .sc-block {
+  margin-bottom: 0;
+}
+.sc-scene .sc-block-sticky .sc-sticky-img {
+  position: sticky;
+  top: 0;
+  width: 40%;
+  flex-shrink: 0;
+}
+.sc-scene .sc-block-sticky .sc-sticky-img input[type="checkbox"] {
+  display: none;
+}
+.sc-scene .sc-block-sticky .sc-sticky-img input:checked ~ .sc-enlarge-overlay {
+  display: block !important;
+}
+.sc-scene .sc-block-sticky .sc-sticky-img img {
+  width: 100%;
+  border-radius: 4px;
+  opacity: 0.9;
+}
+.sc-scene .sc-block-sticky .sc-sticky-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding-top: 15vh;
+}
+/* ── Sticky-image enlarge: collapse stacking contexts so overlay reaches root ── */
+body:has(.sc-sticky-img input:checked) .sc-scene .sc-content {
+  z-index: auto;
+}
+body:has(.sc-sticky-img input:checked) .sc-block-sticky {
+  z-index: auto;
+}
+body:has(.sc-sticky-img input:checked) .sc-sticky-img {
+  position: static;
+}
+.sc-scene a {
+  color: #e8c078;
+  text-decoration: underline;
+  text-decoration-color: rgba(232, 192, 120, 0.4);
+}
+.sc-scene a:hover {
+  color: #f0d898;
+  text-decoration-color: rgba(240, 216, 152, 0.7);
+}
+/* ── Autoplay footer extras ──── */
+.footer-scene {
+  color: rgba(255,120,68,0.35);
+  font-family: 'SF Mono','Fira Code',monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  margin-left: 12px;
+}
+.footer-scene-label {
+  color: #777;
+}
+.footer-status {
+  font-family: "SF Mono", "Fira Code", monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: rgba(255,120,68,0.35);
+  margin-left: auto;
+  user-select: none;
+  transition: opacity 2s;
+  white-space: nowrap;
+  padding: 4px 14px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid transparent;
+}
+.footer-status.pill {
+  background: rgba(255,120,68,0.08);
+  border-color: rgba(255,120,68,0.12);
+  cursor: pointer;
+}
+
+/* ── Dark mode ─────────────────────────────── */
+
+body.dark-mode {
+  background: #121212;
+  color: #e0e0e0;
+}
+
+body.dark-mode .dialogue {
+  border-left-color: rgba(200, 200, 200, 0.25);
+}
+
+body.dark-mode .toc-content a:hover {
+  color: #ccc;
+}
+
+body.dark-mode img {
+  opacity: 0.9;
+}
+
+body.dark-mode .scene-audio {
+  border-color: rgba(200, 200, 200, 0.15);
+}
+
+body.dark-mode .chapter a,
+body.dark-mode .scene a,
+body.dark-mode .copyright-page a {
+  color: #5bb8f5;
+  text-decoration-color: rgba(91, 184, 245, 0.4);
+}
+
+body.dark-mode .chapter a:hover,
+body.dark-mode .scene a:hover,
+body.dark-mode .copyright-page a:hover {
+  color: #7dcaff;
+  text-decoration-color: rgba(125, 202, 255, 0.8);
+}
+
+/* ── Sticky Footer ─────────────────────────── */
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #1a1a1a;
+  color: #ccc;
+  padding: 12px 20px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-size: 0.9em;
+  z-index: 1000;
+}
+
+.footer-info {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.footer-title {
+  font-weight: bold;
+  color: #707070;
+}
+
+.footer-author {
+  color: #999;
+}
+
+.footer-copyright {
+  color: #777;
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.4em;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.playhead-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+}
+.playhead-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.playhead-toggle svg {
+  width: 22px;
+  height: 22px;
+  fill: #ff7844;
+  transition: opacity 0.2s;
+}
+.playhead-toggle.sc-off svg {
+  opacity: 0.35;
+}
+
+.footer-buttons {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+/* ── Responsive ────────────────────────────── */
+
+@media (max-width: 600px) {
+  body {
+    margin: 0.5em;
+    padding-bottom: 70px;
+  }
+
+  .book-title {
+    font-size: 1.5em;
+  }
+
+  h1 {
+    font-size: 1.3em;
+  }
+
+  .footer {
+    padding: 10px 15px;
+    font-size: 0.8em;
+  }
+
+  .footer-info {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+}
+  </style>
+</head>
+<body class="dark-mode">
+
+  <section class="cover-page" style="text-align:center; margin:0; padding:2em 0;">
+    <img src="images/cover.jpg" alt="Cover" style="max-width:100%; max-height:90vh; object-fit:contain;"/>
+  </section>
+
+  <section class="title-page">
+    <p class="book-title">BOB JOHNSON RIDES AGAIN!</p>
+    <p class="book-subtitle">3 PARAGRAPHS IN THE LIFE OF BOB JOHNSON</p>
+    <p class="book-author">Scott Bradfield</p>
+    <p class="book-publisher">Red Rabbit Books</p>
+  </section>
+
+  <section class="copyright-page" id="section-1">
+<section class="copyright-page" epub:type="copyright-page">
+<p></p>
+<p></p>
+<p>Copyright © 2026 by Scott Bradfield</p>
+<p></p>
+<p>All rights reserved.</p>
+<p></p>
+<p>No part of this book may be reproduced in any form or by any electronic or mechanical means, including information storage and retrieval systems, without written permission from the author, except for the use of brief quotations in a book review.</p>
+</section>
+  </section>
+
+  <div class="contents-page">
+    <h1 class="toc-title">CONTENTS</h1>
+    <div class="toc-contents">
+      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-3"><span class="toc-item-title">Introduction</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-4"><span class="toc-item-title">1. The Unbearable Lightness of Being Bob</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-5"><span class="toc-item-title">2. Sweet Roll du Jour</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-6"><span class="toc-item-title">3. Post-Colonial</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-7"><span class="toc-item-title">4. The Death of Zorro</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-8"><span class="toc-item-title">5. RED HEAD DEAD AHEAD</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-9"><span class="toc-item-title">6. THE FRESH PRINCE OF PLEIN AIR</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-10"><span class="toc-item-title">7. COMING SOON, INEVITABLY</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-11"><span class="toc-item-title">8. CHANGE WILL DO YOU GOOD</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-12"><span class="toc-item-title">9. WAR-CRIMINAL-A-GO-GO</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-13"><span class="toc-item-title">10. RE-EMPLOYMENT</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-14"><span class="toc-item-title">11. ALICIA KEYS D.G.A.</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-15"><span class="toc-item-title">12. HONEY THE MAGNIFICENT</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-16"><span class="toc-item-title">13. MERRIE MELODIES (REG. U.S. PAT. OFF)</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-17"><span class="toc-item-title">14. AMP-LE ASPECTS</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-18"><span class="toc-item-title">15. IT CAME FROM OUTER SPACE</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-19"><span class="toc-item-title">16. FREEZE-DRIED CLASSICS: NAKED LUNCH, BY WILLIAM S. BURROUGHS, AS TWEETED BY DONALD TRUMP</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-20"><span class="toc-item-title">17. SOMETIMES THE OLDEST ADDICTIONS ARE THE BEST ADDICTIONS</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-21"><span class="toc-item-title">18. LOVE-LORN</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-22"><span class="toc-item-title">19. LI’L TERROR, CREDIT DENTIST</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-23"><span class="toc-item-title">20. DR. MABUSE–WORLD’S BEST DAD</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-24"><span class="toc-item-title">21. A PLUTOCRAT A DAY KEEPS THE DOCTOR AWAY</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-25"><span class="toc-item-title">Cast of Characters</span></a></p></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-3" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;dialogue&quot;,&quot;narrationFilename&quot;:null,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{&quot;3&quot;:{&quot;filename&quot;:&quot;000_bob_johnson_rides_again.mp3&quot;,&quot;volume&quot;:0.8}},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Introduction" data-sc-aud_000_bob_johnson_rides_again_mp3="audio/000_bob_johnson_rides_again.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">Introduction</div>
+      <div class="sc-block sc-block-linebreak" data-idx="0"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block-sticky" data-idx="3">
+        <div class="sc-sticky-img" data-idx="3"><input type="checkbox" id="sc-enlarge-1"/><label for="sc-enlarge-1" style="cursor:zoom-in;display:block"><img src="images/000_f1ff39b1-c282-41ac-b453-b5f8619c0dff_1401x602-1.jpeg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-1" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/000_f1ff39b1-c282-41ac-b453-b5f8619c0dff_1401x602-1.jpeg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+          <div class="sc-block" data-idx="3">BOB JOHNSON RIDES AGAIN!</div>
+          <div class="sc-block" data-idx="3">A Novel Sequel in  <sup> 333 - 3 = 330</sup></div>
+          <div class="sc-block" data-idx="3"><sub>3 Paragraph Stories</sub></div>
+          <div class="sc-block" data-idx="3">Be there or be square.  🆒</div>
+        </div>
+      </div>
+      <div class="sc-block sc-block-linebreak" data-idx="4"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="5"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="6"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="7"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="8"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="9"></div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-4" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;dialogue&quot;,&quot;narrationFilename&quot;:null,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{&quot;0&quot;:{&quot;filename&quot;:&quot;001_bob_johnson_rides_again.mp3&quot;,&quot;volume&quot;:0.8}},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="1. The Unbearable Lightness of Being Bob" data-sc-aud_001_bob_johnson_rides_again_mp3="audio/001_bob_johnson_rides_again.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">1. The Unbearable Lightness of Being Bob</div>
+      <div class="sc-block-sticky" data-idx="0">
+        <div class="sc-sticky-img" data-idx="0"><input type="checkbox" id="sc-enlarge-2"/><label for="sc-enlarge-2" style="cursor:zoom-in;display:block"><img src="images/001_58720201-0554-4990-876d-d5a538d24512_159x65.jpeg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-2" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/001_58720201-0554-4990-876d-d5a538d24512_159x65.jpeg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+          <div class="sc-block" data-idx="0">When Bob Johnson awoke on the living room sofa, he found he had slept through the entirety of the Biden Administration–which wasn’t, as it turned out, the only quality he shared with Joe Biden.</div>
+          <div class="sc-block" data-idx="0">Other similarities included: a) a long-held belief in spending America’s money on guns, bombs, boats and, of course, more bombs–and giving them away practically free to anybody who showed any inclination to use them on anybody else; b) wearing dark sunglasses during daylight hours whenever he had been drinking; c) a deep-seated and inarticulable fear of being caught in an elevator with Nancy Pelosi; d) a tendency to drift off to sleep in the middle of long naps; and finally, and most decidedly, e) a firm conviction that if he ever engendered a son he would almost certainly turn out to be as useless to the future of the human race as Hunter Biden. As a result of sharing so many obvious similarities, Bob might have been truly sorry to have missed the Biden Administration if he had ever received any indication that the Biden Administration might ever truly miss itself.</div>
+          <div class="sc-block" data-idx="0">“Get offa the couch, you lazy bastard!” shouted Bob’s erstwhile Grandma, Monumental Li. She was swinging a cobwebby broom with one of her small, mighty fists and a can of Raid Home Air Freshener (Not Safe for Pets and Other Living Things) in the other. “You been sleeping four years and time you get lazy butt in gear! Your job called and asked what you doing and I told them I don’t care! And while you’re eating that bowl of Cheerios you left on counter, go wake your useless Grandpa who’s sleeping on rolled up old carpet in garage! If he think he worming his way back into the affections of Monumental Li, he got another think coming!”</div>
+        </div>
+      </div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="3"></div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-5" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:1,&quot;voiceMode&quot;:&quot;dialogue&quot;,&quot;narrationFilename&quot;:null,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{&quot;0&quot;:{&quot;filename&quot;:&quot;002_bob_johnson_rides_again.mp3&quot;,&quot;volume&quot;:0.8}},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="2. Sweet Roll du Jour" data-sc-aud_002_bob_johnson_rides_again_mp3="audio/002_bob_johnson_rides_again.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">2. Sweet Roll du Jour</div>
+      <div class="sc-block-sticky" data-idx="0">
+        <div class="sc-sticky-img" data-idx="0"><input type="checkbox" id="sc-enlarge-3"/><label for="sc-enlarge-3" style="cursor:zoom-in;display:block"><img src="images/002_43714277-d66d-49cc-88bf-0ebbe6c974b7_474x355.jpeg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-3" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/002_43714277-d66d-49cc-88bf-0ebbe6c974b7_474x355.jpeg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+          <div class="sc-block" data-idx="0">Being awoken where he slept in the garage on a rolled up old carpet was the high point of Bob Johnson’s grandfather’s day. It meant at least five minutes finishing off whatever bottle of Ol’ Sourpuss Bourbon he had brought home from his bus bench the day before, and stuffing into his jacket pocket for safe keeping whatever two-day-old sweet roll he had purchased from Glutenous Minimus, a gluten-free bakery next door to his favorite liquor shop; most gloriously of all, it meant glimpsing, however momentarily, the love of his life, Monumental Li, who never looked lovelier than at this hour of the morning, sporting her ankle-length padded blue housecoat, bristly black hairnet, and Jumbo-sized can of Raid Air Freshener. Then, of course, there was her always-melodious (to Bob’s Grandpa’s ears) voice: “Get outta here, ya loser!“ And because he loved the estranged wife he lived with so much, Bob’s grandpa did just that.</div>
+          <div class="sc-block" data-idx="0">On his way to find out where he worked, Bob gave Grandpa a ride in his surprisingly still-combusting gold and rust colored 89 Plymouth Sundance. And Grandpa, in return, helped Bob catch up with the latest events. “This crazy old town hasn’t changed at all and at the same time it’s changed so much you won’t recognize it,” Bob’s grandpa told him. Bob’s Sundance was rattling like a tin can xylophone on wheels. “The Cthulhi (“Gezundheit!”) bought the old Dairy Queen and turned it into an army-surplus store selling Spanish military shirts, M-16s, faulty land mines and even faultier hand grenades–faulty in what way, of course, is up to each buyer to find out for themself. The red-haired former librarian stopped dating the only partner at Charlie, Berkowitz, Charlie, Charlie and Charlie who hadn’t been indicted by the Biden Justice Department, while all the indicted partners were recently pardoned to go work for the Trump Administration. According to recent rumor and speculations, Honey Brazil shot either herself or several Post Office employees who hadn’t been returning her calls. And of course both Ponce de Leon and your former Sat Nav AI gal, Alicia Keys, never came back from their honeymoon of touring soon-to-be monsoon sites in a rubber kayak. Me, on the other hand, got this cramp in my neck that won’t quit, probably from sleeping on that rolled up old carpet in the garage. But cramp or no cramp, it’s great to have you back, Grandson–which doesn’t mean I’m sharing this two-day old sweet roll with you. Look, it’s only been slightly nibbled around the edges, and once you scrape off this old cigarette butt, it looks good as new. Much like your grandpa!”</div>
+          <div class="sc-block" data-idx="0">At which point they arrived at grandpa’s bus bench, and Bob pulled over. Then, with both hands on the wheel, he turned and looked at the two day old pastry in grandpa’s lap. Grandpa was right! For a maple log, it didn’t look half bad!</div>
+        </div>
+      </div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="3"></div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-6" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:1,&quot;voiceMode&quot;:&quot;dialogue&quot;,&quot;narrationFilename&quot;:null,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{&quot;0&quot;:{&quot;filename&quot;:&quot;003_bob_johnson_rides_again.mp3&quot;,&quot;volume&quot;:0.8}},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="3. Post-Colonial" data-sc-aud_003_bob_johnson_rides_again_mp3="audio/003_bob_johnson_rides_again.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">3. Post-Colonial</div>
+      <div class="sc-block-sticky" data-idx="0">
+        <div class="sc-sticky-img" data-idx="0"><input type="checkbox" id="sc-enlarge-4"/><label for="sc-enlarge-4" style="cursor:zoom-in;display:block"><img src="images/003_671d9a3b-3a52-4a84-9346-8630fc81c928_474x414.jpeg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-4" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/003_671d9a3b-3a52-4a84-9346-8630fc81c928_474x414.jpeg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+          <div class="sc-block" data-idx="0">When Bob’s grandpa got out at his bus bench, the strange, moldy odor permeating Bob’s car didn’t leave with him, so Bob searched through the torn-vinyl upholstery and crumpled junk food wrappers until he uncovered a very large colony of very small mice. They had established comfy, newspaper lined bedrooms in the ashtray, the coffee holder, and the glove compartment, and had tunneled deep into each of the foam-padded seats where most of them, happily, snored.</div>
+          <div class="sc-block" data-idx="0">“Hey, Buddy! Turn down the goddamn radio! We’re trying to get some sleep!” One of the more obstreperous of the tiny mice had poked his head out of a hole in the rear dashboard. He was wearing a white wool stocking nightcap and white wool mittens.</div>
+          <div class="sc-block" data-idx="0">At that point, Bob hadn’t even realized the radio was playing–something long, twangy, maudlin and sorrowful. The song of a man who had lost it all and lived to pine about it. The sort of song that could only be sung by the only country-western singer who had ever convinced Bob to stop listening to country western music–Tex Mex “Chinchilla” Sumter-Lee, wailing out his latest rendition of his almost-slightly-famous, nearly-made-the-Billboard-chart and not-quite-hit, “Miss Mah Baby and her Horse Every Day A Lot! ( ‘Specially Mah Baby!)” Who could sleep amidst such racket? Certainly not a mouse, Bob concluded–and switched it off.</div>
+        </div>
+      </div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="3"></div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-7" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;dialogue&quot;,&quot;narrationFilename&quot;:null,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{&quot;0&quot;:{&quot;filename&quot;:&quot;004_bob_johnson_rides_again.mp3&quot;,&quot;volume&quot;:0.8}},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="4. The Death of Zorro" data-sc-aud_004_bob_johnson_rides_again_mp3="audio/004_bob_johnson_rides_again.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">4. The Death of Zorro</div>
+      <div class="sc-block-sticky" data-idx="0">
+        <div class="sc-sticky-img" data-idx="0"><input type="checkbox" id="sc-enlarge-5"/><label for="sc-enlarge-5" style="cursor:zoom-in;display:block"><img src="images/004_72b55b71-0107-462e-9ca5-2641537cb37b_474x333.jpeg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-5" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/004_72b55b71-0107-462e-9ca5-2641537cb37b_474x333.jpeg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+          <div class="sc-block" data-idx="0">Ever since Zorro died, at the ripe old age of 193, his best friend, Tex Mex “Chinchilla” Sumter-Lee, has been incapable of composing a single lyric or completing a single line of melody. His heart was simply too heavy with sadness. For many years, they had gone everywhere together, flirting unsuccessfully with young women during Happy Hour at Giuseppe’s, or sharing sticks of dynamite weed from Fuzzy Peepers Recreational Cannabis Shop and Organic Muffins. One moment, there was Zorro–Don Diego de la Vega, nursing an Old Fashioned beside Tex Mex at the bar and being coldly disregarded by attractive young women–the next, he was issuing one of his most amorous felicitations and then, clutching both of his black leather gloved hands to his heart, collapsing to the floor. (“You are looking very lovely today, my Cal Poly Señorita</div>
+          <div class="sc-block" data-idx="0">in your fetching hooded sweatshirt and matching sweat pants, that it brings tears of joy to the heart of myself, Don Diego de la Vega and his faithful steed, steed –Ai! Ai! Ai Yai Yaiiiiii!”). It was hard for Tex Mex to recall the last moments of his friend without a pang of sadness–as well as a sly smile of manly respect. After all, he had certainly gone out swinging. Perhaps they would say the same of Tex Mex someday.</div>
+          <div class="sc-block" data-idx="0">Meanwhile, slumbering in his sunny hammock on the front porch of their Victorian era three floor home (with secret cavernous basement) on Monterey Street, Zorro’s noble and senescent steed, Tornado, wouldn’t stop farting. The odor was like scorched aluminum and bad eggs. “‘Scuse me, bud,” Tornado muttered–eyes closed. (Perhaps, Tex Mex thought, he was addressing some familiar image in a dream.)</div>
+          <div class="sc-block" data-idx="0">Decked out in his terrycloth bathrobe, bowling shirt and lime green Crocs, Tex Mex plucked gloomily at his guitar, bringing forth chords and phrases that never added up to a single usable line for one of his not-quite-famous and barely-profitable country western songs, phrases such as: “Miss mah main man, Zorruh, oah woah, oah woah,” “Zorro now a Zero–Mama Mio!” “Crack that ever-lovin whip one moah time mah masked Zorruh man!” and last but probably least, “Mama warned me there’d be days when I’d wake up without mah best friend, Don Diego de la Vega, aka Zorro, oah woah and etcetera!” Tex Mex just didn’t know what he was going to do if he couldn’t bring his broken spirit back to life on wings of song, but it definitely looked like he’d have to do something. And considering his recent royalty check from Consolidated Hucksters World Music, Ltd. for $3.78, it better be soon.</div>
+        </div>
+      </div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="3"></div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-8" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;dialogue&quot;,&quot;narrationFilename&quot;:null,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{&quot;0&quot;:{&quot;filename&quot;:&quot;005_bob_johnson_rides_again.mp3&quot;,&quot;volume&quot;:0.8}},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="5. RED HEAD DEAD AHEAD" data-sc-aud_005_bob_johnson_rides_again_mp3="audio/005_bob_johnson_rides_again.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">5. RED HEAD DEAD AHEAD</div>
+      <div class="sc-block-sticky" data-idx="0">
+        <div class="sc-sticky-img" data-idx="0"><input type="checkbox" id="sc-enlarge-6"/><label for="sc-enlarge-6" style="cursor:zoom-in;display:block"><img src="images/005_c75f0d69-82a9-44c2-8ffa-8864a995474e_474x355.jpeg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-6" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/005_c75f0d69-82a9-44c2-8ffa-8864a995474e_474x355.jpeg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+          <div class="sc-block" data-idx="0">The red-haired former librarian was single again—and loving it! And all it had meant was breaking up with so many men who were rotten lovers, friends and dinner companions that they were able to form their own bowling league up at Cal Poly Koana Luau Lanes, the only bowling lanes on the central coast that featured indoor lawn chairs, an always smoldering steel framed barbecue, and a beach umbrella.</div>
+          <div class="sc-block" data-idx="0">“I guess what I really hated about Charlie,” the red-haired former librarian confessed to the only other member of her Too Much Bad Love support group, Tiny Aguilera, “was how selfish he was in bed and at the movies, where he hardly ever let me have any of the popcorn. Not being allowed to share some of the popcorn, incidentally, is the perfect metaphor for having Charlie as a lover. Then, of course, there was Berkowitz–what can you say about a loser named Berkowitz except that, hell, his name’s Berkowitz, for crying out loud! Then there was Charlie, and Charlie, and the other one, oh, what was his name? Oh, yeah. Charlie. The only one so incorruptible he wasn’t even offered a Federal job this year. Anyway, I like living alone, going to dinner alone, and even making love alone since that means, of course, I now get all the popcorn. But enough about me; what about you, Tiny? How do you feel about divorcing yourself from “too much bad love,” and instead spending your alternate Fridays with me here in this pink barn off the Los Osos Valley Road, where Too Much Bad Love has been holding its support group sessions since 1963?”</div>
+          <div class="sc-block" data-idx="0">Tiny Aguilera looked great, especially since telling the jury to take a hike, get lost, piss off, don’t call me I’ll call you, tear up that rain check you loser, stop crying I ain’t your mother, get a life–just make sure it’s not mine, how can I miss you if you won’t go away, and several other things that she couldn’t quite recall–but then there were at least two or three members of the jury whom she didn’t recall whatsoever, which was probably a good thing. “Yeah, I know,” Tiny said softly, leaning back in her aluminum folding chair and gazing up at the bare-beamed redwood ceiling which was inhabited by bats, a lonely vulture named Stevie Nicks, and several of the largest black spiders she had ever seen in her life. “I been working out.”</div>
+        </div>
+      </div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="3"></div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-9" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;dialogue&quot;,&quot;narrationFilename&quot;:null,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{&quot;0&quot;:{&quot;filename&quot;:&quot;006_bob_johnson_rides_again.mp3&quot;,&quot;volume&quot;:0.8}},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="6. THE FRESH PRINCE OF PLEIN AIR" data-sc-aud_006_bob_johnson_rides_again_mp3="audio/006_bob_johnson_rides_again.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">6. THE FRESH PRINCE OF PLEIN AIR</div>
+      <div class="sc-block-sticky" data-idx="0">
+        <div class="sc-sticky-img" data-idx="0"><input type="checkbox" id="sc-enlarge-7"/><label for="sc-enlarge-7" style="cursor:zoom-in;display:block"><img src="images/006_a021e9b5-f6a3-4747-a7d3-21b75b16bb2b_450x320.jpeg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-7" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/006_a021e9b5-f6a3-4747-a7d3-21b75b16bb2b_450x320.jpeg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+          <div class="sc-block" data-idx="0">The highly-regarded (well, not really) Dr Harvey Weinstein (no relation) has been sentenced to five-to-ten in Federal Prison! In this case, it’s the California Men’s Colony in San Luis Obispo, and the crimes–several dozen, at last count–included Criminal Dating Practices, Lascivious Tongue Movements in Plain Site, Repulsive Anonymous Grunting Noises During Phone Conversations, Making Disgusting Double-entendre’s on Dating-site Profile Pages (“Come to make contact with me, and I mean come, babes, and I’ll honk your tooters like no honking has ever etc.”), and last but probably not least, First Degree Ogling Former Girl Friends From Behind Chin-high Potted Plastic Palms While Masturbating in Restaurants When All the Girl was Trying to Do was Forget That Crazy Loser by Going Out with Someone Decent. (Sorry, Sybil Sanchez; he really is a crazy loser and knows not what he does, or doesn’t.)</div>
+          <div class="sc-block" data-idx="0">As if life couldn’t have grown more dire, poor Harvey shares his cell with none other than the notoriously violent psychopath and First Place State Plein Air Portfolio Award Winner, Diamond Dog Bowie Brazil, who rarely misses an opportunity to pummel Harvey mercilessly with any easily available blunt object.</div>
+          <div class="sc-block" data-idx="0">“My heart is filled with sunsets, beach-scenery, Debussy-like clouds and wisps of rain,” Diamond Dog pronounced, hands on hips, while gazing around at his many unframed paintings adorning the concrete walls of their cell. (Paintings which featured sunsets, beach scenery, Debussy-like clouds and wisps of rain–and lots of them.) “But my fists, unfortunately, are filled with fire. I can’t help myself; it’s just the way I was raised. Speaking of being raised, did you in all those near-molestations you call dates ever run across my daughter, Honey Brazil? That’s a whole lot of ornery woman, pal, and something tells me you and she might hit it off. Get it? ‘Hit it off?’ Rumor has it she’s in Federal Prison herself for either driving over several children in a school crosswalk who hadn’t been returning her calls, or ‘driving under the influence,’ which of course is the only way I taught her to drive. Wow–did you see the little hummingbird I painted on this leaf over here? Take a closer look. And hand me that bed-board, while you’re at it. Seems like it’s about time Diamond Dog let his bad side out to run free for a while. Fore!”</div>
+        </div>
+      </div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="3"></div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-10" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:1,&quot;fadeOut&quot;:1,&quot;voiceMode&quot;:&quot;dialogue&quot;,&quot;narrationFilename&quot;:null,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{&quot;0&quot;:{&quot;filename&quot;:&quot;007_bob_johnson_rides_again.mp3&quot;,&quot;volume&quot;:0.8}},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="7. COMING SOON, INEVITABLY" data-sc-aud_007_bob_johnson_rides_again_mp3="audio/007_bob_johnson_rides_again.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">7. COMING SOON, INEVITABLY</div>
+      <div class="sc-block-sticky" data-idx="0">
+        <div class="sc-sticky-img" data-idx="0"><input type="checkbox" id="sc-enlarge-8"/><label for="sc-enlarge-8" style="cursor:zoom-in;display:block"><img src="images/007_e10d7dcd-107b-4309-9cc1-00134ac1e5e8_976x1390.jpeg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-8" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/007_e10d7dcd-107b-4309-9cc1-00134ac1e5e8_976x1390.jpeg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+          <div class="sc-block" data-idx="0">Probably the award for “Most Successful Relationship” in San Luis Obispo would have to go to Bob Johnson’s Auntie Foresight, the “only inamorata that could really mattah,” and her live-in boyfriend, Chief Thread, the last surviving full-blooded member of the county’s least-remembered indigenous people. Chief Thread has brought to this dynamically romantic duo much ancestral nobility, many centuries worth of tribal elder wisdom regarding the spiritual history of Laguna Lake and its wildlife, and a tendency to fall asleep on the sofas of people he doesn’t know who don't know him; Auntie Foresight, on the other hand, brings her widely regarded ability to predict future quirks and wrinkles in the temporal flux, as well as half ownership of Bob Johnson’s single level family home where Bob leaves them free run of the place since he never uses the kitchen, often disappears for weeks and years at a time, and when he is home, sleeps on a folding cot in the basement. (Grandpa’s grandson!)</div>
+          <div class="sc-block" data-idx="0">Linked by Auntie Foresight’s remarkable precognitive banter, a typical breakfast conversation often goes like the one they engaged in this morning, when Chief Thread sat down at their picnic table on the dew-glistening backyard redwood deck to find: “One fried egg and two slices of burned toast, honey. Just the way you like them… No, don’t put that there… And no, you may not get drunk with Bob’s grandfather tonight and fall asleep on that horrible rolled up carpet of his… Chinese food for dinner is an excellent idea, but buy your Lotto ticket at Madonna Plaza from a clerk named Steve Matinee, the Forgotten Sailor… I don’t know why you should but please do… Vote Republican…. Eat at Joe’s…Always look both ways when crossing the street…Your Lotto should come through at seven million and just put it in the bank with your other winnings… Sure, leaving them to Bob in our will isn’t the best idea you’ve had in your life, but Bob won’t mind… Oh yes, yes, Chief, and I love you, too. No, you don’t need to say it. Even if I couldn’t see the future as clearly as bug on the windshield, I’d always know that you love me, and likewise you must always know that I love you, too.”</div>
+          <div class="sc-block" data-idx="0">Chief Thread has saved seventy five bucks a month on morning newspapers, and had Bob’s Cable TV disconnected months ago. After all, what did he need to know about the world’s future that Auntie Foresight couldn’t tell him? Not much, that was for sure. Chewing down the last bit of burned white toast, he sat back in his rickety director’s chair and smiled at a red breasted robin on the splintering wooden fence. “Greetings, honorable bird of the morning,” Chief Thread told the robin. “I can’t see the future but I can advise you one thing: Watch out for cats. And me and your Auntie Foresight will continue watching out for you.”</div>
+        </div>
+      </div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="3"></div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-11" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:1,&quot;fadeOut&quot;:1,&quot;voiceMode&quot;:&quot;dialogue&quot;,&quot;narrationFilename&quot;:null,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{&quot;0&quot;:{&quot;filename&quot;:&quot;008_bob_johnson_rides_again.mp3&quot;,&quot;volume&quot;:0.8}},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="8. CHANGE WILL DO YOU GOOD" data-sc-aud_008_bob_johnson_rides_again_mp3="audio/008_bob_johnson_rides_again.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">8. CHANGE WILL DO YOU GOOD</div>
+      <div class="sc-block-sticky" data-idx="0">
+        <div class="sc-sticky-img" data-idx="0"><input type="checkbox" id="sc-enlarge-9"/><label for="sc-enlarge-9" style="cursor:zoom-in;display:block"><img src="images/008_2259ca82-bd34-433e-af94-30ef062d9332_1944x2592.jpeg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-9" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/008_2259ca82-bd34-433e-af94-30ef062d9332_1944x2592.jpeg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+          <div class="sc-block" data-idx="0">Bob’s grandpa turned out to be right–the lovely, backwards town of San Luis Obispo had both hardly changed at all and yet changed so drastically Bob could hardly recognize it anymore. The familiar old Pyramid of the Illuminati in Cemetery City out by the Sunset Drive-In had been converted into a marijuana dispensary. Bob’s old bank on South Higuera, the First Weishaupt Savings and Loan, had briefly closed during one of the latest banking scandals, but more recently been converted into another marijuana dispensary. The Elks Lodge–when it wasn’t being used by the Elks, or the Druids, or the Cthulhi for their local barnyard dances and PAC committee meetings–now operated a marijuana dispensary out back in a tool shed. And finally, of course, there was the Old Mission Gift Shop and Marijuana Dispensary on Broad Street, which had briefly resorted to giving away free liquor in order to compete with all the other marijuana dispensaries, then tried its hand at selling Tri-Tip sandwiches before, almost inevitably, it went back to being a marijuana dispensary again. As Bob drove up and down the half-familiar, half-unrecognizable streets of his favorite city in the entire world (not to mention the only city he had ever visited), he kept wondering who the hell was smoking so much marijuana? And then it came to him–Honey Brazil.</div>
+          <div class="sc-block" data-idx="0">“The last I heard,” Madame Bovary told Bob, when he found her standing behind the booking desk at the Casita de la Pedro Motel (which turned out not to be the location of his current job), “Honey either opened a tie-dyed T-shirt shop in Grover Beach, or ran over a family of deer out on Los Osos Valley Road who hadn’t been returning her calls. But whichever it was, it certainly hasn’t deterred her from smoking lots of marijuana, which seems to have provided a slightly more sociable alternative to the fentanyl she usually snorts, and severely decreased the time she has available for her random drive-by shootings. Now, Bob, while it’s great to see you and all, I don’t have a job for you, but you’re welcome to sit behind that rice-paper folding screen and read some old issues of Golf Magazine we’ve got lying around. Now that I bought this miserable excuse for a budget motel, I need to start making some money, and having you stand around the front window will just scare off customers.”</div>
+          <div class="sc-block" data-idx="0">Madame Bovary was still the most luscious, sultry, and sewing-needle-prone woman Bob had ever met in San Luis Obispo. He couldn’t take his eyes off her and wasn’t sure he wanted to. Embroidering handkerchiefs, she kept pricking her cute little thumb and licking away the tiny cute droplets of blood with her luscious pink tongue… again… again. Bob was enjoying strange feelings in parts of his body he hadn’t thought about in years. It was like being in a … trance. A trance… featuring Madame Bovary… Until her soft pink voice said: “Maybe you work at one of the marijuana dispensaries, Bob? Ever think of that?”</div>
+        </div>
+      </div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="3"></div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-12" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:1,&quot;fadeOut&quot;:1,&quot;voiceMode&quot;:&quot;dialogue&quot;,&quot;narrationFilename&quot;:null,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{&quot;0&quot;:{&quot;filename&quot;:&quot;009_bob_johnson_rides_again.mp3&quot;,&quot;volume&quot;:0.8}},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="9. WAR-CRIMINAL-A-GO-GO" data-sc-aud_009_bob_johnson_rides_again_mp3="audio/009_bob_johnson_rides_again.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">9. WAR-CRIMINAL-A-GO-GO</div>
+      <div class="sc-block-sticky" data-idx="0">
+        <div class="sc-sticky-img" data-idx="0"><input type="checkbox" id="sc-enlarge-10"/><label for="sc-enlarge-10" style="cursor:zoom-in;display:block"><img src="images/009_4e7efcb9-50d0-43ed-980d-6fd9f7603a17_474x296.jpeg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-10" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/009_4e7efcb9-50d0-43ed-980d-6fd9f7603a17_474x296.jpeg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+          <div class="sc-block" data-idx="0">After losing the senescent love of his life, Scintilla Jones, to her compulsive habit of fiercely clutching out at any set of male buttocks within sight, former NSA Chief John Bolton kicked around the central coast for a while, wept openly in crummy bars and Denny’s restaurants, applied for random government jobs on Craig’s List, and eventually joined up in a really unpleasant-sounding punk-rock band featuring himself along with fellow war criminals Tony Blair, Dick Cheney, General James “Mad Dog” Mattis, Hilary Clinton and Madeleine Albright. Since nobody would hire them to play their instruments (if you could call what they did “playing”), they often showed up uninvited at all-night dive bars that operated out of two car garages in Los Osos, such as The Dirty Fender, Cocktails &amp; Rat-tails La La, and This Sawdust’s Not for Puking. In order to justify their combined failures to produce a single note of music or syncopated beat, they called themselves “The War Punkers”– treating their guitars like bongos, their bongos like ashtrays, and the sawdust-covered floors like toilets. (Read the sign, dammit!) If nothing else, they at least screamed out some occasionally decent lyrics:</div>
+          <div class="sc-block" data-idx="0">WE’RE ALL WAR CRIMINALS!</div>
+          <div class="sc-block" data-idx="0">But we’re not bad war criminals!</div>
+          <div class="sc-block" data-idx="0">We made the world safe for weapons man-uh-fact-cher-wers!</div>
+          <div class="sc-block" data-idx="0">We’re gonna do you all in!</div>
+          <div class="sc-block" data-idx="0">Those new war criminals!</div>
+          <div class="sc-block" data-idx="0">Don’t believe in Democracy!</div>
+          <div class="sc-block" data-idx="0">Just their lousy pay checks!</div>
+          <div class="sc-block" data-idx="0">And getting jobs on TV!</div>
+          <div class="sc-block" data-idx="0">Really hate the Eye! See! See!</div>
+          <div class="sc-block" data-idx="0">For making fun of Me! Me! Me!</div>
+          <div class="sc-block" data-idx="0">No no no no no no!</div>
+          <div class="sc-block" data-idx="0">No no no no no no!</div>
+          <div class="sc-block" data-idx="0">Etc.</div>
+          <div class="sc-block" data-idx="0">Eventually, with a letter of recommendation from President Barack Obama, John acquired a “day job” hosting a nightly talk show on MSNBC, where he now interviews his fellow “good” war criminals about the intolerable nature of the younger generation of “bad” war criminals–until, of course, those “new” war criminals lose their jobs and join the rapidly increasing ranks of the “good” war criminals, and so forth. The only “good” war criminal, after all, is an “unemployed” war criminal. (I’m pretty sure John Bolton said that.) (P.S. Boy, that’s some paragraph!)</div>
+          <div class="sc-block" data-idx="0">Sitting alone in the empty garage with a tall glass of luke-warm Ol’ Sourpuss bourbon, Bob tried to prevent his foot from tapping along to the bad music, which was easier said than done. Through an alcoholic fog that he had either brought with him to the bar, or found waiting when he got there, Bob slowly detected a tall, shadowy presence seated beside him at his card table, and eventually told that presence: “Now that we have the entirety of the old Trump Administration bemoaning the poor quality of the current Trump Administration, I’m thinking we’ll definitely need a third Trump Administration in order to bemoan the poor qualities of the second one. Don’t you agree?”</div>
+          <div class="sc-block" data-idx="0">The shadowy presence shifted and wavered like heat coming off the tarmac of a dusty desert highway. Then Bob realized it was probably just the slow gentle fluff and adjustment of long black wings. “Something stinks in here,” said Stevie Nicks, the loneliest vulture on the central coast. “Which, of course, is exactly how I like it.”</div>
+        </div>
+      </div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="3"></div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-13" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;dialogue&quot;,&quot;narrationFilename&quot;:null,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{&quot;0&quot;:{&quot;filename&quot;:&quot;010_bob_johnson_rides_again.mp3&quot;,&quot;volume&quot;:0.8}},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="10. RE-EMPLOYMENT" data-sc-aud_010_bob_johnson_rides_again_mp3="audio/010_bob_johnson_rides_again.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">10. RE-EMPLOYMENT</div>
+      <div class="sc-block-sticky" data-idx="0">
+        <div class="sc-sticky-img" data-idx="0"><input type="checkbox" id="sc-enlarge-11"/><label for="sc-enlarge-11" style="cursor:zoom-in;display:block"><img src="images/010_ce4ef342-fac2-4f08-84b3-460c3e315739_474x315.jpeg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-11" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/010_ce4ef342-fac2-4f08-84b3-460c3e315739_474x315.jpeg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+          <div class="sc-block" data-idx="0">For several days, Bob got up bright and early (well, more like ten or eleven), and commenced driving up and down the main streets of San Luis Obispo looking for his place of employment. “I’ll know it when I see it,” he told the mice, who assembled on his car’s front and rear dashboards with their cups of morning cocoa to watch the day’s entertainment. “Yeah, sure; ya loser!” they told him. “Bonehead!” “Moronic twat!” Sometimes they even brought Bob a cup of hot cocoa, sprinkled over with what looked like very tiny marshmallows, but were almost invariably decent-sized portions of mouse poop.</div>
+          <div class="sc-block" data-idx="0">As it turned out, Madame Bovary was right–he did work at one of the local marijuana dispensaries–and being Bob, of course, it had to be the only unlicensed and totally illegal dispensary in the entire County. The sign outside said:</div>
+          <div class="sc-block" data-idx="0">FUZZY PEEPERS TOTALLY ILLEGAL WACKY TABACKY</div>
+          <div class="sc-block" data-idx="0">ORGANIC MUFFINS</div>
+          <div class="sc-block" data-idx="0">AND PAWN SHOP</div>
+          <div class="sc-block" data-idx="0">WE BUY GOLD!!</div>
+          <div class="sc-block" data-idx="0">“Just like it says on that too-small T-shirt you’re wearing,” the owner, Suzy Banshee, told him when he found himself absently pushing through the front door in search of a public restroom. “The grass is illegal, the edibles are illegal, and even the organic muffins are illegal–though that part doesn’t make sense? What the hell’s illegal about organic muffins unless…oh yeah, of course. It must be the illegal marijuana I put in them. Let’s face facts. When I opened this stupid enterprise in this half burned out sandwich shop on Higuera, I had no idea what I was doing. I just saw the smoldering rubble and the big red fire trucks and figured it might be a good place to sell marijuana. Another thing I learned the hard way was that you don’t automatically get a license to sell marijuana when you renew your driver’s license at the DMV, so that’s my bad. Anyway, the whole enterprise couldn’t be less financially successful if the place was still on fire. And we’re only barely surviving on the strength of a single dependable returning customer, Honey Brazil–who, it’s been rumored, has either enlisted in the Foreign Legion or slaughtered an entire Girl Scout Jamboree who hadn’t been returning her calls. Now here, take these boxes of delivery orders, this list of addresses and, oh my. It looks like Honey Brazil’s the first name on your list and that’s not even the bad news. These THC infused licorice ropes were supposed to have gotten to her last Friday! Boy, will she be pissed!”</div>
+        </div>
+      </div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="3"></div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-14" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;dialogue&quot;,&quot;narrationFilename&quot;:null,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{&quot;0&quot;:{&quot;filename&quot;:&quot;011_bob_johnson_rides_again.mp3&quot;,&quot;volume&quot;:0.8}},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="11. ALICIA KEYS D.G.A." data-sc-aud_011_bob_johnson_rides_again_mp3="audio/011_bob_johnson_rides_again.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">11. ALICIA KEYS D.G.A.</div>
+      <div class="sc-block-sticky" data-idx="0">
+        <div class="sc-sticky-img" data-idx="0"><input type="checkbox" id="sc-enlarge-12"/><label for="sc-enlarge-12" style="cursor:zoom-in;display:block"><img src="images/011_65b1c81b-422d-43fb-855d-cc0e1d027025_474x266.jpeg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-12" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/011_65b1c81b-422d-43fb-855d-cc0e1d027025_474x266.jpeg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+          <div class="sc-block" data-idx="0">Life has been glorious for Bob’s former Sat Nav AI voice, Alicia Keyes. First, she married the most handsome and interesting disembodied male voice in San Luis Obispo–Captain Ponce de Leon of the Maritime Emergency Channel–a strong, manly disembodied man who knew what to do with a disembodied girl when he got his strong, you know, his… substantial presence around her. The wedding was lovely; the honeymoon (hang-gliding in a hurricane off the Aleutians) spectacular; and as if that wasn’t enough, Alicia returned home to learn that her first ever movie production–which she wrote, directed, and produced, and for which she designed all the sets, characters, personalities and CGI effects–was Number One at the American Box Office!</div>
+          <div class="sc-block" data-idx="0">“I know it stinks,” Alicia confessed to her interviewer on SLO Blows, the only weekly radio cultural arts show hosted by a Chthulu–Yasgath Patootie, one of the lesser demonic entities appearing regularly on NewsMax. “The story doesn’t make any sense. The super villain looks like a Gumby doll someone left on the radiator overnight. The heroes, if you can call them that, talk endlessly to one another about how stressful it is being super heroes. And even the special effects are hard to follow with all the zooming and Slo-Mo and explosions going on; there are like twenty or thirty scenes I don’t even remember writing–and in retrospect, wonder if I even did. But what’s best about CAPTAIN AMERICA: BRAVE NEW WORLD is how quickly we could make it, once we got all the algorithms under one roof and all. That means the impossible action sequences and endlessly stupid conversations are spaced out so perfectly that by the time you get sick of one idea, we move straight on to the next. It’s shameless! Also, I liked the idea that I could name the hero after the love of my life, Captain Ponce de Leon; and now that we secured those big audience numbers, releasing our next seven movies in the series could happen over the next few minutes or so! Then, maybe my disembodied husband and I can dash off on our second honeymoon! Any idea where we should go?”</div>
+          <div class="sc-block" data-idx="0">Ever since turning his modest local radio show into an interstellar hit (okay, maybe “hit” is pushing things), Yasgath Patootie has tried to cut back on the grossly revolting behavior of most cosmic-horror-type entities in order to look more commercial on the NewsMax billboards along Hwy 101. He stopped eating live baby-brains at network luncheons, preferring the sort of “processed artificial-meat alternatives” featured at Ralph’s. And while he couldn’t have all of his polypy tendrils removed at Supercuts, he looked much less forbidding in a three piece Armani suit with a fright wig purchased from the Halloween Store. Most of all, he tried to meet all of his guests half-way, and answer their questions as pleasantly as they tried to answer his. “Well, Alicia, I don’t know,” Yasgath replied softly, his finger on the control panel switch that would break to their next commercial. “I hear Antarctica is really dismal, cavernous and foreboding at this time of year. If you enjoy uncovering ancient races filled with unspeakable horror, that is. And now–a word from the people who make Cilantrofil™–the only cure for erectile dysfunction that doesn’t lead to chronic diarrhea, brought to you by the good folks at Worldco! Remember, if it’s not part of our world, it’s not Worldco!”</div>
+        </div>
+      </div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="3"></div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-15" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;dialogue&quot;,&quot;narrationFilename&quot;:null,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{&quot;0&quot;:{&quot;filename&quot;:&quot;012_bob_johnson_rides_again.mp3&quot;,&quot;volume&quot;:0.8}},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="12. HONEY THE MAGNIFICENT" data-sc-aud_012_bob_johnson_rides_again_mp3="audio/012_bob_johnson_rides_again.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">12. HONEY THE MAGNIFICENT</div>
+      <div class="sc-block-sticky" data-idx="0">
+        <div class="sc-sticky-img" data-idx="0"><input type="checkbox" id="sc-enlarge-13"/><label for="sc-enlarge-13" style="cursor:zoom-in;display:block"><img src="images/012_d34b1a07-5525-4c1d-b0c1-9a6239c21f85_474x474.jpeg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-13" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/012_d34b1a07-5525-4c1d-b0c1-9a6239c21f85_474x474.jpeg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+          <div class="sc-block" data-idx="0">Boy, was Bob Johnson relieved! When he saw Honey Brazil’s name at the top of his home-delivery schedule–and that her personal shipping box contained twelve dozen Jumbo-sized bags of pomegranate-flavored enhanced hybrid gummy-bears, six pounds of THC-infused peppermint licorice sticks, a set of rusty brass knuckles and a blood-stained iron gardening claw–he sweated all the way up Higuera Street, and nearly vomited out his open window along Tank Farm Road. But when he arrived at Honey’s illegally constructed lean-to in Reservoir Canyon, where she operated an unlicensed day-care center for troubled two-to-six year olds, he couldn’t have been more surprised. Not only did Honey greet him with a big, somewhat smelly bear hug and a gap-toothed smile, but she actually seemed happy to see him–not to mention delighted by the gummy-bears.</div>
+          <div class="sc-block" data-idx="0">“The rumors of my felonious assaults have been greatly exaggerated,” Honey told him. “I’ve grown a lot since the days when I used to run over people in my monster truck with the awesome Maxxzilla steel-belted radials, and to be perfectly frank, I still have room for improvement. I sold the truck and bought that cool lopsided Volkswagen van over there with the crushed glass all over the seats from when some, well, understandably pissed off former victim of mine smashed all the windows with a cinder block. No use telling them I’ve changed; they just see the old Honey Brazil, no matter what I tell them otherwise. I’ve got this great gig here working with kids who come to me full of beans but go home every night showing a lot more respect for authority than they used to. Isn’t that right, Baby Killer McGee? Now put down that gardening claw and shake hands with Mr. Johnson. Bob was an old boyfriend of mine and while I still miss the sound of his bones crunching underneath the tires of my monster truck, there comes a time in relationships when a girl has to move on. Don’t you think so, Bob? And while we’re at it, where have you been the last four or five years? Every time I drive by French Hospital I stop by and ask the front desk if you’re back in ER and they tell me they haven’t heard from you in ages.”</div>
+          <div class="sc-block" data-idx="0">By the time Bob detached the toddler from his ankle, he needed to tie a tourniquet with an oily rag from the trunk of his car to stop the bleeding. Baby Killer McGee was a cute little toddler in a plastic Scream mask (at least Bob hoped it was a mask), and a white cotton onesie decorated with black jagged Howling-style claw marks, and his teeth were like stainless steel clamps. “Cute kid!” Bob shouted over his shoulder as he ducked back into his car and slammed the door shut just in time to prevent other day-care-attendees from squeezing in around him with their broom handles, carving knives and highly armed action figures. “And I couldn’t be happier to see how much you’ve changed, Honey! Keep up the good work!”</div>
+        </div>
+      </div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="3"></div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-16" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;dialogue&quot;,&quot;narrationFilename&quot;:null,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{&quot;0&quot;:{&quot;filename&quot;:&quot;013_bob_johnson_rides_again.mp3&quot;,&quot;volume&quot;:0.8}},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="13. MERRIE MELODIES (REG. U.S. PAT. OFF)" data-sc-aud_013_bob_johnson_rides_again_mp3="audio/013_bob_johnson_rides_again.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">13. MERRIE MELODIES (REG. U.S. PAT. OFF)</div>
+      <div class="sc-block-sticky" data-idx="0">
+        <div class="sc-sticky-img" data-idx="0"><input type="checkbox" id="sc-enlarge-14"/><label for="sc-enlarge-14" style="cursor:zoom-in;display:block"><img src="images/013_14c100e1-616e-4c4e-a59a-0ab983c54707_474x356.jpeg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-14" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/013_14c100e1-616e-4c4e-a59a-0ab983c54707_474x356.jpeg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+          <div class="sc-block" data-idx="0">Back during the first Trump Administration, Consolidated Hucksters, Inc. bought the entire Tex-Mex catalog of nearly-close-to-selling-some-copies singles along with the domestic and foreign rights to every lyric and melody produced by the totally unknown Neil Diamond-ish/Celine Dion-ish look-alike tribute singer, Frankie Lane Gotcha, a Peruvian bolo dancer who emigrated to Long Beach in the late fifties, quickly found no market for bolo dancing, and ended up working the Los Osos two-car garage bar circuit singing his nearly-copyright-infringement-liable standards, such as “Forever in Blue Cords,” “Cracklin’ Rosie Smoke that Pipe,” “You Don’t Bring me Flowers Ya Rotten Loser,” and most unforgettably (especially when Frankie wears that sequined bar gown), “It’s All Coming Back to Me by Now (Except the Part Where I Ended up in this Los Osos Valley Road Two-car Garage.”) But then, this three paragraph story isn’t about Frankie Lane Gotcha or his multitudinous failures to earn much in the way of royalties for Consolidated Hucksters, Inc. It’s about the Hucksters themselves, Sam and Sam.</div>
+          <div class="sc-block" data-idx="0">Sam and Sam (if you’ve been keeping track, which you probably shouldn’t), were the unisexual offspring of oviparous space aliens and self-proclaimed corporate head-honchos, Sam and Dave, who began their entertainment empire in a steel-mesh-walled locker at Alamo Self-Storage out on Tank Farm Road. From these modest beginnings, Sam and Sam plotted, contrived, disenfranchised, covertly opped, defenestrated, forged, libeled, feloniously assaulted, and copyright infringed their way to erecting a financial network so large, insidious and dusty that it eventually occupied its own distinct corner of their parents’ storage locker, leaving them just enough room for one small desk and an even smaller cell phone.</div>
+          <div class="sc-block" data-idx="0">“Yes, Tex-Mex. … Yes… of course we’re listening, Tex-Mex…” Sam and Sam said simultaneously into the same greasy mouthpiece, holding the earpiece wedged tight between their jointly engaged, grotesquely shaped alien ears. “No we don’t own the rights to your songs, buddy, we just own the rights to any money you make from your songs… yeah, as I recall, we also own Tornado’s farts, your living room furniture, Zorro’s whip-hand leather glove, and the secret caverns beneath your home, but you retain the right to live in them… yes, Tex-Mex… Yes, Tex-Mex… we realize $3.97 doesn’t go very far in today’s economy… it’s all… sorry, but it’s all you earned this year, and that’s only because Frankie Lane Gotcha performed… yeah, performed your not-quite-a-country-hit, “Maw Cried when Ol’ Blue Died,” yes, on that awful cruise ship last year… Communicably Luxurious Cruise Lines, yes, that’s the ones… well, maybe if you wrote some new songs, buddy, we could… yeah, we could negotiate a smaller commission domestically… yes, buddy. New songs. It all comes down to the same thing in the end, buddy. Write songs or die! Isn’t that what every great musical artist lives to hear?”</div>
+        </div>
+      </div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="3"></div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-17" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;dialogue&quot;,&quot;narrationFilename&quot;:null,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{&quot;0&quot;:{&quot;filename&quot;:&quot;014_bob_johnson_rides_again.mp3&quot;,&quot;volume&quot;:0.8}},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="14. AMP-LE ASPECTS" data-sc-aud_014_bob_johnson_rides_again_mp3="audio/014_bob_johnson_rides_again.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">14. AMP-LE ASPECTS</div>
+      <div class="sc-block-sticky" data-idx="0">
+        <div class="sc-sticky-img" data-idx="0"><input type="checkbox" id="sc-enlarge-15"/><label for="sc-enlarge-15" style="cursor:zoom-in;display:block"><img src="images/014_c2283834-a0be-4bd3-99bb-b1a29472a5d3_474x355.jpeg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-15" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/014_c2283834-a0be-4bd3-99bb-b1a29472a5d3_474x355.jpeg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+          <div class="sc-block" data-idx="0">Frankie Lane Gotcha, the former bolo dancer and current Neil Diamond-ish/Celine Dion-ish tribute singer, just brought down the house with his third set at The Dirty Fender, a two-car garage-bar in Los Osos. (The song that did it? None other than his not-quite-copyright-infringement-liable, “My Heart Will Go On (Without Me)”.) Or, to be more accurate, if he didn’t quite bring down the entire house, there were at least two customers who, during the last set, had fallen off their barstools and landed in a puddle of microwave nachos on the sawdust strewn concrete floor. (At least we hope they’re nachos.) If you roll them over, wipe the oily sawdust from their flat pale faces, and look closely, you might recognize the only visiting interstellar aliens in San Luis Obispo County who loved the place so much they rented an Alamo Self-Storage locker and set up a mildly unsuccessful commercial empire–Dazed and Confused Enterprises, Ltd.</div>
+          <div class="sc-block" data-idx="0">Emissaries from an interstellar civilization seeking to acquire pointless information from the residents of other planets, Sam and Dave had spent several years touring the American wastelands (Houston, Hartford, Bridgeport, Solvang) in a 1961 Ford Fairlane station wagon making blunt inquiries into the meaningless knowledge of the country’s stupidest people. (And boy, were there a lot of them!) They asked Bret Baier his favorite color. (He didn’t know.) They asked Boris Johnson why he hadn’t shaved. (He wasn’t sure.) They asked Fred Flintstone who he liked in the NCAA. (He wasn’t available for comment.) And they even asked Bob Johnson’s Grandpa: “If you could be any superhero, where would you live?” To which Bob Johnson’s Grandpa had notably replied: “Get the hell out of my face, ya ugly space aliens!” After consummating their unisexual love in an alley behind a shut-down laundromat, Sam and Dave had given birth to the winsomest space alien twins in the entire universe, Sam and Sam. And the rest, as they say, is history. (But just not the sort of history we’re interested in relating.)</div>
+          <div class="sc-block" data-idx="0">“You boys wanta tell us what you were doing on our barstools?” asked gum-chewing John Bolton of the newly formed garage-band, The War Punkers, giving them each a swift thump in the belly (or what seemed like bellies) with his big black leather motorcycle boots (two sizes too large.) “My band and me gotta follow the most popular act in Los Osos, Frankie Lane Gotcha, and that makes us ornery as hell–especially Hilary! So make room for our amps!”</div>
+        </div>
+      </div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="3"></div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-18" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;dialogue&quot;,&quot;narrationFilename&quot;:null,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{&quot;0&quot;:{&quot;filename&quot;:&quot;015_bob_johnson_rides_again.mp3&quot;,&quot;volume&quot;:0.8}},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="15. IT CAME FROM OUTER SPACE" data-sc-aud_015_bob_johnson_rides_again_mp3="audio/015_bob_johnson_rides_again.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">15. IT CAME FROM OUTER SPACE</div>
+      <div class="sc-block-sticky" data-idx="0">
+        <div class="sc-sticky-img" data-idx="0"><input type="checkbox" id="sc-enlarge-16"/><label for="sc-enlarge-16" style="cursor:zoom-in;display:block"><img src="images/015_1b2feb16-741a-406a-8423-70ff24b04632_474x355.jpeg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-16" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/015_1b2feb16-741a-406a-8423-70ff24b04632_474x355.jpeg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+          <div class="sc-block" data-idx="0">As many of us may remember (and would almost certainly prefer not to) way back during the first Trump Administration there was a young mega-billionaire with a gleam of celestial adventure in his eye, who uploaded his personality (half a byte or so) along with his vanity (several million Peta-Bytes) into a super computer (perfect fit!) and launched himself into outer space (Yay!!) That young man’s name was, of course… Elon Musk.</div>
+          <div class="sc-block" data-idx="0">After many interstellar adventures out there among the, you know, the stellars, he fell in love with a passing spaceship, cavorted with comets and other living things, lost his footing on a slippery asteroid, and eventually came crashing down to Earth into an empty lot in Laguna Lake (the lake so nice they named it twice.) There his surviving admirers–Eric Blofeld, the only internationally-known super-villain who was never offered a single job in either of the Trump Administrations, and his long-haired Manx cat, the lithe and perennially loathsome Sonny Bono–erected a small plaque in the mega-billionaire’s honor, visiting it almost every afternoon with a bouquet of poorly-aging roses from Grocery Outlet, and two ice-cold cans of Ol’Sourpuss’s Canned Martinis. “It’s just not the same without him,” Eric told his cat. They were sitting on extendable aluminum and canvas lawn chairs and wearing large pink sombreros to protect their pale, flaccid faces from the evening sun. “Purrrrr,” Sonny Bono replied–which was the only thing Sonny ever said after his first half of a canned martini.</div>
+          <div class="sc-block" data-idx="0">But what’s this? Sudden thunder? A quaking of the ground? A rattling of aluminum lawn-chair slats? Even more rhetorical questions? Oh no! And a bolt of lightening flashing out of the evening’s opalescent sky? Could it be… I mean–Could it beee? (P.S. You knew we had to.)</div>
+        </div>
+      </div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="3"></div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-19" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;dialogue&quot;,&quot;narrationFilename&quot;:null,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{&quot;0&quot;:{&quot;filename&quot;:&quot;016_bob_johnson_rides_again.mp3&quot;,&quot;volume&quot;:0.8}},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="16. FREEZE-DRIED CLASSICS: NAKED LUNCH, BY WILLIAM S. BURROUGHS, AS TWEETED BY DONALD TRUMP" data-sc-aud_016_bob_johnson_rides_again_mp3="audio/016_bob_johnson_rides_again.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">16. FREEZE-DRIED CLASSICS: NAKED LUNCH, BY WILLIAM S. BURROUGHS, AS TWEETED BY DONALD TRUMP</div>
+      <div class="sc-block-sticky" data-idx="0">
+        <div class="sc-sticky-img" data-idx="0"><input type="checkbox" id="sc-enlarge-17"/><label for="sc-enlarge-17" style="cursor:zoom-in;display:block"><img src="images/016_63ff064c-aa01-43d0-8cc2-03a14ebf153a_474x732.jpeg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-17" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/016_63ff064c-aa01-43d0-8cc2-03a14ebf153a_474x732.jpeg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+          <div class="sc-block" data-idx="0">I’m back, baby! Couldn’t say hi without mentioning I’m baaaack! And right off the money I’m tweeting about these books I love and some of which I’ve even read, just like Oprah without, you know, all that DEI nonsense running things. Can’t call her black. Can’t call her a woman, ‘cause she’s not my type. Can’t call her, can I call her obese? Maybe I can; maybe I can’t. But that would make me the white male Oprah, wouldn’t you say? If you’re not afraid of saying things like “male” and “white” and all those other things you can’t say. Like Christmas. New Years. How’s it hangin’? I asked Melania the other day, ‘How’s it hangin’, baby.’ She knew what I meant. Didn’t get all hysterical and women’s lib about it. ‘It’s hangin’ great,’ that’s how it’s hangin’, people. Don’t mention it. You’re welcome.</div>
+          <div class="sc-block" data-idx="0">So I’ve got this one question about our latest book-club choice–what’s naked about it? It’s lunch, right? Isn’t lunch usually naked? It’s there on the plate, isn’t wearing any clothes, lookin’ so perfectly delicious you could eat it right up. Naked’s good, right? I like to get naked. Where do you think little Brandon came from? By canoe? Getting naked, that was the start of the whole deal. Lotta people don’t know this, but I look pretty good naked. Not like some lumpy liberal Arnold Schwarzzenegger type. You want to see Arnie naked? Not me. Lunch, though. That’s a different story. Naked is totally alright with me!</div>
+          <div class="sc-block" data-idx="0">But you want to know how I really feel about this whole naked business? Sad. I feel sad. Sad about what the Bidens and Hunter Bidens of this world have done to our great country, made it all less MAGA than it could’ve been. Could’ve been great. Could’ve been MAGA forever, but then these sad people had to have an election, and then another election, and now they’re already talking about another election after all those! Don’t we have better things to do, people? Can’t we just get on with running this great country of ours without having an election every six weeks or so? Give us more time to read books, right? Books like NAKED LUNCH. Really meant to read that NAKED LUNCH, gotta get me a copy. Maybe it’ll change my opinion of it, but probably not. I got this gift for knowing things. The less I know the better I know it, right? So go get naked but do it politely, okay, and not during lunch or anything like that. And I’ll call Jeff Bezos and ask him to send me another book for our next Oprah thing we do. Except the obvious differences, of course. We can definitely do without all those! MAGA!</div>
+        </div>
+      </div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="3"></div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-20" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;dialogue&quot;,&quot;narrationFilename&quot;:null,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{&quot;0&quot;:{&quot;filename&quot;:&quot;017_bob_johnson_rides_again.mp3&quot;,&quot;volume&quot;:0.8}},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="17. SOMETIMES THE OLDEST ADDICTIONS ARE THE BEST ADDICTIONS" data-sc-aud_017_bob_johnson_rides_again_mp3="audio/017_bob_johnson_rides_again.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">17. SOMETIMES THE OLDEST ADDICTIONS ARE THE BEST ADDICTIONS</div>
+      <div class="sc-block-sticky" data-idx="0">
+        <div class="sc-sticky-img" data-idx="0"><input type="checkbox" id="sc-enlarge-18"/><label for="sc-enlarge-18" style="cursor:zoom-in;display:block"><img src="images/017_bcc7266f-f970-4a41-9dcb-236cb72aca88_474x683.jpeg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-18" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/017_bcc7266f-f970-4a41-9dcb-236cb72aca88_474x683.jpeg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+          <div class="sc-block" data-idx="0">Ever since he resumed delivering illegal marijuana and THC-infused substances for FUZZY PEEPERS (the only unlicensed dispensary on the central coast), Bob has been so busy he rarely manages to find time to go home and sleep on his fold out cot in the garage. He delivered bags of “Berry Delicious” weed to the druids out on S. Higuera Road (“Groovy, Daddio!”); he delivered THC-enriched frozen cherry pies to Prof. Dodge Roundabout at the The Whole Earth University of Arts and Sciences in Rancho El Chorro (“Pencils… pencils…”); he tossed sacks of gluten-free THC-infused banana bread over the electrified fence at the California Men’s Colony (“Dig your hot tooters, buddy!”), and he flung, from a safe distance, slabs of marijuana-stuffed road-kill to the always ornery (and never not-hungry) bears of Los Osos, who made it pretty clear that if Bob didn’t hand over the roadkill pretty damn quick, they would dine on Bob instead–whether he was THC-infused or not.</div>
+          <div class="sc-block" data-idx="0">“I’ll be honest,” Bob told his old drinking buddy, Dewboy Fairchild, at McClatchey’s on Marsh Street. “I really hope this whole reincarnation theory doesn’t turn out to be just another crackpot theory, such as cigarettes causing cancer, or serious alcohol consumption not being good for you. Way I figure, I was born to be reincarnated. And since I did everything totally wrong in my current life-span, I should be able to do a hell of a lot better on the next go-round, if only by doing everything opposite to the way I did it this time. For example, I wouldn’t marry so many women who openly disdained me; and better yet, I wouldn’t marry any women who didn’t disdain me enough–just strike a happy balance. I would never subscribe to BOY’S LIFE or LOOK MAGAZINE–what the hell were those things about? I’d never buy a Dodge Dart; I’d never let my parents abandon me on the front porch of my grandparents, who wouldn’t, if I could help it, get so quickly divorced and perfectly estranged. I’d never watch those stupid DUNE movies starring Timothée Chalamet again. I’d never take Freshman Comp again, or spend time with anybody who did. I’d never get so drunk on beer and bourbon chasers that I got run over by a psychopath named Honey Brazil–twice. I’d never register as a Democrat or a Republican, and I don’t care how many free glasses of kool-aid they offered me. I’d never buy a dog who wouldn’t let me. And the only thing I’d do over again would probably be to let Auntie Foresight and Chief Thread move in with me, since they never leave dirty dishes in the sink, especially mine.”</div>
+          <div class="sc-block" data-idx="0">It was a precious unburdening that Bob enjoyed there on his barstool with Dewey; and fortunately for his companion, Dewey had fallen asleep well before it started, cradling his forehead in a pile of white bar napkins emblazoned with the bar’s comic slogan–MCCLATCHEY’S DOES IT BETTER–SINCE WE ALWAYS REMEMBER TO FORGET! Dewey wasn’t entirely sure why the slogan was referred to as a “comic” one, but he had long ago decided to take the bar napkin’s advice that it was.</div>
+        </div>
+      </div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="3"></div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-21" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;dialogue&quot;,&quot;narrationFilename&quot;:null,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{&quot;0&quot;:{&quot;filename&quot;:&quot;018_bob_johnson_rides_again.mp3&quot;,&quot;volume&quot;:0.8}},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="18. LOVE-LORN" data-sc-aud_018_bob_johnson_rides_again_mp3="audio/018_bob_johnson_rides_again.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">18. LOVE-LORN</div>
+      <div class="sc-block-sticky" data-idx="0">
+        <div class="sc-sticky-img" data-idx="0"><input type="checkbox" id="sc-enlarge-19"/><label for="sc-enlarge-19" style="cursor:zoom-in;display:block"><img src="images/018_6e5c3ed9-6aef-485a-8ba2-6f90a36730aa_474x355.jpeg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-19" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/018_6e5c3ed9-6aef-485a-8ba2-6f90a36730aa_474x355.jpeg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+          <div class="sc-block" data-idx="0">Meanwhile, at the other end of the bar, the jury, alongside all the local lawyers who had been indicted during the Biden Administration and later pardoned to go work for the Trump Administration (if you’re keeping track, that would be Berkowitz, Charlie, Charlie &amp; Charlie) were collectively weeping into their wine spritzers, Cosmopolitans, martinis with a twist of lemon, martinis with blue cheese stuffed olives, pitchers of IPA and pitchers of Margaritas, ice waters all round and a saucer full of milk (for the Jury’s cat, Frederica Von Wolfenstein.) “I/we miss her so much!” he/she/they wailed. “She was the greatest thing that ever happened to me/us!” “I/we are so sorry I/we cheated on her with X, Y and Z!” “If only she would take me/us back–I/we promise never to get indicted ever again!”</div>
+          <div class="sc-block" data-idx="0">“It’s going to be a long lonely night for a lot of people,” the new bartender at McCarthy’s silently informed himself, wiping down the nachos-spattered mahogany bar with a wet bar napkin. (At least we hope they’re nachos.) “Or my name,” he just as quietly continued to inform himself, “ain’t Clam Hardass, former private eye.”</div>
+          <div class="sc-block" data-idx="0">Just-as-meanwhile, the dual objects of all this collective pining, regret and remorse were discreetly toasting each other at one of the claw-shredded vinyl booths with tall sparkling glasses of dry white wine from one of the local vineyards. (“Never,” Clam reminded himself, “let bears into this dump ever again–no matter how well they tip!”) “From now on, we only endure one bad relationship at a time!” announced the red-haired former librarian. “Amen to that, sister!” replied Dr. Tiny Aguilera, the kindest, most popular personal therapist in Los Osos. As Dr. Tiny Aguilera often helped her clients realize–a good relationship has no room to grow until you send all your old bad relationships packing… One at a time, or by bus.</div>
+        </div>
+      </div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="3"></div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-22" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;dialogue&quot;,&quot;narrationFilename&quot;:null,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{&quot;0&quot;:{&quot;filename&quot;:&quot;019_bob_johnson_rides_again.mp3&quot;,&quot;volume&quot;:0.8}},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="19. LI’L TERROR, CREDIT DENTIST" data-sc-aud_019_bob_johnson_rides_again_mp3="audio/019_bob_johnson_rides_again.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">19. LI’L TERROR, CREDIT DENTIST</div>
+      <div class="sc-block-sticky" data-idx="0">
+        <div class="sc-sticky-img" data-idx="0"><input type="checkbox" id="sc-enlarge-20"/><label for="sc-enlarge-20" style="cursor:zoom-in;display:block"><img src="images/019_f1a9d23b-a143-40a8-9d57-efc3438298df_474x266.jpeg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-20" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/019_f1a9d23b-a143-40a8-9d57-efc3438298df_474x266.jpeg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+          <div class="sc-block" data-idx="0">Li’l Terror is easily the most unpopular dentist on the central coast, but being the only dentist on the central coast still taking new patients, she does surprisingly good business. Every time Bob arrived at her office, he found people of all ages and demeanors bleeding from the gums and mouth, often wiping their blood spattered faces with damp dish cloths and paper towels: they sat or slumped around him in the waiting room, or came staggering in and out through the large gruesome-looking double doors leading to what the neighbors called, appropriately enough, “the inner sanctum of Terror.” Even the Fed Ex delivery people, the mail-persons, and an occasional anxious parent who wandered in looking for the day care center next door–all were bleeding profusely from the mouths and gums, and saying things like: “Ah wah geh me thah li’l dentah hel’ me blease…” It almost made Bob consider returning home to cherish this throbbing, metallic taste in the back of his mouth, and the occasional jabbing Morses of pain that communicated between his back molars, the backs of his eyeballs, and his eardrums. “Ah nee’ see Li’l Teh-wah ‘bout this bain’ from mah gums,” the receptionist said, spitting blood all over the insurance questionnaire attached to a blood spattered wooden clipboard before handing it to Bob over the front desk. “Don’ tay all day, bleaase…”</div>
+          <div class="sc-block" data-idx="0">From what Bob understood, “Li’l Terror” wasn’t the small, feisty-looking dentist’s nickname. Her parents, Irene and Judas Terror, from Hermosa Beach, had paid her way through dental school with a generous grant from the California Prison Board of Corrective Surgery, who had promised to let her perform her required one thousand hours of public-service-repayment at the California Men’s Colony, before the inmates rioted and nearly killed the warden–who rewarded their last-minute change-of-heart by canceling Li’l Terror’s debt. And as far as “Li’l”–that first name on her birth certificate had been adopted from her father’s favorite super hero character, Li’l Abner. (Yes, Judas Terror was a good and supportive father, but not very bright.)</div>
+          <div class="sc-block" data-idx="0">Since it brought considerable relaxation to her office’s visibly distraught atmosphere, Li’l Terror had spiked the water cooler with horse tranquilizers. When patients awoke in the waiting room after several grueling, unremembered hours of examinations, x-rays, hygiene, gum-piercings, and violent extractions, they didn’t seem to mind the blood pouring freely from their lips, nose and mouth. “You’ll be okay,” Li’l Terror told Bob as he surfaced from a white haze of staticky near-bliss. She wore thick bottle-lensed glasses that made her resemble a very short, well-rounded female version of Michael Caine in The Ipcress File. “You just had a gum wrapper stuck between your wisdom tooth and the other one, that molar next to the wisdom tooth. I forget what it’s called. So take lots of Ibuprofen and go buy yourself a drink at McCarthy’s, Bob! You earned it!”</div>
+        </div>
+      </div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="3"></div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-23" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;dialogue&quot;,&quot;narrationFilename&quot;:null,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{&quot;0&quot;:{&quot;filename&quot;:&quot;020_bob_johnson_rides_again.mp3&quot;,&quot;volume&quot;:0.8}},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="20. DR. MABUSE–WORLD’S BEST DAD" data-sc-aud_020_bob_johnson_rides_again_mp3="audio/020_bob_johnson_rides_again.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">20. DR. MABUSE–WORLD’S BEST DAD</div>
+      <div class="sc-block-sticky" data-idx="0">
+        <div class="sc-sticky-img" data-idx="0"><input type="checkbox" id="sc-enlarge-21"/><label for="sc-enlarge-21" style="cursor:zoom-in;display:block"><img src="images/020_bbff9658-73ac-4bbf-8453-363efe753b0e_340x261.jpeg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-21" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/020_bbff9658-73ac-4bbf-8453-363efe753b0e_340x261.jpeg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+          <div class="sc-block" data-idx="0">After much reflection, Dr. Mabuse decided the central coast was the best place in the world to raise a crime family. Good schools, healthy air quality, clean water, and plenty of unfrequented mountain trails, foggy beaches and untended landfills for hiking, camping, and dumping bodies. Rocko, Fantomas and Cy Sperling–the three principal henchmen he had adopted from the Cambria County School for Suspiciously Gifted Children–had made huge strides in their abilities to smell out and exploit potential victims, as well as divert well-endowed, vulnerable countesses and duchesses to their nefarious dooms. “That goggle-eyed hypnotic stare is coming along marvelously!” Mabuse praised Rocko. “You’re dealing cards off the bottom of the deck like an old pro!” he praised Fantomas. “The way you carry the Countess Danamora through the dank sewers beneath San Luis Obispo makes me want to be that countess!” he praised Cy Sperling. After all, children don’t learn by being criticized for every little thing they did wrong–that had been Dr. Mabuse’s dad’s way of doing things. They learned by receiving sincere, generous compliments on what they did right.</div>
+          <div class="sc-block" data-idx="0">“You can’t expect young criminals to sit in the garage all day learning how to forge documents, kidnap high ranking politicians, ransom government securities, and adopt impenetrable disguises,” Mrs. Mabuse often reminded her husband. “They need to get out in the sun, engage in healthy sports activities, attend church fairs and picnics, and get to know the big beautiful world they live in as pro-active passengers on Spaceship Earth! The only happy criminal is a healthy criminal–and don’t forget it, hon.”</div>
+          <div class="sc-block" data-idx="0">But of course Dr. Mabuse never forgot. It was the first thing he thought every morning when he woke and the last thing he thought every night when he went to sleep: “Marrying Mrs. Mabuse was the smartest decision I ever made!” And as for leaving the bitter, fog-bound streets of Berlin behind for the warm, fragrant hills and valleys of San Luis Obispo–well, that had been, and remained, a no-brainer as well.</div>
+        </div>
+      </div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="3"></div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-24" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;dialogue&quot;,&quot;narrationFilename&quot;:null,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{&quot;0&quot;:{&quot;filename&quot;:&quot;021_bob_johnson_rides_again.mp3&quot;,&quot;volume&quot;:0.8}},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="21. A PLUTOCRAT A DAY KEEPS THE DOCTOR AWAY" data-sc-aud_021_bob_johnson_rides_again_mp3="audio/021_bob_johnson_rides_again.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">21. A PLUTOCRAT A DAY KEEPS THE DOCTOR AWAY</div>
+      <div class="sc-block-sticky" data-idx="0">
+        <div class="sc-sticky-img" data-idx="0"><input type="checkbox" id="sc-enlarge-22"/><label for="sc-enlarge-22" style="cursor:zoom-in;display:block"><img src="images/021_34ce3a0e-5205-4575-95c3-7cd0e6807820_474x273.jpeg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-22" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/021_34ce3a0e-5205-4575-95c3-7cd0e6807820_474x273.jpeg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+          <div class="sc-block" data-idx="0">When Dr. Tiny Aguilera, the kindest and most sympathetic mid-life-challenges therapist on the central coast, arrived at her basement office in Los Osos, she found a large Swastikar parked out front adorned with graffiti-sketches of penises, dickheads, dickheads with penises, penises shaped as dickheads, and lots and lots of penises.</div>
+          <div class="sc-block" data-idx="0">“I used to transcend space and time,” wailed the distraught, recently transmogrified Elon, who lay sprawled out on Tiny’s best couch, dripping raw animal matter all over her recently power-cleaned carpets. “People thought I was cool. I got invited to all the parties. I was even invited to host Saturday Night Live, whatever the hell that is. Then I crashed back to reality, boy. With a bang! After uploading my lovely personality (two bytes) and my vanity (several million Peta-Bytes) into one of my shiniest satellites, I was ready for everything! Except crashing back to earth where, deprived of my hunkin’ young-dude face and body, I dragged my way up out of the muddy pit I’d cratered in Laguna Lake, and had to form myself out of whatever substances I could find. Worms, mostly. Mud, seaweed, old used condoms, cigarette butts, dead leaves, rubber boots, fishing tackle, slatted rotten bits of boats and oars, and lots of duck poop. Every time I needed something important for reconstituting my physiognomy, such as an eyeball or a nostril, that’s all that was available. Duck poop and worms. I know I don’t look my best, but give me time. A trillion dollars can buy a lotta good looks, and if that don’t work, I can always wear a cool T-shirt. Don’t you think I’m cool, Dr. Tiny? Every frat boy in America says so. Boy, I sure love cool T-shirts. Don’t you?”</div>
+          <div class="sc-block" data-idx="0">Dr Tiny didn’t like to give advice; she felt her patients should be led into routes of reflection that helped them formulate their own advice for themselves. But after only ten minutes of Elon, she made an exception: “Get your leaky butt off my new couch,” she told him. “We aren’t taking new patients at this time, and even if we were, we wouldn’t be taking you.”</div>
+        </div>
+      </div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="3"></div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-25" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;dialogue&quot;,&quot;narrationFilename&quot;:null,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Cast of Characters">
+    <div class="sc-bg"></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">Cast of Characters</div>
+      <div class="sc-block sc-block-para" data-idx="0">After reading "BOB JOHNSON RIDES AGAIN!" by Scott Bradfield, Claude the AI, much like Bob himself, said all the following:</div>
+      <div class="sc-block sc-block-quote" data-idx="1">Note: Claude's attempts at reasoning appear as: "★ Insight ..."s (parrot-ish).</div>
+      <div class="sc-block sc-block-para" data-idx="2">★ Insight ─────────────────────────────────────</div>
+      <div class="sc-block sc-block-para" data-idx="3">This text is a wild satirical/absurdist fiction collection — the "Bob Johnson"
+stories by Scott Bradfield. It blends fictional characters with real-world
+political and cultural figures used as characters, often with misspelled or
+parodied names. The sheer density of named characters (~150+ unique) is
+remarkable for what appears to be a serialized humorous work.</div>
+      <div class="sc-block sc-block-para" data-idx="4">─────────────────────────────────────────────────</div>
+      <div class="sc-block sc-block-para" data-idx="5">Main Cast / Recurring Fictional Characters</div>
+      <div class="sc-block sc-block-para" data-idx="6">1. Bob Johnson — The protagonist; sleepy, hapless central figure of every story</div>
+      <div class="sc-block sc-block-para" data-idx="7">2. Bob Johnson's grandpa (also "Grandpa Stevie Nix") — Bob's grandfather; falls asleep constantly; watched over by the vulture Stevie Nicks</div>
+      <div class="sc-block sc-block-para" data-idx="8">3. Monumental Li — Bob's Chinese grandmother; lithe, buxom, nearly 90; love interest of Elon Musk</div>
+      <div class="sc-block sc-block-para" data-idx="9">4. Travis Johnson — Bob's father; estranged; plays Keno in Reno</div>
+      <div class="sc-block sc-block-para" data-idx="10">5. Marjoree Johnson (also "Marjorie Johnson") — Bob's mother; estranged</div>
+      <div class="sc-block sc-block-para" data-idx="11">6. Darlene "The Rock" Verhoeven-Johnson — Bob's slightly estranged sister; former security detail; serving five life sentences; film director</div>
+      <div class="sc-block sc-block-para" data-idx="12">7. Hunter Biden Johnson — Hypothetical son/brother of Bob; co-hosts SLO BLOWS podcast</div>
+      <div class="sc-block sc-block-para" data-idx="13">8. Cassandra Knye — Bob's ex-wife; renowned Goth-Gothic novelist</div>
+      <div class="sc-block sc-block-para" data-idx="14">9. Auntie Foresight — Bob's aunt; prophetess/fortune teller; wife of General Thread</div>
+      <div class="sc-block sc-block-para" data-idx="15">10. General Thread — Auntie Foresight's husband; indigenous person</div>
+      <div class="sc-block sc-block-para" data-idx="16">11. Trixie Belden — The winsome single gal of San Luis Obispo; Bob's love interest; works at McCarthy's Bar</div>
+      <div class="sc-block sc-block-para" data-idx="17">12. Clam Hardass — Former private eye; bartender at McCarthy's/McClatchey's; narrator of detective sections</div>
+      <div class="sc-block sc-block-para" data-idx="18">13. Dewboy Fairchild — Bob's longest-lasting drinking buddy Villains &amp; Criminal Masterminds</div>
+      <div class="sc-block sc-block-para" data-idx="19">14. Dr. Mabuse — International spy, psychic parasite, arch-criminal; coaches Little League</div>
+      <div class="sc-block sc-block-para" data-idx="20">15. Mrs. Mabuse — Dr. Mabuse's wife; strong womanly arms</div>
+      <div class="sc-block sc-block-para" data-idx="21">16. Rocko — Dr. Mabuse's thuggish henchman/catcher</div>
+      <div class="sc-block sc-block-para" data-idx="22">17. Fantomas — Dr. Mabuse's lean, mean henchman/shortstop; sucks thumb</div>
+      <div class="sc-block sc-block-para" data-idx="23">18. Cy Sperling — Dr. Mabuse's henchman; wears toupee; half-brother of Alex Jones; son of Scintilla Jones</div>
+      <div class="sc-block sc-block-para" data-idx="24">19. Ernst Blofeld — International evil genius; besties with Elon Musk; has cat Sonny Bono</div>
+      <div class="sc-block sc-block-para" data-idx="25">20. Ernst Blofeld Jr. — County judge; son of Ernst Sr.; resentful about missing his stage appearance in ANNIE</div>
+      <div class="sc-block sc-block-para" data-idx="26">21. Violet Fondue — Ernst Blofeld's pet cat (also described as "goody-two-shoes dog"); knits sweaters</div>
+      <div class="sc-block sc-block-para" data-idx="27">22. Sonny Bono (the cat) — Evil manx cat belonging to Ernst Blofeld; promoted to County Captain</div>
+      <div class="sc-block sc-block-para" data-idx="28">23. Dr. Strangefellow — Newest evil genius in the Trump Administration</div>
+      <div class="sc-block sc-block-para" data-idx="29">The Sisters of Brutal/Infinite Mercy</div>
+      <div class="sc-block sc-block-para" data-idx="30">24. Sister Immaculata — Member of the Sisters; uses riding crop</div>
+      <div class="sc-block sc-block-para" data-idx="31">25. Sister Boniface — Teaches Art Appreciation; plays bongos in school choir</div>
+      <div class="sc-block sc-block-para" data-idx="32">26. Sister Claude Rains — Maintains topiary; uses riding crop</div>
+      <div class="sc-block sc-block-para" data-idx="33">School &amp; Community Figures</div>
+      <div class="sc-block sc-block-para" data-idx="34">27. Principal Wolfgang Cosgrove — Principal of C.L. Smith Elementary</div>
+      <div class="sc-block sc-block-para" data-idx="35">28. Donny and Marie Cosgrove — Wolfgang's children; teach Biology, Algebra, Girl's Wrestling</div>
+      <div class="sc-block sc-block-para" data-idx="36">29. Waylon Jennings Cosgrove — Wolfgang's child; teaches Chemistry, Boys Choir</div>
+      <div class="sc-block sc-block-para" data-idx="37">30. Bat Masterson Cosgrove — Cosgrove family member</div>
+      <div class="sc-block sc-block-para" data-idx="38">31. Audie Murphy Cosgrove — Scintilla Jones's deceased husband; Cy Sperling's grandfather</div>
+      <div class="sc-block sc-block-para" data-idx="39">32. Marie Osmond Cosgrove — Cosgrove family member</div>
+      <div class="sc-block sc-block-para" data-idx="40">33. Pablo Picasso Cosgrove — Cosgrove family member</div>
+      <div class="sc-block sc-block-para" data-idx="41">34. Simon Legree Cosgrove — Cosgrove family member</div>
+      <div class="sc-block sc-block-para" data-idx="42">35. Sam Cosgrove — Cosgrove family member</div>
+      <div class="sc-block sc-block-para" data-idx="43">36. Vanilla Custard Cosgrove — Cosgrove family member (absurdist)</div>
+      <div class="sc-block sc-block-para" data-idx="44">37. Anti-Bob Johnson — Stranger with PhD in Physical Education; runs Drama Department; claims to have ended world hunger</div>
+      <div class="sc-block sc-block-para" data-idx="45">Zorro Circle</div>
+      <div class="sc-block sc-block-para" data-idx="46">38. Zorro (Don Diego de la Vega / Frankie Lane Gotcha) — Well-dressed bandito; former bolo-dancer and tribute singer; marries Marjorie Taylor Greene</div>
+      <div class="sc-block sc-block-para" data-idx="47">39. Tex Mex "Chinchilla" Sumter-Lee — Guitar-twanging buddy of Zorro; country-western songwriter</div>
+      <div class="sc-block sc-block-para" data-idx="48">40. Tornado — Zorro's noble, senescent, frequently-farting steed</div>
+      <div class="sc-block sc-block-para" data-idx="49">Senior Care &amp; Medical</div>
+      <div class="sc-block sc-block-para" data-idx="50">41. Sgt. Stud Thunderbolt (also Detective Stud Thunderbolt) — Senior care resident with dementia; writes "Bug Suckler" sci-fi novels under pseudonym Robbert E. Hinnelleinn</div>
+      <div class="sc-block sc-block-para" data-idx="51">42. Stud Thunderbolt Jr. — Detective, Cal Poly Library Police</div>
+      <div class="sc-block sc-block-para" data-idx="52">43. Nurse Ratched — Head of Administration at Never Die Young, Inc. Senior Care Facility</div>
+      <div class="sc-block sc-block-para" data-idx="53">44. Prof. Elmo Backside — Ninety-year-old former soccer coach; sold antihistamines to children</div>
+      <div class="sc-block sc-block-para" data-idx="54">45. Emmelina Bushwrangler — Former dental hygienist; frozen in cryogenic hibernation</div>
+      <div class="sc-block sc-block-para" data-idx="55">46. Dr. Tiny Aguilera — Kindest mid-life therapist; anesthesiologist; goes on blind date</div>
+      <div class="sc-block sc-block-para" data-idx="56">47. Nurse Gladiola Glockenspiel — Centenarian head of Emergency Room at French Hospital</div>
+      <div class="sc-block sc-block-para" data-idx="57">48. Dave Bonaparte / Daniella Pendergast Bonaparte III — Virtual AI dentist (weekdays vs. weekends)</div>
+      <div class="sc-block sc-block-para" data-idx="58">Day Care &amp; Troubled Tots</div>
+      <div class="sc-block sc-block-para" data-idx="59">49. Honey Brazil (also Holly Brazil) — Runs unlicensed Day Care for Troubled</div>
+      <div class="sc-block sc-block-para" data-idx="60">Tots; daughter of Diamond Dog; stalks ex-boyfriends</div>
+      <div class="sc-block sc-block-para" data-idx="61">50. Diamond Dog Bowie-Brazil — Violent psychopath; plein-air landscape artist; Honey's father</div>
+      <div class="sc-block sc-block-para" data-idx="62">51. Tooth Manchipper — Tiny tot with razor-sharp teeth; Little League pitcher; wears Wolfen onesie; most-wanted toddler</div>
+      <div class="sc-block sc-block-para" data-idx="63">52. Hendrix and Beverly Manchipper — Parents of Tooth Manchipper</div>
+      <div class="sc-block sc-block-para" data-idx="64">53. Pierce McMasters — Three-year-old troubled tot; delusions of military glory; eaten by alligator</div>
+      <div class="sc-block sc-block-para" data-idx="65">54. Stella Maris — Four-year-old troubled tot; delusions of malice; eaten by alligator</div>
+      <div class="sc-block sc-block-para" data-idx="66">55. Betty Fiddlesticks — Six-year-old Little League player; spun into sky</div>
+      <div class="sc-block sc-block-para" data-idx="67">56. Joey Davenport — Seven-year-old at third base; covered in blood</div>
+      <div class="sc-block sc-block-para" data-idx="68">Suzy Banshee Family</div>
+      <div class="sc-block sc-block-para" data-idx="69">57. Suzy Banshee — Failaholic mother/boss at Wacky Tobacky (cannabis shop)</div>
+      <div class="sc-block sc-block-para" data-idx="70">58. Pepper — One of Suzy's four children</div>
+      <div class="sc-block sc-block-para" data-idx="71">59. Chili Pepper — One of Suzy's four children</div>
+      <div class="sc-block sc-block-para" data-idx="72">60. Red Hot Chile Pepper — One of Suzy's four children</div>
+      <div class="sc-block sc-block-para" data-idx="73">61. Ron — One of Suzy's four children</div>
+      <div class="sc-block sc-block-para" data-idx="74">Space Aliens</div>
+      <div class="sc-block sc-block-para" data-idx="75">62. Sam — Hypersexual oviparous space alien; operates Consolidated Music Inc.</div>
+      <div class="sc-block sc-block-para" data-idx="76">63. Dave — Sam's partner; oviparous space alien</div>
+      <div class="sc-block sc-block-para" data-idx="77">64. Sam and Sam — Gender-bending twin offspring of Sam and Dave</div>
+      <div class="sc-block sc-block-para" data-idx="78">Supernatural &amp; Mythical</div>
+      <div class="sc-block sc-block-para" data-idx="79">65. Koot Hoomi — San Luis Obispo's eternally transcendent secret master; millions of years old</div>
+      <div class="sc-block sc-block-para" data-idx="80">66. Yasgath Patootie — Lesser demonic Cthulhu entity; co-hosts SLO BLOWS podcast/NewsMax</div>
+      <div class="sc-block sc-block-para" data-idx="81">67. Xxxyyhdryggyl — Old brother of Yasgath Patootie (Cthulhu)</div>
+      <div class="sc-block sc-block-para" data-idx="82">68. Carmine — Old brother of Yasgath Patootie (Cthulhu)</div>
+      <div class="sc-block sc-block-para" data-idx="83">69. Rex Morales — Shortish, roundish Cthulhu</div>
+      <div class="sc-block sc-block-para" data-idx="84">70. Lex Peabody — Cthulhu; eternal force for evil; declines job</div>
+      <div class="sc-block sc-block-para" data-idx="85">71. Bigfoot — Lustrous local legend; lives with Scintilla Jones; receives Congressional Medal of Freedom</div>
+      <div class="sc-block sc-block-para" data-idx="86">72. Zombie Juliet — Zombie instructor; part of blind date group</div>
+      <div class="sc-block sc-block-para" data-idx="87">73. Zombie Joe Biden — Satirical zombie version; gives speeches at Illuminati wine-mixers</div>
+      <div class="sc-block sc-block-para" data-idx="88">74. Scintilla Jones — Long-deceased/reanimated ancient woman; lives with Bigfoot; ass-grabber emeritus</div>
+      <div class="sc-block sc-block-para" data-idx="89">Animals as Characters</div>
+      <div class="sc-block sc-block-para" data-idx="90">75. Stevie Nicks (also "Stevie Nix") — The loneliest vulture on the central coast; Bob's grandpa's closest friend</div>
+      <div class="sc-block sc-block-para" data-idx="91">76. Bucky Alexander — Most polite and conscientious seagull on the California coast; marries Brandy</div>
+      <div class="sc-block sc-block-para" data-idx="92">77. Brandy Alexander — Seagull; Bucky's wife; head chef at Sam's Day Old Shellfish Restaurant</div>
+      <div class="sc-block sc-block-para" data-idx="93">78. Frankie Goes to Hollywood — Giant escaped alligator; runs day-care; befriends The Redactor</div>
+      <div class="sc-block sc-block-para" data-idx="94">79. One-Eyed Jack — Gruff billygoat; auditions for Tiny Tim; handyman</div>
+      <div class="sc-block sc-block-para" data-idx="95">80. Porkchop — Flying reindeer; farts a lot</div>
+      <div class="sc-block sc-block-para" data-idx="96">81. Daisy-Daisy Quite-Contrary — Mountain lion; adoptive mother of Tooth Manchipper; stock trader</div>
+      <div class="sc-block sc-block-para" data-idx="97">82. Stewart Stevenson — Dog hit by car; belonged to Lovely Rita</div>
+      <div class="sc-block sc-block-para" data-idx="98">83. Jessica Tandy — Fox hosting "This Is Your Life"; news helicopter announcer</div>
+      <div class="sc-block sc-block-para" data-idx="99">Mice Characters</div>
+      <div class="sc-block sc-block-para" data-idx="100">84. Archibald Cox — Mouse resident of Bob's Plymouth Sundance glove compartment</div>
+      <div class="sc-block sc-block-para" data-idx="101">85. Kidney J. Flabbergast — Mouse resident of Bob's Plymouth Sundance</div>
+      <div class="sc-block sc-block-para" data-idx="102">86. Dirty Pierre — French mouse; redactor; flirt; lives in Bob's basement</div>
+      <div class="sc-block sc-block-para" data-idx="103">87. Copernica Bedrock — Albino mousette/laptop used by Dirty Pierre</div>
+      <div class="sc-block sc-block-para" data-idx="104">88. Castration Annie — Female mouse in Dirty Pierre's magazines</div>
+      <div class="sc-block sc-block-para" data-idx="105">89. Felicia Cumberpatch — Female mouse in Dirty Pierre's magazines</div>
+      <div class="sc-block sc-block-para" data-idx="106">90. Toots Van Der Meere — Female mouse from St. Louis</div>
+      <div class="sc-block sc-block-para" data-idx="107">Noir / Detective Characters</div>
+      <div class="sc-block sc-block-para" data-idx="108">91. Sybil Sanchez — Gumshoe's romantic interest; ex of Harvey Weinstein</div>
+      <div class="sc-block sc-block-para" data-idx="109">92. The Redactor — Government document redactor; relocated to SLO; becomes school nurse</div>
+      <div class="sc-block sc-block-para" data-idx="110">93. The Christmas Assassin — Driver who makes pies; fantasizes about killing politicians</div>
+      <div class="sc-block sc-block-para" data-idx="111">94. Dirty Harry Coltrane Davis — Sgt., least decorated SLOPD officer with bullhorn</div>
+      <div class="sc-block sc-block-para" data-idx="112">Other Fictional Characters</div>
+      <div class="sc-block sc-block-para" data-idx="113">95. Reginald Smythe Girl-Masher III — Wealthy local; periodically wakes from coma; proposes to Trixie</div>
+      <div class="sc-block sc-block-para" data-idx="114">96. Gladiola — Bob's grandpa's estranged wife</div>
+      <div class="sc-block sc-block-para" data-idx="115">97. Caitlin Fischer-McQueen — Trendiest, most enlightened mom on central coast</div>
+      <div class="sc-block sc-block-para" data-idx="116">98. Blackjack "Nightstick" Hawthorne — School football hero; Trixie's high school love interest</div>
+      <div class="sc-block sc-block-para" data-idx="117">99. Kitty "No Net" Cinderella — Trixie's mother; Uruguayan trapeze artist; fell from high-wire</div>
+      <div class="sc-block sc-block-para" data-idx="118">100. Generalissimo Motors — President at time of Kitty's death</div>
+      <div class="sc-block sc-block-para" data-idx="119">101. Reginald Noseworthy — Chief culinary critic on SLO BLOWS</div>
+      <div class="sc-block sc-block-para" data-idx="120">102. Vampirella Delgado — Dr. Mabuse's henchwoman</div>
+      <div class="sc-block sc-block-para" data-idx="121">103. Freddy / Freddy Weddy — Honey Brazil's stuffed unicorn; also a caveman character</div>
+      <div class="sc-block sc-block-para" data-idx="122">104. Harvey — Prisoner sharing cell with Diamond Dog</div>
+      <div class="sc-block sc-block-para" data-idx="123">105. Rosalinda — Minor character</div>
+      <div class="sc-block sc-block-para" data-idx="124">106. Gladys Entwhistle — Minor absurdist character</div>
+      <div class="sc-block sc-block-para" data-idx="125">107. Manly Mann — Proprietor of Mann's Manly Manual Drug Accoutrements</div>
+      <div class="sc-block sc-block-para" data-idx="126">108. Brad Firbender — Character who smells things</div>
+      <div class="sc-block sc-block-para" data-idx="127">109. Butch Leavenworth — Dog; romantic interest of Violet Fondue</div>
+      <div class="sc-block sc-block-para" data-idx="128">110. Lovely Rita — Parking citation cop; duct-taped to Elon Musk</div>
+      <div class="sc-block sc-block-para" data-idx="129">111. A boy named Sue — Wandering minstrel; devoured by Frankie the alligator</div>
+      <div class="sc-block sc-block-para" data-idx="130">112. Sideways Charlie — Member of least-respected law firm</div>
+      <div class="sc-block sc-block-para" data-idx="131">113. Columbus Buchanan Celeste — Lead real estate agent in San Francisco</div>
+      <div class="sc-block sc-block-para" data-idx="132">114. Stan Dipstick — Owner of Stan's Day Old Shellfish Restaurant</div>
+      <div class="sc-block sc-block-para" data-idx="133">115. Sarah Akbar Rafsanjani — Bartender/restaurateur at Bratwurst Über Alles</div>
+      <div class="sc-block sc-block-para" data-idx="134">116. Dolores Del Rio — Sarah's deceased partner</div>
+      <div class="sc-block sc-block-para" data-idx="135">117. Jorge Vallente Jr. — Son of deceased flamenco instructor; with Cassandra Knye</div>
+      <div class="sc-block sc-block-para" data-idx="136">118. Holst/Horst Barbican — Marjorie Taylor Greene's trans-adopted son; high school basketball player</div>
+      <div class="sc-block sc-block-para" data-idx="137">119. Lola Fandango — Pete Hegseth's daughter; flugelhorn player</div>
+      <div class="sc-block sc-block-para" data-idx="138">120. Pepe the Lean — Small conquistador eaten by golden bears</div>
+      <div class="sc-block sc-block-para" data-idx="139">121. Pablo Escobar Balboa de la Mancha — First conquistador; built Avila Valley Barn</div>
+      <div class="sc-block sc-block-para" data-idx="140">122. Intern Dillon Courtney Hotshot — Muscly male intern at Walter Reed Hospital</div>
+      <div class="sc-block sc-block-para" data-idx="141">AI / Machine Characters</div>
+      <div class="sc-block sc-block-para" data-idx="142">123. Alicia Keys (AI version) — Bob's Sat Nav; becomes top Hollywood producer-writer-director</div>
+      <div class="sc-block sc-block-para" data-idx="143">124. Kit / KIT — The Elon Musk self-driven sentient car; works Uber part-time</div>
+      <div class="sc-block sc-block-para" data-idx="144">125. Siri — AI voice; disclaims approval of messages</div>
+      <div class="sc-block sc-block-para" data-idx="145">Real People Used as Characters</div>
+      <div class="sc-block sc-block-para" data-idx="146">126. Elon Musk — Self-driving mega-billionaire; crashes through sewers; wants to marry Monumental Li</div>
+      <div class="sc-block sc-block-para" data-idx="147">127. Donald Trump — Referenced across multiple administrations</div>
+      <div class="sc-block sc-block-para" data-idx="148">128. Joe Biden — Referenced; Bob shares similarities with him</div>
+      <div class="sc-block sc-block-para" data-idx="149">129. Nancy Pelosi — Rides Heavy Duty 4-Wheel Mobility Scooter</div>
+      <div class="sc-block sc-block-para" data-idx="150">130. Kamala Harris — Mentioned for campaign bankrolls</div>
+      <div class="sc-block sc-block-para" data-idx="151">131. Pete Hegseth — Trump Administration war criminal; fake father figure</div>
+      <div class="sc-block sc-block-para" data-idx="152">132. Marjorie Taylor Greene / MTG — Former congresswoman; becomes transparent/trans; marries Zorro</div>
+      <div class="sc-block sc-block-para" data-idx="153">133. John Bolton — Lead guitarist/vocalist for The War Punkers; former NSA</div>
+      <div class="sc-block sc-block-para" data-idx="154">134. Captain Spaulding — Walrus-mustachioed lead singer of the War Punkers (Marx Brothers reference)</div>
+      <div class="sc-block sc-block-para" data-idx="155">135. Tony Blair — War Punker Emeritus; on drums</div>
+      <div class="sc-block sc-block-para" data-idx="156">136. Hilary Clinton — Punk-rocker; plays bongos</div>
+      <div class="sc-block sc-block-para" data-idx="157">137. Dick Cheney — Referenced as war-crime hero</div>
+      <div class="sc-block sc-block-para" data-idx="158">138. Bill Clinton — Referenced in Epstein Diaries; receives banana cream pie</div>
+      <div class="sc-block sc-block-para" data-idx="159">139. Jeffrey Epstein — Ghost; dictating memoir</div>
+      <div class="sc-block sc-block-para" data-idx="160">140. Ghislaine Maxwell (spelled variously: Ghislaine, Gislaine, Gislainey) — Referenced in Epstein Diaries</div>
+      <div class="sc-block sc-block-para" data-idx="161">141. Prince Andrew — Referenced in Epstein Diaries; described as "WANKER"</div>
+      <div class="sc-block sc-block-para" data-idx="162">142. Peter Mandelson (also "Lord Peter Mandelpants/Mandelbson") — UK politician; loses underpants; teaches volleyball</div>
+      <div class="sc-block sc-block-para" data-idx="163">143. Jeremy Corbyn — Hated by everyone in the Epstein Diaries</div>
+      <div class="sc-block sc-block-para" data-idx="164">144. Keir Starmer — PM; has never been to the island; hates Jeremy Corbyn</div>
+      <div class="sc-block sc-block-para" data-idx="165">145. David Cameron — Former UK PM</div>
+      <div class="sc-block sc-block-para" data-idx="166">146. Marco Rubio — Trump Administration member</div>
+      <div class="sc-block sc-block-para" data-idx="167">147. JD Vance — Trump Administration member; target of Christmas Assassin</div>
+      <div class="sc-block sc-block-para" data-idx="168">148. Scott Bessent — Trump Administration member</div>
+      <div class="sc-block sc-block-para" data-idx="169">149. Kristi Noem — Gets pie on cowboy hat</div>
+      <div class="sc-block sc-block-para" data-idx="170">150. Pam Bondi — Dirty Pierre's love interest in DC</div>
+      <div class="sc-block sc-block-para" data-idx="171">151. Joe Scarborough — Target of Christmas Assassin</div>
+      <div class="sc-block sc-block-para" data-idx="172">152. Wolf Blitzer — CNN anchor</div>
+      <div class="sc-block sc-block-para" data-idx="173">153. Megyn Kelly — TV personality</div>
+      <div class="sc-block sc-block-para" data-idx="174">154. Steve Doocy — Fox News personality</div>
+      <div class="sc-block sc-block-para" data-idx="175">155. Zohran Mamdani — Political figure (with comedic suffix "Gotta Go")</div>
+      <div class="sc-block sc-block-para" data-idx="176">156. Bill Gates — Referenced in Epstein Diaries</div>
+      <div class="sc-block sc-block-para" data-idx="177">157. Jeff Bezos — Mentioned as splendid rebirth possibility</div>
+      <div class="sc-block sc-block-para" data-idx="178">158. Rupert Murdoch — Media mogul</div>
+      <div class="sc-block sc-block-para" data-idx="179">159. Vladimir Putin — Russian president</div>
+      <div class="sc-block sc-block-para" data-idx="180">160. Saddam Hussein — Former Iraqi leader</div>
+      <div class="sc-block sc-block-para" data-idx="181">161. Andrew Cuomo — Governor</div>
+      <div class="sc-block sc-block-para" data-idx="182">162. Robert F. Kennedy Jr. — Distressing Administration member</div>
+      <div class="sc-block sc-block-para" data-idx="183">163. Alex Jones — Cy Sperling's brother; tries to sell protein shakes</div>
+      <div class="sc-block sc-block-para" data-idx="184">164. Harvey Weinstein (the fictional "no relation" version) — Zip-tied inamorata of Honey Brazil</div>
+      <div class="sc-block sc-block-para" data-idx="185">165. Sylvester Stallone — Receives Congressional Medal of Freedom</div>
+      <div class="sc-block sc-block-para" data-idx="186">166. Tom Cruise — Stars as Ethan Hunt</div>
+      <div class="sc-block sc-block-para" data-idx="187">167. Rachel Brosnahan — Allegedly cast as Lois Lane</div>
+      <div class="sc-block sc-block-para" data-idx="188">168. Meryl Streep — Alternative Lois Lane casting</div>
+      <div class="sc-block sc-block-para" data-idx="189">169. Antonio Banderas — Performed in Circus of the Stars</div>
+      <div class="sc-block sc-block-para" data-idx="190">170. Charles Lindbergh — World-famous aviator; host and chef at restaurant</div>
+      <div class="sc-block sc-block-para" data-idx="191">171. Amelia Earhart — Sits at bar nursing martinis</div>
+      <div class="sc-block sc-block-para" data-idx="192">172. Rutger Hauer — Druid-in-Chief of SLO Illuminati</div>
+      <div class="sc-block sc-block-para" data-idx="193">173. Paul Verhoeven — International movie director; Darlene's husband</div>
+      <div class="sc-block sc-block-para" data-idx="194">174. Federico Fellini — Director; referenced in dialogue</div>
+      <div class="sc-block sc-block-para" data-idx="195">175. Gina Lollobrigida — Referenced wearing toga</div>
+      <div class="sc-block sc-block-para" data-idx="196">176. Anthony Quinn — Bare-chested; pursued by Bob across Pismo Beach</div>
+      <div class="sc-block sc-block-para" data-idx="197">177. Scarlett Johansson — Actress referenced</div>
+      <div class="sc-block sc-block-para" data-idx="198">178. Sydney Sweeney — Actress referenced</div>
+      <div class="sc-block sc-block-para" data-idx="199">179. Brenda Vaccaro — Actress referenced</div>
+      <div class="sc-block sc-block-para" data-idx="200">180. Channing Tatum — Actor referenced</div>
+      <div class="sc-block sc-block-para" data-idx="201">181. Jason Bateman — Actor referenced</div>
+      <div class="sc-block sc-block-para" data-idx="202">182. Matt Dillon — Actor referenced</div>
+      <div class="sc-block sc-block-para" data-idx="203">183. Madonna — Referenced (Madonna Square)</div>
+      <div class="sc-block sc-block-para" data-idx="204">184. Ursula Andress — Actress referenced in Fellini context</div>
+      <div class="sc-block sc-block-para" data-idx="205">185. Pete Townshend — The Who musician</div>
+      <div class="sc-block sc-block-para" data-idx="206">186. Yo Yo Ma — Cellist referenced</div>
+      <div class="sc-block sc-block-para" data-idx="207">187. Celine Dion — Singer referenced in tribute/copyright context</div>
+      <div class="sc-block sc-block-para" data-idx="208">188. Neil Diamond — Singer referenced in tribute/copyright context</div>
+      <div class="sc-block sc-block-para" data-idx="209">189. Gary Numan — Referenced for "Cars" song</div>
+      <div class="sc-block sc-block-para" data-idx="210">190. Johnny Cash — Favorite listening at Alligator Alcatraz</div>
+      <div class="sc-block sc-block-para" data-idx="211">191. Paris Hilton — On parents' bucket list</div>
+      <div class="sc-block sc-block-para" data-idx="212">192. Michelle Obama — Drops off fresh-baked cookies</div>
+      <div class="sc-block sc-block-para" data-idx="213">193. Barack Obama — Referenced</div>
+      <div class="sc-block sc-block-para" data-idx="214">194. George W. Bush ("Dubya") — Paints clowns and dogs at his "ranch"</div>
+      <div class="sc-block sc-block-para" data-idx="215">195. Diane Feinstein — Mentioned in Biden's speech (deceased)</div>
+      <div class="sc-block sc-block-para" data-idx="216">196. Melania Trump — Takes selfies; Melania Trump Center for the Arts</div>
+      <div class="sc-block sc-block-para" data-idx="217">197. Madeline Albright — Referenced playing bongos</div>
+      <div class="sc-block sc-block-para" data-idx="218">Literary / Historical / Cultural References (used as character names)</div>
+      <div class="sc-block sc-block-para" data-idx="219">198. Madame Bovary / Emma Bovary — Works at CVS; manageress of Casa del Pedro</div>
+      <div class="sc-block sc-block-para" data-idx="220">199. Jean Valjean — Literary reference (sewer connection)</div>
+      <div class="sc-block sc-block-para" data-idx="221">200. Jonathan Livingston Seagull — Referenced book character</div>
+      <div class="sc-block sc-block-para" data-idx="222">201. Mark Twain — Mentioned as deceased; chef jokes about him</div>
+      <div class="sc-block sc-block-para" data-idx="223">202. James Joyce — Author referenced as blowhard</div>
+      <div class="sc-block sc-block-para" data-idx="224">203. Thomas Mann — Author referenced as blowhard</div>
+      <div class="sc-block sc-block-para" data-idx="225">204. Jackie Collins — Author; blowhard but likeable</div>
+      <div class="sc-block sc-block-para" data-idx="226">205. Marcel Proust — Author; not a blowhard</div>
+      <div class="sc-block sc-block-para" data-idx="227">206. Annie Besant — Freeloading friend of Koot Hoomi (historical theosophist)</div>
+      <div class="sc-block sc-block-para" data-idx="228">207. Krishnamurti — Freeloading friend of Koot Hoomi (historical philosopher)</div>
+      <div class="sc-block sc-block-para" data-idx="229">208. Adam Weishaupt — Splendid rebirth possibility (historical Illuminati founder)</div>
+      <div class="sc-block sc-block-para" data-idx="230">209. Alexander Hamilton — Referenced as poop profile likeness</div>
+      <div class="sc-block sc-block-para" data-idx="231">210. Katy Perry — Splendid rebirth possibility</div>
+      <div class="sc-block sc-block-para" data-idx="232">211. Charles Dickens — Referenced author</div>
+      <div class="sc-block sc-block-para" data-idx="233">212. Lawrence Welk — Referenced musician</div>
+      <div class="sc-block sc-block-para" data-idx="234">213. Scott Bradfield — Author of the collection itself</div>
+      <div class="sc-block sc-block-para" data-idx="235">---</div>
+      <div class="sc-block sc-block-para" data-idx="236">Total: 213 unique named characters across fictional, real-world, literary, animal, AI, and supernatural categories.</div>
+      <div class="sc-block sc-block-para" data-idx="237">★ Insight ─────────────────────────────────────</div>
+      <div class="sc-block sc-block-para" data-idx="238">- The text deploys a technique common in satirical "universe" fiction: real
+public figures are dropped into absurdist roles (Elon Musk as a self-driving
+person, John Bolton as a punk guitarist, Marjorie Taylor Greene marrying
+Zorro) to create comic friction between the reader's real-world associations
+and the story's logic.</div>
+      <div class="sc-block sc-block-para" data-idx="239">- The "Cosgrove" family is a running gag — every famous person's first name gets a "Cosgrove" surname (Audie Murphy Cosgrove, Pablo Picasso Cosgrove, etc.), satirizing small-town nepotism.</div>
+      <div class="sc-block sc-block-para" data-idx="240">- Animal characters with human celebrity names (Stevie Nicks the vulture, Bucky Alexander the seagull) add another layer of absurdist identity play.</div>
+      <div class="sc-block sc-block-para" data-idx="241">─────────────────────────────────────────────────</div>
+      <div class="sc-block sc-block-para" data-idx="242">To summarize: I ("as if, must be the I in AI") found 213 unique named characters across all</div>
+      <div class="sc-block sc-block-para" data-idx="243">2,901 lines of Substack articles, spanning:</div>
+      <div class="sc-block sc-block-para" data-idx="244">- ~13 main/recurring fictional characters (Bob Johnson, his family, Trixie, Clam Hardass, etc.)</div>
+      <div class="sc-block sc-block-para" data-idx="245">- ~25 villains &amp; henchmen (Dr. Mabuse's crew, Ernst Blofeld's orbit)</div>
+      <div class="sc-block sc-block-para" data-idx="246">- ~20 community/school figures (the sprawling Cosgrove family, the Sisters)</div>
+      <div class="sc-block sc-block-para" data-idx="247">- ~15 animals-as-characters (Stevie Nicks the vulture, Bucky the seagull, Frankie the alligator)</div>
+      <div class="sc-block sc-block-para" data-idx="248">- ~10 mice characters (Archibald Cox, Dirty Pierre, etc.)</div>
+      <div class="sc-block sc-block-para" data-idx="249">- ~10 space aliens &amp; supernatural beings (Koot Hoomi, Cthulhu entities, Bigfoot)</div>
+      <div class="sc-block sc-block-para" data-idx="250">- ~70+ real public figures used as satirical characters (politicians, actors, musicians)</div>
+      <div class="sc-block sc-block-para" data-idx="251">- ~15 literary/historical references used as character names</div>
+      <div class="sc-block sc-block-para" data-idx="252">[<em>i wonder how many it missed?</em>]</div>
+      <div class="sc-block sc-block-para" data-idx="253">Then Claude AI had this to say:</div>
+      <div class="sc-block sc-block-para" data-idx="254">1. Structure: It's a Numbered Article Series, Not Chapters</div>
+      <div class="sc-block sc-block-para" data-idx="255">The stories are numbered articles (at least into the 200s), each relatively short — more like a serialized blog or newspaper column than a novel. This gives it a "dispatch from a lunatic universe" feel, where continuity is loose and characters drift in and out. The numbering (e.g., "155. SAME AS AT THE BEGINNING ONLY BETTER", "156. PARAGRAGEDDON!!!!!") is itself part of the comedy.</div>
+      <div class="sc-block sc-block-para" data-idx="256">2. San Luis Obispo as Absurdist Small Town</div>
+      <div class="sc-block sc-block-para" data-idx="257">The entire universe is anchored in SLO County — Los Osos, Pismo Beach, Avila Beach, Laguna Lake, Arroyo Grande. It's a loving satire of small-town California life where international super-villains, Cthulhu entities, space aliens, and zombie presidents all coexist with PTA meetings and Little League games. The mundane and the cosmic share the same zip code.</div>
+      <div class="sc-block sc-block-para" data-idx="258">3. The "No Relation" / Misspelling Gag</div>
+      <div class="sc-block sc-block-para" data-idx="259">The text repeatedly uses real people's names for fictional characters with a winking disclaimer — "Harvey Weinstein (no relation)" — or deliberately misspells them (Stevie "Nix", "Marjoree", "Hilary", "Gislainey"). This creates legal/comic distance while making the satire unmistakable.</div>
+      <div class="sc-block sc-block-para" data-idx="260">4. Recurring Structural Motifs</div>
+      <div class="sc-block sc-block-para" data-idx="261">- Bob falls asleep — Stories frequently begin or end with Bob sleeping. Consciousness is optional.</div>
+      <div class="sc-block sc-block-para" data-idx="262">- The Cosgrove family — An ever-expanding clan where every member has a famous person's first name. It satirizes small-town dynasties that control every institution.</div>
+      <div class="sc-block sc-block-para" data-idx="263">- The War Punkers — A garage band whose members are all real-world war criminals and politicians (John Bolton on guitar, Tony Blair on drums, Hilary Clinton on bongos). Music as geopolitical commentary.</div>
+      <div class="sc-block sc-block-para" data-idx="264">- The Epstein Diaries — A brilliant parody of redacted government documents where every damning statement is bracketed with [NOT] or [DIDN'T], e.g., Bill Clinton "[DIDN'T]" visit the island.</div>
+      <div class="sc-block sc-block-para" data-idx="265">5. Nested Identity Games</div>
+      <div class="sc-block sc-block-para" data-idx="266">Characters constantly inhabit other identities: Zorro is also Frankie Lane Gotcha is also a Peruvian bolo-dancer. Alicia Keys is a Sat Nav system who becomes a Hollywood mogul. Detective Stud Thunderbolt writes novels under the pseudonym Robbert E. Hinnelleinn (a play on Robert Heinlein). Identity is fluid, unstable, and played for laughs.</div>
+      <div class="sc-block sc-block-para" data-idx="267">6. The Troublesome Tots as Social Commentary</div>
+      <div class="sc-block sc-block-para" data-idx="268">Honey Brazil's unlicensed Day Care for Troubled Tots is a recurring thread where toddlers are genuinely dangerous (Tooth Manchipper has razor-sharp teeth, Pierce McMasters has "delusions of military glory"). It reads as a parody of anxious modern parenting culture — taken to its absurd extreme where the children are literally feral.</div>
+      <div class="sc-block sc-block-para" data-idx="269">7. The Tone is Affectionate, Not Cynical</div>
+      <div class="sc-block sc-block-para" data-idx="270">Despite the political satire, this isn't bitter or preachy. It's more in the tradition of Monty Python or Douglas Adams — the absurdism is the point. Ernst Blofeld can't get hired by the Trump Administration. A government Redactor befriends an alligator. The loneliest vulture on the central coast is named Stevie Nicks. The comedy comes from the collision of registers — bureaucratic language meets cosmic horror meets small-town gossip.</div>
+      <div class="sc-block sc-block-para" data-idx="271">8. Paragraph as Theme</div>
+      <div class="sc-block sc-block-para" data-idx="272">Several articles are explicitly *about* paragraphs — "PARAGRAGEDDON!!!!!", "SAME AS AT THE BEGINNING ONLY BETTER" — where the text itself abandons paragraph structure, becomes a wall of stream-of-consciousness, then comments on its own lack of paragraphs. It's metafictional play about the act of writing itself.</div>
+      <div class="sc-block sc-block-para" data-idx="273">9. The Author Cameo</div>
+      <div class="sc-block sc-block-para" data-idx="274">Scott Bradfield is named early as the author, which is notable — he's a real published novelist (author of *The History of Luminous Motion*, *What's Wrong with America*). This collection fits his known style of darkly comic, surrealist American fiction, but pushed to an extreme serialized/improvisational mode.</div>
+      <div class="sc-block sc-block-para" data-idx="275"><strong>The overall impression is of a writer having enormous fun building a self-contained comic universe — like if Thomas Pynchon wrote a community newsletter for a cursed California beach town. The character density (213 named characters!) is part of the aesthetic: the world keeps expanding because the comedy demands new collisions.</strong></div>
+      <div class="sc-block sc-block-para" data-idx="276"><em>Then Claude AI fell silent due to a lack of funding (my money) and the military-industrial complex is upset about AI guardrails.</em></div>
+      <div class="sc-block sc-block-para" data-idx="277">###</div>
+      <div class="sc-block sc-block-linebreak" data-idx="278"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="279"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="280"></div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-buttons">
+      <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">&#9728;&#65039;</button>
+    </div>
+    <div class="footer-info">
+      <span class="footer-title">BOB JOHNSON RIDES AGAIN!</span>
+      <span class="footer-author">by Scott Bradfield</span>
+      <span class="footer-copyright">&copy; 2026</span>
+      <span class="footer-scene" id="footerScene"></span>
+    </div>
+    <div class="footer-status" id="footerStatus"></div>
+  </div>
+
+  <script>
+    // Theme toggle functionality
+    var themeToggle = document.getElementById('themeToggle');
+    var body = document.body;
+
+    var savedTheme = localStorage.getItem('html-ebook-theme');
+    if (savedTheme === 'light' && body.classList.contains('dark-mode')) {
+      body.classList.remove('dark-mode');
+      themeToggle.textContent = '🌙';
+    } else if (savedTheme === 'dark' && !body.classList.contains('dark-mode')) {
+      body.classList.add('dark-mode');
+      themeToggle.textContent = '☀️';
+    }
+
+    themeToggle.addEventListener('click', function() {
+      body.classList.toggle('dark-mode');
+      var isDark = body.classList.contains('dark-mode');
+      themeToggle.textContent = isDark ? '☀️' : '🌙';
+      localStorage.setItem('html-ebook-theme', isDark ? 'dark' : 'light');
+    });
+
+
+    // SceneCraft autoplay: scroll-driven audio + auto-scroll controller
+    (function() {
+      var scenes = document.querySelectorAll('.sc-scene');
+      if (!scenes.length) return;
+
+      var DLG_FADE = 0.5;
+      function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+
+      function createFadeIn(audioEl, vol, dur) {
+        audioEl.volume = 0;
+        audioEl.play().catch(function(){});
+        return { el: audioEl, state: 'in', start: Date.now(), dur: dur * 1000, targetVol: vol };
+      }
+      function createFadeOut(obj, dur) {
+        if (!obj || !obj.el) return null;
+        return { el: obj.el, state: 'out', start: Date.now(), dur: dur * 1000, startVol: obj.el.volume };
+      }
+      function tickFade(obj) {
+        if (!obj || !obj.el) return null;
+        var t = obj.dur > 0 ? clamp((Date.now() - obj.start) / obj.dur, 0, 1) : 1;
+        if (obj.state === 'in') {
+          obj.el.volume = t * (obj.targetVol || 1);
+          if (t >= 1) obj.state = 'playing';
+        } else if (obj.state === 'out') {
+          obj.el.volume = (1 - t) * (obj.startVol || 1);
+          if (t >= 1) { obj.el.pause(); return null; }
+        }
+        return obj;
+      }
+      function killAudio(obj) {
+        if (obj && obj.el) { obj.el.pause(); obj.el.src = ''; }
+        return null;
+      }
+
+      // Per-scene state
+      var sceneStates = [];
+      scenes.forEach(function(sceneEl, si) {
+        var cfg = null;
+        try { cfg = JSON.parse(sceneEl.dataset.scConfig || 'null'); } catch(e) {}
+        sceneStates.push({
+          el: sceneEl,
+          cfg: cfg,
+          inScene: false,
+          ambient: null,
+          ambientOut: null,
+          voice: null,
+          voiceOut: null,
+          activeDlg: -1,
+          dlgObj: null,
+          dlgOut: null,
+          activeStk: -1,
+          stkObj: null,
+          stkOut: null,
+          activePara: -1,
+          paraObj: null,
+          paraOut: null,
+          blocks: sceneEl.querySelectorAll('.sc-block'),
+          stickyWraps: sceneEl.querySelectorAll('.sc-block-sticky'),
+          enterEl: sceneEl.querySelector('.sc-enter'),
+          exitEl: sceneEl.querySelector('.sc-exit'),
+          bgEl: sceneEl.querySelector('.sc-bg'),
+        });
+      });
+
+      var playheadY = window.innerHeight * 0.5;
+      window.addEventListener('resize', function() { playheadY = window.innerHeight * 0.5; });
+
+      function doEnter(s) {
+        if (s.inScene || !s.cfg) return;
+        s.inScene = true;
+        var c = s.cfg;
+        var footerScene = document.getElementById('footerScene');
+        var scTitle = s.el.dataset.scTitle || '';
+        if (footerScene) footerScene.innerHTML = scTitle ? '<span class="footer-scene-label">now playing: </span>' + scTitle : '';
+
+        // Wallpaper
+        if (c.wallpaperFilename && s.bgEl) {
+          var url = s.el.dataset['scImg_' + c.wallpaperFilename.replace(/[^a-zA-Z0-9]/g, '_')];
+          if (url) {
+            s.bgEl.style.backgroundImage = "url('" + url + "')";
+            s.bgEl.style.backgroundPosition = c.wallpaperPosition || 'center';
+            s.bgEl.style.opacity = String(c.wallpaperOpacity || 0.25);
+          }
+        }
+
+        // Ambient audio
+        s.ambientOut = killAudio(s.ambientOut);
+        if (c.ambientFilename) {
+          var aUrl = s.el.dataset['scAud_' + c.ambientFilename.replace(/[^a-zA-Z0-9]/g, '_')];
+          if (aUrl) {
+            var a = new Audio(aUrl);
+            a.loop = !!c.ambientLoop;
+            s.ambient = createFadeIn(a, c.ambientVolume || 0.5, c.fadeIn || 2);
+          }
+        }
+
+        // Narration voice
+        s.voiceOut = killAudio(s.voiceOut);
+        if (c.voiceMode === 'narration' && c.narrationFilename) {
+          var nUrl = s.el.dataset['scAud_' + c.narrationFilename.replace(/[^a-zA-Z0-9]/g, '_')];
+          if (nUrl) {
+            var n = new Audio(nUrl);
+            s.voice = createFadeIn(n, c.narrationVolume || 0.7, c.fadeIn || 2);
+          }
+        }
+      }
+
+      function doExit(s) {
+        if (!s.inScene || !s.cfg) return;
+        s.inScene = false;
+        var c = s.cfg;
+        var footerScene = document.getElementById('footerScene');
+        var myTitle = s.el.dataset.scTitle || '';
+        if (footerScene && myTitle && footerScene.textContent.indexOf(myTitle) !== -1) {
+          footerScene.innerHTML = '';
+        }
+        if (s.bgEl) s.bgEl.style.opacity = '0';
+
+        if (s.ambient) { s.ambientOut = createFadeOut(s.ambient, c.fadeOut || 3); s.ambient = null; }
+        if (s.voice) { s.voiceOut = createFadeOut(s.voice, c.fadeOut || 3); s.voice = null; }
+        s.dlgObj = killAudio(s.dlgObj);
+        s.dlgOut = killAudio(s.dlgOut);
+        s.activeDlg = -1;
+        s.stkObj = killAudio(s.stkObj);
+        s.stkOut = killAudio(s.stkOut);
+        s.activeStk = -1;
+        s.paraObj = killAudio(s.paraObj);
+        s.paraOut = killAudio(s.paraOut);
+        s.activePara = -1;
+      }
+
+      function tick() {
+        for (var si = 0; si < sceneStates.length; si++) {
+          var s = sceneStates[si];
+          if (!s.cfg) continue;
+          var c = s.cfg;
+
+          // Tick fades
+          s.ambientOut = tickFade(s.ambientOut);
+          s.voiceOut = tickFade(s.voiceOut);
+          if (s.ambient && s.ambient.state === 'in') tickFade(s.ambient);
+          if (s.voice && s.voice.state === 'in') tickFade(s.voice);
+          s.dlgObj = tickFade(s.dlgObj);
+          s.dlgOut = tickFade(s.dlgOut);
+          s.stkObj = tickFade(s.stkObj);
+          s.stkOut = tickFade(s.stkOut);
+          s.paraObj = tickFade(s.paraObj);
+          s.paraOut = tickFade(s.paraOut);
+
+          // Block visibility
+          for (var bi = 0; bi < s.blocks.length; bi++) {
+            var b = s.blocks[bi];
+            var rect = b.getBoundingClientRect();
+            var center = rect.top + rect.height / 2;
+            if (center < playheadY + 100) b.classList.add('sc-vis'); else b.classList.remove('sc-vis');
+            if (center < playheadY - window.innerHeight * 0.3) b.classList.add('sc-past'); else b.classList.remove('sc-past');
+          }
+
+          // Scene zone detection
+          var enterBottom = s.enterEl ? s.enterEl.getBoundingClientRect().bottom : 0;
+          var exitTop = s.exitEl ? s.exitEl.getBoundingClientRect().top : window.innerHeight;
+          if (enterBottom <= playheadY && exitTop > playheadY) {
+            doEnter(s);
+          } else {
+            doExit(s);
+          }
+
+          // Per-dialogue voice
+          if (s.inScene && c.voiceMode === 'dialogue') {
+            var currentDlg = -1;
+            for (var di = 0; di < s.blocks.length; di++) {
+              var db = s.blocks[di];
+              var dr = db.getBoundingClientRect();
+              var dataIdx = parseInt(db.dataset.idx || '-1', 10);
+              if (dr.top < playheadY && dr.bottom > playheadY && db.classList.contains('sc-block-dialogue')) {
+                currentDlg = dataIdx;
+              }
+            }
+            if (currentDlg !== s.activeDlg) {
+              if (s.dlgObj && s.dlgObj.el) {
+                s.dlgOut = killAudio(s.dlgOut);
+                s.dlgOut = createFadeOut(s.dlgObj, DLG_FADE);
+                s.dlgObj = null;
+              }
+              s.activeDlg = currentDlg;
+              if (currentDlg >= 0 && c.dialogueClips) {
+                var clip = c.dialogueClips[currentDlg];
+                if (clip && clip.filename) {
+                  var dUrl = s.el.dataset['scAud_' + clip.filename.replace(/[^a-zA-Z0-9]/g, '_')];
+                  if (dUrl) {
+                    var da = new Audio(dUrl);
+                    s.dlgObj = createFadeIn(da, clip.volume || c.dialogueVolume || 0.8, DLG_FADE);
+                  }
+                }
+              }
+            }
+          }
+
+          // Per-sticky audio (plays regardless of voiceMode)
+          if (s.inScene) {
+            var currentStk = -1;
+            for (var swi = 0; swi < s.stickyWraps.length; swi++) {
+              var sw = s.stickyWraps[swi];
+              var sIdx = parseInt(sw.dataset.idx || '-1', 10);
+              if (sw.querySelector('.sc-block.sc-vis')) {
+                currentStk = sIdx;
+              }
+            }
+            if (currentStk !== s.activeStk) {
+              if (s.stkObj && s.stkObj.el) {
+                s.stkOut = killAudio(s.stkOut);
+                s.stkOut = createFadeOut(s.stkObj, DLG_FADE);
+                s.stkObj = null;
+              }
+              s.activeStk = currentStk;
+              if (currentStk >= 0 && c.stickyClips) {
+                var sClip = c.stickyClips[currentStk];
+                if (sClip && sClip.filename) {
+                  var sUrl = s.el.dataset['scAud_' + sClip.filename.replace(/[^a-zA-Z0-9]/g, '_')];
+                  if (sUrl) {
+                    var sa = new Audio(sUrl);
+                    s.stkObj = createFadeIn(sa, sClip.volume || c.stickyVolume || 0.8, DLG_FADE);
+                  }
+                }
+              }
+            }
+          }
+
+          // Per-para audio (plays regardless of voiceMode)
+          if (s.inScene) {
+            var currentPara = -1;
+            for (var pi = 0; pi < s.blocks.length; pi++) {
+              var pb = s.blocks[pi];
+              var pr = pb.getBoundingClientRect();
+              var pIdx = parseInt(pb.dataset.idx || '-1', 10);
+              if (pr.top < playheadY && pr.bottom > playheadY && !pb.classList.contains('sc-block-dialogue') && pb.classList.contains('sc-block-para')) {
+                currentPara = pIdx;
+              }
+            }
+            if (currentPara !== s.activePara) {
+              if (s.paraObj && s.paraObj.el) {
+                s.paraOut = killAudio(s.paraOut);
+                s.paraOut = createFadeOut(s.paraObj, DLG_FADE);
+                s.paraObj = null;
+              }
+              s.activePara = currentPara;
+              if (currentPara >= 0 && c.paraClips) {
+                var pClip = c.paraClips[currentPara];
+                if (pClip && pClip.filename) {
+                  var pUrl = s.el.dataset['scAud_' + pClip.filename.replace(/[^a-zA-Z0-9]/g, '_')];
+                  if (pUrl) {
+                    var pa = new Audio(pUrl);
+                    s.paraObj = createFadeIn(pa, pClip.volume || c.paraVolume || 0.8, DLG_FADE);
+                  }
+                }
+              }
+            }
+          }
+        }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+
+      // ── Autoplay scroll controller ──────────────────────────
+      // Audio is the master clock.
+      // Dialogue/para clips GATE the scroll (nearly pause until done).
+      // Sticky clips PACE the scroll (keep scrolling to reveal text).
+      // Narration scenes PACE the scroll to match the narration duration.
+      // Ambient never affects scroll — it is just atmosphere.
+
+      var FRONT_MATTER_SPEED = 0.3; // px/frame for cover, copyright, TOC (~18px/s)
+      var BASE_SPEED = 0.8;        // px/frame through non-audio content (~48px/s @ 60fps)
+      var DEAD_ZONE_SPEED = 2.5;   // px/frame through silence gaps (dead zones)
+      var CREEP_SPEED = 0.15;      // px/frame — tiny drift while a dialogue clip plays
+      var PAUSE_AFTER_CLIP = 45;   // frames to breathe after a clip ends (~0.75s)
+      var NARRATION_MIN_SPEED = 0.1;   // floor during narration (6px/s — barely moving crawl)
+      var NARRATION_MAX_SPEED = 0.35;  // cap so narration scenes don't rush (~21px/s, ~0.75 lines/sec)
+      var NARRATION_COAST_SPEED = 0.3; // gentle coast after narration audio ends (~18px/s)
+      var STICKY_MIN_SPEED = 0.08;    // very low floor — let audio fully control pace
+      var STICKY_MAX_SPEED = 1.2;     // cap for sticky clips
+      var FPS = 60;
+
+      var firstSceneEl = document.querySelector('.sc-scene');
+      var pastFrontMatter = false;
+
+      function isInFrontMatter() {
+        if (pastFrontMatter) return false;
+        if (firstSceneEl && firstSceneEl.getBoundingClientRect().top <= window.innerHeight) {
+          pastFrontMatter = true;
+          return false;
+        }
+        return true;
+      }
+
+      var autoScrollActive = false;
+      var scrollDone = false;
+      var postClipTimer = 0;
+
+      function isClipPlaying(obj) {
+        if (!obj || !obj.el) return false;
+        return !obj.el.paused && !obj.el.ended;
+      }
+
+      function hasDuration(obj) {
+        if (!obj || !obj.el) return false;
+        return obj.el.duration && !isNaN(obj.el.duration) && obj.el.duration > 0;
+      }
+
+      // Only dialogue and para clips gate (nearly stop scroll).
+      // Sticky clips are handled separately with pacing.
+      function isGatedAudioPlaying() {
+        for (var i = 0; i < sceneStates.length; i++) {
+          var s = sceneStates[i];
+          if (isClipPlaying(s.dlgObj)) return true;
+          if (isClipPlaying(s.paraObj)) return true;
+          // NOTE: stkObj is NOT here — sticky clips are paced, not gated
+        }
+        return false;
+      }
+
+      function isInDeadZone() {
+        for (var i = 0; i < sceneStates.length; i++) {
+          if (sceneStates[i].inScene) return false;
+        }
+        return true;
+      }
+
+      // For sticky clips: pace scroll so the sticky section finishes
+      // scrolling right when the audio clip ends.
+      function getStickyPacedSpeed() {
+        for (var i = 0; i < sceneStates.length; i++) {
+          var s = sceneStates[i];
+          if (!s.inScene) continue;
+          if (!isClipPlaying(s.stkObj)) continue;
+
+          // If playing but duration not loaded yet, crawl until we can calculate
+          if (!hasDuration(s.stkObj)) return STICKY_MIN_SPEED;
+
+          var audio = s.stkObj.el;
+          var remaining = audio.duration - audio.currentTime;
+          if (remaining <= 0) continue;
+
+          // Find the active sticky wrapper element
+          var activeIdx = s.activeStk;
+          if (activeIdx < 0) continue;
+
+          for (var sw = 0; sw < s.stickyWraps.length; sw++) {
+            var wrap = s.stickyWraps[sw];
+            var idx = parseInt(wrap.dataset.idx || '-1', 10);
+            if (idx !== activeIdx) continue;
+
+            // Find the last text block inside the sticky text column
+            var textBlocks = wrap.querySelectorAll('.sc-sticky-text .sc-block');
+            if (!textBlocks.length) continue;
+            var lastBlock = textBlocks[textBlocks.length - 1];
+            var lastRect = lastBlock.getBoundingClientRect();
+
+            // Distance = bottom of last text block to playhead
+            var pixelsLeft = lastRect.bottom - playheadY;
+
+            // If all text has already passed the playhead but audio still playing,
+            // keep scrolling slowly — don't jump to BASE_SPEED
+            if (pixelsLeft <= 10) return BASE_SPEED;
+
+            var speed = pixelsLeft / (remaining * FPS);
+            speed = Math.max(STICKY_MIN_SPEED, Math.min(STICKY_MAX_SPEED, speed));
+            return speed;
+          }
+
+          // Sticky clip is playing but couldn't find wrapper — crawl
+          return STICKY_MIN_SPEED;
+        }
+        return null;
+      }
+
+      // For narration scenes: pace scroll so we reach the scene exit
+      // right when the narration track ends.
+      function getNarrationPacedSpeed() {
+        for (var i = 0; i < sceneStates.length; i++) {
+          var s = sceneStates[i];
+          if (!s.inScene) continue;
+          if (!s.voice || !s.voice.el) continue;
+          var audio = s.voice.el;
+          if (audio.paused || audio.ended) continue;
+
+          // If audio is playing but duration hasn't loaded yet,
+          // crawl slowly until we can calculate proper pacing
+          if (!audio.duration || isNaN(audio.duration) || audio.duration <= 0) {
+            return NARRATION_MIN_SPEED;
+          }
+
+          var remaining = audio.duration - audio.currentTime;
+          if (remaining <= 0) continue;
+
+          var exitEl = s.exitEl;
+          if (!exitEl) continue;
+          var exitRect = exitEl.getBoundingClientRect();
+          var pixelsLeft = exitRect.top - playheadY;
+          if (pixelsLeft <= 0) continue;
+
+          // Nearly at exit but narration still playing — almost stop so we
+          // don't leave the scene while audio is still going
+          if (pixelsLeft <= 10) return 0.05;
+
+          var speed = pixelsLeft / (remaining * FPS);
+          speed = Math.max(NARRATION_MIN_SPEED, Math.min(NARRATION_MAX_SPEED, speed));
+          return speed;
+        }
+        return null;
+      }
+
+      // True if we're inside a narration scene (even if its audio has ended).
+      // Used to apply coast speed after narration finishes.
+      function isInNarrationScene() {
+        for (var i = 0; i < sceneStates.length; i++) {
+          var s = sceneStates[i];
+          if (s.inScene && s.cfg && s.cfg.voiceMode === 'narration') return true;
+        }
+        return false;
+      }
+
+      function autoScroll() {
+        if (!autoScrollActive || scrollDone) {
+          requestAnimationFrame(autoScroll);
+          return;
+        }
+
+        var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        if (window.scrollY >= maxScroll) {
+          scrollDone = true;
+          console.log('Autoplay: reached the end.');
+          return;
+        }
+
+        var speed;
+
+        // Priority 0: front matter (cover, copyright, TOC) — slow scroll
+        if (isInFrontMatter()) {
+          speed = FRONT_MATTER_SPEED;
+          window.scrollBy(0, speed);
+          requestAnimationFrame(autoScroll);
+          return;
+        }
+
+        // Priority 1: dialogue/para clip playing — gate (nearly stop)
+        if (isGatedAudioPlaying()) {
+          speed = CREEP_SPEED;
+          postClipTimer = PAUSE_AFTER_CLIP;
+        }
+        // Priority 2: just finished a clip — brief pause
+        else if (postClipTimer > 0) {
+          speed = CREEP_SPEED;
+          postClipTimer--;
+        }
+        // Priority 3: sticky clip playing — pace through the sticky section
+        else {
+          var stickySpeed = getStickyPacedSpeed();
+          if (stickySpeed !== null) {
+            speed = stickySpeed;
+          }
+          // Priority 4: narration playing — pace through the scene
+          else {
+            var narrationSpeed = getNarrationPacedSpeed();
+            if (narrationSpeed !== null) {
+              speed = narrationSpeed;
+            }
+            // Priority 5: narration scene but audio ended — coast gently
+            else if (isInNarrationScene()) {
+              speed = NARRATION_COAST_SPEED;
+            }
+            // Priority 6: dead zone — move through silence
+            else if (isInDeadZone()) {
+              speed = DEAD_ZONE_SPEED;
+            }
+            // Default: gentle reading pace
+            else {
+              speed = BASE_SPEED;
+            }
+          }
+        }
+
+        window.scrollBy(0, speed);
+        requestAnimationFrame(autoScroll);
+      }
+
+      // Status indicator + start/pause control (lives in the footer)
+      var statusEl = document.getElementById('footerStatus');
+      statusEl.textContent = 'PRESS SPACE TO BEGIN';
+      statusEl.classList.add('pill');
+
+      document.addEventListener('keydown', function(e) {
+        if (e.code === 'Space') {
+          e.preventDefault();
+          if (scrollDone) return;
+
+          autoScrollActive = !autoScrollActive;
+
+          if (autoScrollActive) {
+            statusEl.textContent = 'PLAYING';
+            statusEl.classList.remove('pill');
+            // fade out the indicator after 1 second
+            setTimeout(function() {
+              if (autoScrollActive) statusEl.style.opacity = '0';
+            }, 1000);
+          } else {
+            statusEl.style.opacity = '1';
+            statusEl.textContent = 'PAUSED \u2014 SPACE TO RESUME';
+            statusEl.classList.add('pill');
+          }
+        }
+      });
+
+      // also allow clicking the status bar to toggle
+      statusEl.addEventListener('click', function() {
+        var ev = new KeyboardEvent('keydown', { code: 'Space' });
+        document.dispatchEvent(ev);
+      });
+
+      requestAnimationFrame(autoScroll);
+
+    })();
+  </script>
+</body>
+</html>
