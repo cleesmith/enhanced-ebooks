@@ -1,0 +1,1599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Everything Ebooks</title>
+  <base href="/Everything-Ebooks/" />
+  <style>
+/* EverythingEbooks — EPUB-matching base styles */
+
+html {
+  font-size: 100%;
+}
+
+body {
+  font-family: serif;
+  line-height: 1.6;
+  margin: 1em auto;
+  padding: 0 1.5rem;
+  padding-bottom: 70px;
+  text-align: left;
+  max-width: min(92%, 1400px);
+  background: #fffaf5;
+  color: #222;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Title page */
+.title-page {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.title-page p {
+  text-indent: 0;
+  text-align: center;
+}
+
+.book-title {
+  text-align: center;
+  font-size: 1.8em;
+  font-weight: bold;
+  margin: 0;
+  padding-top: 25%;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.book-subtitle {
+  text-align: center;
+  font-size: 1.1em;
+  font-style: italic;
+  margin: 0;
+  padding-top: 5%;
+}
+
+.book-author {
+  text-align: center;
+  font-size: 1.3em;
+  margin: 0;
+  padding-top: 20%;
+  font-weight: normal;
+}
+
+.book-publisher {
+  text-align: center;
+  font-size: 1em;
+  margin: 0;
+  padding-top: 20%;
+  font-weight: normal;
+}
+
+/* Copyright page */
+.copyright-page {
+  margin: 2em 0;
+}
+
+.copyright-page p {
+  text-align: left;
+  margin: 0.8em 0;
+  text-indent: 0;
+  font-size: 0.9em;
+}
+
+/* Contents page */
+.contents-page {
+  margin: 2em 0;
+}
+
+.toc-title {
+  text-align: center;
+  font-size: 1.5em;
+  margin: 2em 0;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.toc-contents {
+  margin: 1em 0;
+  padding: 0;
+}
+
+.toc-item {
+  margin: 1em 0;
+  text-align: left;
+}
+
+.toc-content {
+  margin: 0;
+  text-indent: 0;
+}
+
+.toc-content a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s;
+}
+
+.toc-content a:hover {
+  text-decoration: underline;
+}
+
+.toc-item-title {
+  display: inline;
+}
+
+.toc-section-header {
+  margin: 2em 0 0.5em 0;
+}
+
+.toc-section-title {
+  font-weight: bold;
+  font-style: italic;
+  margin: 0;
+  text-indent: 0;
+}
+
+/* Chapter styles */
+.chapter {
+  margin: 0;
+}
+
+h1 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 3em 0 2em 0;
+  text-align: center;
+}
+
+p {
+  margin: 0 0 1em 0;
+  text-indent: 1.5em;
+  text-align: justify;
+  line-height: 1.6;
+}
+
+pre {
+  margin: 1em 0;
+  text-align: left;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-x: auto;
+  font-family: monospace;
+}
+
+/* First paragraph after chapter heading */
+.chapter p:first-of-type {
+  text-indent: 0;
+  margin-top: 1.5em;
+}
+
+/* Inline images */
+.image-container {
+  text-align: center;
+  margin: 1.5em 0;
+}
+
+.image-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Figures (resized images from editor) */
+figure {
+  text-align: center;
+  margin: 1.5em auto;
+  max-width: 100%;
+}
+
+figure img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+figure[data-align="left"] {
+  margin-left: 0;
+  margin-right: auto;
+  text-align: left;
+}
+
+figure[data-align="right"] {
+  margin-left: auto;
+  margin-right: 0;
+  text-align: right;
+}
+
+figcaption {
+  font-size: 0.85em;
+  text-align: center;
+  margin-top: 0.5em;
+  font-style: italic;
+}
+
+/* Audio blocks (non-VN) */
+.audio-block {
+  text-align: center;
+  margin: 1.5em 0;
+}
+
+.audio-block audio {
+  width: 80%;
+  max-width: 400px;
+}
+
+.audio-block .caption {
+  font-size: 0.85em;
+  font-style: italic;
+  margin-top: 0.5em;
+}
+
+/* Scene overrides — no indent, left-aligned */
+.scene p {
+  text-indent: 0;
+  text-align: left;
+}
+
+/* About author page */
+.about-author-page {
+  margin: 2em 0;
+}
+
+.about-author-page h1 {
+  text-align: center;
+  font-size: 1.5em;
+  margin: 2em 0;
+  font-weight: bold;
+}
+
+.about-author-page p {
+  text-align: left;
+  text-indent: 1.5em;
+  margin: 0 0 1em 0;
+}
+
+.about-author-page p:first-of-type {
+  text-indent: 0;
+}
+
+/* Navigation styles */
+nav h1 {
+  text-align: center;
+  font-size: 1.5em;
+  margin: 2em 0;
+  font-weight: bold;
+}
+
+nav ol {
+  list-style: none;
+  margin: 1em 0;
+  padding: 0;
+}
+
+nav li {
+  margin: 1em 0;
+  text-align: left;
+}
+
+nav a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.chapter a,
+.scene a,
+.copyright-page a {
+  color: #1a6fb5;
+  text-decoration: underline;
+  text-decoration-color: rgba(26, 111, 181, 0.4);
+}
+
+.chapter a:hover,
+.scene a:hover,
+.copyright-page a:hover {
+  color: #155a94;
+  text-decoration-color: rgba(21, 90, 148, 0.8);
+}
+
+
+/* ── SceneCraft immersive scroll-driven styles ──── */
+.sc-scene {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  background: #060608;
+  color: #c8c0b4;
+  overflow: clip;
+}
+.sc-scene .sc-bg {
+  position: fixed;
+  inset: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+  z-index: 0;
+  pointer-events: none;
+}
+.sc-scene .sc-playhead {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: rgba(255,120,68,0.15);
+  z-index: 10;
+  pointer-events: none;
+}
+.sc-scene .sc-playhead-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,120,68,0.4);
+  position: absolute;
+  left: 50%;
+  top: -3px;
+  transform: translateX(-50%);
+}
+.sc-scene .sc-info {
+  position: fixed;
+  right: 16px;
+  top: calc(50% - 14px);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: rgba(255,120,68,0.35);
+  z-index: 10;
+  pointer-events: none;
+  font-family: 'SF Mono','Fira Code',monospace;
+}
+.sc-scene .sc-content {
+  max-width: min(88%, 52rem);
+  margin: 0 auto;
+  padding: 50vh 2rem;
+  font-family: Georgia, 'EB Garamond', serif;
+  font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+  line-height: 2;
+  position: relative;
+  z-index: 2;
+}
+.sc-scene .sc-dead-zone {
+  height: 50vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 2rem;
+}
+.sc-scene .sc-dead-zone span {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: #2a2620;
+  font-style: italic;
+  font-family: 'SF Mono','Fira Code',monospace;
+}
+.sc-scene .sc-enter {
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,120,68,0.25);
+  margin-bottom: 3em;
+  padding-bottom: 1em;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  font-family: 'SF Mono','Fira Code',monospace;
+}
+.sc-scene .sc-exit {
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,120,68,0.15);
+  margin-top: 3em;
+  padding-top: 1em;
+  border-top: 1px solid rgba(255,255,255,0.03);
+  font-style: italic;
+  font-family: 'SF Mono','Fira Code',monospace;
+}
+.sc-scene .sc-dead-zone-after {
+  height: 70vh;
+}
+.sc-scene .sc-block {
+  margin-bottom: 1.6em;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  position: relative;
+  z-index: 2;
+}
+.sc-scene .sc-block.sc-vis {
+  opacity: 1;
+  transform: translateY(0);
+}
+.sc-scene .sc-block.sc-past {
+  opacity: 0.3;
+}
+.sc-scene .sc-block-dialogue {
+  color: #d4c090;
+}
+.sc-scene .sc-block-dialogue .sc-speaker {
+  font-family: 'SF Mono','Fira Code',monospace;
+  font-size: 0.65em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #a08040;
+  display: block;
+  margin-bottom: 0.3em;
+}
+.sc-scene .sc-block-emphasis {
+  font-style: italic;
+  color: #e0c8b0;
+  text-align: center;
+}
+.sc-scene .sc-block-quote {
+  border-left: 2px solid rgba(200,192,180,0.3);
+  padding-left: 1.5em;
+}
+.sc-scene .sc-block-internal {
+  font-style: italic;
+  padding-left: 2em;
+}
+.sc-scene .sc-block-break {
+  text-align: center;
+  color: #3a3530;
+  letter-spacing: 0.3em;
+}
+.sc-scene .sc-block-h1 {
+  font-size: 1.8em;
+  font-weight: bold;
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #c8c0b4;
+}
+.sc-scene .sc-block-h2 {
+  font-size: 1.4em;
+  font-weight: bold;
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #c8c0b4;
+}
+.sc-scene .sc-block-h3 {
+  font-size: 1.15em;
+  font-weight: bold;
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #c8c0b4;
+}
+.sc-scene .sc-block-divider {
+  border-top: 1px solid rgba(200,192,180,0.15);
+  margin: 1.6em 0;
+}
+.sc-scene .sc-block-linebreak {
+  height: 1.2em;
+  margin: 0;
+}
+.sc-scene .sc-block-sticky {
+  display: flex;
+  gap: 1.5em;
+  align-items: flex-start;
+  min-height: 300px;
+  margin-bottom: 1.6em;
+  position: relative;
+  z-index: 2;
+}
+.sc-scene .sc-block-sticky .sc-block {
+  margin-bottom: 0;
+}
+.sc-scene .sc-block-sticky .sc-sticky-img {
+  position: sticky;
+  top: 0;
+  width: 40%;
+  flex-shrink: 0;
+}
+.sc-scene .sc-block-sticky .sc-sticky-img input[type="checkbox"] {
+  display: none;
+}
+.sc-scene .sc-block-sticky .sc-sticky-img input:checked ~ .sc-enlarge-overlay {
+  display: block !important;
+}
+.sc-scene .sc-block-sticky .sc-sticky-img img {
+  width: 100%;
+  border-radius: 4px;
+  opacity: 0.9;
+}
+.sc-scene .sc-block-sticky .sc-sticky-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding-top: 15vh;
+}
+body.sc-overlay-hidden .sc-playhead,
+body.sc-overlay-hidden .sc-playhead-dot,
+body.sc-overlay-hidden .sc-info,
+body.sc-overlay-hidden .sc-dead-zone span {
+  display: none !important;
+}
+body.sc-overlay-hidden .sc-enter,
+body.sc-overlay-hidden .sc-exit {
+  visibility: hidden !important;
+}
+/* ── Sticky-image enlarge: collapse stacking contexts so overlay reaches root ── */
+body:has(.sc-sticky-img input:checked) .sc-scene .sc-content {
+  z-index: auto;
+}
+body:has(.sc-sticky-img input:checked) .sc-block-sticky {
+  z-index: auto;
+}
+body:has(.sc-sticky-img input:checked) .sc-sticky-img {
+  position: static;
+}
+.sc-scene a {
+  color: #e8c078;
+  text-decoration: underline;
+  text-decoration-color: rgba(232, 192, 120, 0.4);
+}
+.sc-scene a:hover {
+  color: #f0d898;
+  text-decoration-color: rgba(240, 216, 152, 0.7);
+}
+
+/* ── Dark mode ─────────────────────────────── */
+
+body.dark-mode {
+  background: #121212;
+  color: #e0e0e0;
+}
+
+body.dark-mode .dialogue {
+  border-left-color: rgba(200, 200, 200, 0.25);
+}
+
+body.dark-mode .toc-content a:hover {
+  color: #ccc;
+}
+
+body.dark-mode img {
+  opacity: 0.9;
+}
+
+body.dark-mode .scene-audio {
+  border-color: rgba(200, 200, 200, 0.15);
+}
+
+body.dark-mode .chapter a,
+body.dark-mode .scene a,
+body.dark-mode .copyright-page a {
+  color: #5bb8f5;
+  text-decoration-color: rgba(91, 184, 245, 0.4);
+}
+
+body.dark-mode .chapter a:hover,
+body.dark-mode .scene a:hover,
+body.dark-mode .copyright-page a:hover {
+  color: #7dcaff;
+  text-decoration-color: rgba(125, 202, 255, 0.8);
+}
+
+/* ── Sticky Footer ─────────────────────────── */
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #1a1a1a;
+  color: #ccc;
+  padding: 12px 20px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-size: 0.9em;
+  z-index: 1000;
+}
+
+.footer-info {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.footer-title {
+  font-weight: bold;
+  color: #707070;
+}
+
+.footer-author {
+  color: #999;
+}
+
+.footer-copyright {
+  color: #777;
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.4em;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.playhead-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+}
+.playhead-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.playhead-toggle svg {
+  width: 22px;
+  height: 22px;
+  fill: #ff7844;
+  transition: opacity 0.2s;
+}
+.playhead-toggle.sc-off svg {
+  opacity: 0.35;
+}
+
+.footer-buttons {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+/* ── Responsive ────────────────────────────── */
+
+@media (max-width: 600px) {
+  body {
+    margin: 0.5em;
+    padding-bottom: 70px;
+  }
+
+  .book-title {
+    font-size: 1.5em;
+  }
+
+  h1 {
+    font-size: 1.3em;
+  }
+
+  .footer {
+    padding: 10px 15px;
+    font-size: 0.8em;
+  }
+
+  .footer-info {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+}
+  </style>
+</head>
+<body class="dark-mode">
+
+  <section class="cover-page" style="text-align:center; margin:0; padding:2em 0;">
+    <img src="images/cover.jpg" alt="Cover" style="max-width:100%; max-height:90vh; object-fit:contain;"/>
+  </section>
+
+  <section class="title-page">
+    <p class="book-title">EVERYTHING EBOOKS</p>
+    <p class="book-author">Clee Smith</p>
+    <p class="book-publisher">Slip the Trap</p>
+  </section>
+
+  <section class="copyright-page" id="section-1">
+<section class="copyright-page" epub:type="copyright-page">
+<p></p>
+<p></p>
+<p>Copyright © 2026 by Clee Smith</p>
+<p></p>
+<p>All rights reserved.</p>
+<p></p>
+<p>No part of this book may be reproduced in any form or by any electronic or mechanical means, including information storage and retrieval systems, without written permission from the author, except for the use of brief quotations in a book review.</p>
+</section>
+  </section>
+
+  <div class="contents-page">
+    <h1 class="toc-title">CONTENTS</h1>
+    <div class="toc-contents">
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-3"><span class="toc-item-title">Introduction</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-4"><span class="toc-item-title">1. Five Doors Same Room</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-5"><span class="toc-item-title">2. A Key To A Kingdom</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-6"><span class="toc-item-title">3. The Editing Tools</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-7"><span class="toc-item-title">4. Publishing</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-8"><span class="toc-item-title">Epilogue</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-9"><span class="toc-item-title">About the Author</span></a></p></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-3" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:&quot;01_Introduction.mp3&quot;,&quot;ambientVolume&quot;:0.9,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;dialogue&quot;,&quot;narrationFilename&quot;:null,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Introduction" data-sc-aud_01_Introduction_mp3="audio/01_Introduction.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">Introduction</div>
+      <div class="sc-block sc-block-para" data-idx="0">The Book That Edited Itself</div>
+      <div class="sc-block sc-block-para" data-idx="1">(<em>But Knew When Not To</em>)</div>
+      <div class="sc-block sc-block-para" data-idx="2">Before we begin, let me tell you what you are reading.</div>
+      <div class="sc-block sc-block-para" data-idx="3">Hello!</div>
+      <div class="sc-block sc-block-para" data-idx="4">This book was written and edited entirely inside <a target="_blank" rel="noopener" href="https://everythingebooks.org/">EverythingEbooks</a>, the same app it wants to convince you to use. Every chapter was drafted directly in an ebook. Every edit happened inside that same ebook. When I wanted to see how a passage would read, I did not export to some preview mode or fake simulator. I just opened my Library and read it. The actual ebook.</div>
+      <div class="sc-block sc-block-para" data-idx="5">Then I went back to <strong>Authors</strong> mode, made changes, saved, and read it again.</div>
+      <div class="sc-block sc-block-para" data-idx="6">Write, send, read, repeat.</div>
+      <div class="sc-block sc-block-para" data-idx="7">That loop became my entire process. And now that loop can be yours.</div>
+      <div class="sc-block sc-block-para" data-idx="8">EverythingEbooks is online at everythingebooks [.] org. It includes both an immersive ereader Library and a full suite of tools for writing and editing, with or without AI assistance.</div>
+      <div class="sc-block sc-block-para" data-idx="9">No ads. No tracking. No sign up. No sign in. No cloud storage holding your manuscripts hostage. Total privacy. Just you and your words.</div>
+      <div class="sc-block sc-block-para" data-idx="10">If you have ever used Scrivener, Atticus, or Vellum, you will feel right at home. The interface works similarly. But those tools cost sixty, one-fifty, and two hundred dollars respectively. This one costs nothing, but only offers 3 PDF sizes.</div>
+      <div class="sc-block sc-block-para" data-idx="11">Here is the part that changed everything for me: the app works completely offline.</div>
+      <div class="sc-block sc-block-para" data-idx="12">After one visit to the landing page, your browser caches everything it needs. You can disconnect from the internet entirely and keep working. Your manuscripts live in your browser's local storage, on your device, under your control. The AI features require an internet connection and your own OpenRouter key, but AI is entirely optional. You can read and write entire ebooks without ever touching it.</div>
+      <div class="sc-block sc-block-para" data-idx="13">The app runs on any device with a modern web browser. Desktop, laptop, tablet, phone. Yes, even phones, though the screen is tiny and your thumbs will complain. But it works.</div>
+      <div class="sc-block sc-block-para" data-idx="14">Everything is ebook. You read ebooks in the Library. You write directly inside an ebook in Authors mode. You save to your Library and read immediately. No fake previews. No export steps. No wondering if the final product will look different from what you see while writing.</div>
+      <div class="sc-block sc-block-para" data-idx="15">When you finish, you download the epub file and upload it to Amazon KDP or any other bookseller. That is the entire publishing process. The ebook you wrote in is the ebook readers will read.</div>
+      <div class="sc-block sc-block-linebreak" data-idx="16"></div>
+      <div class="sc-block sc-block-para" data-idx="17"><strong>TL;DR</strong>  ... Visit <a target="_blank" rel="noopener" href="https://everythingebooks.org">EverythingEbooks</a> at everythingebooks [.] org and try it out; you'll be fine.</div>
+      <div class="sc-block sc-block-linebreak" data-idx="18"></div>
+      <div class="sc-block sc-block-para" data-idx="19">Now. About the AI part.</div>
+      <div class="sc-block sc-block-para" data-idx="20">It is 3:47 AM in The Night Kitchen, that odd hour when the house sleeps, the coffee is brewing, and you are staring at a manuscript that might be brilliant or garbage. You will not know until someone else reads it, but first it needs editing, and editors cost more than your mortgage payment.</div>
+      <div class="sc-block sc-block-para" data-idx="21">This is a book about using AI to edit your manuscript without losing your voice, your sanity, or your savings. It was also written and edited entirely using the tool it teaches, which is either the most honest testimonial or the most elaborate procrastination ever devised.</div>
+      <div class="sc-block sc-block-para" data-idx="22">Call me Alex.</div>
+      <div class="sc-block sc-block-para" data-idx="23">I write books. I have online friends who write books. I have coffee stains on most of my clothes and a relationship with deadlines that my therapist calls complicated. I wrote this book in EverythingEbooks, edited it with EverythingEbooks, and I am about to show you exactly how that worked—the good, the bad, and the purple AI prose nobody talks about at writing conferences.</div>
+      <div class="sc-block sc-block-para" data-idx="24">But first, let us address what you are really thinking.</div>
+      <div class="sc-block sc-block-para" data-idx="25">The AI Anxiety Attack</div>
+      <div class="sc-block sc-block-para" data-idx="26">You're worried AI will:</div>
+      <div class="sc-block sc-block-para" data-idx="27"><li>steal your voice and your ideas</li>
+<li>turn your novel into a technical manual</li>
+<li>plug you into the Matrix as a battery</li>
+<li>replace all human editors and writers</li>
+<li>make you “not a real writer” anymore</li>
+<li>rule the world (too late, it already does)</li></div>
+      <div class="sc-block sc-block-para" data-idx="28">Maya had all these fears. Her previous AI experience turned her bilingual protagonist into what she called “beige suburban nothing”—every bit of Spanish dialogue “corrected,” every code-switch smoothed away. When she heard about EverythingEbooks, her first words were “Absolutely not.”</div>
+      <div class="sc-block sc-block-para" data-idx="29">Six months later, she's edited three novels with it and posts in the community forum under the username “CeruleanOrbsSurvivor” (it's a long story involving purple prose—we'll get there).</div>
+      <div class="sc-block sc-block-para" data-idx="30">Jordan is a human editor who charges $2,000 a manuscript. He now uses EverythingEbooks for first passes before applying his own expertise. Not threatened. Not replaced. Just working smarter. “It's like having an intern who never sleeps, never complains, and actually has read the Chicago Manual of Style,” Jordan says, pushing up his reading glasses.</div>
+      <div class="sc-block sc-block-para" data-idx="31">The fear is real. The fear is valid. But it is based on how AI tools used to work, not how they work now. EverythingEbooks puts you back in control.</div>
+      <div class="sc-block sc-block-para" data-idx="32">Here's what this book promises: You'll see how EverythingEbooks can edit your manuscript while keeping what makes your writing yours. Your voice. Your style. Your intentional rule-breaking. Your “wrong” choices that are actually right for you.</div>
+      <div class="sc-block sc-block-para" data-idx="33">Here's the proof: You're reading it.</div>
+      <div class="sc-block sc-block-para" data-idx="34">Every word of this book went through EverythingEbooks. I drafted each chapter, then edited it. The dialogue attributions? EverythingEbooks suggested changes. The metaphors? Some survived, some didn't. That joke three paragraphs ago? EverythingEbooks said it was “potentially unclear.” I kept it anyway.</div>
+      <div class="sc-block sc-block-para" data-idx="35">That's the real power here—not that AI makes perfect suggestions, but that you decide which ones to take. The obstacle is not the technology. It's the fear of surrender—and that fear is misplaced.</div>
+      <div class="sc-block sc-block-para" data-idx="36">For centuries, writing has been a solitary art. You and the page. You and the pen. You and the crippling self-doubt at 3:47 AM. The idea of letting a machine into that liminal space feels like a betrayal.</div>
+      <div class="sc-block sc-block-para" data-idx="37">But here's what nobody tells you: Using AI to edit isn't surrendering control. It's delegating the boring parts so you can focus on the art.</div>
+      <div class="sc-block sc-block-para" data-idx="38">You know what's not art? Flagging dialogue tags where someone “hissed” words with no sibilant sounds. Catching that you named a character Jennifer in Chapter 5 and Jessica in Chapter 23.</div>
+      <div class="sc-block sc-block-para" data-idx="39">You know what is art?</div>
+      <div class="sc-block sc-block-para" data-idx="40">Deciding whether that paragraph about loss needs to be rawer. Choosing whether your protagonist's silence says more than words would. Knowing when to break the rules you just spent 300 pages following.</div>
+      <div class="sc-block sc-block-para" data-idx="41">EverythingEbooks handles the first list so you can focus on the second.</div>
+      <div class="sc-block sc-block-para" data-idx="42">HOW THIS BOOK WORKS</div>
+      <div class="sc-block sc-block-para" data-idx="43">Each chapter teaches you one part of EverythingEbooks by showing you how I used it to write that very chapter. It's meta enough to give you a headache if you think about it too hard, so don't.</div>
+      <div class="sc-block sc-block-para" data-idx="44">You'll meet our cast:</div>
+      <div class="sc-block sc-block-para" data-idx="45"><li>Alex (me), your sleep-deprived guide</li>
+<li>Maya, the skeptic turned convert who survived the purple prose</li>
+<li>Jordan, the human editor who sees AI as a tool, not a threat</li>
+<li>Rae Kim, who maintains the community forum and slows the descent into chaos</li>
+<li>Various other writers who've found their way through the four doors (including the basement one we don't talk about)</li></div>
+      <div class="sc-block sc-block-para" data-idx="46">You will learn some of the tools:</div>
+      <div class="sc-block sc-block-para" data-idx="47"><li>Import features to get your manuscript into EverythingEbooks</li>
+<li>Chat that helps you brainstorm when stuck</li>
+<li>An AI writing assistant for when you have nothing and do not mind purple prose filled with echoes and whispers</li>
+<li>An editing system that actually works and can be customized</li></div>
+      <div class="sc-block sc-block-para" data-idx="48">But most importantly, you'll learn the philosophy:</div>
+      <div class="sc-block sc-block-para" data-idx="49"><li>Augmented, not automated.</li>
+<li>Enhanced, not replaced.</li>
+<li>Your voice, just clearer.</li></div>
+      <div class="sc-block sc-block-para" data-idx="50">THE BASEMENT CONFESSION</div>
+      <div class="sc-block sc-block-para" data-idx="51">There's something else you should know before we start. Something most writing guides won't tell you.</div>
+      <div class="sc-block sc-block-para" data-idx="52">Sometimes—not always, but sometimes—you'll have nothing. No words. No ideas. No clever opening. Nothing but a blankness that's winning the struggle. And in those moments, EverythingEbooks has a basement door, so you can slip the trap. A door that leads to AI-generated rough drafts so purple they'd make Prince jealous.</div>
+      <div class="sc-block sc-block-para" data-idx="53">Maya calls it “The Dark November,” the time when she first used it. The AI gave her a protagonist with “cerulean orbs” for eyes and memories that “echoed through the corridors of time.” She laughed. She cried. Then she edited the hell out of it until it became something real.</div>
+      <div class="sc-block sc-block-para" data-idx="54">That story went on to win a contest. She never told anyone about the basement.</div>
+      <div class="sc-block sc-block-para" data-idx="55">Until now.</div>
+      <div class="sc-block sc-block-para" data-idx="56">Because that's what this book is really about—not the polished success stories, but the messy middle. The desperate measures. The necessary embarrassments. The drafts so rough they leave bruises. And yes, the basement door when you need it.</div>
+      <div class="sc-block sc-block-para" data-idx="57">YOUR MANUSCRIPT IS WAITING</div>
+      <div class="sc-block sc-block-para" data-idx="58">Somewhere in your folders and files, there's a manuscript. Maybe it's finished. Maybe it's half-done. Maybe it's just an idea that won't leave you alone.</div>
+      <div class="sc-block sc-block-para" data-idx="59">Maybe you've been edited before and hated how it stripped your voice.</div>
+      <div class="sc-block sc-block-para" data-idx="60">Maybe you've never been edited and don't know where to start.</div>
+      <div class="sc-block sc-block-para" data-idx="61">Maybe you're broke and can't afford a human editor.</div>
+      <div class="sc-block sc-block-para" data-idx="62">Maybe you're just curious if this actually works.</div>
+      <div class="sc-block sc-block-para" data-idx="63">It does. Not perfectly. Not magically. But practically, affordably, and with you in control the entire time.</div>
+      <div class="sc-block sc-block-para" data-idx="64">The book you are reading is the proof. Every error that slipped through is mine. Every moment of clarity came from the collaboration. Every voice you hear is still mine, just cleaner.</div>
+      <div class="sc-block sc-block-para" data-idx="65">Turn the page. Choose your door. Let's begin.</div>
+      <div class="sc-block sc-block-para" data-idx="66"><em>But first, go get some coffee. This is going to be fun-ish.</em></div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-4" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:&quot;02_1. Five Doors Same Room.mp3&quot;,&quot;ambientVolume&quot;:0.9,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;dialogue&quot;,&quot;narrationFilename&quot;:null,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="1. Five Doors Same Room" data-sc-aud_02_1__Five_Doors_Same_Room_mp3="audio/02_1. Five Doors Same Room.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">1. Five Doors Same Room</div>
+      <div class="sc-block sc-block-para" data-idx="0">FIVE DOORS SAME ROOM</div>
+      <div class="sc-block sc-block-para" data-idx="1">(<em>And One Basement Staircase We Don't Talk About</em>)</div>
+      <div class="sc-block sc-block-para" data-idx="2">Alex stared at the manuscript file—400 pages of anxiety, coffee, and questionable 3:47 AM decisions saved as NovelDraft_FINAL_FINAL_v2.docx.</div>
+      <div class="sc-block sc-block-para" data-idx="3">Every writer knows this moment. The manuscript is done (lie). It just needs a quick edit (a bigger lie). And surely this won't take long (the biggest lie of all).</div>
+      <div class="sc-block sc-block-para" data-idx="4">"Alright," Alex muttered, opening EverythingEbooks. "Let's see if you can edit without destroying my voice."</div>
+      <div class="sc-block sc-block-para" data-idx="5">The interface was calmer than expected. No intimidating buttons screaming UPLOAD NOW. No immediate demand for credit cards. No JOIN NOW, PAY LATER. Just a simple question: How would you like to get your manuscript into EverythingEbooks?</div>
+      <div class="sc-block sc-block-para" data-idx="6">Five doors appeared—five perfectly reasonable ways to start.</div>
+      <div class="sc-block sc-block-para" data-idx="7">Well. Four perfectly reasonable ways, and one basement staircase that nobody mentions at writers' conferences.</div>
+      <div class="sc-block sc-block-linebreak" data-idx="8"></div>
+      <div class="sc-block sc-block-para" data-idx="9">DOOR ONE: Open &gt; New</div>
+      <div class="sc-block sc-block-para" data-idx="10">(The "Fresh Start, Clean Slate" Route)</div>
+      <div class="sc-block sc-block-para" data-idx="11">Some writers arrive with nothing but an idea and the audacity to believe they can turn it into 80,000 words. This door is for them.</div>
+      <div class="sc-block sc-block-para" data-idx="12">Jordan, a human editor who'd seen it all, appreciated this door's honesty. "There's something brave about starting with nothing," Jordan would say, adjusting glasses that perpetually slipped when reading difficult passages. "No baggage. No formatting disasters from 2019. Just possibility."</div>
+      <div class="sc-block sc-block-para" data-idx="13">Click New and you're in. Create your sections and chapters. Start typing. The built-in editor isn't fancy—it's not trying to be Word or Docs. It's a clean space to write that creates your ebook directly. No switching between apps. No upload process. You're already where you need to be.</div>
+      <div class="sc-block sc-block-para" data-idx="14">This appeals to a specific kind of writer. The one who's tired of feature creep, who doesn't need another button, another option, another distraction. Just a place to put words in order.</div>
+      <div class="sc-block sc-block-para" data-idx="15">Alex tried this door for several sections of this book. Typed directly in EverythingEbooks. There's something meditative about the simplicity.</div>
+      <div class="sc-block sc-block-para" data-idx="16">Just you and the words.</div>
+      <div class="sc-block sc-block-linebreak" data-idx="17"></div>
+      <div class="sc-block sc-block-para" data-idx="18">DOOR TWO: Open &gt; Load EPUB</div>
+      <div class="sc-block sc-block-para" data-idx="19">(The "I Found This On My Hard Drive" Path)</div>
+      <div class="sc-block sc-block-para" data-idx="20">Somewhere on your computer, there's a folder. Maybe it's called "Old Projects" or "Writing Stuff" or "DO NOT DELETE" in all caps because past-you was dramatic. Inside that folder, buried under three subfolders and an alarming number of cat photos, lives an EPUB file.</div>
+      <div class="sc-block sc-block-para" data-idx="21">Maybe it's a novel you published years ago that needs updating. Maybe it's a project you abandoned in 2021 that's been whispering your name at 2 AM. Maybe you found it on an old SD card and thought, "Wait, I wrote this?"</div>
+      <div class="sc-block sc-block-para" data-idx="22">This door is for all of them.</div>
+      <div class="sc-block sc-block-para" data-idx="23">Load EPUB pulls your existing ebook from wherever it's been hiding—your hard drive, Google Drive, that SD card you forgot you owned. The file arrives intact, chapters preserved, ready for whatever work it needs.</div>
+      <div class="sc-block sc-block-para" data-idx="24">Maya used this door when she decided her debut novel needed a second edition. Three years of reader feedback, a few embarrassing typos that haunted her dreams, and one character name she'd somehow spelled two different ways for 300 pages. She uploaded PuertoRicanGothic.epub and watched it load, every chapter exactly where she'd left it.</div>
+      <div class="sc-block sc-block-para" data-idx="25">"It's like opening a time capsule," she said. "Except the time capsule is full of adverbs I should have cut the first time."</div>
+      <div class="sc-block sc-block-linebreak" data-idx="26"></div>
+      <div class="sc-block sc-block-para" data-idx="27">DOOR THREE: Load from Library</div>
+      <div class="sc-block sc-block-para" data-idx="28">(The "I Live Here Now" Option)</div>
+      <div class="sc-block sc-block-para" data-idx="29">Here's a secret about writers who use EverythingEbooks: some of them never leave.</div>
+      <div class="sc-block sc-block-para" data-idx="30">The app has a library—a place where your ebooks live, where you can read them, where they wait. And when you're ready to edit again, you don't need to dig through folders or remember which cloud service you uploaded to. Your book is right there.</div>
+      <div class="sc-block sc-block-para" data-idx="31">This door is for the iterators. The writers who bounce between writing and reading, who need to experience their work as a reader before returning as an author. Write a chapter. Export to library. Read it on your phone during lunch. Notice that Chapter 7 drags in the middle. Load from library. Fix it. Repeat.</div>
+      <div class="sc-block sc-block-para" data-idx="32">Jordan calls this "the professional door." Not because the other doors are amateur, but because this workflow suggests you've been here before. You know the rhythm. Write, read, revise. The library becomes part of your process, not just storage.</div>
+      <div class="sc-block sc-block-para" data-idx="33">One writer in Rae Kim's online community forum described it perfectly: "I used to email manuscripts to myself just to read them fresh. Now I just load from library. It's the same ritual, minus the inbox chaos."</div>
+      <div class="sc-block sc-block-linebreak" data-idx="34"></div>
+      <div class="sc-block sc-block-para" data-idx="35">DOOR FOUR: Load DOCX -&gt; EPUB</div>
+      <div class="sc-block sc-block-para" data-idx="36">(The "My Life Is In Microsoft Word" Reality)</div>
+      <div class="sc-block sc-block-para" data-idx="37">Most of us live behind this door. Let's be honest about it.</div>
+      <div class="sc-block sc-block-para" data-idx="38">Years of manuscripts in Microsoft Word, cluttered with tracked changes from that one friend who thinks they're an editor. Comments in the margins questioning your life choices. Formatting that somehow got bizarre around Chapter 12 and you never figured out why.</div>
+      <div class="sc-block sc-block-para" data-idx="39">Maya knew this door well. Her debut novel lived in seventeen different Word files because she couldn't stop making new versions. When she finally used Load DOCX -&gt; EPUB with PuertoRicanGothic_FINAL.docx, she held her breath. Last time she'd trusted a tool with her manuscript, it had "corrected" every bit of Spanish dialogue and turned her protagonist's voice into what she called "beige suburban nothing."</div>
+      <div class="sc-block sc-block-para" data-idx="40">But here's what happened: The conversion preserved everything. Every intentional fragment stayed. Every choice remained hers. DOCX became EPUB, ready for editing.</div>
+      <div class="sc-block sc-block-para" data-idx="41">The Google Docs variation works the same way. Download your Doc as a .docx file (File &gt; Download &gt; Microsoft Word), then load it through this door. Same door, different handle.</div>
+      <div class="sc-block sc-block-para" data-idx="42">Alex chose this door for the book you're reading now. Started in Google Docs at 3:47 AM in The Night Kitchen—when the house sleeps and doubt is loudest. Downloaded as .docx. Loaded into EverythingEbooks. The conversion took seconds, which left plenty of time for anxiety about what would happen next.</div>
+      <div class="sc-block sc-block-para" data-idx="43">For the Apple Pages devotees (all six of us, and we know who we are), export to Word format first. Pages &gt; File &gt; Export To &gt; Word. Your manuscript arrives intact, ready for transformation, with all your carefully chosen fonts stripped away. Let's be honest: manuscripts don't need seventeen fonts. Just words.</div>
+      <div class="sc-block sc-block-linebreak" data-idx="44"></div>
+      <div class="sc-block sc-block-para" data-idx="45">DOOR FIVE: AI Writing - the Basement Stairs</div>
+      <div class="sc-block sc-block-para" data-idx="46">(The "I Have Nothing But I Need Something" Descent)</div>
+      <div class="sc-block sc-block-para" data-idx="47">There's a fifth door. It's not at eye level with the others. You have to look down to see it, like a basement entrance that's been there all along but nobody mentions in polite company.</div>
+      <div class="sc-block sc-block-para" data-idx="48">This is AI Writing. The purple door and button. The one that leads down a dimly lit staircase to a place where writers go when they have absolutely nothing. No manuscript. No outline. Not even a clear idea. Just a vague desire to write something—anything—while the blank page stares back.</div>
+      <div class="sc-block sc-block-para" data-idx="49"><em>I'm a writer, I want me some words.</em></div>
+      <div class="sc-block sc-block-para" data-idx="50">But down here, pride gets left at the top of the stairs. This is where you admit defeat to the blank page and hiss, "Fine. You write it. I'll fix it later. I swear."</div>
+      <div class="sc-block sc-block-para" data-idx="51">The descent has stages. First, you Chat—brainstorming with AI, throwing ideas at the wall, watching some stick and others slide. Then you take those conversations and build a Brainstorm, something that might become structure. From there, an Outline emerges, chapters taking shape like constellations from scattered stars. World Building follows—characters and places materializing from the collaborative dream state. And finally, you write, one chapter at a time, AI and author passing the work back and forth.</div>
+      <div class="sc-block sc-block-para" data-idx="52">Maya tried this descent once, during what she calls The Dark November. Writer's block had won. She'd been staring at a blank page for weeks. Finally, she took the stairs.</div>
+      <div class="sc-block sc-block-para" data-idx="53">"Write me a chapter about a woman returning home after twenty years," she typed into the chat, feeling like she was cheating on her muse.</div>
+      <div class="sc-block sc-block-para" data-idx="54">The AI gave her 3,000 words of purple prose that would make a romance novelist blush. Her protagonist's eyes were "cerulean orbs reflecting the weight of unspoken truths." The house was "a monument to memories that whispered secrets in the language of creaking floorboards."</div>
+      <div class="sc-block sc-block-para" data-idx="55">Maya laughed. Then she cried. Then she started editing.</div>
+      <div class="sc-block sc-block-para" data-idx="56">And here's the thing nobody tells you about the basement: Sometimes bad words are better than no words. Sometimes you need that pile of purple prose just to have something to fix. You can edit garbage; you can't edit a blank page. Every "cerulean orb" you change to "blue eyes" is progress. Every "whispered secret" you delete is a decision made.</div>
+      <div class="sc-block sc-block-para" data-idx="57">The AI Writing tools know what they are. They're not trying to be Hemingway or Morrison or even that person who writes those cozy mysteries your mom loves. They're offering you clay. Messy, purple, overwrought clay that you can shape into something real.</div>
+      <div class="sc-block sc-block-para" data-idx="58">The stages are all there in the basement, each one covered in cobwebs from writers who don't admit they visit:</div>
+      <div class="sc-block sc-block-para" data-idx="59">Chat (where ideas first surface, messy and undefined) Brainstorm (where chaos starts finding shape) Outline (where chapters emerge from the fog) World (where characters and places take form) Chapter Writing (where rough drafts happen, one piece at a time)</div>
+      <div class="sc-block sc-block-para" data-idx="60">Jordan calls it "The Necessary Embarrassment." That moment when you let AI write something terrible just to break the seal on the blank page. "I suspect Pulitzer winners start with AI-generated garbage," Jordan says. "They just don't tell anyone about the basement."</div>
+      <div class="sc-block sc-block-linebreak" data-idx="61"></div>
+      <div class="sc-block sc-block-para" data-idx="62">THE SAME ROOM</div>
+      <div class="sc-block sc-block-para" data-idx="63">Here's the beautiful truth: All five doors lead to the same room.</div>
+      <div class="sc-block sc-block-para" data-idx="64">Whether you arrived fresh with nothing but courage, loaded an EPUB from a dusty hard drive, pulled a project from your library, converted a Word file you've been working on for years, or crawled up from the basement with AI-generated rough drafts that would make your creative writing professor weep—none of it matters.</div>
+      <div class="sc-block sc-block-para" data-idx="65">Once your manuscript is in EverythingEbooks, it's all the same to the editing tools. The app doesn't judge where the words came from. It only cares about helping you make them better.</div>
+      <div class="sc-block sc-block-para" data-idx="66">Every writer who opens these doors carries the same fear: Will this tool understand my voice? Will it flatten my style? Will it turn my literary novel into a technical manual?</div>
+      <div class="sc-block sc-block-para" data-idx="67">For those who use the basement stairs, there's an extra fear: Am I still a real writer if AI helped with the rough draft?</div>
+      <div class="sc-block sc-block-para" data-idx="68">Maya's fear was specific and earned. The last AI tool she'd tried had systematically erased her protagonist's code-switching, "correcting" Spanish phrases and smoothing bilingual rhythms into monolingual monotony. In EverythingEbooks, she uploaded a test chapter first, one finger on the Exit button.</div>
+      <div class="sc-block sc-block-para" data-idx="69">Jordan's fear was professional. As a human editor, would these tools make editing worse? Would they teach writers to accept mediocre suggestions? Would craft suffer in the name of speed?</div>
+      <div class="sc-block sc-block-para" data-idx="70">Alex's fear was existential. Writing a book about EverythingEbooks using EverythingEbooks meant every edit would be evidence. Every suggestion accepted or rejected would become part of the story. What if the tool failed its own test?</div>
+      <div class="sc-block sc-block-para" data-idx="71">And for everyone who's used the basement: What if someone finds out?</div>
+      <div class="sc-block sc-block-para" data-idx="72">The relief comes quickly. Not because EverythingEbooks is perfect—it's not. But because you remain in control. Every suggestion shows its reasoning. Every edit is reversible. Every pass is tunable. The tool has opinions, but you have authority.</div>
+      <div class="sc-block sc-block-para" data-idx="73">And that AI-generated purple prose? It's just a starting point. Nobody has to know your brilliant chapter about loss and redemption started as "She gazed longingly at the echoes of yesterday's whispered promises."</div>
+      <div class="sc-block sc-block-linebreak" data-idx="74"></div>
+      <div class="sc-block sc-block-para" data-idx="75">THE FIRST ENCOUNTER</div>
+      <div class="sc-block sc-block-para" data-idx="76">When Alex uploaded this chapter—this very chapter you're reading—the first tool suggestion appeared within seconds. EverythingEbooks noticed a repetition: "door" appeared forty-two times. The suggestion: "Consider varying this word to maintain reader engagement."</div>
+      <div class="sc-block sc-block-para" data-idx="77">Alex looked at the suggestion. Looked at the original. Thought about rhythm and emphasis and intentional repetition.</div>
+      <div class="sc-block sc-block-para" data-idx="78">Rejected.</div>
+      <div class="sc-block sc-block-para" data-idx="79">Alex's response to AI: "It's a chapter about doors. The repetition stays."</div>
+      <div class="sc-block sc-block-para" data-idx="80">The tool moved on without argument. That's when Alex knew this would work. Not because the tool was always right, but because it was always willing to be wrong. Not because it perfected the manuscript, but because it started conversations about choices.</div>
+      <div class="sc-block sc-block-para" data-idx="81">Even the purple prose from the basement can become something beautiful, with enough work and the right editing partner.</div>
+      <div class="sc-block sc-block-para" data-idx="82">Your manuscript is waiting outside one of these doors. Or maybe you're standing at the top of those basement stairs, looking down, key in hand, wondering if it's okay to descend.</div>
+      <div class="sc-block sc-block-para" data-idx="83">It is. We've all been there. Some of us are there right now.</div>
+      <div class="sc-block sc-block-para" data-idx="84">It doesn't matter which door you choose. What matters is that you choose.</div>
+      <div class="sc-block sc-block-para" data-idx="85">Open the door.</div>
+      <div class="sc-block sc-block-para" data-idx="86">Copy, paste, upload, whatever, however; just get your words into the app and get to work.</div>
+      <div class="sc-block sc-block-para" data-idx="87">Or let AI write some terrible ones for you to fix later.</div>
+      <div class="sc-block sc-block-para" data-idx="88">Let's begin.</div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-5" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:&quot;03_2. A Key To A Kingdom.mp3&quot;,&quot;ambientVolume&quot;:0.9,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;dialogue&quot;,&quot;narrationFilename&quot;:null,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="2. A Key To A Kingdom" data-sc-aud_03_2__A_Key_To_A_Kingdom_mp3="audio/03_2. A Key To A Kingdom.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">2. A Key To A Kingdom</div>
+      <div class="sc-block sc-block-para" data-idx="0">A KEY TO A KINGDOM</div>
+      <div class="sc-block sc-block-para" data-idx="1">(<em>That Scary API Key Thing That's Actually Not Scary</em>)</div>
+      <div class="sc-block sc-block-para" data-idx="2">Alex stared at the screen. The manuscript was uploaded. EverythingEbooks was ready. Everything was perfect except for one small detail. It felt like standing in front of the Emerald City with no way to knock.</div>
+      <div class="sc-block sc-block-para" data-idx="3">“Please enter your OpenRouter API key.”</div>
+      <div class="sc-block sc-block-para" data-idx="4">That blank field. That cursor blinking with infinite patience. That feeling of being Neo in The Matrix, standing in front of the Architect—except instead of flying around in cool sunglasses, you have coffee-stained sweatpants and a self-imposed deadline.</div>
+      <div class="sc-block sc-block-para" data-idx="5"><em>Let's fix this. Right now. In just a few minutes.</em></div>
+      <div class="sc-block sc-block-para" data-idx="6">THE GREAT AND POWERFUL API</div>
+      <div class="sc-block sc-block-para" data-idx="7">(Pay No Attention to the Simple Process Behind the Curtain)</div>
+      <div class="sc-block sc-block-para" data-idx="8">First, let's demystify this beast.</div>
+      <div class="sc-block sc-block-para" data-idx="9">An API key is not:</div>
+      <div class="sc-block sc-block-para" data-idx="10"><li>a credit card number that will drain your bank account</li>
+<li>a social security number for robots</li>
+<li>the nuclear launch codes</li>
+<li>something that requires a computer science degree</li>
+<li>a trap</li></div>
+      <div class="sc-block sc-block-para" data-idx="11">An API key is:</div>
+      <div class="sc-block sc-block-para" data-idx="12"><li>like checking into a hotel and getting your key card (or metal key)</li>
+<li>you prepay for credits (like putting down a deposit or authorization)</li>
+<li>the key gives you access to services (AI models instead of room service)</li>
+<li>you only pay for what you use (like the minibar, but way cheaper)</li>
+<li>something you can get, in literally minutes</li>
+<li>your key card to the editing suite, aka EverythingEbooks</li></div>
+      <div class="sc-block sc-block-para" data-idx="13">Maya had put this off for weeks. “I don't do technical stuff,” she'd told Jordan during their meeting at The Coffee Shop (actually a forum room, but you get the idea).</div>
+      <div class="sc-block sc-block-para" data-idx="14">Jordan adjusted those perpetually sliding glasses. “You managed to format a 400-page manuscript and upload it to seven different literary agents' proprietary submission systems. You can handle copying and pasting a string of characters.”</div>
+      <div class="sc-block sc-block-para" data-idx="15">Maya considered this. “Fair point.”</div>
+      <div class="sc-block sc-block-linebreak" data-idx="16"></div>
+      <div class="sc-block sc-block-para" data-idx="17">THE THREE-MINUTE SETUP</div>
+      <div class="sc-block sc-block-para" data-idx="18">Here's exactly what you do. No detours, no confusion, no accidentally signing up for something weird.</div>
+      <div class="sc-block sc-block-para" data-idx="19"><a target="_blank" rel="noopener" href="https://openrouter.ai/">OpenRouter</a></div>
+      <div class="sc-block sc-block-para" data-idx="20">Scroll down on OpenRouter’s web page to see the 3 steps.</div>
+      <div class="sc-block sc-block-para" data-idx="21">MINUTE ONE:</div>
+      <div class="sc-block sc-block-para" data-idx="22">1. go to <a target="_blank" rel="noopener" href="https://openrouter.ai/">OpenRouter</a> (openrouter.ai)</div>
+      <div class="sc-block sc-block-para" data-idx="23">2. click “Sign Up” or “Sign In” (Google sign-in works, because who needs another password?)</div>
+      <div class="sc-block sc-block-para" data-idx="24">3. you're now looking at a dashboard that seems overwhelming</div>
+      <div class="sc-block sc-block-para" data-idx="25">4. ignore everything except the:</div>
+      <div class="sc-block sc-block-para" data-idx="26">hamburger (3 lines) | home | account logo</div>
+      <div class="sc-block sc-block-para" data-idx="27">so hover the mouse there, then select the “Keys” from the dropdown</div>
+      <div class="sc-block sc-block-para" data-idx="28">That's it. Minute one done. You're already a third of the way there.</div>
+      <div class="sc-block sc-block-para" data-idx="29">MINUTE TWO: CREATE THE KEY</div>
+      <div class="sc-block sc-block-para" data-idx="30">1. Click “Create New Key”</div>
+      <div class="sc-block sc-block-para" data-idx="31">2. Give it a name. “EverythingEbooks” works. “My Writing Key” works. “Bob” works. It doesn't matter.</div>
+      <div class="sc-block sc-block-para" data-idx="32">3. Click the Create button</div>
+      <div class="sc-block sc-block-para" data-idx="33">4. A long string of characters appears, looking like a cat walked across your keyboard: “sk-or-v1-abc123xyz789...”</div>
+      <div class="sc-block sc-block-para" data-idx="34">This is your key. It's unique. It's yours. It's the thing that makes AI editing and writing work.</div>
+      <div class="sc-block sc-block-para" data-idx="35"><strong>IMPORTANT:</strong></div>
+      <div class="sc-block sc-block-para" data-idx="36"><strong>Copy this key RIGHT NOW!</strong></div>
+      <div class="sc-block sc-block-para" data-idx="37"><strong>OpenRouter will only show it once.</strong></div>
+      <div class="sc-block sc-block-para" data-idx="38">Not the end of everything though—you can delete it and create a new one.</div>
+      <div class="sc-block sc-block-linebreak" data-idx="39"></div>
+      <div class="sc-block sc-block-para" data-idx="40">MINUTE THREE: ADD MONEY AND CONNECT</div>
+      <div class="sc-block sc-block-para" data-idx="41">This is the part where people freeze. “Add money? Is this where I get scammed?”</div>
+      <div class="sc-block sc-block-para" data-idx="42">No. Think of it like checking into a hotel.</div>
+      <div class="sc-block sc-block-para" data-idx="43">You're putting down a deposit or authorizing payment for services you'll use.</div>
+      <div class="sc-block sc-block-para" data-idx="44">Here's what actually happens:</div>
+      <div class="sc-block sc-block-para" data-idx="45">1. Click “Add Credits”</div>
+      <div class="sc-block sc-block-para" data-idx="46">2. Add $10 (yes, ten dollars—like the deposit at a budget motel, not the Ritz)</div>
+      <div class="sc-block sc-block-para" data-idx="47">3. Pay through Stripe (the same secure service used by millions) or Amazon Pay if available</div>
+      <div class="sc-block sc-block-para" data-idx="48">4. Go back to EverythingEbooks</div>
+      <div class="sc-block sc-block-para" data-idx="49">5. Paste that key you copied</div>
+      <div class="sc-block sc-block-para" data-idx="50">6. Click save</div>
+      <div class="sc-block sc-block-para" data-idx="51">Done. You now have enough credit to do some editing. And unlike that hotel minibar, you won't get charged $18 for a bag of peanuts.</div>
+      <div class="sc-block sc-block-linebreak" data-idx="52"></div>
+      <div class="sc-block sc-block-para" data-idx="53">THE MODEL MENU</div>
+      <div class="sc-block sc-block-para" data-idx="54">(Why OpenRouter Is Like a Restaurant with Hundreds of Options; think Cheesecake Factory menu)</div>
+      <div class="sc-block sc-block-para" data-idx="55">Here's why EverythingEbooks uses OpenRouter instead of making you get separate API keys for OpenAI, Anthropic, Google, and hundreds of other AI companies:</div>
+      <div class="sc-block sc-block-para" data-idx="56"><strong>One key unlocks them all</strong>. It's like having a universal remote instead of seven remotes scattered across your coffee table.</div>
+      <div class="sc-block sc-block-para" data-idx="57">OpenRouter gives you access to:</div>
+      <div class="sc-block sc-block-para" data-idx="58"><li>ChatGPT (the fountainhead)</li>
+<li>Claude (the thoughtful stuck at 200K one)</li>
+<li>Gemini (the Google one, the Great Eye)</li>
+<li>And lots more you'll probably never use but it's nice to know they're there; Grok, really?</li></div>
+      <div class="sc-block sc-block-para" data-idx="59">You can switch models like switching radio stations. Chapter feeling flat? Try Claude. Need brutal consistency checking? ChatGPT's your friend. Want to experiment? There's probably a model for that.</div>
+      <div class="sc-block sc-block-linebreak" data-idx="60"></div>
+      <div class="sc-block sc-block-para" data-idx="61">THE FEAR VERSUS THE REALITY</div>
+      <div class="sc-block sc-block-para" data-idx="62">Every writer in Rae's community forum has the same API key origin story:</div>
+      <div class="sc-block sc-block-para" data-idx="63">FEAR: “I'll somehow spend hundreds of dollars by accident”</div>
+      <div class="sc-block sc-block-para" data-idx="64">REALITY: OpenRouter has spending limits you can set. Put a $20 monthly cap if you're worried.</div>
+      <div class="sc-block sc-block-para" data-idx="65">FEAR: “It's too technical for me”</div>
+      <div class="sc-block sc-block-para" data-idx="66">REALITY: You copy. You paste. You're done.</div>
+      <div class="sc-block sc-block-para" data-idx="67">FEAR: “My key will get stolen and used for nefarious purposes”</div>
+      <div class="sc-block sc-block-para" data-idx="68">REALITY: Don't post it on Twitter. Don't email it. Don't put it in your manuscript. Keep it in EverythingEbooks; it’s encrypted. You're fine. Definitely don't put it on your book cover.</div>
+      <div class="sc-block sc-block-para" data-idx="69">FEAR: “I need to understand tokens and context windows and technical stuff”</div>
+      <div class="sc-block sc-block-para" data-idx="70">REALITY: No, you don't. EverythingEbooks handles that. You just write.</div>
+      <div class="sc-block sc-block-para" data-idx="71">THE ACTUAL TRUTH ABOUT TOKENS</div>
+      <div class="sc-block sc-block-para" data-idx="72">(Skip This Section If You Want, Seriously)</div>
+      <div class="sc-block sc-block-para" data-idx="73">Fine, you're curious. Here's the five-second explanation:</div>
+      <div class="sc-block sc-block-para" data-idx="74">Words cost tokens. Tokens cost money. 1,000 words equals roughly 1,500 tokens. 1 million tokens costs between $2 and $15 depending on the model.</div>
+      <div class="sc-block sc-block-para" data-idx="75">Your novel is 80,000 words? That's roughly 120,000 tokens to read. The response cost depends on how much feedback you ask for. Even with multiple passes, it usually comes out to less than a dinner out.</div>
+      <div class="sc-block sc-block-para" data-idx="76">That's it. That's all you need to know. Moving on.</div>
+      <div class="sc-block sc-block-linebreak" data-idx="77"></div>
+      <div class="sc-block sc-block-para" data-idx="78">THE MOMENT OF TRUTH</div>
+      <div class="sc-block sc-block-para" data-idx="79">Alex remembers the moment clearly. The API key field filled. The first edit running. Watching an AI Report appear like magic, except it wasn't magic—it was just technology finally working for writers instead of against them.</div>
+      <div class="sc-block sc-block-para" data-idx="80">Maya's moment came during her test chapter. She'd uploaded the opening of her novel, the one where her protagonist code-switches between English and Spanish in a way that three previous editors had tried to “fix.” She held her breath as EverythingEbooks processed it.</div>
+      <div class="sc-block sc-block-para" data-idx="81">The first suggestion appeared: “Consider varying sentence length in paragraph 2 for better rhythm.”</div>
+      <div class="sc-block sc-block-para" data-idx="82">The Spanish dialogue? Untouched.</div>
+      <div class="sc-block sc-block-para" data-idx="83">The intentional fragments? Preserved.</div>
+      <div class="sc-block sc-block-para" data-idx="84">Her voice? Intact.</div>
+      <div class="sc-block sc-block-para" data-idx="85">She actually laughed. “It didn't try to fix my Spanish!”</div>
+      <div class="sc-block sc-block-para" data-idx="86">Jordan said “That's because you told it not to. You have control. The API key doesn't give the robots power over your manuscript. It gives you power over the robots.”</div>
+      <div class="sc-block sc-block-para" data-idx="87">You now have the key to the kingdom. The scary technical part is over. You did it.</div>
+      <div class="sc-block sc-block-linebreak" data-idx="88"></div>
+      <div class="sc-block sc-block-para" data-idx="89">WHAT HAPPENS NEXT</div>
+      <div class="sc-block sc-block-para" data-idx="90">With your API key in place, EverythingEbooks transforms from a nice idea into a working partner.</div>
+      <div class="sc-block sc-block-para" data-idx="91">Every feature unlocks:</div>
+      <div class="sc-block sc-block-para" data-idx="92"><li>The AI editing tools that find what you missed, and are always ready to do it again</li>
+<li>The chat that helps you brainstorm</li>
+<li>The AI Writing Assistant that breaks through writer’s block</li></div>
+      <div class="sc-block sc-block-para" data-idx="93">It all starts with that key.</div>
+      <div class="sc-block sc-block-para" data-idx="94">Here's what the API key really is: permission to be helped.</div>
+      <div class="sc-block sc-block-para" data-idx="95">For years, writers have worked alone. Just you and the blank page, blinking cursor. You and the red pen or delete key. You and the crushing doubt at 3:47 AM in The Night Kitchen.</div>
+      <div class="sc-block sc-block-para" data-idx="96">The API key changes that dynamic. It's not surrendering control - it's gaining a tireless assistant who suggests but never insists, who catches errors but preserves voice, who works at odd hours without judgment.</div>
+      <div class="sc-block sc-block-para" data-idx="97">Maya put it best in the community forum: “I spent three weeks afraid of getting an API key. I spend three minutes actually getting it. I've spent three months wondering why I waited.”</div>
+      <div class="sc-block sc-block-para" data-idx="98">Your manuscript is uploaded (you did that, remember?).</div>
+      <div class="sc-block sc-block-para" data-idx="99">Your API key is active (you did that too, right?).</div>
+      <div class="sc-block sc-block-para" data-idx="100">The tools are ready, customized or not.</div>
+      <div class="sc-block sc-block-para" data-idx="101">Time to see what this thing can actually do.</div>
+      <div class="sc-block sc-block-para" data-idx="102">Let’s floor it, next stop: <strong>Editing</strong>.</div>
+      <div class="sc-block sc-block-para" data-idx="103">(<em>But first, seriously, go get that API key if you haven't. We'll wait.</em>)</div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-6" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:&quot;04_3. The Editing Tools.mp3&quot;,&quot;ambientVolume&quot;:0.9,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;dialogue&quot;,&quot;narrationFilename&quot;:null,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="3. The Editing Tools" data-sc-aud_04_3__The_Editing_Tools_mp3="audio/04_3. The Editing Tools.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">3. The Editing Tools</div>
+      <div class="sc-block sc-block-para" data-idx="0">THE EDITING TOOLS</div>
+      <div class="sc-block sc-block-para" data-idx="1">(<em>My Late-Night Co-Conspirator Has No Pulse</em>)</div>
+      <div class="sc-block sc-block-para" data-idx="2">Alex was back in The Night Kitchen. The manuscript that had felt brilliant six hours earlier now read like something written by a stranger with a personal vendetta. The coffee had gone cold. The confidence, colder. There was a strong temptation to throw the whole thing into Lake Erie.</div>
+      <div class="sc-block sc-block-para" data-idx="3">“This is where most manuscripts die,” he muttered. “Not in the writing. In the space between done and actually done.”</div>
+      <div class="sc-block sc-block-para" data-idx="4">He opened EverythingEbooks with the grim determination of someone about to perform surgery on themselves. This was it. The actual editing. The part where you find out if your baby is beautiful or if you've been lying to yourself for six months.</div>
+      <div class="sc-block sc-block-para" data-idx="5">The interface didn't scream at him. No flashing buttons. No aggressive “BEGIN EDITING NOW” demands. Just a calm little panel that asked, essentially: What do you need help with?</div>
+      <div class="sc-block sc-block-para" data-idx="6">Select a category…</div>
+      <div class="sc-block sc-block-para" data-idx="7">Beside “AI Editing:” there were two dropdown menus. One said “Category.” The other said “Tool...” Beside them, a few buttons: Prompt, Select, Clear.</div>
+      <div class="sc-block sc-block-para" data-idx="8">Select a tool…</div>
+      <div class="sc-block sc-block-para" data-idx="9">Alex clicked the category dropdown and skimmed the options, he chose Core Editing Tools. The tool dropdown refreshed, he hovered over Narrative Internal Analysis and selected it.</div>
+      <div class="sc-block sc-block-para" data-idx="10">He could have clicked “Prompt” to modify the tool’s instructions, but he was too tired. He clicked “Send” to send his manuscript to the AI.</div>
+      <div class="sc-block sc-block-para" data-idx="11">Alex stared at them. “You're telling me editing my entire manuscript comes down to picking from a menu?”</div>
+      <div class="sc-block sc-block-para" data-idx="12">The dropdown didn't answer. Dropdowns rarely do.</div>
+      <div class="sc-block sc-block-para" data-idx="13">Here's the thing nobody tells you about editing: It's not one thing. It's many things wearing a trench coat pretending to be one thing.</div>
+      <div class="sc-block sc-block-para" data-idx="14">There's the big-picture stuff—does your plot make sense, do your characters grow, does Chapter 7 contradict Chapter 23?</div>
+      <div class="sc-block sc-block-para" data-idx="15">There's the sentence-level stuff—is this clear, is this tight, did you use “very” seventeen times on one page?</div>
+      <div class="sc-block sc-block-para" data-idx="16">There's the nitpicky stuff—is it “lay” or “lie,” do you capitalize Dad when it's used as a name, should you have a comma there or are you just comma-happy at 3:47 AM?</div>
+      <div class="sc-block sc-block-para" data-idx="17">EverythingEbooks doesn't pretend these are the same job. Instead, it gives you a toolbox. You pick the tool you need. You send it. You see what it finds. You decide what to do about it.</div>
+      <div class="sc-block sc-block-para" data-idx="18">After the tool finished running, Alex clicked “Report” which instantly became an ebook.  Wow, everything really is ebooks.</div>
+      <div class="sc-block sc-block-para" data-idx="19">He clicked on "Library" to go read it. He used Chrome's split view to read the ebook report while still editing his ebook.</div>
+      <div class="sc-block sc-block-para" data-idx="20">“Chapter 3, Scene 2: The main character finds the key before she knows it exists. Problem: contradicts discovery scene in Chapter 5. Suggestion: move the key discovery or add a hint.”</div>
+      <div class="sc-block sc-block-para" data-idx="21">Alex scrolled down. More observations appeared like helpful ghosts pointing at the bodies buried in his backyard:</div>
+      <div class="sc-block sc-block-para" data-idx="22">“Weather continuity issue: Chapter 7 opens with a blizzard. Chapter 8, same day, characters are having a picnic. No explanation for weather change.”</div>
+      <div class="sc-block sc-block-para" data-idx="23">“Point of view error: Chapter 12, paragraph 3—Sarah knows about the letter, but she wasn't present when it was read and no one told her about it.”</div>
+      <div class="sc-block sc-block-para" data-idx="24">“Plot logic note: The subplot about the missing painting is introduced in Chapter 4 but never resolved or mentioned after Chapter 9.”</div>
+      <div class="sc-block sc-block-para" data-idx="25">Alex sat back. “Oh. Oh no.”</div>
+      <div class="sc-block sc-block-para" data-idx="26">He'd written this manuscript over six months. He knew every character, every scene, every plot thread. Or he thought he did. Apparently, he'd also created a blizzard that vanished between chapters, a psychic character who knew things she couldn't possibly know, and a painting that disappeared into the Bermuda Triangle of abandoned subplots.</div>
+      <div class="sc-block sc-block-para" data-idx="27">The editing process waited. No judgment. No mockery. Just a quiet: Well? What are you going to do about it?</div>
+      <div class="sc-block sc-block-para" data-idx="28">Alex started typing fixes. Moved the key discovery to Chapter 5. Added a line about the blizzard clearing by morning. Rewrote Sarah's section from a different character's perspective. Made a note about the painting—either resolve it or cut those early references.</div>
+      <div class="sc-block sc-block-para" data-idx="29">After each change, the app updated itself. The tools didn't argue. Didn't insist. Just offered observations and let him decide.</div>
+      <div class="sc-block sc-block-para" data-idx="30">“This is editing,” Alex realized. “This is actual editing. Not someone rewriting my book. Just someone pointing at the holes while I decide how to patch them.”</div>
+      <div class="sc-block sc-block-para" data-idx="31">MAYA'S UNRESOLVED THREADS</div>
+      <div class="sc-block sc-block-para" data-idx="32">Many time zones away, Maya sat in her own version of The Night Kitchen—a spare bedroom at 1 AM, laptop balanced on her knees, her bilingual manuscript glowing like a beacon of unfinished business.</div>
+      <div class="sc-block sc-block-para" data-idx="33">She'd survived the upload (Chapter 1). She'd conquered the API key anxiety (Chapter 2). Now came the part she'd been avoiding: facing all the things she knew were wrong but had hoped no one would notice.</div>
+      <div class="sc-block sc-block-para" data-idx="34">Maya selected Core Editing Tools, then Narrative Unresolved Analysis. The name alone made her nervous. She followed the same path as Alex.</div>
+      <div class="sc-block sc-block-para" data-idx="35">“Chapter 2: Mysterious locket introduced. Never mentioned again after this chapter.”</div>
+      <div class="sc-block sc-block-para" data-idx="36">Maya groaned. She'd completely forgotten about that locket. It was supposed to be important. It had belonged to the protagonist's grandmother. It was supposed to mean something. Instead, it got introduced and then wandered off into the narrative wilderness, never to be seen again.</div>
+      <div class="sc-block sc-block-para" data-idx="37">“Chapter 9: Cooking contest setup and foreshadowing. No contest scene follows. No resolution provided.”</div>
+      <div class="sc-block sc-block-para" data-idx="38">“Oh, come on,” Maya muttered. But the tool was right. She'd spent three paragraphs setting up this contest, making it seem crucial to the plot, and then... nothing. The contest never happened. Her protagonist's carefully developed cooking skills never got their moment.</div>
+      <div class="sc-block sc-block-para" data-idx="39">“Chapter 5: Foreshadowing about trip home to Puerto Rico. Trip never occurs in manuscript.”</div>
+      <div class="sc-block sc-block-para" data-idx="40">Maya closed her eyes. “I was going to write that scene. I was definitely going to write that scene.”</div>
+      <div class="sc-block sc-block-para" data-idx="41">But she hadn't. And now her manuscript promised readers a homecoming that never came. A Chekhov's gun that never fired. A narrative thread that just sort of... frayed.</div>
+      <div class="sc-block sc-block-para" data-idx="42">The tool wasn't judging her. It was just pointing out what it had found, like a friend saying, “Hey, you left your keys in the door.”</div>
+      <div class="sc-block sc-block-para" data-idx="43">Maya started editing. Added a scene where the locket opened, revealing a photo that explained its significance. Cut the cooking contest setup entirely—if she wasn't going to write the scene, she couldn't promise it to readers. And the trip home? She kept that foreshadowing but added it to her sequel notes. Intentionally unresolved for Book Two.</div>
+      <div class="sc-block sc-block-para" data-idx="44">One thread she left hanging on purpose. One question unanswered. Because some stories don't wrap up every loose end, and that was her choice to make.</div>
+      <div class="sc-block sc-block-para" data-idx="45">The tools offered suggestions. Maya made decisions. That was the partnership.</div>
+      <div class="sc-block sc-block-para" data-idx="46">JORDAN'S LINE EDITING</div>
+      <div class="sc-block sc-block-para" data-idx="47">Jordan approached EverythingEbooks the way a mechanic approaches an engine: methodically, professionally, with reading glasses that wouldn't stay put and a tolerance for tedium that bordered on supernatural.</div>
+      <div class="sc-block sc-block-para" data-idx="48">He selected "Core Editing Tools", then "Line Editing by Chapter". Clicked "Send". But line editing had a trick the other tools didn't.</div>
+      <div class="sc-block sc-block-para" data-idx="49">When the tool finished, Jordan saw two buttons: Report and One-by-one. He'd used Report before—an ebook of the AI's report. Useful for scanning everything at once. But today he clicked "One-by-one".</div>
+      <div class="sc-block sc-block-para" data-idx="50">The interface shifted. Instead of a report to wade through, he got a single issue. Issue 1 of 25.</div>
+      <div class="sc-block sc-block-para" data-idx="51">A panel appeared below the editor with the problem sentence highlighted in the text: "Spud was born in the cellar of the old farmhouse during the most coldest February anyone could remember."</div>
+      <div class="sc-block sc-block-para" data-idx="52">In the panel, four sections appeared:</div>
+      <div class="sc-block sc-block-para" data-idx="53">ORIGINAL: "Spud was born in the cellar of the old farmhouse during the most coldest February anyone could remember."</div>
+      <div class="sc-block sc-block-para" data-idx="54">ISSUES: "1. Incorrect degree: 'most coldest' doubles the superlative. 2. Clarity/flow: 'during' + 'anyone could remember' works, but tightening increases punch."</div>
+      <div class="sc-block sc-block-para" data-idx="55">SUGGESTED: "Spud was born in the cellar of the old farmhouse during the coldest February anyone could remember."</div>
+      <div class="sc-block sc-block-para" data-idx="56">EXPLANATION: "This keeps your tone and meaning while correcting the grammar and preserving the stark, wintry setup."</div>
+      <div class="sc-block sc-block-para" data-idx="57">Buttons waited: Accept, Custom, Skip, Close.</div>
+      <div class="sc-block sc-block-para" data-idx="58">Jordan pushed up his glasses. "Now this is how I want to edit."</div>
+      <div class="sc-block sc-block-para" data-idx="59">He clicked Accept. The sentence updated.</div>
+      <div class="sc-block sc-block-para" data-idx="60">He clicked Next. Issue 2 of 25 appeared.</div>
+      <div class="sc-block sc-block-para" data-idx="61">The next one was trickier—a suggestion to tighten a sentence that Jordan thought needed its length for rhythm. He clicked Skip. The tool moved on without argument.</div>
+      <div class="sc-block sc-block-para" data-idx="62">Issue 7 was close but not quite right. Jordan clicked Custom, typed his own revision, and continued.</div>
+      <div class="sc-block sc-block-para" data-idx="63">This was the difference between reading a report and having a conversation. Each suggestion got its moment. Each decision was deliberate. No scanning, no missing things, no "I'll come back to that one later" and then forgetting.</div>
+      <div class="sc-block sc-block-para" data-idx="64">But the real trick? It kept him awake. Every issue demanded a click. Accept. Custom. Skip. No choice meant no progress. Jordan had read manuscripts where his eyes glazed over by page fifty, where he'd realize he'd "read" three paragraphs without absorbing a word. One-by-one made that impossible. The app wouldn't let him nod off. It asked a question and waited for an answer.</div>
+      <div class="sc-block sc-block-para" data-idx="65">The tool flagged sentences that were too long, words that were overused, phrases that could be tighter. But it didn't just correct—it explained why:</div>
+      <div class="sc-block sc-block-para" data-idx="66">"This sentence is 47 words long. Consider breaking into two sentences for clarity?"</div>
+      <div class="sc-block sc-block-para" data-idx="67">"'Very' appears six times on this page. Consider stronger base adjectives?"</div>
+      <div class="sc-block sc-block-para" data-idx="68">"Cliché detected: 'avoid it like the plague.' Consider fresh phrasing?"</div>
+      <div class="sc-block sc-block-para" data-idx="69">Jordan accepted some suggestions, ignored others. A long sentence wasn't always wrong—sometimes rhythm mattered more than rules. "Very" could stay if the character would actually say it. And sometimes a cliché was exactly what the character would reach for.</div>
+      <div class="sc-block sc-block-para" data-idx="70">One by one, issue by issue, the manuscript got cleaner. Not because the tool rewrote it, but because Jordan made twenty-five individual decisions about his words. Accept. Custom. Skip. Each choice his.</div>
+      <div class="sc-block sc-block-para" data-idx="71">The tool made suggestions. Jordan made judgment calls. His glasses slid down his nose. He pushed them back up. The work continued.</div>
+      <div class="sc-block sc-block-para" data-idx="72">RAE'S CHAOS EXPERIMENT</div>
+      <div class="sc-block sc-block-para" data-idx="73">Rae Kim loved breaking things to see how they worked. It's what made her a good forum moderator—she knew every edge case, every weird situation, every way users would accidentally confuse themselves.</div>
+      <div class="sc-block sc-block-para" data-idx="74">She selected “User Tools” then “Anything Goes,” pasted part of her experimental essay about writing itself, and hit the "Send" button, then the "Report" button.</div>
+      <div class="sc-block sc-block-para" data-idx="75">“Fair,” Rae muttered, fixing the pronouns. She ignored the metaphor criticism—it was weird on purpose. But that overloaded sentence? Yeah, that needed surgery.</div>
+      <div class="sc-block sc-block-para" data-idx="76">She saved her changes, then posted in the forum:</div>
+      <div class="sc-block sc-block-para" data-idx="77">“LiteRae: EverythingEbooks doesn't have 'passes.' No Step 1, Step 2, Step 3 mandates. You pick a category, select a tool, send it, look at the results, make your edits. That's it. Want to run Narrative Internal Analysis before Copy Editing? Go ahead. Want to use Line Editing three times on the same chapter? Knock yourself out. Want to use the Opinionated Critique tool because you need tough love at 2 AM? That's what it's there for. The tools are à la carte. Pick what you need when you need it.”</div>
+      <div class="sc-block sc-block-para" data-idx="78">Here's what all four writers discovered, each in their own Night Kitchen, at their own desperate hour:</div>
+      <div class="sc-block sc-block-para" data-idx="79">The tools weren't stages or checklists. They were options.</div>
+      <div class="sc-block sc-block-para" data-idx="80">Alex ran Narrative Internal Analysis, Copy Editing, and something called the Tense Consistency Checker in whatever order he pleased. He ran some tools twice when he wasn't sure his fixes had worked.</div>
+      <div class="sc-block sc-block-para" data-idx="81">Maya used Narrative Unresolved Analysis to find her dropped threads, then Adjective-Adverb Optimizer because she had a suspicion she was overwriting emotional scenes.</div>
+      <div class="sc-block sc-block-para" data-idx="82">Jordan toggled between Copy Editing and Line Editing, building his style sheet, then went back to copy editing to make sure his line editing changes hadn't introduced new consistency problems.</div>
+      <div class="sc-block sc-block-para" data-idx="83">Rae tested Anything Goes and the Opinionated Critique tool because she loves chaos and wanted to see what the meanest possible feedback looked like. (Verdict: “Accurate but painful. Would recommend for writers who can take a punch.”)</div>
+      <div class="sc-block sc-block-para" data-idx="84">Each tool was just a specialized lens. A way of asking one specific question: Does your plot make sense? Are your sentences clear? Is your style consistent? Have you left threads dangling?</div>
+      <div class="sc-block sc-block-para" data-idx="85">You could run them in any order. Run them multiple times. Skip the ones that didn't matter for your project. The app didn't care. It wasn't leading you through a prescribed process. It was offering a menu of possibilities.</div>
+      <div class="sc-block sc-block-para" data-idx="86">Pick what you need. Do it. Look at what it finds. Decide what to do. Then send Ebook to your Library. Move on.</div>
+      <div class="sc-block sc-block-para" data-idx="87">THE CUSTOMIZATION SECRET</div>
+      <div class="sc-block sc-block-para" data-idx="88">(The Button You Might Have Missed)</div>
+      <div class="sc-block sc-block-para" data-idx="89">A week later, Maya was in the forum asking about the Copy Editing tool. “It keeps flagging my intentional sentence fragments. I know they're fragments. They're supposed to be fragments. How do I make it stop?”</div>
+      <div class="sc-block sc-block-para" data-idx="90">Rae replied within minutes: “Click ”Prompt” before you send it.”</div>
+      <div class="sc-block sc-block-para" data-idx="91">Maya stared at her screen. “The what now?”</div>
+      <div class="sc-block sc-block-para" data-idx="92">“The Prompt button. In front of Send. You can modify what the tool does.”</div>
+      <div class="sc-block sc-block-para" data-idx="93">This was the secret hiding in plain sight. That Prompt button Alex had seen but been too tired to click? It was the key to making these tools actually yours.</div>
+      <div class="sc-block sc-block-para" data-idx="94">Here's what nobody tells you at first: Each tool isn't some locked, unchangeable process. Each tool is just a prompt—a set of instructions combined with your manuscript. And you can edit those instructions.</div>
+      <div class="sc-block sc-block-para" data-idx="95">Jordan discovered this when he wanted Copy Editing to focus only on grammar, not style suggestions. He clicked “Prompt,” read the tool's default instructions, and added a line: “Focus only on grammar and mechanics. Do not make style suggestions.”</div>
+      <div class="sc-block sc-block-para" data-idx="96">Clicked "Send" again. The tool obeyed.</div>
+      <div class="sc-block sc-block-para" data-idx="97">Alex used it when he wanted Narrative Internal Analysis to pay extra attention to a specific subplot. Clicked Prompt. Added: “Pay special attention to the timeline of the heist subplot in Chapters 8-15.”</div>
+      <div class="sc-block sc-block-para" data-idx="98">The tool did exactly that.</div>
+      <div class="sc-block sc-block-para" data-idx="99">Maya used it to protect her intentional choices. Clicked Prompt before sending Line Editing. Added: “Do not flag intentional sentence fragments used for dramatic effect or character voice. Do not suggest changes to Spanish dialogue or code-switching.”</div>
+      <div class="sc-block sc-block-para" data-idx="100">The tool respected her boundaries.</div>
+      <div class="sc-block sc-block-para" data-idx="101">The workflow became clear:</div>
+      <div class="sc-block sc-block-para" data-idx="102">1. select your Tool</div>
+      <div class="sc-block sc-block-para" data-idx="103">2. if you want to customize it, click Prompt and modify the instructions</div>
+      <div class="sc-block sc-block-para" data-idx="104">3. click Send</div>
+      <div class="sc-block sc-block-para" data-idx="105">4. wait for the Tool to finish</div>
+      <div class="sc-block sc-block-para" data-idx="106">5. click Report to see results</div>
+      <div class="sc-block sc-block-para" data-idx="107">6. make your edits</div>
+      <div class="sc-block sc-block-para" data-idx="108">7. click "send Ebook"</div>
+      <div class="sc-block sc-block-para" data-idx="109">8. if you want to run the same tool again with your changes, just hit Clear and Send again</div>
+      <div class="sc-block sc-block-para" data-idx="110">9. if the results still aren't what you want, click Prompt again and tweak it</div>
+      <div class="sc-block sc-block-para" data-idx="111">Each tool is just a prompt combined with your manuscript. You can edit the prompt, send, look at results, edit your manuscript, run the same tool again, or try a different one. There's no fixed sequence. No mandatory order. No “you must complete Pass 1 before Pass 2” nonsense.</div>
+      <div class="sc-block sc-block-para" data-idx="112">Rae put it best in her forum post: “The tools aren't a conveyor belt. They're a workshop. You grab the tool you need, use it how you need it, put it back, grab another one. You're the craftsperson. These are just your chisels and sanders.”</div>
+      <div class="sc-block sc-block-para" data-idx="113">THE MORNING AFTER</div>
+      <div class="sc-block sc-block-para" data-idx="114">When Alex finished his latest editing session, the sun was coming up. The Night Kitchen was becoming a regular kitchen again. The manuscript sat there in the editor, changed but still his. Better but still recognizably the same voice that had started this journey.</div>
+      <div class="sc-block sc-block-para" data-idx="115">In his Library he clicked the circle icon to download his ebook from EverythingEbooks and sent the .epub to his writing group.</div>
+      <div class="sc-block sc-block-para" data-idx="116">“Did you hire an editor?” someone asked the next morning.</div>
+      <div class="sc-block sc-block-para" data-idx="117">“Sort of,” Alex replied. “I used a toolbox. And I didn't sleep much.”</div>
+      <div class="sc-block sc-block-para" data-idx="118">“Sounds like editing.”</div>
+      <div class="sc-block sc-block-para" data-idx="119">“Yeah,” Alex said, looking at his coffee-stained manuscript notes. “Yeah, exactly like editing.”</div>
+      <div class="sc-block sc-block-para" data-idx="120">Make more coffee.</div>
+      <div class="sc-block sc-block-para" data-idx="121">Question your life choices. Standard writing process.</div>
+      <div class="sc-block sc-block-para" data-idx="122">Now, decide what to do about it.</div>
+      <div class="sc-block sc-block-para" data-idx="123">Save your changes. Or don't. It's your manuscript. Your voice. Your call.</div>
+      <div class="sc-block sc-block-para" data-idx="124">Want to run it again? Pick a tool, hit Send. Want to tweak the tool's instructions? Click Prompt and change it. Want to try a different tool? Click Clear and start over.</div>
+      <div class="sc-block sc-block-para" data-idx="125">The tools are just here to help. Not to replace your judgment. Not to automate the art. Just to point at the things you might have missed while you were too close to the work to see them clearly.</div>
+      <div class="sc-block sc-block-para" data-idx="126">Welcome to the editing room. All of the door's are wide open. The tools are ready. Your manuscript is waiting.</div>
+      <div class="sc-block sc-block-para" data-idx="127">Time to find out what you actually wrote.</div>
+      <div class="sc-block sc-block-para" data-idx="128">And maybe—just maybe—discover it's better than you thought. Or at least fixable. Which at 3:47 AM in The Night Kitchen is sometimes the same thing.</div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-7" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:&quot;05_4. Publishing.mp3&quot;,&quot;ambientVolume&quot;:0.9,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;dialogue&quot;,&quot;narrationFilename&quot;:null,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="4. Publishing" data-sc-aud_05_4__Publishing_mp3="audio/05_4. Publishing.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">4. Publishing</div>
+      <div class="sc-block sc-block-para" data-idx="0">PUBLISHING</div>
+      <div class="sc-block sc-block-para" data-idx="1">(<em>The Anticlimactic Finale</em>)</div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block sc-block-para" data-idx="3">Here's the beautiful secret: The entire process has been an ebook all along.</div>
+      <div class="sc-block sc-block-para" data-idx="4">Everything you've done in EverythingEbooks—uploading your manuscript, editing it chapter by chapter, fixing those plot holes at 3:47 AM—has been building an epub file. Not converting to epub. Not exporting to epub. Just... epub. From the moment you started.</div>
+      <div class="sc-block sc-block-para" data-idx="5">Alex stared at the edited manuscript. Actually edited. Actually done. After seventeen runs through various tools, three existential crises, and that one afternoon using the Opinionated Critique tool just for laughs (verdict: "Your protagonist has the emotional range of a particularly sullen doorknob"), the manuscript was ready.</div>
+      <div class="sc-block sc-block-para" data-idx="6">"So now what?" Alex muttered. "Where's the complicated export process? The formatting nightmare? The sacrificial goat?"</div>
+      <div class="sc-block sc-block-para" data-idx="7">There wasn't one.</div>
+      <div class="sc-block sc-block-linebreak" data-idx="8"></div>
+      <div class="sc-block sc-block-para" data-idx="9">THE PUBLISH TO LIBRARY MOMENT</div>
+      <div class="sc-block sc-block-para" data-idx="10">Here's the entire publishing workflow:</div>
+      <div class="sc-block sc-block-para" data-idx="11">1. Click "Publish" in Authors, and you may do this as many times as you need to read/see what the actual ebook will look like (no preview, the real ebook)</div>
+      <div class="sc-block sc-block-para" data-idx="12">2. Your book appears in your Library, and only you can ever see it, which is total privacy and you have to download to truly publish or share it</div>
+      <div class="sc-block sc-block-para" data-idx="13">3. Click the "Plus" icon on your book's cover</div>
+      <div class="sc-block sc-block-para" data-idx="14">4. Download your .epub file with Scenecraft, or a KDP/booksellers .epub version, or any of the 3 types of PDF files for paperbacks</div>
+      <div class="sc-block sc-block-para" data-idx="15">5. Upload to Amazon KDP or  Draft2Digital or any other bookseller</div>
+      <div class="sc-block sc-block-para" data-idx="16">That's it. That's the whole process.</div>
+      <div class="sc-block sc-block-linebreak" data-idx="17"></div>
+      <div class="sc-block sc-block-para" data-idx="18">Maya discovered this and laughed out loud. "I spent three weeks dreading the 'publishing step.' There is no publishing step. The book was already a book."</div>
+      <div class="sc-block sc-block-para" data-idx="19">The epub files that Everything Ebooks creates are KDP-ready. Tested. Validated. They upload to Amazon without complaints, without rejected files, without those cryptic error messages that make you want to throw your laptop into the nearest body of water.</div>
+      <div class="sc-block sc-block-para" data-idx="20">Jordan was skeptical at first. "Every tool claims their files work with KDP. Then you upload and Amazon says 'NCX manifest error' or some other nonsense that requires a computer science degree to fix."</div>
+      <div class="sc-block sc-block-para" data-idx="21">But the EverythingEbooks epub files just... worked. Clean. Valid. Ready for readers.</div>
+      <div class="sc-block sc-block-linebreak" data-idx="22"></div>
+      <div class="sc-block sc-block-para" data-idx="23">WHAT ABOUT PRINT?</div>
+      <div class="sc-block sc-block-para" data-idx="24">"But I want a paperback," Maya's mom said. "I don't read on screens."</div>
+      <div class="sc-block sc-block-para" data-idx="25">Fair enough. Some readers want paper. Some writers want to hold their book in their hands. Some people just like the smell of freshly printed pages.</div>
+      <div class="sc-block sc-block-para" data-idx="26">Everything Ebooks focuses on ebooks—that's the whole point. But if you need a PDF for print-on-demand services; in the Library click on "Plus" and select one of the popular paperback pdf sizes: 5x8in, 6x9in, and the square 8.5x8.5in. These sizes have been tested on Amazon's KDP for books ranging from 50 to 300 pages and passed their quality checks.</div>
+      <div class="sc-block sc-block-linebreak" data-idx="27"></div>
+      <div class="sc-block sc-block-para" data-idx="28">THE OTHER TOOLS YOU MIGHT HAVE MISSED</div>
+      <div class="sc-block sc-block-para" data-idx="29">Before you rush off to KDP, there are a few more features hiding in that hamburger menu worth knowing about.</div>
+      <div class="sc-block sc-block-para" data-idx="30">The Cover Generator lives under Menu → Cover. Because nothing says "judge this book" like its cover, and EverythingEbooks lets you create one without leaving the app. Simple templates, your title, your name, done. Not as fancy as hiring a designer, but infinitely better than uploading a manuscript with no cover at all.</div>
+      <div class="sc-block sc-block-para" data-idx="31">The Chat feature (Menu → Chat, requires AI) is your brainstorming partner. Stuck on a plot point? Talk it through. Need to figure out why your antagonist's motivation feels hollow? Ask. It's not writing for you—it's thinking with you. Alex spent an entire evening in Chat working through a timeline problem that had been nagging at him for weeks. The solution was obvious once he explained the problem out loud to something that could ask clarifying questions.</div>
+      <div class="sc-block sc-block-para" data-idx="32">And for the nonfiction writers who've been wondering if this tool is only for novelists: it's not. The User Tools category includes specialized prompts for nonfiction—Sourcing Audit for checking your citations, Integrity Editing for factual consistency, Self-Help Editing for that particular genre's needs. Jordan tested these on a client's memoir and was impressed. "Finally, tools that understand nonfiction isn't just fiction with facts."
+There are even xray's to look inside your .epub's to see what's going on inside.</div>
+      <div class="sc-block sc-block-linebreak" data-idx="33"></div>
+      <div class="sc-block sc-block-para" data-idx="34">THE PHILOSOPHY OF ALREADY DONE</div>
+      <div class="sc-block sc-block-para" data-idx="35">Rae Kim posted something in the forum that stuck with everyone: "Publishing isn't writing. Publishing is what happens so people can read your writing. Don't let perfect formatting be the enemy of published books."</div>
+      <div class="sc-block sc-block-para" data-idx="36">She was right. And EverythingEbooks took that philosophy to its logical conclusion: What if publishing wasn't a separate step at all? What if you were already done the moment you finished editing?</div>
+      <div class="sc-block sc-block-para" data-idx="37">Maya's first novel went live on KDP six months after she discovered EverythingEbooks. She clicked Send Ebook, downloaded the epub from her Library, uploaded to Amazon, and waited for the rejection email that never came.</div>
+      <div class="sc-block sc-block-para" data-idx="38">"I spent two years writing it and five minutes getting it to Amazon," she said. "That seems about right."</div>
+      <div class="sc-block sc-block-para" data-idx="39">Your real work—the writing, the editing, the agonizing over every word—is done. The epub file sitting in your Library is the finished product. It's been the finished product all along. You just didn't know it yet.</div>
+      <div class="sc-block sc-block-para" data-idx="40">Time to send it to readers. Time to move on to the next book.</div>
+      <div class="sc-block sc-block-para" data-idx="41">Because that's what writers do. We write. Publishing is just clicking a few buttons between books.</div>
+      <div class="sc-block sc-block-para" data-idx="42"><em>Now go download your epub before you talk yourself out of it. The hard part is already done. You handle the courage part.</em></div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-8" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:&quot;06_Epilogue.mp3&quot;,&quot;ambientVolume&quot;:0.9,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;dialogue&quot;,&quot;narrationFilename&quot;:null,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Epilogue" data-sc-aud_06_Epilogue_mp3="audio/06_Epilogue.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">Epilogue</div>
+      <div class="sc-block sc-block-para" data-idx="0">Read a lot and write a lot. hello!</div>
+      <div class="sc-block sc-block-para" data-idx="1">Edit it with EverythingEbooks.</div>
+      <div class="sc-block sc-block-para" data-idx="2">A lot.</div>
+      <div class="sc-block sc-block-para" data-idx="3">Edit it again because you're a writer and that's what we do.</div>
+      <div class="sc-block sc-block-para" data-idx="4">Publish it before fear wins.</div>
+      <div class="sc-block sc-block-para" data-idx="5">Fear is the book-killer.</div>
+      <div class="sc-block sc-block-para" data-idx="6">Then write something new.</div>
+      <div class="sc-block sc-block-divider" data-idx="7"></div>
+      <div class="sc-block sc-block-para" data-idx="8" style="text-align: right">Welcome to your own private Night Kitchen.</div>
+      <div class="sc-block sc-block-para" data-idx="9" style="text-align: right">EverythingEbooks is that midnight snack in the fridge.</div>
+      <div class="sc-block sc-block-para" data-idx="10" style="text-align: right">Help yourself.</div>
+      <div class="sc-block sc-block-para" data-idx="11" style="text-align: right">Coffee's brewing… you know where to find me.</div>
+      <div class="sc-block sc-block-para" data-idx="12" style="text-align: right">any author, 3:47AM</div>
+      <div class="sc-block sc-block-para" data-idx="13" style="text-align: right">Enjoy! ☮️</div>
+      <div class="sc-block sc-block-divider" data-idx="14"></div>
+      <div class="sc-block sc-block-para" data-idx="15"><em>the beginning ...</em></div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-9" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:&quot;07_About the Author.mp3&quot;,&quot;ambientVolume&quot;:0.9,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;voiceMode&quot;:&quot;dialogue&quot;,&quot;narrationFilename&quot;:null,&quot;narrationVolume&quot;:0.7,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="About the Author" data-sc-aud_07_About_the_Author_mp3="audio/07_About the Author.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">About the Author</div>
+      <div class="sc-block sc-block-linebreak" data-idx="0"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block sc-block-para" data-idx="3">Clee Smith is a retired computer programmer (long before AI's arrival), an artist, and an avid reader who attempts to write.</div>
+      <div class="sc-block sc-block-linebreak" data-idx="4"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="5"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="6"></div>
+      <div class="sc-block sc-block-break" data-idx="7">• • •</div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-buttons">
+      <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">&#9728;&#65039;</button>
+      <button class="playhead-toggle" id="playheadToggle" title="Toggle Scenecraft overlays"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 2H6c-1.2 0-2 .9-2 2v16c0 1.1.8 2 2 2h13c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 18H6V4h2v8l2.5-1.5L13 12V4h6v16z"/></svg></button>
+    </div>
+    <div class="footer-info">
+      <span class="footer-title">Everything Ebooks</span>
+      <span class="footer-author">by Clee Smith</span>
+      <span class="footer-copyright">&copy; 2026</span>
+    </div>
+  </div>
+
+  <script>
+    // Theme toggle functionality
+    var themeToggle = document.getElementById('themeToggle');
+    var body = document.body;
+
+    var savedTheme = localStorage.getItem('html-ebook-theme');
+    if (savedTheme === 'light' && body.classList.contains('dark-mode')) {
+      body.classList.remove('dark-mode');
+      themeToggle.textContent = '🌙';
+    } else if (savedTheme === 'dark' && !body.classList.contains('dark-mode')) {
+      body.classList.add('dark-mode');
+      themeToggle.textContent = '☀️';
+    }
+
+    themeToggle.addEventListener('click', function() {
+      body.classList.toggle('dark-mode');
+      var isDark = body.classList.contains('dark-mode');
+      themeToggle.textContent = isDark ? '☀️' : '🌙';
+      localStorage.setItem('html-ebook-theme', isDark ? 'dark' : 'light');
+    });
+
+    // Playhead overlay toggle
+    var playheadToggle = document.getElementById('playheadToggle');
+    if (playheadToggle) {
+      var savedPlayhead = localStorage.getItem('html-ebook-playhead');
+      if (savedPlayhead === 'hidden') {
+        body.classList.add('sc-overlay-hidden');
+        playheadToggle.classList.add('sc-off');
+      }
+      playheadToggle.addEventListener('click', function() {
+        body.classList.toggle('sc-overlay-hidden');
+        var isHidden = body.classList.contains('sc-overlay-hidden');
+        playheadToggle.classList.toggle('sc-off', isHidden);
+        localStorage.setItem('html-ebook-playhead', isHidden ? 'hidden' : 'visible');
+      });
+    }
+
+
+    // SceneCraft scroll-driven immersive audio/visual engine
+    (function() {
+      var scenes = document.querySelectorAll('.sc-scene');
+      if (!scenes.length) return;
+
+      var DLG_FADE = 0.5;
+      function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+
+      function createFadeIn(audioEl, vol, dur) {
+        audioEl.volume = 0;
+        audioEl.play().catch(function(){});
+        return { el: audioEl, state: 'in', start: Date.now(), dur: dur * 1000, targetVol: vol };
+      }
+      function createFadeOut(obj, dur) {
+        if (!obj || !obj.el) return null;
+        return { el: obj.el, state: 'out', start: Date.now(), dur: dur * 1000, startVol: obj.el.volume };
+      }
+      function tickFade(obj) {
+        if (!obj || !obj.el) return null;
+        var t = obj.dur > 0 ? clamp((Date.now() - obj.start) / obj.dur, 0, 1) : 1;
+        if (obj.state === 'in') {
+          obj.el.volume = t * (obj.targetVol || 1);
+          if (t >= 1) obj.state = 'playing';
+        } else if (obj.state === 'out') {
+          obj.el.volume = (1 - t) * (obj.startVol || 1);
+          if (t >= 1) { obj.el.pause(); return null; }
+        }
+        return obj;
+      }
+      function killAudio(obj) {
+        if (obj && obj.el) { obj.el.pause(); obj.el.src = ''; }
+        return null;
+      }
+
+      // Per-scene state
+      var sceneStates = [];
+      scenes.forEach(function(sceneEl, si) {
+        var cfg = null;
+        try { cfg = JSON.parse(sceneEl.dataset.scConfig || 'null'); } catch(e) {}
+        sceneStates.push({
+          el: sceneEl,
+          cfg: cfg,
+          inScene: false,
+          ambient: null,
+          ambientOut: null,
+          voice: null,
+          voiceOut: null,
+          activeDlg: -1,
+          dlgObj: null,
+          dlgOut: null,
+          activeStk: -1,
+          stkObj: null,
+          stkOut: null,
+          activePara: -1,
+          paraObj: null,
+          paraOut: null,
+          blocks: sceneEl.querySelectorAll('.sc-block'),
+          stickyWraps: sceneEl.querySelectorAll('.sc-block-sticky'),
+          enterEl: sceneEl.querySelector('.sc-enter'),
+          exitEl: sceneEl.querySelector('.sc-exit'),
+          bgEl: sceneEl.querySelector('.sc-bg'),
+          infoEl: sceneEl.querySelector('.sc-info'),
+        });
+      });
+
+      var playheadY = window.innerHeight * 0.5;
+      window.addEventListener('resize', function() { playheadY = window.innerHeight * 0.5; });
+
+      function doEnter(s) {
+        if (s.inScene || !s.cfg) return;
+        s.inScene = true;
+        var c = s.cfg;
+        if (s.infoEl) s.infoEl.textContent = s.el.dataset.scTitle || '';
+
+        // Wallpaper
+        if (c.wallpaperFilename && s.bgEl) {
+          var url = s.el.dataset['scImg_' + c.wallpaperFilename.replace(/[^a-zA-Z0-9]/g, '_')];
+          if (url) {
+            s.bgEl.style.backgroundImage = "url('" + url + "')";
+            s.bgEl.style.backgroundPosition = c.wallpaperPosition || 'center';
+            s.bgEl.style.opacity = String(c.wallpaperOpacity || 0.25);
+          }
+        }
+
+        // Ambient audio
+        s.ambientOut = killAudio(s.ambientOut);
+        if (c.ambientFilename) {
+          var aUrl = s.el.dataset['scAud_' + c.ambientFilename.replace(/[^a-zA-Z0-9]/g, '_')];
+          if (aUrl) {
+            var a = new Audio(aUrl);
+            a.loop = !!c.ambientLoop;
+            s.ambient = createFadeIn(a, c.ambientVolume || 0.5, c.fadeIn || 2);
+          }
+        }
+
+        // Narration voice
+        s.voiceOut = killAudio(s.voiceOut);
+        if (c.voiceMode === 'narration' && c.narrationFilename) {
+          var nUrl = s.el.dataset['scAud_' + c.narrationFilename.replace(/[^a-zA-Z0-9]/g, '_')];
+          if (nUrl) {
+            var n = new Audio(nUrl);
+            s.voice = createFadeIn(n, c.narrationVolume || 0.7, c.fadeIn || 2);
+          }
+        }
+      }
+
+      function doExit(s) {
+        if (!s.inScene || !s.cfg) return;
+        s.inScene = false;
+        var c = s.cfg;
+        if (s.infoEl) s.infoEl.textContent = '';
+        if (s.bgEl) s.bgEl.style.opacity = '0';
+
+        if (s.ambient) { s.ambientOut = createFadeOut(s.ambient, c.fadeOut || 3); s.ambient = null; }
+        if (s.voice) { s.voiceOut = createFadeOut(s.voice, c.fadeOut || 3); s.voice = null; }
+        s.dlgObj = killAudio(s.dlgObj);
+        s.dlgOut = killAudio(s.dlgOut);
+        s.activeDlg = -1;
+        s.stkObj = killAudio(s.stkObj);
+        s.stkOut = killAudio(s.stkOut);
+        s.activeStk = -1;
+        s.paraObj = killAudio(s.paraObj);
+        s.paraOut = killAudio(s.paraOut);
+        s.activePara = -1;
+      }
+
+      function tick() {
+        for (var si = 0; si < sceneStates.length; si++) {
+          var s = sceneStates[si];
+          if (!s.cfg) continue;
+          var c = s.cfg;
+
+          // Tick fades
+          s.ambientOut = tickFade(s.ambientOut);
+          s.voiceOut = tickFade(s.voiceOut);
+          if (s.ambient && s.ambient.state === 'in') tickFade(s.ambient);
+          if (s.voice && s.voice.state === 'in') tickFade(s.voice);
+          s.dlgObj = tickFade(s.dlgObj);
+          s.dlgOut = tickFade(s.dlgOut);
+          s.stkObj = tickFade(s.stkObj);
+          s.stkOut = tickFade(s.stkOut);
+          s.paraObj = tickFade(s.paraObj);
+          s.paraOut = tickFade(s.paraOut);
+
+          // Block visibility
+          for (var bi = 0; bi < s.blocks.length; bi++) {
+            var b = s.blocks[bi];
+            var rect = b.getBoundingClientRect();
+            var center = rect.top + rect.height / 2;
+            if (center < playheadY + 100) b.classList.add('sc-vis'); else b.classList.remove('sc-vis');
+            if (center < playheadY - window.innerHeight * 0.3) b.classList.add('sc-past'); else b.classList.remove('sc-past');
+          }
+
+          // Scene zone detection
+          var enterBottom = s.enterEl ? s.enterEl.getBoundingClientRect().bottom : 0;
+          var exitTop = s.exitEl ? s.exitEl.getBoundingClientRect().top : window.innerHeight;
+          if (enterBottom <= playheadY && exitTop > playheadY) {
+            doEnter(s);
+          } else {
+            doExit(s);
+          }
+
+          // Per-dialogue voice
+          if (s.inScene && c.voiceMode === 'dialogue') {
+            var currentDlg = -1;
+            for (var di = 0; di < s.blocks.length; di++) {
+              var db = s.blocks[di];
+              var dr = db.getBoundingClientRect();
+              var dataIdx = parseInt(db.dataset.idx || '-1', 10);
+              if (dr.top < playheadY && dr.bottom > playheadY && db.classList.contains('sc-block-dialogue')) {
+                currentDlg = dataIdx;
+              }
+            }
+            if (currentDlg !== s.activeDlg) {
+              if (s.dlgObj && s.dlgObj.el) {
+                s.dlgOut = killAudio(s.dlgOut);
+                s.dlgOut = createFadeOut(s.dlgObj, DLG_FADE);
+                s.dlgObj = null;
+              }
+              s.activeDlg = currentDlg;
+              if (currentDlg >= 0 && c.dialogueClips) {
+                var clip = c.dialogueClips[currentDlg];
+                if (clip && clip.filename) {
+                  var dUrl = s.el.dataset['scAud_' + clip.filename.replace(/[^a-zA-Z0-9]/g, '_')];
+                  if (dUrl) {
+                    var da = new Audio(dUrl);
+                    s.dlgObj = createFadeIn(da, clip.volume || c.dialogueVolume || 0.8, DLG_FADE);
+                  }
+                }
+              }
+            }
+          }
+
+          // Per-sticky audio (plays regardless of voiceMode)
+          if (s.inScene) {
+            var currentStk = -1;
+            for (var swi = 0; swi < s.stickyWraps.length; swi++) {
+              var sw = s.stickyWraps[swi];
+              var sIdx = parseInt(sw.dataset.idx || '-1', 10);
+              if (sw.querySelector('.sc-block.sc-vis')) {
+                currentStk = sIdx;
+              }
+            }
+            if (currentStk !== s.activeStk) {
+              if (s.stkObj && s.stkObj.el) {
+                s.stkOut = killAudio(s.stkOut);
+                s.stkOut = createFadeOut(s.stkObj, DLG_FADE);
+                s.stkObj = null;
+              }
+              s.activeStk = currentStk;
+              if (currentStk >= 0 && c.stickyClips) {
+                var sClip = c.stickyClips[currentStk];
+                if (sClip && sClip.filename) {
+                  var sUrl = s.el.dataset['scAud_' + sClip.filename.replace(/[^a-zA-Z0-9]/g, '_')];
+                  if (sUrl) {
+                    var sa = new Audio(sUrl);
+                    s.stkObj = createFadeIn(sa, sClip.volume || c.stickyVolume || 0.8, DLG_FADE);
+                  }
+                }
+              }
+            }
+          }
+
+          // Per-para audio (plays regardless of voiceMode)
+          if (s.inScene) {
+            var currentPara = -1;
+            for (var pi = 0; pi < s.blocks.length; pi++) {
+              var pb = s.blocks[pi];
+              var pr = pb.getBoundingClientRect();
+              var pIdx = parseInt(pb.dataset.idx || '-1', 10);
+              if (pr.top < playheadY && pr.bottom > playheadY && !pb.classList.contains('sc-block-dialogue') && pb.classList.contains('sc-block-para')) {
+                currentPara = pIdx;
+              }
+            }
+            if (currentPara !== s.activePara) {
+              if (s.paraObj && s.paraObj.el) {
+                s.paraOut = killAudio(s.paraOut);
+                s.paraOut = createFadeOut(s.paraObj, DLG_FADE);
+                s.paraObj = null;
+              }
+              s.activePara = currentPara;
+              if (currentPara >= 0 && c.paraClips) {
+                var pClip = c.paraClips[currentPara];
+                if (pClip && pClip.filename) {
+                  var pUrl = s.el.dataset['scAud_' + pClip.filename.replace(/[^a-zA-Z0-9]/g, '_')];
+                  if (pUrl) {
+                    var pa = new Audio(pUrl);
+                    s.paraObj = createFadeIn(pa, pClip.volume || c.paraVolume || 0.8, DLG_FADE);
+                  }
+                }
+              }
+            }
+          }
+        }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    })();
+  </script>
+</body>
+</html>
