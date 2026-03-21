@@ -1,0 +1,1681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EAT &#8212; Autoplay</title>
+  <base href="/EAT/" />
+  <style>
+/* EverythingEbooks — EPUB-matching base styles */
+
+html {
+  font-size: 100%;
+}
+
+body {
+  font-family: serif;
+  line-height: 1.6;
+  margin: 1em auto;
+  padding: 0 1.5rem;
+  padding-bottom: 70px;
+  text-align: left;
+  max-width: min(92%, 1400px);
+  background: #fffaf5;
+  color: #222;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Title page */
+.title-page {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.title-page p {
+  text-indent: 0;
+  text-align: center;
+}
+
+.book-title {
+  text-align: center;
+  font-size: 1.8em;
+  font-weight: bold;
+  margin: 0;
+  padding-top: 25%;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.book-subtitle {
+  text-align: center;
+  font-size: 1.1em;
+  font-style: italic;
+  margin: 0;
+  padding-top: 5%;
+}
+
+.book-author {
+  text-align: center;
+  font-size: 1.3em;
+  margin: 0;
+  padding-top: 20%;
+  font-weight: normal;
+}
+
+.book-publisher {
+  text-align: center;
+  font-size: 1em;
+  margin: 0;
+  padding-top: 20%;
+  font-weight: normal;
+}
+
+/* Copyright page */
+.copyright-page {
+  margin: 2em 0;
+}
+
+.copyright-page p {
+  text-align: left;
+  margin: 0.8em 0;
+  text-indent: 0;
+  font-size: 0.9em;
+}
+
+/* Contents page */
+.contents-page {
+  margin: 2em 0;
+}
+
+.toc-title {
+  text-align: center;
+  font-size: 1.5em;
+  margin: 2em 0;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.toc-contents {
+  margin: 1em 0;
+  padding: 0;
+}
+
+.toc-item {
+  margin: 1em 0;
+  text-align: left;
+}
+
+.toc-content {
+  margin: 0;
+  text-indent: 0;
+}
+
+.toc-content a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s;
+}
+
+.toc-content a:hover {
+  text-decoration: underline;
+}
+
+.toc-item-title {
+  display: inline;
+}
+
+.toc-section-header {
+  margin: 2em 0 0.5em 0;
+}
+
+.toc-section-title {
+  font-weight: bold;
+  font-style: italic;
+  margin: 0;
+  text-indent: 0;
+}
+
+/* Chapter styles */
+.chapter {
+  margin: 0;
+}
+
+h1 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 3em 0 2em 0;
+  text-align: center;
+}
+
+p {
+  margin: 0 0 1em 0;
+  text-indent: 1.5em;
+  text-align: justify;
+  line-height: 1.6;
+}
+
+pre {
+  margin: 1em 0;
+  text-align: left;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-x: auto;
+  font-family: monospace;
+}
+
+/* First paragraph after chapter heading */
+.chapter p:first-of-type {
+  text-indent: 0;
+  margin-top: 1.5em;
+}
+
+/* Inline images */
+.image-container {
+  text-align: center;
+  margin: 1.5em 0;
+}
+
+.image-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Figures (resized images from editor) */
+figure {
+  text-align: center;
+  margin: 1.5em auto;
+  max-width: 100%;
+}
+
+figure img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+figure[data-align="left"] {
+  margin-left: 0;
+  margin-right: auto;
+  text-align: left;
+}
+
+figure[data-align="right"] {
+  margin-left: auto;
+  margin-right: 0;
+  text-align: right;
+}
+
+figcaption {
+  font-size: 0.85em;
+  text-align: center;
+  margin-top: 0.5em;
+  font-style: italic;
+}
+
+/* Audio blocks (non-VN) */
+.audio-block {
+  text-align: center;
+  margin: 1.5em 0;
+}
+
+.audio-block audio {
+  width: 80%;
+  max-width: 400px;
+}
+
+.audio-block .caption {
+  font-size: 0.85em;
+  font-style: italic;
+  margin-top: 0.5em;
+}
+
+/* Scene overrides — no indent, left-aligned */
+.scene p {
+  text-indent: 0;
+  text-align: left;
+}
+
+/* About author page */
+.about-author-page {
+  margin: 2em 0;
+}
+
+.about-author-page h1 {
+  text-align: center;
+  font-size: 1.5em;
+  margin: 2em 0;
+  font-weight: bold;
+}
+
+.about-author-page p {
+  text-align: left;
+  text-indent: 1.5em;
+  margin: 0 0 1em 0;
+}
+
+.about-author-page p:first-of-type {
+  text-indent: 0;
+}
+
+/* Navigation styles */
+nav h1 {
+  text-align: center;
+  font-size: 1.5em;
+  margin: 2em 0;
+  font-weight: bold;
+}
+
+nav ol {
+  list-style: none;
+  margin: 1em 0;
+  padding: 0;
+}
+
+nav li {
+  margin: 1em 0;
+  text-align: left;
+}
+
+nav a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.chapter a,
+.scene a,
+.copyright-page a {
+  color: #1a6fb5;
+  text-decoration: underline;
+  text-decoration-color: rgba(26, 111, 181, 0.4);
+}
+
+.chapter a:hover,
+.scene a:hover,
+.copyright-page a:hover {
+  color: #155a94;
+  text-decoration-color: rgba(21, 90, 148, 0.8);
+}
+
+
+/* ── SceneCraft autoplay immersive styles ──── */
+.sc-scene {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  background: #060608;
+  color: #c8c0b4;
+  overflow: clip;
+}
+.sc-scene .sc-bg {
+  position: fixed;
+  inset: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+  z-index: 0;
+  pointer-events: none;
+}
+.sc-scene .sc-info {
+  display: none;
+}
+.sc-scene .sc-content {
+  max-width: min(88%, 52rem);
+  margin: 0 auto;
+  padding: 50vh 2rem;
+  font-family: Georgia, 'EB Garamond', serif;
+  font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+  line-height: 2;
+  position: relative;
+  z-index: 2;
+}
+.sc-scene .sc-dead-zone {
+  height: 50vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 2rem;
+}
+.sc-scene .sc-dead-zone span {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: #2a2620;
+  font-style: italic;
+  font-family: 'SF Mono','Fira Code',monospace;
+}
+.sc-scene .sc-enter {
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,120,68,0.25);
+  margin-bottom: 3em;
+  padding-bottom: 1em;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  font-family: 'SF Mono','Fira Code',monospace;
+}
+.sc-scene .sc-exit {
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,120,68,0.15);
+  margin-top: 3em;
+  padding-top: 1em;
+  border-top: 1px solid rgba(255,255,255,0.03);
+  font-style: italic;
+  font-family: 'SF Mono','Fira Code',monospace;
+}
+.sc-scene .sc-dead-zone-after {
+  height: 70vh;
+}
+.sc-scene .sc-block {
+  margin-bottom: 1.6em;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  position: relative;
+  z-index: 2;
+}
+.sc-scene .sc-block.sc-vis {
+  opacity: 1;
+  transform: translateY(0);
+}
+.sc-scene .sc-block.sc-past {
+  opacity: 0.3;
+}
+.sc-scene .sc-block-dialogue {
+  color: #d4c090;
+}
+.sc-scene .sc-block-dialogue .sc-speaker {
+  font-family: 'SF Mono','Fira Code',monospace;
+  font-size: 0.65em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #a08040;
+  display: block;
+  margin-bottom: 0.3em;
+}
+.sc-scene .sc-block-emphasis {
+  font-style: italic;
+  color: #e0c8b0;
+  text-align: center;
+}
+.sc-scene .sc-block-quote {
+  border-left: 2px solid rgba(200,192,180,0.3);
+  padding-left: 1.5em;
+}
+.sc-scene .sc-block-internal {
+  font-style: italic;
+  padding-left: 2em;
+}
+.sc-scene .sc-block-break {
+  text-align: center;
+  color: #3a3530;
+  letter-spacing: 0.3em;
+}
+.sc-scene .sc-block-h1 {
+  font-size: 1.8em;
+  font-weight: bold;
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #c8c0b4;
+}
+.sc-scene .sc-block-h2 {
+  font-size: 1.4em;
+  font-weight: bold;
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #c8c0b4;
+}
+.sc-scene .sc-block-h3 {
+  font-size: 1.15em;
+  font-weight: bold;
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #c8c0b4;
+}
+.sc-scene .sc-block-divider {
+  border-top: 1px solid rgba(200,192,180,0.15);
+  margin: 1.6em 0;
+}
+.sc-scene .sc-block-linebreak {
+  height: 1.2em;
+  margin: 0;
+}
+.sc-scene .sc-block-sticky {
+  display: flex;
+  gap: 1.5em;
+  align-items: flex-start;
+  min-height: 300px;
+  margin-bottom: 1.6em;
+  position: relative;
+  z-index: 2;
+}
+.sc-scene .sc-block-sticky .sc-block {
+  margin-bottom: 0;
+}
+.sc-scene .sc-block-sticky .sc-sticky-img {
+  position: sticky;
+  top: 0;
+  width: 40%;
+  flex-shrink: 0;
+}
+.sc-scene .sc-block-sticky .sc-sticky-img input[type="checkbox"] {
+  display: none;
+}
+.sc-scene .sc-block-sticky .sc-sticky-img input:checked ~ .sc-enlarge-overlay {
+  display: block !important;
+}
+.sc-scene .sc-block-sticky .sc-sticky-img img {
+  width: 100%;
+  border-radius: 4px;
+  opacity: 0.9;
+}
+.sc-scene .sc-block-sticky .sc-sticky-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding-top: 15vh;
+}
+/* ── Sticky-image enlarge: collapse stacking contexts so overlay reaches root ── */
+body:has(.sc-sticky-img input:checked) .sc-scene .sc-content {
+  z-index: auto;
+}
+body:has(.sc-sticky-img input:checked) .sc-block-sticky {
+  z-index: auto;
+}
+body:has(.sc-sticky-img input:checked) .sc-sticky-img {
+  position: static;
+}
+.sc-scene a {
+  color: #e8c078;
+  text-decoration: underline;
+  text-decoration-color: rgba(232, 192, 120, 0.4);
+}
+.sc-scene a:hover {
+  color: #f0d898;
+  text-decoration-color: rgba(240, 216, 152, 0.7);
+}
+/* ── Autoplay footer extras ──── */
+.footer-scene {
+  color: rgba(255,120,68,0.35);
+  font-family: 'SF Mono','Fira Code',monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  margin-left: 12px;
+}
+.footer-scene-label {
+  color: #777;
+}
+.footer-status {
+  font-family: "SF Mono", "Fira Code", monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: rgba(255,120,68,0.35);
+  margin-left: auto;
+  user-select: none;
+  transition: opacity 2s;
+  white-space: nowrap;
+  padding: 4px 14px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid transparent;
+}
+.footer-status.pill {
+  background: rgba(255,120,68,0.08);
+  border-color: rgba(255,120,68,0.12);
+  cursor: pointer;
+}
+
+/* ── Dark mode ─────────────────────────────── */
+
+body.dark-mode {
+  background: #121212;
+  color: #e0e0e0;
+}
+
+body.dark-mode .dialogue {
+  border-left-color: rgba(200, 200, 200, 0.25);
+}
+
+body.dark-mode .toc-content a:hover {
+  color: #ccc;
+}
+
+body.dark-mode img {
+  opacity: 0.9;
+}
+
+body.dark-mode .scene-audio {
+  border-color: rgba(200, 200, 200, 0.15);
+}
+
+body.dark-mode .chapter a,
+body.dark-mode .scene a,
+body.dark-mode .copyright-page a {
+  color: #5bb8f5;
+  text-decoration-color: rgba(91, 184, 245, 0.4);
+}
+
+body.dark-mode .chapter a:hover,
+body.dark-mode .scene a:hover,
+body.dark-mode .copyright-page a:hover {
+  color: #7dcaff;
+  text-decoration-color: rgba(125, 202, 255, 0.8);
+}
+
+/* ── Sticky Footer ─────────────────────────── */
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #1a1a1a;
+  color: #ccc;
+  padding: 12px 20px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-size: 0.9em;
+  z-index: 1000;
+}
+
+.footer-info {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.footer-title {
+  font-weight: bold;
+  color: #707070;
+}
+
+.footer-author {
+  color: #999;
+}
+
+.footer-copyright {
+  color: #777;
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.4em;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.playhead-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+}
+.playhead-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.playhead-toggle svg {
+  width: 22px;
+  height: 22px;
+  fill: #ff7844;
+  transition: opacity 0.2s;
+}
+.playhead-toggle.sc-off svg {
+  opacity: 0.35;
+}
+
+.footer-buttons {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+/* ── Responsive ────────────────────────────── */
+
+@media (max-width: 600px) {
+  body {
+    margin: 0.5em;
+    padding-bottom: 70px;
+  }
+
+  .book-title {
+    font-size: 1.5em;
+  }
+
+  h1 {
+    font-size: 1.3em;
+  }
+
+  .footer {
+    padding: 10px 15px;
+    font-size: 0.8em;
+  }
+
+  .footer-info {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+}
+  </style>
+</head>
+<body class="dark-mode">
+
+  <section class="cover-page" style="text-align:center; margin:0; padding:2em 0;">
+    <img src="images/cover.jpg" alt="Cover" style="max-width:100%; max-height:90vh; object-fit:contain;"/>
+  </section>
+
+  <section class="title-page">
+    <p class="book-title">EAT</p>
+    <p class="book-subtitle">Thinkers That Rewired My Brain</p>
+    <p class="book-author">Clee Smith</p>
+    <p class="book-publisher">Slip the Trap</p>
+  </section>
+
+  <section class="copyright-page" id="section-1">
+<section class="copyright-page" epub:type="copyright-page">
+<p></p>
+<p>Copyright © 2025 by Clee Smith</p>
+<br>
+<p>All rights reserved.</p>
+<br>
+<p>No part of this book may be reproduced in any form or by any electronic or mechanical means, including information storage and retrieval systems, without written permission from the author, except for the use of brief quotations in a book review.</p>
+<p></p>
+<br>
+<br>
+<br>
+<p></p>
+</section>
+  </section>
+
+  <div class="contents-page">
+    <h1 class="toc-title">CONTENTS</h1>
+    <div class="toc-contents">
+      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-3"><span class="toc-item-title">Introduction</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-4"><span class="toc-item-title">1. How I Got Here</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-5"><span class="toc-item-title">2. Eric Hoffer</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-6"><span class="toc-item-title">3. Alan Watts</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-7"><span class="toc-item-title">4. Terence McKenna</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-8"><span class="toc-item-title">5. What Remains</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-9"><span class="toc-item-title">Appendix</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-10"><span class="toc-item-title">Appendix: Eric Hoffer</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-11"><span class="toc-item-title">Appendix: Alan Watts</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-12"><span class="toc-item-title">Appendix: Terence McKenna</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-13"><span class="toc-item-title">Appendix: Other Thinkers</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./autoplay.html#section-14"><span class="toc-item-title">About the Author</span></a></p></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-3" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Introduction">
+    <div class="sc-bg"></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">Introduction</div>
+      <div class="sc-block sc-block-para" data-idx="0">WHY I WROTE THIS</div>
+      <div class="sc-block sc-block-para" data-idx="1">I'm writing this because I wish this book had existed decades ago.</div>
+      <div class="sc-block sc-block-para" data-idx="2">It took me decades to discover these <strong>three thinkers</strong>.</div>
+      <div class="sc-block sc-block-para" data-idx="3"><strong>Hoffer</strong> came through a single evening PBS broadcast in the late 1970s. I had to write down an address, mail a request, wait weeks for a pamphlet.</div>
+      <div class="sc-block sc-block-para" data-idx="4"><strong>Watts</strong> came through radio lectures and books I bought with my employee discount at the bookstore where I worked part-time.</div>
+      <div class="sc-block sc-block-para" data-idx="5"><strong>McKenna</strong> came through YouTube rabbit holes after I'd retired, hunting through fragments of lectures scattered across obscure channels.</div>
+      <div class="sc-block sc-block-para" data-idx="6">That's a lot of stumbling. A lot of accidents. A lot of time.</div>
+      <div class="sc-block sc-block-para" data-idx="7">If someone had handed me a book that said "here are three voices worth your attention, here's what they'll do to your thinking, here's where to find them,” I would have saved years. Not because the journey wasn't valuable, but because I could have started the real work sooner. The work of actually living with these ideas instead of just trying to locate them.</div>
+      <div class="sc-block sc-block-para" data-idx="8">This book compresses that hunt. Three thinkers who might rewire how you think, presented in the order I encountered them, with the personal stories that show these ideas working on an actual human mind: including the mistakes, the misapplications, the limitations. Then all the resources you need to go deeper: the lectures, the archives, the biographies, the documentaries.</div>
+      <div class="sc-block sc-block-para" data-idx="9">I'm not trying to write the definitive book about Hoffer, Watts, or McKenna. People with more credentials have done that. I'm trying to write the book that gets you to them faster than I got there. The shortcut. The compressed access point.</div>
+      <div class="sc-block sc-block-para" data-idx="10">If you're the person who needs these three voices right now, you shouldn't have to wait decades to find them. That's why this exists.</div>
+      <div class="sc-block sc-block-para" data-idx="11">HOW TO USE THIS BOOK</div>
+      <div class="sc-block sc-block-para" data-idx="12">This is not a literary memoir. It's a compressed guide.</div>
+      <div class="sc-block sc-block-para" data-idx="13"><em>The book has two purposes working together</em>:</div>
+      <div class="sc-block sc-block-para" data-idx="14"><strong>First</strong>, the personal material in <em>Chapters 1-5</em> shows you what happens when someone actually tries to absorb these frameworks. I spent years isolated because I internalized Hoffer's warnings about groups too deeply. I became passive because I misapplied Watts's teaching about stillness. I chased noise for years because McKenna made me curious about everything strange without teaching me discernment. Those stories are there so you can learn from my mistakes faster than I did. They're demonstrations, not the main event.</div>
+      <div class="sc-block sc-block-para" data-idx="15"><strong>Second</strong>, the <em>Acknowledgments</em> section is where the roadmap lives. That's decades of hunting compressed into pages. When you finish a chapter and want to go deeper with that thinker, flip to the back. I've listed the lectures worth watching, the biographies worth reading, the archives to explore, the entry points that actually work. You don't have to spend years stumbling across these things by accident like I did.</div>
+      <div class="sc-block sc-block-para" data-idx="16"><em>Here's how to approach it</em>:</div>
+      <div class="sc-block sc-block-para" data-idx="17">Read <em>Chapter 1</em> to understand the setup: what made me receptive to these voices, what I was looking for even when I didn't know I was looking.</div>
+      <div class="sc-block sc-block-para" data-idx="18">Read <em>Chapters 2-4</em> in order. They build on each other. Hoffer teaches wariness. Watts teaches letting go. McKenna teaches following the strange. Each one corrects and complicates what came before.</div>
+      <div class="sc-block sc-block-para" data-idx="19">Pay attention to the limitations I found in each framework. Those matter as much as the insights. If you only take the insights without seeing the traps, you'll make the same mistakes I did.</div>
+      <div class="sc-block sc-block-para" data-idx="20">Read <em>Chapter 5</em> to see what remains after decades of integration. Three voices arguing in my head, asking different questions, pulling in different directions. That's how these ideas actually work over time: not as a unified system but as competing frameworks you have to balance.</div>
+      <div class="sc-block sc-block-para" data-idx="21">Use the <em>Acknowledgments</em> section as your jumping-off point. Pick the thinker who grabbed you most and start there. The resources are organized so you can find your entry point quickly. Don't try to consume everything at once. Pick one talk, one book, one documentary. Start there.</div>
+      <div class="sc-block sc-block-para" data-idx="22">The "<em>Other Thinkers</em>" section at the end is optional. Those are breadcrumbs if you want to explore further. They're not essential to understanding Hoffer, Watts, and McKenna, but they're worth considering once you've spent time with the main three.</div>
+      <div class="sc-block sc-block-para" data-idx="23"><em>What this book is not</em>:</div>
+      <div class="sc-block sc-block-para" data-idx="24">This is not comprehensive. I'm not trying to cover everything these three thinkers said or wrote. I'm giving you the ideas that stuck hardest and did the most work on my thinking, plus the resources to explore the rest yourself.</div>
+      <div class="sc-block sc-block-para" data-idx="25">This is not academic. There are scholarly treatments of all three thinkers if that's what you're looking for. This is personal. One person's account of encounter and absorption across decades.</div>
+      <div class="sc-block sc-block-para" data-idx="26">This is not trying to convince you these are the three thinkers you need. Maybe they are, maybe they aren't. Maybe you need one of them and not the others. Maybe you'll read this and realize you need completely different voices. That's fine. The book works if it helps you figure out what you're actually looking for.</div>
+      <div class="sc-block sc-block-para" data-idx="27"><em>What this book is</em>:</div>
+      <div class="sc-block sc-block-para" data-idx="28">A shortcut. A compressed access point. The book I wish someone had handed me when I was in my early twenties, channel surfing late at night, browsing mall bookstores and libraries, accidentally stumbling onto something that cracked my certainty and left me looking for frameworks that could hold what didn't fit.</div>
+      <div class="sc-block sc-block-para" data-idx="29">Use it that way. Read the personal stuff to see how ideas work on a real mind. Use the <em>Acknowledgments</em> to find your next step. Then go do your own work with these voices. This book is a jumping-off point, not a destination.</div>
+      <div class="sc-block sc-block-para" data-idx="30">If you're the person who needs this shortcut at exactly this moment in your life, welcome. This is for you. <strong>Start reading</strong>.</div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-4" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="1. How I Got Here">
+    <div class="sc-bg"></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">1. How I Got Here</div>
+      <div class="sc-block sc-block-para" data-idx="0">I wasn't seeking any thinkers. No quest. No crisis. Just living and stumbling into things.</div>
+      <div class="sc-block sc-block-para" data-idx="1">My parents raised me from birth to ten. It was unpleasant. From eleven to eighteen I lived with my Cherokee grandmother. It was pleasant and interesting. She read tarot for people—not for show, but the way others read the weather.</div>
+      <div class="sc-block sc-block-para" data-idx="2">Age twelve, I watched her at the big walnut trestle dining table someone made for us. She turned all seventy-eight cards face down and mixed them with both hands until they covered the table like leaves. She paused, listening more than looking. Then she began to pull cards one at a time, wherever her hand stopped. Granny didn't do spreads; she went by gut. The air changed when she spoke. People sat up straighter. Sometimes they cried. I didn't understand it then. I only knew I was seeing another way to make sense of a life.</div>
+      <div class="sc-block sc-block-para" data-idx="3">What I see now: Granny was showing me that pattern and meaning are not the same as truth. The cards were a language, not a fact. She listened to people—really listened—then gave them back their own confusion shaped into something they could hold. It wasn't prediction. It was translation.</div>
+      <div class="sc-block sc-block-para" data-idx="4">That's what I was watching for later with Hoffer, Watts, McKenna. Not truth. Translation. Someone taking the confusion and shaping it into something I could hold. Granny had trained me to recognize when a voice was doing that work. I didn't know it then. I thought I was just watching cards.</div>
+      <div class="sc-block sc-block-para" data-idx="5">Sports filled those years. Outdoor living—Granny was outside more than inside, closer to seasons, weather, and physical presence in the world.</div>
+      <div class="sc-block sc-block-para" data-idx="6">College widened the map. Eighteen to twenty-one, pre-med. I absorbed math, biology, chemistry. I kept slipping in other courses: Baroque music. Drama. Archaeology. Anthropology. Not required. Just curious.</div>
+      <div class="sc-block sc-block-para" data-idx="7">Anthropology hooked me—cultures, languages, how people solve the same problems in completely different ways, each sure they're right, each making it work.</div>
+      <div class="sc-block sc-block-para" data-idx="8">Then I read S.I. Hayakawa's <em>Language in Thought and Action</em>. One line stopped me cold: "the word is not the thing." The map is not the territory. Everything in chemistry was description, not the stuff itself—models, names, reactions. Useful lies.</div>
+      <div class="sc-block sc-block-para" data-idx="9">Something else happened around then, too. Something paranormal: My roommate and I both had an encounter we still can't explain or fully remember. We were sober. We tried to explain it with science and couldn't. The experience left gaps I can't fill.</div>
+      <div class="sc-block sc-block-para" data-idx="10">What made me receptive to these three voices later? Maybe not a mystery. Maybe just this: I had been taught that one way of knowing was The Way. Chemistry. Models. Formulas. The scientific method. Then the map showed its seams. The word admitted it wasn't the thing. And something we both witnessed couldn't be explained by any of it.</div>
+      <div class="sc-block sc-block-para" data-idx="11">That's not receptivity. That's the collapse of certainty. I wasn't opened. I was cracked.</div>
+      <div class="sc-block sc-block-para" data-idx="12">Why these three—Eric Hoffer, Alan Watts, Terence McKenna? Luck of the draw. Each said something at exactly the moment I met them—a string of words that clicked and lodged. Thorns of truth. Why this order? Because it's the order I encountered them.</div>
+      <div class="sc-block sc-block-para" data-idx="13">Why mediums—TV, audio, video? Partly the march of technology, partly the way each medium shaped my reception. TV felt intimate. Audio seduced. Video let me hunt and gather.</div>
+      <div class="sc-block sc-block-para" data-idx="14">This isn't an instruction manual. It's three voices I can't forget and what they did to the cracks.</div>
+      <div class="sc-block sc-block-para" data-idx="15">First came Hoffer—on television. But before him, there was Granny at the walnut table, listening more than looking. I didn't know then that I was learning how to receive a voice. I thought I was just watching cards.</div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-5" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="2. Eric Hoffer">
+    <div class="sc-bg"></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">2. Eric Hoffer</div>
+      <div class="sc-block sc-block-para" data-idx="0">The first thinker and translator appeared on a TV studio set with two chairs.</div>
+      <div class="sc-block sc-block-para" data-idx="1">Louisiana. Late 1970s, early 1980s. Middle twenties. Married with a young child. Flying jets at odd hours, fixing a constantly broken Triumph Spitfire, living in bayou country where the cockroaches flew and the humidity never quit. Degree in Computer Science. Master's in Mathematics. Both paid for by the GI Bill while in the service.</div>
+      <div class="sc-block sc-block-para" data-idx="2">The rhythm was: jets, cockroaches, carburetors, diapers. You fix what breaks. You fly when they tell you. You show up.</div>
+      <div class="sc-block sc-block-para" data-idx="3">I didn't have much time to sit with books. But I could watch television late at night while changing diapers. Channel surfing through noise. Syndicated shows. Sitcoms. News.</div>
+      <div class="sc-block sc-block-para" data-idx="4">Then I landed on Louisiana Public Broadcasting.</div>
+      <div class="sc-block sc-block-para" data-idx="5">A plain set. Two chairs. One man asking questions. Another man answering. No graphics. No music. No studio audience.</div>
+      <div class="sc-block sc-block-para" data-idx="6">The man answering was Eric Hoffer.</div>
+      <div class="sc-block sc-block-para" data-idx="7">What struck me first wasn't what he said but how he looked and sounded.  Rough. Old-school. Not soft-spoken. He wore work clothes. He sat like someone who had spent years on docks, in fields. His hands looked used. No polish. No performance. No trying to sound like a philosopher.</div>
+      <div class="sc-block sc-block-para" data-idx="8">He talked about crowds. About mass movements. About people who join things to escape themselves. The dignity of work. Keeping your own shape when everyone around you is trying to dissolve into a group.</div>
+      <div class="sc-block sc-block-para" data-idx="9">His words were plain. Direct. No academic language. No hedging. He said what he thought and moved on.</div>
+      <div class="sc-block sc-block-para" data-idx="10">Television made this possible. I could see him. Hear him. He looked like someone who might work on the base, not someone I'd need to become in order to understand him. That's what TV gave me—his presence, not just his ideas.</div>
+      <div class="sc-block sc-block-para" data-idx="11">I stopped channel surfing. I watched. I listened. I was wide awake, changing a diaper.</div>
+      <div class="sc-block sc-block-para" data-idx="12">At the end, an address appeared on screen. You could write to request materials. I wrote it down. Mailed a request.</div>
+      <div class="sc-block" data-idx="13" style="text-align:left"><img src="images/003.jpg" alt="The pamphlet of the Eric Hoffer interview on PBS." style="max-width:498px;border-radius:4px;opacity:0.9;display:block"/>
+          <span style="font-family:'SF Mono',monospace;font-size:0.55em;color:#5a554e;letter-spacing:0.06em;margin-top:0.4em;display:block">The pamphlet of the Eric Hoffer interview on PBS.</span></div>
+      <div class="sc-block sc-block-para" data-idx="14">When the pamphlet arrived weeks later, it was a transcript of the interview  with some of his aphorisms. Each one landed like a hammer tap.</div>
+      <div class="sc-block sc-block-para" data-idx="15">The central task of education is to implant a will and a facility for learning; it should produce not learned but learning people. The truly human society is a learning society, where grandparents, parents, and children are students together.In a time of drastic change it is the learners who inherit the future. The learned usually find themselves equipped to live in a world that no longer exists.</div>
+      <div class="sc-block sc-block-para" data-idx="16">They who lack talent expect things to happen without effort. They ascribe failure to a lack of inspiration or ability, or to misfortune, rather than to insufficient application. At the core of every true talent there is an awareness of the difficulties inherent in any achievement, and the confidence that by persistence and patience something worthwhile will be realized. Thus talent is a species of vigor.</div>
+      <div class="sc-block sc-block-para" data-idx="17">I read it cover to cover. Then again. These weren't abstract philosophical ideas. They were observations from someone who had watched people closely and written down what he saw.</div>
+      <div class="sc-block sc-block-para" data-idx="18">I thought of Granny.</div>
+      <div class="sc-block sc-block-para" data-idx="19">She had done the same thing—watched people, listened, found patterns, compressed what she saw into something you could hold. Hoffer's aphorisms worked like Granny's cards. They weren't predictions or commands. They were frameworks. Ways to see what was already there but hard to name.</div>
+      <div class="sc-block sc-block-para" data-idx="20">The difference: Granny used seventy-eight images. Hoffer used sentences. But both were translating human confusion into pattern, giving you a way to carry something you couldn't articulate yourself.</div>
+      <div class="sc-block sc-block-para" data-idx="21">That's why the pamphlet stuck. It reminded me I already knew how to receive this kind of voice.</div>
+      <div class="sc-block sc-block-para" data-idx="22">What Hoffer Translated</div>
+      <div class="sc-block sc-block-para" data-idx="23">Three aphorisms lodged deepest:</div>
+      <div class="sc-block sc-block-para" data-idx="24">"The true believer is everywhere on the march."</div>
+      <div class="sc-block sc-block-para" data-idx="25">This one hit during my military years. I watched people join things—not just the service, though that was part of it. Causes. Movements. Religions. Political parties. I watched them surrender uncertainty for the comfort of belonging to something bigger. Hoffer was showing me that the need to belong could override the need to think—that people would rather be part of a wrong answer than stand alone with no answer at all.</div>
+      <div class="sc-block sc-block-para" data-idx="26">"We join a mass movement to escape individual responsibility."</div>
+      <div class="sc-block sc-block-para" data-idx="27">The base operations office. Summer of 1982. Thursday afternoon. Six of us in the commander's office—gray metal furniture, fluorescent lights humming overhead, the smell of burnt coffee from the pot that had been sitting too long.</div>
+      <div class="sc-block sc-block-para" data-idx="28">The commander had copies of the complaint laid out on his desk. Three pages detailing problems with maintenance scheduling, parts procurement delays, documentation requirements that made no sense. He wasn't wrong about any of it. The system was broken. We all knew it.</div>
+      <div class="sc-block sc-block-para" data-idx="29">But the energy in that room felt wrong.</div>
+      <div class="sc-block sc-block-para" data-idx="30">Everyone was feeding off each other's certainty. Voices overlapping. Agreeing. Building momentum. Someone would name a problem and three others would pile on with their own examples. The air was charged with the electricity of a group deciding its right.</div>
+      <div class="sc-block sc-block-para" data-idx="31">He slid the complaint across to me. "You're good with words. Look this over. Sign if you agree."</div>
+      <div class="sc-block sc-block-para" data-idx="32">I picked it up. Read it. Everything in it was factual. Every complaint legitimate.</div>
+      <div class="sc-block sc-block-para" data-idx="33">But I found myself watching the room more than reading. The way people were leaning forward. The way they kept looking at each other for confirmation. The way the conversation had shifted from what was wrong to who was to blame and what we deserved for putting up with it.</div>
+      <div class="sc-block sc-block-para" data-idx="34">I thought about Hoffer. That line about escaping individual responsibility.</div>
+      <div class="sc-block sc-block-para" data-idx="35">I put the paper down. "Let me think about it."</div>
+      <div class="sc-block sc-block-para" data-idx="36">The room got quiet. His expression didn't change, but something shifted in how he looked at me.</div>
+      <div class="sc-block sc-block-para" data-idx="37">"What's there to think about?" someone said. "Either you agree with the facts or you don't."</div>
+      <div class="sc-block sc-block-para" data-idx="38">That was the trick, wasn't it? The facts were right. But signing wasn't about facts. It was about joining. About letting the group's voice replace my own. About sharing the weight of judgment so no single person had to carry it.</div>
+      <div class="sc-block sc-block-para" data-idx="39">"I agree with the problems," I said. "I need to think about the solution."</div>
+      <div class="sc-block sc-block-para" data-idx="40">I didn't sign. Told them later, one-on-one, that I'd raise the issues through my own chain of command. Which I did. Got nowhere with it. But I did it myself.</div>
+      <div class="sc-block sc-block-para" data-idx="41">The group moved forward without me. Filed the complaint. Nothing came of it anyway. Command acknowledged receipt and changed nothing.</div>
+      <div class="sc-block sc-block-para" data-idx="42">Friendships cooled after that. Not openly hostile, but distant. I'd failed the test. I'd proven I wasn't quite one of them. For months, I ate lunch alone more often than not.</div>
+      <div class="sc-block sc-block-para" data-idx="43">Was that the right call? I still don't know. The problems they complained about were real. Maybe if I'd added my name, if one more signature had pushed it over some invisible threshold, something would have changed.</div>
+      <div class="sc-block sc-block-para" data-idx="44">But Hoffer's voice made me ask the question that mattered: was I signing this because I believed it was the right move, or because I was tired of standing apart? Was I thinking or was I joining?</div>
+      <div class="sc-block sc-block-para" data-idx="45">I couldn't tell the difference that day. So I stayed separate.</div>
+      <div class="sc-block sc-block-para" data-idx="46">That was the translation—turning a vague unease into a choice I could examine. Not telling me what to choose, but making me aware I was choosing at all.</div>
+      <div class="sc-block sc-block-para" data-idx="47">"Those who lack the capacity to achieve much in an atmosphere of freedom will clamor for power."</div>
+      <div class="sc-block sc-block-para" data-idx="48">This one stayed in my gut for decades. People who couldn't build anything themselves demanding control over what others built. People who couldn't create demanding the right to destroy. The resentful reaching for levers of power to compensate for what they couldn't accomplish through effort.</div>
+      <div class="sc-block sc-block-para" data-idx="49">I kept seeing it. Kept recognizing the pattern.</div>
+      <div class="sc-block sc-block-para" data-idx="50">What Hoffer Did</div>
+      <div class="sc-block sc-block-para" data-idx="51">He made me suspicious of my own need to belong. Made me check every impulse to join, to agree, to merge with a group. Made me ask: am I doing this freely or am I escaping something?</div>
+      <div class="sc-block sc-block-para" data-idx="52">The downside came later. I realized I had internalized his wariness so deeply that I was refusing every invitation, every collaboration, every chance to be part of something larger than myself. His thinking kept me independent but isolated. I spent years keeping my own shape by staying separate, convinced that any joining was a kind of surrender.</div>
+      <div class="sc-block sc-block-para" data-idx="53">What I needed and didn't get from Hoffer: when joining is the right move. When the crowd isn't a mob but a community. When surrendering some independence buys you something worth having.</div>
+      <div class="sc-block sc-block-para" data-idx="54">His framework protected me. It also walled me off. You can't build anything with others if you refuse every offer to work together.</div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-6" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="3. Alan Watts">
+    <div class="sc-bg"></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">3. Alan Watts</div>
+      <div class="sc-block sc-block-para" data-idx="0">The second thinker arrived through headphones.</div>
+      <div class="sc-block sc-block-para" data-idx="1">Years had passed. I was out of the military. Government programmer—I would do that work for twenty years. Every language the projects needed: Pascal, C, COBOL, Fortran, Assembly. Code during the day. More code at night when I couldn't sleep.</div>
+      <div class="sc-block sc-block-para" data-idx="2">I picked up part-time work at a bookstore. Not for money. For the employee discount on books and records.  For the interesting coworkers who pointed me toward things I wouldn't have found alone.</div>
+      <div class="sc-block sc-block-para" data-idx="3">The discount on music led to audiophile interests. Equipment piling up. Records stacking up. Good headphones mattered.</div>
+      <div class="sc-block sc-block-para" data-idx="4">I found Alan Watts first as a single quote in a programming book: "Muddy water is best cleared by leaving it alone." One line buried in a technical manual about Pascal programming. It stopped me cold. I looked him up.</div>
+      <div class="sc-block sc-block-para" data-idx="5">Found his lectures on the radio. Then his books at the store.</div>
+      <div class="sc-block sc-block-para" data-idx="6">When I first heard him speak, he came across as academic. Preachy. Sometimes rude to his live audience. He did not like being interrupted with questions. He'd already worked through the ideas before stepping up to lecture.</div>
+      <div class="sc-block sc-block-para" data-idx="7">His voice had that peculiar British accent softened by years in California. But what grabbed me wasn't the accent. It was his clarity. The way he translated Japanese Zen for Americans. Eastern and Western ideas blended without feeling forced.</div>
+      <div class="sc-block sc-block-para" data-idx="8">And he had this way of laughing right before a truth landed. The laugh loosened you up. Prepared you. Made the idea easier to absorb.</div>
+      <div class="sc-block sc-block-para" data-idx="9">Audio let me hear the thinking happening. His timing. His pauses. The laugh that signaled something important was coming. Reading wouldn't have given me that. I could listen while coding, while driving, while lying awake at three in the morning trying to stop my brain from chewing on work problems. His voice became the soundtrack to my insomnia.</div>
+      <div class="sc-block sc-block-para" data-idx="10">I kept listening. Kept reading. Kept going back.</div>
+      <div class="sc-block sc-block-para" data-idx="11">Watts was different from Hoffer. Light where Hoffer was heavy. Fluid where Hoffer was solid. Where Hoffer warned you to stay separate, Watts told you to stop trying so hard to hold yourself together.</div>
+      <div class="sc-block sc-block-para" data-idx="12">What Watts Translated</div>
+      <div class="sc-block sc-block-para" data-idx="13">Three ideas lodged deepest:</div>
+      <div class="sc-block sc-block-para" data-idx="14">"Muddy water is best cleared by leaving it alone."</div>
+      <div class="sc-block sc-block-para" data-idx="15">I was in a particularly anxious period. Programming deadline. System integration problems. The more I forced solutions, the worse the bugs became. I'd lie awake running code in my head, trying to think my way through it. The harder I worked to clarify my mind, the muddier it got.</div>
+      <div class="sc-block sc-block-para" data-idx="16">Watts was saying something radical: that the act of trying to fix yourself might be the very thing keeping you broken. That stillness, not effort, allows settling. I had spent years believing motion equaled progress: constantly stirring the water.</div>
+      <div class="sc-block sc-block-para" data-idx="17">I tried it. Stopped chasing the bug for three days. Let it sit. When I came back, the solution was obvious. The mud had settled. What remained was clearer than anything I'd achieved through effort.</div>
+      <div class="sc-block sc-block-para" data-idx="18">That's when I thought of Granny. She paused before pulling cards. Listened more than looked. Didn't force. She let the pattern show itself. Watts was teaching me the same thing she had shown me years before: sometimes the work is to stop working.</div>
+      <div class="sc-block sc-block-para" data-idx="19">"You are under no obligation to be the same person you were five minutes ago."</div>
+      <div class="sc-block sc-block-para" data-idx="20">Five minutes. Not five years. Not five days. Five minutes.</div>
+      <div class="sc-block sc-block-para" data-idx="21">This demolished my understanding of consistency. I had been carrying around a self-concept like a heavy suitcase. Defending it. Explaining it. Maintaining it. Watts was suggesting I could simply set it down.</div>
+      <div class="sc-block sc-block-para" data-idx="22">I tested this. Small things at first. Changing my mind mid-conversation without needing to justify it. Admitting I was wrong about something I'd defended an hour earlier. Letting go of opinions I'd held for years just because they no longer fit.</div>
+      <div class="sc-block sc-block-para" data-idx="23">It felt like learning to travel light.</div>
+      <div class="sc-block sc-block-para" data-idx="24">"The meaning of life is just to be alive."</div>
+      <div class="sc-block sc-block-para" data-idx="25">When I first heard this, I thought it was too simple. Life had to mean something more. Something grander. Something I could point to and say, "There—that is why I am here."</div>
+      <div class="sc-block sc-block-para" data-idx="26">But the more I sat with it, the more I realized how much energy I had spent searching for meaning outside of the only thing that was certainly true: I was alive. Right now. The search itself had become a way to avoid the staggering fact of existence.</div>
+      <div class="sc-block sc-block-para" data-idx="27">Watts didn't give me answers. He showed me that the questions themselves were part of the problem. Not because questions are bad, but because I had been asking them in a way that assumed I was separate from what I sought.</div>
+      <div class="sc-block sc-block-para" data-idx="28">Like a fish asking where to find water. Like an eye looking for vision.</div>
+      <div class="sc-block sc-block-para" data-idx="29">It felt like his words opened a gate that had been open all along. I was the obstruction. Standing in my own way. Not because I was broken or flawed, but because I had been so busy trying to find the entrance that I hadn't noticed I was already inside.</div>
+      <div class="sc-block sc-block-divider" data-idx="30"></div>
+      <div class="sc-block sc-block-para" data-idx="31">I kept returning to one lecture in particular. It's now a widely viewed video on YouTube called "Magic," set to music:</div>
+      <div class="sc-block sc-block-para" data-idx="32">When you are in the state that I'm talking about, what from the former point of view would have appeared to be nothing more than ordinary everyday life, is suddenly seen to be a magical process, absolutely weird. So that you can see that you might be just rubbing around in some ash. It becomes perfectly obvious, that's the whole point of the universe. Incredible, I mean it's all there. Infinity in a grain of sand, and everything, that's it.</div>
+      <div class="sc-block sc-block-para" data-idx="33">And you look at other people rushing around, and people going about their business every day, serious, "I got to get there, I got to make this thing." They're quite mad. You feel sorry for them. You don't feel angry at them, but they're quite mad. They don't realize that now is it. That's where it's all going as well as where it all comes from. The Alpha and the Omega is not... the whole surround of us is completely magical.</div>
+      <div class="sc-block sc-block-para" data-idx="34">Now, of course, we become aware that imaginative people are conscious of this. Imaginative people show their consciousness of it by the way they act, by their taste in whatever they surround themselves with. You begin to notice that there are some certain people with whom you either have great accord or great fear because they're not ordinary. Because they have an atmosphere of magic. They have imagination, and they're not hiding under an attempt to conform to the ideal of being ordinary.</div>
+      <div class="sc-block sc-block-para" data-idx="35">And the artistic people are here, there are also people you can call relaxed people, relaxed society. There's a very wonderful class of people. They're not on edge, you know, there are some people are edgy all the time and you feel that your very presence around their place is a mess. But relaxed people have what in Arabic is called "Baraka." It means divine grace, but it also means the quality of an old frying pan that has had long years of use and is just perfect. That's Baraka. And there are people like that too, you see. And all these are the great spontaneous virtues that cannot be contrived, because this thing can only come in the process of growth.</div>
+      <div class="sc-block sc-block-para" data-idx="36">So you say, "Well, do I have to wait?" But the whole thing is in the waiting. I don't mean the virtue of patience, I mean waiting when there is nothing to do but wait. And when you see there is nothing to do but wait, then it happens. But it won't be hurried, because the minute you're trying to hurry it, that introduces the one thing that stops it. The miracle, the magic thing, is happening all the time. But you can't see it when you're trying to get it, and you can still less see it when you're trying to get it fast.</div>
+      <div class="sc-block sc-block-para" data-idx="37">So there is no alternative but to go through the point of, "You can't get it at all. You are going to be, be you, the same slob you've always been." See, you can't change it, and all your good resolutions are just bombast. Then you start to be real.</div>
+      <div class="sc-block sc-block-para" data-idx="38">So just as in traveling, or in ordinary relations with your friends every day, these gorgeous things happen of themselves. Those are the true pleasures. So at the level of mystical experience, the most astounding insights, you know, where you can go into the deep, most trivial everyday affairs, as containing the entire secret of the universe. Any point becomes the takeoff point, because there's a principle in operation which the Japanese called "Jiji Muge," everything event implies all the others. And here in this way, you begin to see that that is actually so.</div>
+      <div class="sc-block sc-block-para" data-idx="39">Because you see, there are no separate things. It's all a single unified process, no longer divided into the voluntary and the involuntary, the "I" and the "you," or the "I" and the "it." Because it is the big happening which is neither voluntary nor involuntary, which is neither free nor determined. All these are mere ideas about it. And about... you've abandoned all that. You've abandoned philosophy totally. Because you see, it's just a net designed for catching water.</div>
+      <div class="sc-block sc-block-para" data-idx="40">And when all that's gone, and that whole attempt to clutch life, to capture the pleasure has disintegrated, there it is. And you needn't feel anxious about, "Will it stay?" It's a gorgeous thing to feel you no longer got to worry whether it will stick around. Because you know that if you do worry, you'll shoo it away. So, it's a tremendous relief, you see, not to have to bother with, "Will it stick around? Will I lose my insight? Will my satori take wing and go off with the bats?" You need to forget it. Because the more you let go of it, the more it stays. And you don't even have to worry about, "Will you be sure to let go of it?" 'Cause that too is a hangup.</div>
+      <div class="sc-block sc-block-para" data-idx="41">And you can begin, you see, from your very weakness. That's your strength. It's not your big ego and your big will that is the strong thing here. It's your slobbiness, it's your weakness, it's your foolish side that is your strong suit here. See, Yoka Daishi (Yongjia Xuanjue) puts it in this way: "You cannot take hold of it. You cannot get rid of it. In not being able to get it, you get it. When you are silent, it speaks. When you speak, it is silent.” The great gate is wide open and nobody obstructing it.</div>
+      <div class="sc-block sc-block-para" data-idx="42">I’ve watched and listened to this one thousands of times.</div>
+      <div class="sc-block sc-block-para" data-idx="43">What Watts Did</div>
+      <div class="sc-block sc-block-para" data-idx="44">His approach calmed me. Taught me to let things settle. To stop forcing. To relax into problems instead of attacking them.</div>
+      <div class="sc-block sc-block-para" data-idx="45">The downside came later. I realized stillness had become my default response to everything. Even when action was required.</div>
+      <div class="sc-block sc-block-para" data-idx="46">There was a situation at work in the mid-'90s. Management decision that would gut a project I'd spent two years building. I disagreed. Had good reasons. Could have fought it. Should have.</div>
+      <div class="sc-block sc-block-para" data-idx="47">But I thought of Watts. Muddy water. Let it settle. Don't stir. I stayed quiet. Watched it happen. Convinced myself I was being wise, being Zen, letting the river flow.</div>
+      <div class="sc-block sc-block-para" data-idx="48">The project died. My silence had looked like agreement.</div>
+      <div class="sc-block sc-block-para" data-idx="49">That's what Watts didn't teach me: when to grab a bucket. When the house is flooding and stillness is just paralysis dressed up as wisdom. When doing nothing is not peace but abdication.</div>
+      <div class="sc-block sc-block-para" data-idx="50">His voice taught me to stop chasing. But I forgot that sometimes you have to chase. Sometimes the bug won't fix itself. Sometimes muddy water stays muddy until you do something about it.</div>
+      <div class="sc-block sc-block-para" data-idx="51">Stillness has its limits. So does letting go.</div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-7" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="4. Terence McKenna">
+    <div class="sc-bg"></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">4. Terence McKenna</div>
+      <div class="sc-block sc-block-para" data-idx="0">The third thinker arrived through a computer screen, decades later. By the early 2010s, I was retired from government work. The kids had grown up and left home. The house was quiet in a way it hadn't been for decades. Empty nester—that's what they call it, though the term always felt too small for what it actually was. A whole structure of life dismantled. The routines. The noise. The constant awareness of other people's needs.</div>
+      <div class="sc-block sc-block-para" data-idx="1">I'd stopped running marathons a few years earlier. My left knee had made that decision for me, though part of me was relieved to stop. I'd been focused on the physical body for so long—tracking miles, monitoring pace, pushing through pain. It had become another form of work. I was learning to enjoy walking again. Hiking. Camping. Things I'd done when I was younger but had abandoned for the harder edge of competitive distance running. There was something about moving slowly through woods that felt like remembering something I'd forgotten.</div>
+      <div class="sc-block sc-block-para" data-idx="2">I was tired of computer programming. Decades of it. The logic, the syntax, the endless troubleshooting. It had paid the bills. Kept me employed. But I'd hit a point where I couldn't care anymore about making one piece of code talk to another piece of code. The problems felt small. Mechanical. I was reading more than I ever had—not technical manuals or programming books, but everything else. History. Philosophy. Biography. Things that weren't trying to teach me how to solve a problem but were instead just exploring what it meant to be human.</div>
+      <div class="sc-block sc-block-para" data-idx="3">The internet had gotten fast enough that video streaming was practical. You could watch anything. Archive footage. Rare lectures. You could watch things that used to require hunting through bookstores or mailing for cassette tapes. I'd gone back to tarot—Granny's old Rider-Waite-Smith deck in its yellow box. But I discovered other decks—different art, different interpretations. I started collecting, then launched a small YouTube channel showing the decks and talking about their symbolism. Tiny audience. Mostly alone in that dim corner of the internet.</div>
+      <div class="sc-block sc-block-para" data-idx="4">Someone left a comment: "<em>You might like this guy</em>." They linked to a Terence McKenna lecture video. No context. Just the link. I'd never heard of him. I clicked.</div>
+      <div class="sc-block sc-block-para" data-idx="5">He was talking about alchemy as a psychological process—symbol systems, how paying attention to images changes consciousness, how transformation happens through metaphor, not chemistry. How paying attention to images changes consciousness. How transformation happens through metaphor, not chemistry.</div>
+      <div class="sc-block sc-block-para" data-idx="6">Tarot is its own symbol system. Granny had sometimes worked that way—watching symbols shift meaning depending on who was looking at them and how they reacted. McKenna was connecting dots I hadn't known could connect. Tarot, alchemy, consciousness, language, myth. All one system.</div>
+      <div class="sc-block sc-block-para" data-idx="7">His voice hit me immediately. Fast. Articulate. Dense with ideas. He'd start a sentence, spiral through three nested thoughts—pulling in ethnobotany, then philosophy, then science fiction—and land back on the original point with precision. Verbal jazz. You could hear him thinking in real time. A live wire.</div>
+      <div class="sc-block sc-block-para" data-idx="8">And he was performing. Not reading. Not lecturing in the academic sense. Riffing. Playing with the audience. Someone would ask a question and he'd take it apart, rebuild it, hand it back transformed.</div>
+      <div class="sc-block sc-block-para" data-idx="9">I started watching more. Then I couldn't stop.</div>
+      <div class="sc-block sc-block-para" data-idx="10">Video let me hunt and gather in ways the old days of Hoffer and Watts never allowed. Hoffer was a single broadcast, then a pamphlet. Watts was radio, then books, then audio collections. But McKenna was scattered across the internet in fragments. Esalen talks. Shared Vision conferences. Workshops from the 1980s. Rare recordings someone had uploaded to obscure channels. Talks I'd never have encountered without deliberate searching.</div>
+      <div class="sc-block sc-block-para" data-idx="11">I watched everything YouTube had. Then I found paid audio archives. Downloaded them. Listened when I could, mostly late at night when I couldn't sleep.</div>
+      <div class="sc-block sc-block-para" data-idx="12">Video gave me something audio didn't: I could see him build the ideas. Watch his hands move. See him look up when he reached for the right word. The pauses. The way he'd grin before saying something outrageous. The performance wasn't separate from the thinking. It was part of how the ideas worked.</div>
+      <div class="sc-block sc-block-para" data-idx="13">McKenna had died in 2000. But the recordings were alive. I could watch him anytime. Rewind when I missed something. Follow tangents. Compare how he'd approach the same idea in different talks years apart.</div>
+      <div class="sc-block sc-block-para" data-idx="14">I went deep. Obsessively deep. The hunt itself became part of the education. Finding a rare talk felt like discovering a new card in Granny's old deck. Each recording added another piece to a larger pattern I was assembling without quite knowing what the final image would be. I'd watch a talk from 1987, then find one from 1994 where he revisited the same idea but had refined it, twisted it, taken it somewhere stranger. The evolution was visible. He was thinking in public across decades, and I could trace the arc.</div>
+      <div class="sc-block sc-block-para" data-idx="15">This was what video and the internet together made possible. Not just access to the ideas, but access to the process. The way thoughts changed over time. The jokes that landed differently depending on the audience. The moments where he'd catch himself and say, "No, that's not quite right," and rebuild the point from scratch.</div>
+      <div class="sc-block sc-block-para" data-idx="16">I kept hunting. Kept watching. Kept gathering.</div>
+      <div class="sc-block sc-block-para" data-idx="17">And I need to say this clearly: McKenna was famous for advocating psychedelics. DMT. Psilocybin. That whole territory. That wasn't what grabbed me. I wasn't interested in the trip reports or the mushroom evangelism. What drew me in was his epistemology—his ideas about how we know what we know. How culture shapes what you're allowed to think. How language creates the boundaries of your reality. The psychedelics were his method. The ideas were what I came for.</div>
+      <div class="sc-block sc-block-para" data-idx="18">McKenna was unlike the other two. Where Hoffer was solid and Watts was fluid, McKenna was electric. Unpredictable. Strange in his thinking.</div>
+      <div class="sc-block sc-block-para" data-idx="19">The following ideas lodged deepest:</div>
+      <div class="sc-block sc-block-para" data-idx="20">"<strong>Culture is not your friend</strong>."</div>
+      <div class="sc-block sc-block-para" data-idx="21">This one landed harder than anything else he said. I'd spent decades inside institutions. Military. Government. Large systems with their own logic, their own assumptions about what mattered and what didn't. McKenna said the water you swim in is not neutral. Culture wants you to fit. To consume. To not ask certain questions. If you're perfectly comfortable, you're not paying attention. I started seeing it everywhere. I started seeing it everywhere—the things I'd taken as normal because everyone around me treated them as normal. The ideas I'd never questioned because questioning them would make me strange. Granny had lived outside that. Read cards. Stayed close to weather and seasons. Didn't care what was normal. McKenna gave me language for what she'd been doing: refusing the script.</div>
+      <div class="sc-block sc-block-para" data-idx="22">"<strong>The cost of sanity in this society is a certain level of alienation</strong>."</div>
+      <div class="sc-block sc-block-para" data-idx="23">I'd spent years trying to fit, explaining my interests in ways that made sense to people who would never understand them anyway. Tarot, for instance. The way Granny's cards worked even though they shouldn't.</div>
+      <div class="sc-block sc-block-para" data-idx="24">McKenna was saying: stop apologizing. If you see clearly, you're going to feel strange. That's not a bug. That's the cost of paying attention. I stopped trying to make myself palatable. Leaned into the weirdness. It was liberating. Also lonely. But honest.</div>
+      <div class="sc-block sc-block-para" data-idx="25">"<strong>Nature loves courage. You make the commitment and nature will respond to that commitment by removing impossible obstacles</strong>."</div>
+      <div class="sc-block sc-block-para" data-idx="26">I was skeptical when I first heard this. Sounded too much like magical thinking. New Age nonsense. But I tested it anyway. There was a tarot project I'd been avoiding. A deck design I wanted to try but felt too ambitious. Too strange. I didn't have the skills. Didn't have the audience. All the reasons not to start. I thought about McKenna. Made the commitment. Started the work. And something did shift. Not because nature was mystically helping. But because commitment changes how you see obstacles. What looked impossible before suddenly had solutions. People showed up who could help. Resources I didn't know existed opened up. The deck got made. Small audience. But it existed. That's what McKenna did—he made me test ideas I thought were too strange to take seriously.</div>
+      <div class="sc-block sc-block-para" data-idx="27">And the following is one of my favorite audios.</div>
+      <div class="sc-block sc-block-para" data-idx="28" style="text-align: center"><strong>Don't believe. Don't follow. Don't consume. Don't watch.</strong></div>
+      <div class="sc-block sc-block-para" data-idx="29">“If we end up a smear through the shit-heel, and nature concludes that intelligence is something never again to put into the hopper, then it will be an enormous tragedy, because we didn't go down without a struggle. We have the technologies, the ideology, the compassion for each other, and tearing world; we are not a lost cause yet, but we may end up a lost cause. And people then say, well, what should be done? You know, the Tolstoyan question: what then should be done? Well, I came up through the whole Berkeley thing in the 60s and all that, and I'm very wary of hortatory political prescriptions for what should be done. I mean, we saw that the best impulses in Marxism turned in to the most horrifyingly regimented in totalitarian societies; goodwill is not enough.</div>
+      <div class="sc-block sc-block-para" data-idx="30">So what is to be done? I think the answer to this is not only nothing, but considerably less than nothing. And what I mean by that is that the real solutions to our problems lie in a series of negatives.</div>
+      <div class="sc-block sc-block-para" data-idx="31">Do not believe. Ideology has poisoned this planet. Ideologies bankrupt. It's a skin game; it's a shell game; it's only for Marx and marks. It is beneath your dignity as a body to get mixed up in ideology—I mean, after all, where is it writ large the talking monkey should understand the nature of being anyway? So belief is an incredible cop-out on intellectual truth-seeking, because belief precludes believing in its opposite, and so this is a self limitation—you've become your own cop. And the ideologies of the 20th century are so shoddy and hobbled together, or toxic to human values, they're not worth believing in anyway. So deconditioning ourselves from belief—some people call it to cynicism; I call it good sense. I'm not a cynical person, but I know from Shinola, and I don't expect people who don't to get a lot of respect from the rest of us. I mean, what does it mean if you're an optimist, and that means you can to proclaim the difference between boot polish and excreta? It's ridiculous, okay. Don't believe that.</div>
+      <div class="sc-block sc-block-para" data-idx="32">The next thing which comes out of that, and is an even stronger croefficient[?]: don't follow.</div>
+      <div class="sc-block sc-block-para" data-idx="33">Following is a is a tasteless position to find yourself in; pets follow, vice presidents follow, and bad acts follow. So, you know, why follow? All of all of these gurus, geishas, Roshi's, and Rishi's are simply flim-flam artists. They've had thousands of years to get these cons together and run them on you. Believe me, I know—I'm a recovering Catholic. You have to fight your way free of belief, and then do not follow, do not follow. It's a—it's an obsolete, tasteless thing, and there's no human dignity in it whatsoever.</div>
+      <div class="sc-block sc-block-para" data-idx="34">Then a harder one, a more radical one, the one that might get me shot: do not, in some profoundly metaphysical sense, consume. Do not consume for obvious reasons, and then not so obvious reasons. The obvious reasons are that the fetish for objects made of matter is wrecking the planet. If everybody on earth had what the people in the front row here have, there wouldn't be enough metal, glass, plastic, and petroleum in the planet to provide that kind of lifestyle to the billions of people who now aspire it.</div>
+      <div class="sc-block sc-block-para" data-idx="35">None of this stuff brings happiness anyway. I recently had the experience of having my 75 Ford Grenada blow up on me in the middle of the night, and so I had to buy a new car. So I, I went down a year and up a brand, and I got a 74 BMW, and cost me two grand. And I guarantee you, once you have the little thing on the steering wheel, the quaternary sign, you don't need the ninety thousand dollar model. What we should all do is buy antiques. Don't consume anything which hasn't already been made. There's a lot of shit that's been made—it's all over the place. I see it in Manhattan, going for a bundle. If, if we—what we need to do, you see, is re-tool our values so that what is new is offensive, tasteless, déclassé, embarrassing, and not to be found in the better home. The older things are, the better they are. Here's a 50 year old chair—fine. Here's a five hundred year old chair—how much better. We need to cease to consume, and I'm somewhat facetious and suggesting that we all become aficionados of Chippendale furniture and that sort of thing; that isn't the plan either. But the endless fetishism for consumer objects is wrecking the planet.</div>
+      <div class="sc-block sc-block-para" data-idx="36">And then finally—will—no, not finally; there's one after this—but another negative, and this is a slightly more difficult to follow, requires a little cogitation, and it's insidious.</div>
+      <div class="sc-block sc-block-para" data-idx="37">We shouldn't watch, we shouldn't watch. Watching is some kind of voyeuristic, sadomasochistic peculiarity that we are permitting ourselves because we think there are too many of us to do, but I don't think this is true. I think watching is an incredibly disempowering thing.</div>
+      <div class="sc-block sc-block-para" data-idx="38">Millions of people live half awake, larval lives, watching six and a half hours of TV a day, and as long as they stay in their homes, you know, shopping by phone and fax, everybody is happy, but they participate not at all in the society; there the marks, and they consume. They consume the media, the entertainment, the clothes, the styles, the brands; they are the morons who are keeping this all running, and I assume that largely the people here tonight are not. We're the people who grind out all this stuff. I mean, I feel I do this; I write books, I produce ideas; they are grist for the marketplace. Harper and Bantam don't care what I'm saying; what they care about is how the books are selling, you know, product number 3245a-sub-F—how is it doing in the marketplace?</div>
+      <div class="sc-block sc-block-para" data-idx="39">Do not watch, because when you're watching you're not at the center of things. Largely what I'm talking about here is reclaiming experience—reclaiming experience. This is what's been taken from us. This is why the new music and dance culture is so important; this is why drug culture is so important; this is why the celebration of sexual minorities is so important. This is all about coming to grips with who you really are and how you really feel, and then experiencing it. You know, you are not owned; it is not he or she or them or it that you belong to. And we have been told that we have to fit in, that we have to make sense.</div>
+      <div class="sc-block sc-block-para" data-idx="40">This. Is. Not. True. We are creating a world that celebrates diversity, that celebrates the uniqueness of every person. The complexification of our species is a process directly dependent on the complexity that we each bring to the process. The diversity that is spreading through society is concomitant to the boundary dissolution. And I really believe that science's inability to make sense of human beings in the world as part of nature—to make sense of art, love, hate, aspiration, fear—the failure to make sense of this is the failure to come to terms with the transcendental aspect of reality.</div>
+      <div class="sc-block sc-block-para" data-idx="41">We are the best evidence there is that something extraordinarily unusual is happening on this planet, and that it's not something which will go on for millions of years. It began about 20,000 years ago. It's a self-advancing, self-expanding, self-defining process. And it takes no prisoners. You know? There is no going back. There is no going back from the momentum that history has imparted to the human imagination. There is only a going forward into what is called a forward escape: through art, through design, through management and integration, that we have to push the art-pedal to the floor. We have never designed our societies. We have never managed our societies, or our lives. We have never tried to make what we were serve an aesthetic agenda, and that's why we've created a mess. In the absence of an aesthetic agenda, what we've created is Animal House on a global scale. So now it's time to pay the piper.”</div>
+      <div class="sc-block sc-block-para" data-idx="42">He said this in a talk from the 1990s—that <strong>belief</strong> was a cop-out. That ideology poisons thinking. That following is tasteless. Beneath your dignity. This connected back to Hoffer. Hoffer warned about mass movements. McKenna went further—said the problem wasn't just the crowd, it was belief itself.</div>
+      <div class="sc-block sc-block-para" data-idx="43"><strong>The moment you believe something, you stop examining it</strong>.</div>
+      <div class="sc-block sc-block-para" data-idx="44">I'd already learned not to join from Hoffer. McKenna taught me not to believe. Not in the nihilistic sense. In the sense of: keep testing. Keep questioning. Don't settle into certainty.</div>
+      <div class="sc-block sc-block-para" data-idx="45">But here's what McKenna taught me that went deeper than any single quote: follow anomalies. When something doesn't fit, most people ignore it or force it into a framework that makes sense. McKenna did the opposite. He grabbed the thing that didn't fit and shook it until more strangeness fell out. Followed weird leads. Came back with maps of territories nobody knew existed.</div>
+      <div class="sc-block sc-block-para" data-idx="46">This changed how I think. I started collecting things that didn't fit instead of explaining them away. The way Granny's cards found patterns that shouldn't exist. Moments when reality felt thinner than it should be. McKenna gave me permission to keep those experiences instead of dismissing them as glitches.</div>
+      <div class="sc-block sc-block-para" data-idx="47">And he showed me how Granny had been working: she paid attention to symbols the way he paid attention to language. Both of them knew that meaning isn't fixed. That attention changes what you see. That the anomaly is where the real information hides.</div>
+      <div class="sc-block sc-block-para" data-idx="48">Years ago I had that paranormal experience I couldn't explain. McKenna's words finally gave me a framework - <strong>not for what happened, but for why I didn't need one</strong>. “Where is it writ large the talking monkey should understand the nature of being anyway?" he asked. My roommate and I had spent time trying to force that unexplained event into rational boxes, assuming our confusion was a failure. McKenna said it wasn't. Some things simply exceed our capacity to comprehend, and that's not a bug in reality - it's a feature. The universe doesn't owe us explanations. That night on the paranormal road of lost time taught me the question. McKenna taught me to stop demanding an answer.</div>
+      <div class="sc-block sc-block-para" data-idx="49">McKenna had bigger, stranger ideas too. Novelty theory. The transcendental object at the end of time. He talked about history as a process of increasing complexity. Novelty versus habit. The universe generating more and more strangeness until it reaches some kind of climax. An endpoint where everything converges.</div>
+      <div class="sc-block sc-block-para" data-idx="50">The transcendental object was his name for whatever's at that end. Something pulling us forward. Not just causality pushing from behind, but teleology—something ahead of us, drawing us toward it. History wasn't random. It had direction.</div>
+      <div class="sc-block sc-block-para" data-idx="51">I was skeptical of the specifics. The time-wave calculations. The I Ching mathematics. The predicted dates. That all felt too precise for something so speculative. But the underlying idea did something to me anyway. It made me see time differently. Not as neutral. Not as just one thing after another. But as directional. Accelerating.</div>
+      <div class="sc-block sc-block-para" data-idx="52">The sensation that things are speeding up—that cultural change is faster now than it used to be, that technology moves in ways it didn't a decade ago—McKenna gave me a framework for that feeling. Not a belief. A lens.</div>
+      <div class="sc-block sc-block-para" data-idx="53">Even his wildest ideas worked that way. Not as literal truth. As ways to see patterns in what looked like chaos. As permission to think in directions that felt too strange to take seriously. That's what he did best. Made the weird thought worth thinking.</div>
+      <div class="sc-block sc-block-para" data-idx="54">Where Novelty Led Me</div>
+      <div class="sc-block sc-block-para" data-idx="55">But here's what McKenna didn't teach: discernment. Not every anomaly is worth following. Not every strange idea leads somewhere real. Some of it is just noise dressed up as profundity.</div>
+      <div class="sc-block sc-block-para" data-idx="56">There was a period in the early 2010s when I chased everything that felt novel. Weird theories. Fringe ideas. If it was strange, I assumed it was interesting. If it challenged consensus, I assumed it was right.</div>
+      <div class="sc-block sc-block-para" data-idx="57">I spent two years going down a rabbit hole about synchronicity and pattern recognition. Built a whole system. Convinced myself I was seeing something real. Tracked correlations. Made predictions. None of it held up. The patterns I thought I was seeing were just noise. Randomness my brain had shaped into significance because I wanted it to mean something.</div>
+      <div class="sc-block sc-block-para" data-idx="58">McKenna had taught me to follow the strange. But he hadn't taught me when to stop. When to admit the weird thing is just a dead end. When the conventional answer is conventional because it actually works.</div>
+      <div class="sc-block sc-block-para" data-idx="59">I wasted time. Energy. Chased novelty for its own sake instead of asking: is this useful? Is this true? Or is it just interesting?</div>
+      <div class="sc-block sc-block-para" data-idx="60">That's the limit of McKenna's framework. It opens doors. Expands what you're willing to consider. Makes you curious about the edges. But it doesn't give you a filter. Doesn't tell you when strangeness is insight and when it's just distraction.</div>
+      <div class="sc-block sc-block-para" data-idx="61">You can't build a life on novelty alone. Eventually you have to ask: does this work? Does this help? Or am I just collecting weirdness because it makes me feel like I'm seeing something others miss?</div>
+      <div class="sc-block sc-block-para" data-idx="62">McKenna kept me curious. But he also made me undiscerning. I had to learn the limits myself. Had to learn when to put the strange idea down and walk away. His voice taught me to question consensus. But I forgot that sometimes consensus is right. Sometimes the boring answer is boring because it's true.</div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-8" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="5. What Remains">
+    <div class="sc-bg"></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">5. What Remains</div>
+      <div class="sc-block sc-block-para" data-idx="0">Three thinkers. Three voices. Three kinds of translation.</div>
+      <div class="sc-block sc-block-para" data-idx="1">Hoffer taught me to watch crowds and keep my own shape. Watts taught me to let muddy water settle. McKenna taught me to follow anomalies.</div>
+      <div class="sc-block sc-block-para" data-idx="2">Each one gave me something I needed. Each one left gaps.</div>
+      <div class="sc-block sc-block-para" data-idx="3">Hoffer kept me independent but walled me off. He couldn't tell me when joining was the right move. When the crowd wasn't a mob but people trying to build something together.</div>
+      <div class="sc-block sc-block-para" data-idx="4">Watts kept me calm but made me passive. He couldn't tell me when stillness was just paralysis. When I needed to grab a bucket instead of watching the river flow.</div>
+      <div class="sc-block sc-block-para" data-idx="5">McKenna kept me curious but undiscerning. He couldn't tell me when the strange thing was noise. When the conventional answer worked because it was true.</div>
+      <div class="sc-block sc-block-para" data-idx="6">And none of them addressed the mundane without making it mystical. Sometimes you just need to get through the day. Sometimes the work doesn't mean anything beyond keeping things running. None of them knew how to honor that.</div>
+      <div class="sc-block sc-block-para" data-idx="7">None of them taught me how to be wrong gracefully. Hoffer was too certain. Watts was too smooth. McKenna was too fascinating. They were all performing confidence when they should have admitted limits.</div>
+      <div class="sc-block sc-block-para" data-idx="8">But here's what did remain.</div>
+      <div class="sc-block sc-block-para" data-idx="9">What Stuck</div>
+      <div class="sc-block sc-block-para" data-idx="10">I still catch myself asking Hoffer's question: am I doing this freely or am I escaping something? That one stuck. It's become automatic now when I feel the pull to agree, to join, to let the group think for me.</div>
+      <div class="sc-block sc-block-para" data-idx="11">I still stop chasing when Watts's voice surfaces: leave it alone. Let it settle. Not always. Not when action is required. But more often than I used to. Like the bug that fixes itself when you stop forcing. Like the clarity that comes from not stirring the water.</div>
+      <div class="sc-block sc-block-para" data-idx="12">I still collect anomalies because of McKenna. Things that don't fit. Experiences I can't explain. I don't chase them as hard as I used to. I don't assume strange equals profound. But I keep them. Notice them. Let them sit without needing to resolve them.</div>
+      <div class="sc-block sc-block-para" data-idx="13">The three voices argue in my head sometimes.</div>
+      <div class="sc-block sc-block-para" data-idx="14">There was a situation last year. Someone asked me to join a project. Community thing. Building something for people who needed it. Good cause. Good people.</div>
+      <div class="sc-block sc-block-para" data-idx="15">Hoffer's voice said: watch out. Groups dissolve you. Stay separate.</div>
+      <div class="sc-block sc-block-para" data-idx="16">Watts's voice said: let it come to you. Don't force. See what happens if you don't decide right now.</div>
+      <div class="sc-block sc-block-para" data-idx="17">McKenna's voice said: this is novel. Different from what you usually do. Follow the anomaly.</div>
+      <div class="sc-block sc-block-para" data-idx="18">I thought about it for a week. Then I signed on.</div>
+      <div class="sc-block sc-block-para" data-idx="19">Hoffer was wrong that time. Or I was wrong about what he meant. The group didn't dissolve me. We built something. It worked. I stayed myself and worked with others. Turns out that's possible.</div>
+      <div class="sc-block sc-block-para" data-idx="20">But I wouldn't have asked the question without Hoffer's voice. I wouldn't have paused without Watts. I wouldn't have been curious enough to try without McKenna.</div>
+      <div class="sc-block sc-block-para" data-idx="21">That's what remains. Not belief. Not certainty. Just three ways to examine a choice before making it.</div>
+      <div class="sc-block sc-block-para" data-idx="22">There are things none of them had words for. Those silences matter too.</div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-9" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Appendix">
+    <div class="sc-bg"></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">Appendix</div>
+      <div class="sc-block sc-block-para" data-idx="0"><em>Since internet links come and go, key information is repeated in these appendices for posterity. All credit goes to these thinkers, whose ideas and words inform this work.</em></div>
+      <div class="sc-block sc-block-para" data-idx="1"><em>Researching these three thinkers, while enjoyable, would have been easier if some references were gathered in one place. This book aims to provide that springboard for further exploration.</em></div>
+      <div class="sc-block sc-block-para" data-idx="2">Resources:</div>
+      <div class="sc-block sc-block-para" data-idx="3"><a target="_blank" rel="noopener" href="https://www.organism.earth/library/">Organism Earth Library</a> (see: <a target="_blank" rel="noopener" href="https://www.organism.earth/library/">https://www.organism.earth/library/</a>)</div>
+      <div class="sc-block sc-block-para" data-idx="4"><strong>Also, this is a great resource for all sorts of thinkers or Minds as they call them on the website.</strong></div>
+      <div class="sc-block sc-block-divider" data-idx="5"></div>
+      <div class="sc-block sc-block-para" data-idx="6"><strong>Lives Behind the Ideas of Eric Hoffer, Alan Watts, and Terence McKenna</strong></div>
+      <div class="sc-block sc-block-para" data-idx="7">The biographical landscape for these three influential thinkers is extensive and diverse. Each life has been documented through different lenses—Hoffer through his mysterious early years and working-class philosophy, Watts through his bridging of Eastern and Western thought, and McKenna through his psychedelic explorations and cultural impact. Collectively, they have inspired dozens of full-length biographies, autobiographies, and documentary films, as well as hundreds of hours of archived content.</div>
+      <div class="sc-block sc-block-para" data-idx="8">The most significant recent development is Graham St John's "Strange Attractor: The Hallucinatory Life of Terence McKenna," published by MIT Press in October 2025. This 548-page work draws on interviews with over 80 people who knew McKenna and includes 52 rare photographs, marking the first comprehensive intellectual biography. For Hoffer, Tom Bethell's 2012 "Eric Hoffer: The Longshoreman Philosopher" remains definitive, drawing from private papers at the Hoover Institution. Monica Furlong's 1986 "Zen Effects" (also published as "Genuine Fake") stands as the most thorough treatment of Watts, based on extensive interviews with family and colleagues.</div>
+      <div class="sc-block sc-block-divider" data-idx="9"></div>
+      <div class="sc-block sc-block-para" data-idx="10"><strong>Three distinct biographical traditions converging in the digital age</strong></div>
+      <div class="sc-block sc-block-para" data-idx="11">Each of these thinkers generated a distinct biographical tradition. Hoffer's story is inseparable from mystery and working-class authenticity. Substantial archival holdings at Stanford's Hoover Institution preserve 131 pocket notebooks spanning nearly three decades.</div>
+      <div class="sc-block sc-block-divider" data-idx="12"></div>
+      <div class="sc-block sc-block-para" data-idx="13">Watts's legacy centers on his masterful 1972 autobiography, supplemented by Furlong's biography. His son Mark serves as primary curator of an expanding digital presence. McKenna's biographical ecosystem is the most distributed and participatory, featuring massive podcast and video collections alongside recent comprehensive biographical works.</div>
+      <div class="sc-block sc-block-para" data-idx="14">All three have experienced posthumous growth in influence, with continued academic interest and thriving digital archives making their ideas accessible to new generations. The contrast is striking: Hoffer's mid-20th-century television specials are preserved in institutional archives, Watts has transformed into a YouTube phenomenon with millions of views, and McKenna's 50+ gigabytes of archived lectures remain widely accessible. Together, these demonstrate how biographical preservation evolves with technology while serving a consistent purpose—understanding remarkable lives that challenged conventional thinking.</div>
+      <div class="sc-block sc-block-para" data-idx="15">For researchers, the essential biographical sources are Bethell (2012) for Hoffer, Furlong (1986) and the 1972 autobiography for Watts, and St John (2025) alongside Dennis McKenna's 2012 memoir for Terence. Each left substantial primary source material—Hoffer's journals, Watts's autobiography, and McKenna's "True Hallucinations"—that remains an essential complement to third-party biographies. The archival collections at the Hoover Institution, the Alan Watts Organization, and Purdue University ensure these lives will continue to be studied and rediscovered by future generations.</div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-10" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Appendix: Eric Hoffer">
+    <div class="sc-bg"></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">Appendix: Eric Hoffer</div>
+      <div class="sc-block sc-block-para" data-idx="0">The biographical record of Eric Hoffer (1902-1983) is particularly fascinating because it reflects the central mystery of his life—the first 35 years remain largely unverifiable, known only through Hoffer's own accounts which contain inconsistencies. Tom Bethell's research revealed that Hoffer's birth certificate has never been found, and questions remain about whether he was born in the U.S. or immigrated from Bavaria.</div>
+      <div class="sc-block sc-block-para" data-idx="1">Full-length published biographies include Tom Bethell's "Eric Hoffer: The Longshoreman Philosopher" (Hoover Institution Press, 2012), which explores mysteries about Hoffer's early life while drawing from his private papers. Tom Shachtman authored "American Iconoclast: The Life and Times of Eric Hoffer" (2011), providing an overview of his beliefs and major works. Calvin Tomkins wrote "Eric Hoffer: An American Odyssey" (E.P. Dutton, 1967-1969), a 68-page biography with photographs by George Knight, expanded from a New Yorker profile with an introduction by CBS commentator Eric Sevareid. Earlier works include James D. Koerner's "Hoffer's America" (Library Press, 1973) and James Thomas Baker's "Eric Hoffer" (Twayne Publishers, 1982), both now difficult to find.</div>
+      <div class="sc-block sc-block-para" data-idx="2">Hoffer himself left two autobiographical works. "Truth Imagined" (1983, posthumous) is a short memoir compiled from his earliest writings, providing episodic stories from his Depression-era experiences as a migrant worker. More substantial is "Working and Thinking on the Waterfront: A Journal, June 1958-May 1959" (Harper &amp; Row, 1969), personal journal entries combining observations from his life as a San Francisco longshoreman with philosophical reflections.</div>
+      <div class="sc-block sc-block-para" data-idx="3">Documentary and television content is extensive and notable for its quality. "Eric Hoffer: The Crowded Life" (1978-1983, full version 1 hour 28 minutes) won a 1978 Peabody Award and features Hoffer speaking directly to camera, narrated by Richard Basehart. The 12-part "Conversations with Eric Hoffer" (KQED, 1963) features in-depth interviews with James Day, with all episodes available through the American Archive of Public Broadcasting and Hoover Institution Digital Collections. Eric Sevareid conducted multiple CBS specials including "The Savage Heart: A Conversation with Eric Hoffer" (January 1969) and "Eric Hoffer: The Passionate State of Mind" (September 1967, rebroadcast due to popular demand in November 1967).</div>
+      <div class="sc-block sc-block-para" data-idx="4">The archival holdings at the Hoover Institution are particularly rich, containing 75 linear feet of materials including 131 notebooks Hoffer carried in his pockets from 1949-1977, manuscript drafts, correspondence, photographs, and complete runs of his syndicated newspaper column "Reflections." The Library of Congress holds 53 photographic prints from Look Magazine's 1956 profile "Ike's Favorite Author," which elevated Hoffer's public status by identifying him as President Eisenhower's favorite author.</div>
+      <div class="sc-block sc-block-divider" data-idx="5"></div>
+      <div class="sc-block sc-block-para" data-idx="6">Podcast coverage includes the Books for Men Podcast episode on "The True Believer," Worker and Parasite Podcast discussions, and The Soul of Enterprise's "Memorable Mentors: Eric Hoffer." Major articles include the 1956 Look Magazine profile and Tom Bethell's essays "Eric Hoffer, Genius—And Enigma" (2012) and "The Longshoreman Philosopher" (2003) published through the Hoover Institution.</div>
+      <div class="sc-block sc-block-para" data-idx="7"><a target="_blank" rel="noopener" href="https://en.wikiquote.org/wiki/Eric_Hoffer">Eric Hoffer’s wiki</a> (see: <a target="_blank" rel="noopener" href="https://en.wikiquote.org/wiki/Eric_Hoffer">https://en.wikiquote.org/wiki/Eric_Hoffer</a>).</div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <section class="chapter" id="section-11">
+    <h1>Appendix: Alan Watts</h1>
+<section class="chapter" epub:type="chapter">
+
+<p></p>
+<p></p>
+<p>Alan Watts (1915-1973) left a substantial autobiographical record. His posthumous presence has exploded in the digital age, particularly on YouTube, where his lectures reach millions of viewers. The Alan Watts Organization actively works to identify and remove AI-generated content that misrepresents his teachings, a unique contemporary challenge in maintaining biographical integrity.</p>
+<p>Monica Furlong's "Zen Effects: The Life of Alan Watts" (1986, also published as "Genuine Fake: A Biography of Alan Watts") is widely regarded as the definitive biography, an authorized work based on extensive interviews with family, colleagues, and intimate friends. David Stuart wrote "Alan Watts: The Rise and Decline of the Ordained Shaman of the Counterculture" (Chilton Book Co., 1976) shortly after Watts's death. Pierre Lhermite's French-language biography, "Alan Watts, Taoïste d'Occident," was published in 1983.</p>
+<p>Watts wrote "In My Own Way: An Autobiography 1915-1965" (Pantheon Books, 1972; reissued by New World Library, 2007), covering his life from childhood in England through his spiritual and philosophical evolution in a nonlinear style.</p>
+<hr>
+<p>This 384-page work features a foreword by his father, Laurence W. Watts, and is available as an audiobook narrated by Jeremy Arthur.</p>
+<p>Beyond written works, documentary productions showcase Watts's charisma and teaching style. "The Essential Lectures of Alan Watts" (filmed 1971-1972, released as a 12-episode series) features Watts above Muir Woods and aboard the ferryboat SS Vallejo. The series was produced by his son Mark Watts with director Henry Jacobs. "Why Not Now?" (2011) is an animated documentary feature directed by Mark Watts that premiered at the Sausalito Film Festival. The film presents three animated versions of Watts at different life phases. South Park creators Matt Stone and Trey Parker contributed animation to the project after contacting Mark Watts in 2000.</p>
+<p>Television series include "Eastern Wisdom and Modern Life" (National Educational Television, 1959-1960), an early series introducing Eastern philosophy to American audiences, and "Alan Watts on Living" (CBC Television Vancouver, 1971), a five-part miniseries. Radio interviews with Studs Terkel (WFMT, 1970) and Lex Hixon (WBAI, 1972) feature Watts discussing his autobiography.</p>
+<p>Posthumous interest in Watts's work continues to grow substantially. The official podcast "Alan Watts Being in the Way," hosted by Mark Watts in partnership with Ram Dass's Be Here Now Network, launched June 7, 2021. The podcast explores the 100-hour tape collection from the Alan Watts Archive. The earlier "Alan Watts Podcast," created by Amber Star in 2005, has distributed his lectures for nearly two decades. The Alan Watts Organization maintains the most comprehensive audio collection at alanwatts.org, featuring more than 100 remastered talks.</p>
+<hr>
+<p>Academic engagement remains robust, with scholarly volumes including "Alan Watts—here and now: Contributions to psychology, philosophy, and religion" (2012), "Alan Watts—In the Academy: Essays and Lectures" (2017), and most recently "The Relevance of Alan Watts in Contemporary Culture" (Routledge, 2021). J. Jeffrey Franklin's March 2024 Aeon essay "How Alan Watts re-imagined religion, desire, and life itself" demonstrates continued biographical and philosophical interest.</p>
+<p>The Pacifica Radio Archives at KPFK, Los Angeles, holds original tapes of Watts's broadcasts, while the Electronic University Archive, founded in 1973 by Alan and Mark Watts, preserves extensive audio recordings. David Chadwick's biography of Shunryu Suzuki, "Crooked Cucumber," includes significant biographical information about Watts, including Suzuki's characterization of him as "a great bodhisattva." Elsa Gidlow's autobiography, "Elsa, I Come," provides biographical information about Watts's life, though Gidlow initially refused to be interviewed for Furlong's biography.</p>
+<hr>
+<p>The Organism Earth Library maintains a comprehensive collection of Watts materials at <a target="_blank" rel="noopener" href="https://www.organism.earth/library/author/alan-watts">https://www.organism.earth/library/author/alan-watts</a>.</p>
+</section>
+  </section>
+
+  <div class="sc-scene" id="section-12" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Appendix: Terence McKenna">
+    <div class="sc-bg"></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">Appendix: Terence McKenna</div>
+      <div class="sc-block sc-block-para" data-idx="0"><strong>From La Chorrera to posthumous renaissance</strong></div>
+      <div class="sc-block sc-block-para" data-idx="1">The biographical resources for Terence McKenna (1946-2000) have reached critical mass in 2025 with Graham St John's comprehensive intellectual biography coinciding with massive digital archives containing over 50GB of video content and hundreds of podcast episodes. McKenna's legacy is inseparably connected to his brother Dennis, whose biographical writings provide intimate, firsthand perspectives on Terence's life and work.</div>
+      <div class="sc-block" data-idx="2" style="text-align:left"><img src="images/004.jpg" alt="Strange Attractor: The Hallucinatory Life of Terence McKenna" style="max-width:412px;border-radius:4px;opacity:0.9;display:block"/>
+          <span style="font-family:'SF Mono',monospace;font-size:0.55em;color:#5a554e;letter-spacing:0.06em;margin-top:0.4em;display:block">Strange Attractor: The Hallucinatory Life of Terence McKenna</span></div>
+      <div class="sc-block sc-block-para" data-idx="3">Graham St John's "Strange Attractor: The Hallucinatory Life of Terence McKenna" (MIT Press, October 2025) represents the first comprehensive intellectual biography, featuring 548 pages, 52 rare photographs and artworks, and drawing on original documents, letters, and interviews with over 80 people who knew him. The work, with a foreword by Erik Davis, provides a balanced portrait neither glorifying nor disparaging McKenna.</div>
+      <div class="sc-block sc-block-divider" data-idx="4"></div>
+      <div class="sc-block sc-block-para" data-idx="5">Dennis McKenna's "Brotherhood of the Screaming Abyss: My Life with Terence McKenna" (Synergetic Press, 2012; 10th anniversary edition 2023) is essential reading, chronicling their childhood, relationship, and detailed accounts of their psychedelic experimentation including "The Experiment at La Chorrera." This autobiographical account provides the most intimate perspective on Terence's life from his closest collaborator.</div>
+      <div class="sc-block sc-block-para" data-idx="6">Terence's own writings contain substantial autobiographical content. "True Hallucinations: Being an Account of the Author's Extraordinary Adventures in the Devil's Paradise" (Harper San Francisco, 1993) chronicles the 1971 Colombian Amazon expedition that became central to his philosophy. Co-authored with Dennis, "The Invisible Landscape: Mind, Hallucinogens, and the I Ching" (HarperOne, 1975) details their La Chorrera experiences and early Novelty Theory concepts. "The Archaic Revival" (Harper San Francisco, 1991) collects essays, interviews, and talks from 1983-1990 with personal narratives alongside theoretical speculations. Under pseudonyms O.T. Oss and O.N. Oeric, the brothers published "Psilocybin: Magic Mushroom Grower's Guide" (And/Or Press, 1976).</div>
+      <div class="sc-block sc-block-para" data-idx="7">Peter Bergmann's documentary "Terence McKenna's True Hallucinations" (2016) is an experimental film about the 1971 Amazon expedition, narrated by McKenna using archival recordings, with an 8.1/10 IMDb rating. "The Terence McKenna Video Archive" on Internet Archive contains 52.2GB uploaded July 2023, featuring hundreds of hours of lectures, videos, and workshops.</div>
+      <div class="sc-block sc-block-divider" data-idx="8"></div>
+      <div class="sc-block sc-block-para" data-idx="9">Podcast coverage is extraordinary in scope. Lorenzo Hagerty's "Psychedelic Salon Podcasts" features extensive collections of McKenna's recorded talks with hundreds of episodes dedicated to his work, workshops, lectures, and Q&amp;A sessions. "Terence McKenna Archive" podcast offers 14 documented episodes. Dennis McKenna's "Brainforest Café" frequently discusses Terence, with recent Episode #44 (August 2025) featuring Graham St John discussing "Strange Attractor." Multiple Spotify playlists and SoundCloud collections curate McKenna's audio recordings.</div>
+      <div class="sc-block sc-block-para" data-idx="10">The visual biographical record includes unique elements. Klea McKenna, Terence's daughter, created "The Butterfly Hunter" (2008), a limited edition artist book featuring Terence's butterfly collection from 1969-1972 with 122 insect specimens, 80+ color plates, and a previously unpublished short story by McKenna titled "The Butterfly Guru." This photographic archive provides insights into his formative years before public persona or family.</div>
+      <div class="sc-block sc-block-para" data-idx="11">Archival materials reside at Purdue University's Archives and Special Collections, holding the "Dennis and Terence McKenna Papers" (1943-2016), spanning 2.5 cubic feet with unpublished manuscripts, field reports, journals, correspondence, and photographs. The official website terencemckenna.com is family-maintained, actively archiving McKenna's life and work as of 2025, including unpublished materials from storage units and journals. Chris Mays and Kevin Whitesides maintain a comprehensive bibliography at <a target="_blank" rel="noopener" href="http://terencemckennaarchives.com">Archiving Terence McKenna</a> (<a target="_blank" rel="noopener" href="http://terencemckennaarchives.com">terencemckennaarchives.com</a>).</div>
+      <div class="sc-block sc-block-divider" data-idx="12"></div>
+      <div class="sc-block sc-block-para" data-idx="13">Academic and journalistic engagement continues to expand. Major articles include Tao Lin's "Dennis and Terence McKenna: Parts of an Intellectual Dyad" (VICE), Andrew Monteith's "Terence McKenna's Anarchic Psychedelic Religion" (JSTOR Daily), and Erik Davis's "Terence McKenna's Butterflies" (Techgnosis). Graham St John's recent essays include "Florentine Prince and Funny Bugger: Terence McKenna in Australia" (Entheogenesis Australis Journal, August 2025) and "Zone Ghost in the Machine: Terence McKenna's Cyberdelic Reanimation" (Institute for Network Cultures, 2025). Ben Brooker's October 2025 review "Altered statesman: Graham St John's 'Strange Attractor'" appeared in The Monthly.</div>
+      <div class="sc-block sc-block-para" data-idx="14">Commercially released audio includes "History Ends in Green: Gaia, Psychedelics and the Archaic Revival" (1993, 6-cassette set), multiple workshop recordings from the 1990s, and Better Listen Audio Collections authorized by the McKenna family. Amazon Prime Video offers "Terence McKenna - Seeking the Stone - Mind and Time, Spirit and Matter," a live presentation about hallucinogenic plants and human evolution.</div>
+      <div class="sc-block sc-block-para" data-idx="15">Also see:</div>
+      <div class="sc-block sc-block-para" data-idx="16">AT HISTORY'S EDGE</div>
+      <div class="sc-block sc-block-para" data-idx="17">NOTHING COMES UNANNOUNCED</div>
+      <div class="sc-block sc-block-para" data-idx="18">April 1994</div>
+      <div class="sc-block sc-block-para" data-idx="19">VERTIGO (text sourced from <a target="_blank" rel="noopener" href="https://www.organism.earth/library/document/vertigo-at-historys-edge">https://www.organism.earth/library/document/vertigo-at-historys-edge</a></div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-13" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Appendix: Other Thinkers">
+    <div class="sc-bg"></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&#8212; silence &#8212;</span></div>
+      <div class="sc-enter">Appendix: Other Thinkers</div>
+      <div class="sc-block sc-block-para" data-idx="0">There are probably way too many thinkers that I’ve encountered to list, but here are a few:</div>
+      <div class="sc-block sc-block-para" data-idx="1">1. Arthur C. Clarke</div>
+      <div class="sc-block sc-block-para" data-idx="2"><em>Any sufficiently advanced technology is indistinguishable from magic.</em></div>
+      <div class="sc-block sc-block-para" data-idx="3">His books and because <em>2001: A Space Odyssey</em> was the first movie I experienced in a theater.</div>
+      <div class="sc-block sc-block-linebreak" data-idx="4"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="5"></div>
+      <div class="sc-block sc-block-para" data-idx="6">2. <a target="_blank" rel="noopener" href="https://youtu.be/3I7TKW_QQbA">Spank Your Monkey by philhellenes</a></div>
+      <div class="sc-block sc-block-para" data-idx="7">The video’s title is a bit of click-bait, and it really should be “Show It Beauty” instead. Here’s the transcript:</div>
+      <div class="sc-block sc-block-para" data-idx="8">There's a monkey in your mind. You know what I'm talking about. Don't be shy. Don't feel ashamed or embarrassed. There's no need to deny it. 
+We've all got one telling us what to do, what we want, what we don't want. I call mine Trevor. Sometimes he seems small and harmless and fun to be around. 
+
+Sometimes he seems big and powerful - a dangerous idiot who doesn't know his own strength and whose real anger knows virtually no limits. I must never forget that he's there, waiting to take control. Trevor wants everything. Wherever I look, there's something that Trevor wants.</div>
+      <div class="sc-block sc-block-para" data-idx="9">I never asked for this - to always want is to never be at peace, even when all you want is peace.</div>
+      <div class="sc-block sc-block-para" data-idx="10">Thanks for the shit sandwich, Trevor!</div>
+      <div class="sc-block sc-block-para" data-idx="11">Trevor chooses what I find attractive. Trevor chooses what team I support. Trevor makes most of my mistakes. Trevor makes me say stupid things and do stupid things. He makes me look a fool. He can blind me to the obvious. He is the giver of false impressions. He is my instinct, my subconscious.</div>
+      <div class="sc-block sc-block-para" data-idx="12">When Trevor gets cut up in traffic, I feel a moment where I know he'd like to take the wheel and run somebody off the road. Sometimes the effort of controlling him makes my heart pound. You'd think that I'd hate him, but I can't. I have to live with him. He and I are one.</div>
+      <div class="sc-block sc-block-para" data-idx="13">I must make peace with him. And though I inherited from him all that I would change, what would life be without emotion?</div>
+      <div class="sc-block sc-block-para" data-idx="14">Whatever our common ancestor was, they were not so different. They had something like wonder, kindness, curiosity, courage, empathy, joy, the bond of friendship, a sense of humor, a sense of fun.
+
+Far from shame at where we came from, what we still struggle with, I can normally only wonder at how far we have come against cosmic odds. You may say I'm romanticizing - you just see a violent ape or look down on humanity as pointless dust - and you'd be right both times. But that's the truth for you. There's more than one way to look at it and still be factually accurate. I see a piece of universe in a daze, wondering what the hell is going on, with the unfortunate naturally evolved tendency to believe what it's told and all too often latching on to the first answer it is given.</div>
+      <div class="sc-block sc-block-para" data-idx="15">And I pity it. One cannot hate what one pities.</div>
+      <div class="sc-block sc-block-para" data-idx="16">Humans get a bum rap. To me, the human is what overcomes instinct, not what falls to it. You need to understand emotions.</div>
+      <div class="sc-block sc-block-para" data-idx="17">Instincts are far more often wrong than right. To survive within us, they only need to be right when they need to be right. How many times have you jumped at a harmless sound, compared to the number of times that that instinct has saved your life? It must be thousands to one against. Instincts are frighteningly often wrong, but they're always there, pulling your strings, shaping you - the fears, lusts, rage, bigotry, hatred, racism, greed, selfishness, judgmentalism. Trevor is very religious. Trevor needs constant reassurance. That's why Trevor's religious.</div>
+      <div class="sc-block sc-block-para" data-idx="18">It can't be healthy to deny the obvious - there's a short-tempered, idiotic, small-minded, judgmental, egocentric, easily tempted, paranoid bigot mind monkey in your head, and it's scared and it's confused and it's ashamed of its body and it's ashamed of its nature and it doesn't want to be the one thing it must be, not realizing that it's so much more than just an ape. Most people can't see it. Most simply don't know enough of the truth - the fact that they are energy made solid, consciousness and form from a harmony of natural forces. We might possess the only eloquent eyes that will ever exist.</div>
+      <div class="sc-block sc-block-para" data-idx="19">We might be the universe's poetry, its only chance to know itself. Every war has got monkey written all over it. Why do you bow to kings and men with more expensive ties and bigger cars? You think because you don't piss in the street that you're in control of your instincts? Wrong! We think it's our idea that we decide what we will do, how we will react, but it's the feelings that Trevor gives us, the emotions - the envy, the anger, frustration, so many fears. This is how it gets us to do its bidding. It's the humans caged by the monkey this time. Yes, we kill, slaughter, murder, torture, exploit, steal, but don't you see that's Trevor? That's what Trevor does. That's what Trevor does to us.</div>
+      <div class="sc-block sc-block-para" data-idx="20">That's what we're up against - the inner ape is our only enemy. Why do you think people will risk their marriages, their children, their family, everything they love, even their lives for a piece of ass? "Well, what else is there?" asks the man at the back. And that's my point.</div>
+      <div class="sc-block sc-block-para" data-idx="21">That's Trevor talking. Fight your mind monkey. Take control. Reason against reflex. Instincts lose much of their power over you when you understand them. The only way to be at peace is to get to know your inner monkey - train it, train it just like you would train a real monkey.</div>
+      <div class="sc-block sc-block-para" data-idx="22">Most of all, show them love and beauty. But remember, it can only look where you look, they can only see what you see.</div>
+      <div class="sc-block sc-block-para" data-idx="23">You must show them.</div>
+      <div class="sc-block sc-block-para" data-idx="24">You must look for the beauty.</div>
+      <div class="sc-block sc-block-linebreak" data-idx="25"></div>
+      <div class="sc-block sc-block-para" data-idx="26">3. Marcus Aurelius - Meditations</div>
+      <div class="sc-block sc-block-linebreak" data-idx="27"></div>
+      <div class="sc-block sc-block-para" data-idx="28">4. Robert Anton Wilson - I found a few poorly produced videos and audio recordings on YouTube, but his ideas are still interesting.</div>
+      <div class="sc-block sc-block-linebreak" data-idx="29"></div>
+      <div class="sc-block sc-block-para" data-idx="30">5. Joseph Campbell - his work on myths and stories</div>
+      <div class="sc-block sc-block-linebreak" data-idx="31"></div>
+      <div class="sc-block sc-block-para" data-idx="32">6. Eckhart Tolle - lots of YouTube videos about being in the <strong>Now</strong></div>
+      <div class="sc-block sc-block-linebreak" data-idx="33"></div>
+      <div class="sc-block sc-block-h2" data-idx="34">Is there a thinker rattling around in your mind?</div>
+      <div class="sc-exit">&#8212; silence &#8212;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <section class="chapter" id="section-14">
+    <h1>About the Author</h1>
+<section class="chapter" epub:type="chapter">
+
+<h1>ABOUT THE AUTHOR</h1>
+<p>Clee Smith is a coder, reader, thinker, and sometimes writer.</p>
+<p><a target="_blank" rel="noopener" href="https://www.amazon.com/stores/author/B0CFK82R1L"></a></p><figure><a target="_blank" rel="noopener" href="https://www.amazon.com/stores/author/B0CFK82R1L">
+<img src="images/006.svg" alt="Amazon icon">
+</a></figure><a target="_blank" rel="noopener" href="https://www.amazon.com/stores/author/B0CFK82R1L">
+Amazon</a><p></p>
+</section>
+  </section>
+
+  <div class="footer">
+    <div class="footer-buttons">
+      <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">&#9728;&#65039;</button>
+    </div>
+    <div class="footer-info">
+      <span class="footer-title">EAT</span>
+      <span class="footer-author">by Clee Smith</span>
+      <span class="footer-copyright">&copy; 2026</span>
+      <span class="footer-scene" id="footerScene"></span>
+    </div>
+    <div class="footer-status" id="footerStatus"></div>
+  </div>
+
+  <script>
+    // Theme toggle functionality
+    var themeToggle = document.getElementById('themeToggle');
+    var body = document.body;
+
+    var savedTheme = localStorage.getItem('html-ebook-theme');
+    if (savedTheme === 'light' && body.classList.contains('dark-mode')) {
+      body.classList.remove('dark-mode');
+      themeToggle.textContent = '🌙';
+    } else if (savedTheme === 'dark' && !body.classList.contains('dark-mode')) {
+      body.classList.add('dark-mode');
+      themeToggle.textContent = '☀️';
+    }
+
+    themeToggle.addEventListener('click', function() {
+      body.classList.toggle('dark-mode');
+      var isDark = body.classList.contains('dark-mode');
+      themeToggle.textContent = isDark ? '☀️' : '🌙';
+      localStorage.setItem('html-ebook-theme', isDark ? 'dark' : 'light');
+    });
+
+
+    // SceneCraft autoplay: scroll-driven audio + auto-scroll controller
+    (function() {
+      var scenes = document.querySelectorAll('.sc-scene');
+      if (!scenes.length) return;
+
+      var DLG_FADE = 0.5;
+      function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+
+      function createFadeIn(audioEl, vol, dur) {
+        audioEl.volume = 0;
+        audioEl.play().catch(function(){});
+        return { el: audioEl, state: 'in', start: Date.now(), dur: dur * 1000, targetVol: vol };
+      }
+      function createFadeOut(obj, dur) {
+        if (!obj || !obj.el) return null;
+        return { el: obj.el, state: 'out', start: Date.now(), dur: dur * 1000, startVol: obj.el.volume };
+      }
+      function tickFade(obj) {
+        if (!obj || !obj.el) return null;
+        var t = obj.dur > 0 ? clamp((Date.now() - obj.start) / obj.dur, 0, 1) : 1;
+        if (obj.state === 'in') {
+          obj.el.volume = t * (obj.targetVol || 1);
+          if (t >= 1) obj.state = 'playing';
+        } else if (obj.state === 'out') {
+          obj.el.volume = (1 - t) * (obj.startVol || 1);
+          if (t >= 1) { obj.el.pause(); return null; }
+        }
+        return obj;
+      }
+      function killAudio(obj) {
+        if (obj && obj.el) { obj.el.pause(); obj.el.src = ''; }
+        return null;
+      }
+
+      // Per-scene state
+      var sceneStates = [];
+      scenes.forEach(function(sceneEl, si) {
+        var cfg = null;
+        try { cfg = JSON.parse(sceneEl.dataset.scConfig || 'null'); } catch(e) {}
+        sceneStates.push({
+          el: sceneEl,
+          cfg: cfg,
+          inScene: false,
+          ambient: null,
+          ambientOut: null,
+          voice: null,
+          voiceOut: null,
+          activeDlg: -1,
+          dlgObj: null,
+          dlgOut: null,
+          activeStk: -1,
+          stkObj: null,
+          stkOut: null,
+          activePara: -1,
+          paraObj: null,
+          paraOut: null,
+          blocks: sceneEl.querySelectorAll('.sc-block'),
+          stickyWraps: sceneEl.querySelectorAll('.sc-block-sticky'),
+          enterEl: sceneEl.querySelector('.sc-enter'),
+          exitEl: sceneEl.querySelector('.sc-exit'),
+          bgEl: sceneEl.querySelector('.sc-bg'),
+        });
+      });
+
+      var playheadY = window.innerHeight * 0.5;
+      window.addEventListener('resize', function() { playheadY = window.innerHeight * 0.5; });
+
+      function doEnter(s) {
+        if (s.inScene || !s.cfg) return;
+        s.inScene = true;
+        var c = s.cfg;
+        var footerScene = document.getElementById('footerScene');
+        var scTitle = s.el.dataset.scTitle || '';
+        if (footerScene) footerScene.innerHTML = scTitle ? '<span class="footer-scene-label">now playing: </span>' + scTitle : '';
+
+        // Wallpaper
+        if (c.wallpaperFilename && s.bgEl) {
+          var url = s.el.dataset['scImg_' + c.wallpaperFilename.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase()];
+          if (url) {
+            s.bgEl.style.backgroundImage = "url('" + url + "')";
+            s.bgEl.style.backgroundPosition = c.wallpaperPosition || 'center';
+            s.bgEl.style.opacity = String(c.wallpaperOpacity || 0.25);
+          }
+        }
+
+        // Ambient audio
+        s.ambientOut = killAudio(s.ambientOut);
+        if (c.ambientFilename) {
+          var aUrl = s.el.dataset['scAud_' + c.ambientFilename.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase()];
+          if (aUrl) {
+            var a = new Audio(aUrl);
+            a.loop = !!c.ambientLoop;
+            s.ambient = createFadeIn(a, c.ambientVolume || 0.5, c.fadeIn || 2);
+          }
+        }
+
+      }
+
+      function doExit(s) {
+        if (!s.inScene || !s.cfg) return;
+        s.inScene = false;
+        var c = s.cfg;
+        var footerScene = document.getElementById('footerScene');
+        var myTitle = s.el.dataset.scTitle || '';
+        if (footerScene && myTitle && footerScene.textContent.indexOf(myTitle) !== -1) {
+          footerScene.innerHTML = '';
+        }
+        if (s.bgEl) s.bgEl.style.opacity = '0';
+
+        if (s.ambient) { s.ambientOut = createFadeOut(s.ambient, c.fadeOut || 3); s.ambient = null; }
+        if (s.voice) { s.voiceOut = createFadeOut(s.voice, c.fadeOut || 3); s.voice = null; }
+        s.dlgObj = killAudio(s.dlgObj);
+        s.dlgOut = killAudio(s.dlgOut);
+        s.activeDlg = -1;
+        s.stkObj = killAudio(s.stkObj);
+        s.stkOut = killAudio(s.stkOut);
+        s.activeStk = -1;
+        s.paraObj = killAudio(s.paraObj);
+        s.paraOut = killAudio(s.paraOut);
+        s.activePara = -1;
+      }
+
+      function tick() {
+        for (var si = 0; si < sceneStates.length; si++) {
+          var s = sceneStates[si];
+          if (!s.cfg) continue;
+          var c = s.cfg;
+
+          // Tick fades
+          s.ambientOut = tickFade(s.ambientOut);
+          s.voiceOut = tickFade(s.voiceOut);
+          if (s.ambient && s.ambient.state === 'in') tickFade(s.ambient);
+          if (s.voice && s.voice.state === 'in') tickFade(s.voice);
+          s.dlgObj = tickFade(s.dlgObj);
+          s.dlgOut = tickFade(s.dlgOut);
+          s.stkObj = tickFade(s.stkObj);
+          s.stkOut = tickFade(s.stkOut);
+          s.paraObj = tickFade(s.paraObj);
+          s.paraOut = tickFade(s.paraOut);
+
+          // Block visibility
+          for (var bi = 0; bi < s.blocks.length; bi++) {
+            var b = s.blocks[bi];
+            var rect = b.getBoundingClientRect();
+            var center = rect.top + rect.height / 2;
+            if (center < playheadY + 100) b.classList.add('sc-vis'); else b.classList.remove('sc-vis');
+            if (center < playheadY - window.innerHeight * 0.3) b.classList.add('sc-past'); else b.classList.remove('sc-past');
+          }
+
+          // Scene zone detection
+          var enterBottom = s.enterEl ? s.enterEl.getBoundingClientRect().bottom : 0;
+          var exitTop = s.exitEl ? s.exitEl.getBoundingClientRect().top : window.innerHeight;
+          if (enterBottom <= playheadY && exitTop > playheadY) {
+            doEnter(s);
+          } else {
+            doExit(s);
+          }
+
+          // Per-dialogue voice
+          if (s.inScene) {
+            var currentDlg = -1;
+            for (var di = 0; di < s.blocks.length; di++) {
+              var db = s.blocks[di];
+              var dr = db.getBoundingClientRect();
+              var dataIdx = parseInt(db.dataset.idx || '-1', 10);
+              if (dr.top < playheadY && dr.bottom > playheadY && db.classList.contains('sc-block-dialogue')) {
+                currentDlg = dataIdx;
+              }
+            }
+            if (currentDlg !== s.activeDlg) {
+              if (s.dlgObj && s.dlgObj.el) {
+                s.dlgOut = killAudio(s.dlgOut);
+                s.dlgOut = createFadeOut(s.dlgObj, DLG_FADE);
+                s.dlgObj = null;
+              }
+              s.activeDlg = currentDlg;
+              if (currentDlg >= 0 && c.dialogueClips) {
+                var clip = c.dialogueClips[currentDlg];
+                if (clip && clip.filename) {
+                  var dUrl = s.el.dataset['scAud_' + clip.filename.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase()];
+                  if (dUrl) {
+                    var da = new Audio(dUrl);
+                    s.dlgObj = createFadeIn(da, clip.volume || c.dialogueVolume || 0.8, DLG_FADE);
+                  }
+                }
+              }
+            }
+          }
+
+          // Per-sticky audio
+          if (s.inScene) {
+            var currentStk = -1;
+            for (var swi = 0; swi < s.stickyWraps.length; swi++) {
+              var sw = s.stickyWraps[swi];
+              var sIdx = parseInt(sw.dataset.idx || '-1', 10);
+              if (sw.querySelector('.sc-block.sc-vis')) {
+                currentStk = sIdx;
+              }
+            }
+            if (currentStk !== s.activeStk) {
+              if (s.stkObj && s.stkObj.el) {
+                s.stkOut = killAudio(s.stkOut);
+                s.stkOut = createFadeOut(s.stkObj, DLG_FADE);
+                s.stkObj = null;
+              }
+              s.activeStk = currentStk;
+              if (currentStk >= 0 && c.stickyClips) {
+                var sClip = c.stickyClips[currentStk];
+                if (sClip && sClip.filename) {
+                  var sUrl = s.el.dataset['scAud_' + sClip.filename.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase()];
+                  if (sUrl) {
+                    var sa = new Audio(sUrl);
+                    s.stkObj = createFadeIn(sa, sClip.volume || c.stickyVolume || 0.8, DLG_FADE);
+                  }
+                }
+              }
+            }
+          }
+
+          // Per-para audio
+          if (s.inScene) {
+            var currentPara = -1;
+            for (var pi = 0; pi < s.blocks.length; pi++) {
+              var pb = s.blocks[pi];
+              var pr = pb.getBoundingClientRect();
+              var pIdx = parseInt(pb.dataset.idx || '-1', 10);
+              if (pr.top < playheadY && pr.bottom > playheadY && !pb.classList.contains('sc-block-dialogue') && pb.classList.contains('sc-block-para')) {
+                currentPara = pIdx;
+              }
+            }
+            if (currentPara !== s.activePara) {
+              if (s.paraObj && s.paraObj.el) {
+                s.paraOut = killAudio(s.paraOut);
+                s.paraOut = createFadeOut(s.paraObj, DLG_FADE);
+                s.paraObj = null;
+              }
+              s.activePara = currentPara;
+              if (currentPara >= 0 && c.paraClips) {
+                var pClip = c.paraClips[currentPara];
+                if (pClip && pClip.filename) {
+                  var pUrl = s.el.dataset['scAud_' + pClip.filename.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase()];
+                  if (pUrl) {
+                    var pa = new Audio(pUrl);
+                    s.paraObj = createFadeIn(pa, pClip.volume || c.paraVolume || 0.8, DLG_FADE);
+                  }
+                }
+              }
+            }
+          }
+        }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+
+      // ── Autoplay scroll controller ──────────────────────────
+      // Audio is the master clock.
+      // Dialogue/para clips GATE the scroll (nearly pause until done).
+      // Sticky clips PACE the scroll (keep scrolling to reveal text).
+      // Ambient never affects scroll — it is just atmosphere.
+
+      var FRONT_MATTER_SPEED = 0.3; // px/frame for cover, copyright, TOC (~18px/s)
+      var BASE_SPEED = 0.8;        // px/frame through non-audio content (~48px/s @ 60fps)
+      var DEAD_ZONE_SPEED = 2.5;   // px/frame through silence gaps (dead zones)
+      var CREEP_SPEED = 0.15;      // px/frame — tiny drift while a dialogue clip plays
+      var PAUSE_AFTER_CLIP = 45;   // frames to breathe after a clip ends (~0.75s)
+      var STICKY_MIN_SPEED = 0.08;    // very low floor — let audio fully control pace
+      var STICKY_MAX_SPEED = 1.2;     // cap for sticky clips
+      var FPS = 60;
+
+      var firstSceneEl = document.querySelector('.sc-scene');
+      var pastFrontMatter = false;
+
+      function isInFrontMatter() {
+        if (pastFrontMatter) return false;
+        if (firstSceneEl && firstSceneEl.getBoundingClientRect().top <= window.innerHeight) {
+          pastFrontMatter = true;
+          return false;
+        }
+        return true;
+      }
+
+      var autoScrollActive = false;
+      var scrollDone = false;
+      var postClipTimer = 0;
+
+      function isClipPlaying(obj) {
+        if (!obj || !obj.el) return false;
+        return !obj.el.paused && !obj.el.ended;
+      }
+
+      function hasDuration(obj) {
+        if (!obj || !obj.el) return false;
+        return obj.el.duration && !isNaN(obj.el.duration) && obj.el.duration > 0;
+      }
+
+      // Only dialogue and para clips gate (nearly stop scroll).
+      // Sticky clips are handled separately with pacing.
+      function isGatedAudioPlaying() {
+        for (var i = 0; i < sceneStates.length; i++) {
+          var s = sceneStates[i];
+          if (isClipPlaying(s.dlgObj)) return true;
+          if (isClipPlaying(s.paraObj)) return true;
+          // NOTE: stkObj is NOT here — sticky clips are paced, not gated
+        }
+        return false;
+      }
+
+      function isInDeadZone() {
+        for (var i = 0; i < sceneStates.length; i++) {
+          if (sceneStates[i].inScene) return false;
+        }
+        return true;
+      }
+
+      // For sticky clips: pace scroll so the sticky section finishes
+      // scrolling right when the audio clip ends.
+      function getStickyPacedSpeed() {
+        for (var i = 0; i < sceneStates.length; i++) {
+          var s = sceneStates[i];
+          if (!s.inScene) continue;
+          if (!isClipPlaying(s.stkObj)) continue;
+
+          // If playing but duration not loaded yet, crawl until we can calculate
+          if (!hasDuration(s.stkObj)) return STICKY_MIN_SPEED;
+
+          var audio = s.stkObj.el;
+          var remaining = audio.duration - audio.currentTime;
+          if (remaining <= 0) continue;
+
+          // Find the active sticky wrapper element
+          var activeIdx = s.activeStk;
+          if (activeIdx < 0) continue;
+
+          for (var sw = 0; sw < s.stickyWraps.length; sw++) {
+            var wrap = s.stickyWraps[sw];
+            var idx = parseInt(wrap.dataset.idx || '-1', 10);
+            if (idx !== activeIdx) continue;
+
+            // Find the last text block inside the sticky text column
+            var textBlocks = wrap.querySelectorAll('.sc-sticky-text .sc-block');
+            if (!textBlocks.length) continue;
+            var lastBlock = textBlocks[textBlocks.length - 1];
+            var lastRect = lastBlock.getBoundingClientRect();
+
+            // Distance = bottom of last text block to playhead
+            var pixelsLeft = lastRect.bottom - playheadY;
+
+            // If all text has already passed the playhead but audio still playing,
+            // keep scrolling slowly — don't jump to BASE_SPEED
+            if (pixelsLeft <= 10) return BASE_SPEED;
+
+            var speed = pixelsLeft / (remaining * FPS);
+            speed = Math.max(STICKY_MIN_SPEED, Math.min(STICKY_MAX_SPEED, speed));
+            return speed;
+          }
+
+          // Sticky clip is playing but couldn't find wrapper — crawl
+          return STICKY_MIN_SPEED;
+        }
+        return null;
+      }
+
+      function autoScroll() {
+        if (!autoScrollActive || scrollDone) {
+          requestAnimationFrame(autoScroll);
+          return;
+        }
+
+        var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        if (window.scrollY >= maxScroll) {
+          scrollDone = true;
+          console.log('Autoplay: reached the end.');
+          return;
+        }
+
+        var speed;
+
+        // Priority 0: front matter (cover, copyright, TOC) — slow scroll
+        if (isInFrontMatter()) {
+          speed = FRONT_MATTER_SPEED;
+          window.scrollBy(0, speed);
+          requestAnimationFrame(autoScroll);
+          return;
+        }
+
+        // Priority 1: dialogue/para clip playing — gate (nearly stop)
+        if (isGatedAudioPlaying()) {
+          speed = CREEP_SPEED;
+          postClipTimer = PAUSE_AFTER_CLIP;
+        }
+        // Priority 2: just finished a clip — brief pause
+        else if (postClipTimer > 0) {
+          speed = CREEP_SPEED;
+          postClipTimer--;
+        }
+        // Priority 3: sticky clip playing — pace through the sticky section
+        else {
+          var stickySpeed = getStickyPacedSpeed();
+          if (stickySpeed !== null) {
+            speed = stickySpeed;
+          }
+          // Priority 4: dead zone — move through silence
+          else if (isInDeadZone()) {
+            speed = DEAD_ZONE_SPEED;
+          }
+          // Default: gentle reading pace
+          else {
+            speed = BASE_SPEED;
+          }
+        }
+
+        window.scrollBy(0, speed);
+        requestAnimationFrame(autoScroll);
+      }
+
+      // Status indicator + start/pause control (lives in the footer)
+      var statusEl = document.getElementById('footerStatus');
+      statusEl.textContent = 'PRESS SPACE TO BEGIN';
+      statusEl.classList.add('pill');
+
+      document.addEventListener('keydown', function(e) {
+        if (e.code === 'Space') {
+          e.preventDefault();
+          if (scrollDone) return;
+
+          autoScrollActive = !autoScrollActive;
+
+          if (autoScrollActive) {
+            statusEl.textContent = 'PLAYING';
+            statusEl.classList.remove('pill');
+            // fade out the indicator after 1 second
+            setTimeout(function() {
+              if (autoScrollActive) statusEl.style.opacity = '0';
+            }, 1000);
+          } else {
+            statusEl.style.opacity = '1';
+            statusEl.textContent = 'PAUSED \u2014 SPACE TO RESUME';
+            statusEl.classList.add('pill');
+          }
+        }
+      });
+
+      // also allow clicking the status bar to toggle
+      statusEl.addEventListener('click', function() {
+        var ev = new KeyboardEvent('keydown', { code: 'Space' });
+        document.dispatchEvent(ev);
+      });
+
+      requestAnimationFrame(autoScroll);
+
+    })();
+  </script>
+</body>
+</html>
