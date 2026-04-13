@@ -1,0 +1,1925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Barden Digby</title>
+  <base href="/Barden-Digby/" />
+  <style>
+/* EverythingEbooks — EPUB-matching base styles */
+
+html {
+  font-size: 100%;
+}
+
+body {
+  font-family: serif;
+  line-height: 1.6;
+  margin: 1em auto;
+  padding: 0 1.5rem;
+  padding-bottom: 70px;
+  text-align: left;
+  max-width: min(92%, 1400px);
+  background: #fffaf5;
+  color: #222;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Title page */
+.title-page {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.title-page p {
+  text-indent: 0;
+  text-align: center;
+}
+
+.book-title {
+  text-align: center;
+  font-size: 1.8em;
+  font-weight: bold;
+  margin: 0;
+  padding-top: 25%;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.book-subtitle {
+  text-align: center;
+  font-size: 1.1em;
+  font-style: italic;
+  margin: 0;
+  padding-top: 5%;
+}
+
+.book-author {
+  text-align: center;
+  font-size: 1.3em;
+  margin: 0;
+  padding-top: 20%;
+  font-weight: normal;
+}
+
+.book-publisher {
+  text-align: center;
+  font-size: 1em;
+  margin: 0;
+  padding-top: 20%;
+  font-weight: normal;
+}
+
+/* Copyright page */
+.copyright-page {
+  margin: 2em 0;
+}
+
+.copyright-page p {
+  text-align: left;
+  margin: 0.8em 0;
+  text-indent: 0;
+  font-size: 0.9em;
+}
+
+/* Contents page */
+.contents-page {
+  margin: 2em 0;
+}
+
+.toc-title {
+  text-align: center;
+  font-size: 1.5em;
+  margin: 2em 0;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.toc-contents {
+  margin: 1em 0;
+  padding: 0;
+}
+
+.toc-item {
+  margin: 1em 0;
+  text-align: left;
+}
+
+.toc-content {
+  margin: 0;
+  text-indent: 0;
+}
+
+.toc-content a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s;
+}
+
+.toc-content a:hover {
+  text-decoration: underline;
+}
+
+.toc-item-title {
+  display: inline;
+}
+
+.toc-section-header {
+  margin: 2em 0 0.5em 0;
+}
+
+.toc-section-title {
+  font-weight: bold;
+  font-style: italic;
+  margin: 0;
+  text-indent: 0;
+}
+
+/* Chapter styles */
+.chapter {
+  margin: 0;
+}
+
+h1 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 3em 0 2em 0;
+  text-align: center;
+}
+
+p {
+  margin: 0 0 1em 0;
+  text-indent: 1.5em;
+  text-align: justify;
+  line-height: 1.6;
+}
+
+pre {
+  margin: 1em 0;
+  text-align: left;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-x: auto;
+  font-family: monospace;
+}
+
+/* First paragraph after chapter heading */
+.chapter p:first-of-type {
+  text-indent: 0;
+  margin-top: 1.5em;
+}
+
+/* Inline images */
+.image-container {
+  text-align: center;
+  margin: 1.5em 0;
+}
+
+.image-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Figures (resized images from editor) */
+figure {
+  text-align: center;
+  margin: 1.5em auto;
+  max-width: 100%;
+}
+
+figure img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+figure[data-align="left"] {
+  margin-left: 0;
+  margin-right: auto;
+  text-align: left;
+}
+
+figure[data-align="right"] {
+  margin-left: auto;
+  margin-right: 0;
+  text-align: right;
+}
+
+figcaption {
+  font-size: 0.85em;
+  text-align: center;
+  margin-top: 0.5em;
+  font-style: italic;
+}
+
+/* Audio blocks (non-VN) */
+.audio-block {
+  text-align: center;
+  margin: 1.5em 0;
+}
+
+.audio-block audio {
+  width: 80%;
+  max-width: 400px;
+}
+
+.audio-block .caption {
+  font-size: 0.85em;
+  font-style: italic;
+  margin-top: 0.5em;
+}
+
+/* Scene overrides — no indent, left-aligned */
+.scene p {
+  text-indent: 0;
+  text-align: left;
+}
+
+/* About author page */
+.about-author-page {
+  margin: 2em 0;
+}
+
+.about-author-page h1 {
+  text-align: center;
+  font-size: 1.5em;
+  margin: 2em 0;
+  font-weight: bold;
+}
+
+.about-author-page p {
+  text-align: left;
+  text-indent: 1.5em;
+  margin: 0 0 1em 0;
+}
+
+.about-author-page p:first-of-type {
+  text-indent: 0;
+}
+
+/* Navigation styles */
+nav h1 {
+  text-align: center;
+  font-size: 1.5em;
+  margin: 2em 0;
+  font-weight: bold;
+}
+
+nav ol {
+  list-style: none;
+  margin: 1em 0;
+  padding: 0;
+}
+
+nav li {
+  margin: 1em 0;
+  text-align: left;
+}
+
+nav a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.chapter a,
+.scene a,
+.copyright-page a {
+  color: #1a6fb5;
+  text-decoration: underline;
+  text-decoration-color: rgba(26, 111, 181, 0.4);
+}
+
+.chapter a:hover,
+.scene a:hover,
+.copyright-page a:hover {
+  color: #155a94;
+  text-decoration-color: rgba(21, 90, 148, 0.8);
+}
+
+/* ── Visual Narrative styles ──────────────── */
+/* Visual Narrative — reflowable epub3 styles */
+
+/* ── Nav / Title ─────────────────────────── */
+
+.nav-page {
+  text-align: center;
+  padding: 2em 1em;
+}
+
+.story-header {
+  margin-bottom: 2em;
+}
+
+.cover-image {
+  width: 60%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 4px;
+  margin-bottom: 1.5em;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.story-header h1 {
+  font-size: 2.2em;
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.2em;
+  text-transform: uppercase;
+}
+
+.byline {
+  font-style: italic;
+  opacity: 0.6;
+  font-size: 0.95em;
+}
+
+nav ol {
+  list-style: none;
+  padding: 1em 0;
+}
+
+nav ol li {
+  margin: 0.8em 0;
+}
+
+nav ol li a {
+  text-decoration: none;
+  font-size: 1.1em;
+  letter-spacing: 0.05em;
+}
+
+/* ── Scene ────────────────────────────────── */
+
+.scene {
+  padding: 1.5em;
+  max-width: min(92%, 1200px);
+  margin: 0 auto;
+}
+
+.scene-title {
+  font-size: 1.4em;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 1.5em;
+  text-align: center;
+}
+
+/* ── Text ─────────────────────────────────── */
+
+.dialogue {
+  margin: 1.5em 0;
+  padding-left: 1.5em;
+  border-left: 2px solid;
+  border-left-color: rgba(128, 128, 128, 0.3);
+}
+
+.dialogue .speaker {
+  font-style: normal;
+  font-size: 0.85em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  display: block;
+  margin-bottom: 0.3em;
+}
+
+.internal {
+  margin: 1.5em 2em;
+  font-style: italic;
+  opacity: 0.7;
+}
+
+.emphasis-line {
+  text-align: center;
+  margin: 2em 0;
+  font-size: 1.2em;
+  letter-spacing: 0.08em;
+}
+
+.scene-break {
+  text-align: center;
+  margin: 2.5em 0;
+  letter-spacing: 0.5em;
+  font-size: 0.8em;
+  opacity: 0.4;
+}
+
+/* ── Images ───────────────────────────────── */
+
+.visual {
+  margin: 2em 0;
+}
+
+.visual img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 2px;
+}
+
+.visual.wide {
+  margin-left: -1.5em;
+  margin-right: -1.5em;
+  width: calc(100% + 3em);
+}
+
+.visual.wide img {
+  border-radius: 0;
+}
+
+.visual.inline-right {
+  float: right;
+  width: 45%;
+  margin: 0.5em 0 1em 1.5em;
+}
+
+.visual.inline-left {
+  float: left;
+  width: 45%;
+  margin: 0.5em 1.5em 1em 0;
+}
+
+.visual.centered {
+  width: 65%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.visual .caption {
+  font-size: 0.8em;
+  text-align: center;
+  margin-top: 0.5em;
+  font-style: italic;
+  opacity: 0.5;
+}
+
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* ── Figures (resized images) ────────────── */
+
+figure {
+  margin: 2em auto;
+  text-align: center;
+  max-width: 100%;
+}
+
+figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 2px;
+}
+
+figure[data-align="left"] {
+  margin-left: 0;
+  margin-right: auto;
+  text-align: left;
+}
+
+figure[data-align="right"] {
+  margin-left: auto;
+  margin-right: 0;
+  text-align: right;
+}
+
+figcaption {
+  font-size: 0.8em;
+  text-align: center;
+  margin-top: 0.5em;
+  font-style: italic;
+  opacity: 0.5;
+}
+
+/* ── Audio ────────────────────────────────── */
+
+.scene-audio {
+  margin: 2em 0;
+  text-align: center;
+}
+
+.scene-audio audio {
+  width: 80%;
+  max-width: 400px;
+  opacity: 0.7;
+}
+
+.scene-audio .audio-label {
+  font-size: 0.8em;
+  opacity: 0.4;
+  margin-bottom: 0.5em;
+  letter-spacing: 0.05em;
+}
+
+/* ── Scene nav ────────────────────────────── */
+
+.scene-end {
+  margin-top: 3em;
+  padding-top: 2em;
+  border-top: 1px solid;
+  border-top-color: rgba(128, 128, 128, 0.15);
+  text-align: center;
+}
+
+.scene-end .next-label {
+  font-size: 0.8em;
+  opacity: 0.4;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.scene-end a {
+  display: block;
+  margin-top: 0.3em;
+  text-decoration: none;
+  font-size: 1.1em;
+}
+
+/* ── Responsive ───────────────────────────── */
+
+@media (max-width: 600px) {
+  .scene { padding: 1em; }
+
+  .visual.wide {
+    margin-left: -1em;
+    margin-right: -1em;
+    width: calc(100% + 2em);
+  }
+
+  .visual.inline-right,
+  .visual.inline-left {
+    float: none;
+    width: 100%;
+    margin: 1.5em 0;
+  }
+
+  .visual.centered { width: 90%; }
+  .dialogue { padding-left: 1em; }
+  .internal { margin: 1.5em 0.5em; }
+  figure { max-width: 100% !important; }
+}
+
+@media (min-width: 1000px) {
+  .scene {
+    font-size: 1.05em;
+  }
+}
+
+/* ── Sticky Image ────────────────────────── */
+
+.sticky-wrap {
+  display: flex;
+  gap: 1.5em;
+  max-width: min(92%, 1200px);
+  margin: 2em auto;
+  min-height: 300px;
+  align-items: flex-start;
+}
+
+.sticky-img-wrap {
+  position: sticky;
+  top: 1em;
+  width: 40%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.sticky-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+}
+
+.sticky-img-wrap input[type="checkbox"] {
+  display: none;
+}
+
+.sticky-img-wrap label.img-label {
+  cursor: zoom-in;
+  display: block;
+}
+
+.sticky-img-wrap label.enlarge-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: center / contain no-repeat var(--sticky-bg);
+  background-color: #000;
+  cursor: zoom-out;
+}
+
+.sticky-img-wrap input:checked ~ label.img-label {
+  cursor: zoom-out;
+}
+
+.sticky-img-wrap input:checked ~ label.enlarge-overlay {
+  display: block;
+  z-index: 9999;
+}
+
+body:has(.sticky-img-wrap input:checked) .sticky-img-wrap {
+  position: static;
+}
+
+.sticky-caption {
+  font-size: 0.75em;
+  text-align: center;
+  margin: 0.4em 0 0 0;
+  font-style: italic;
+  opacity: 0.6;
+}
+
+.sticky-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 0.5em 0;
+}
+
+.sticky-text p {
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .sticky-wrap {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .sticky-img-wrap {
+    position: relative;
+    top: auto;
+    width: 100%;
+  }
+
+  .sticky-text {
+    width: 100%;
+  }
+}
+
+/* ── Parallax Wallpaper ──────────────────── */
+
+.parallax {
+  position: relative;
+  min-height: 100vh;
+  overflow: clip;
+}
+
+.parallax .bg {
+  position: absolute;
+  inset: -20%;
+  background-size: cover;
+  background-position: center;
+  filter: blur(2px);
+  z-index: 0;
+}
+
+.parallax .dim {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 1;
+}
+
+.parallax .inner {
+  position: relative;
+  z-index: 2;
+  padding: 3em 2em;
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+}
+
+.parallax .inner h1 {
+  color: #fff;
+}
+
+.parallax .inner p {
+  color: rgba(255,255,255,0.92);
+}
+
+/* ── SceneCraft immersive scroll-driven styles ──── */
+.sc-scene {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  background: #060608;
+  color: #c8c0b4;
+  overflow: clip;
+}
+.sc-scene .sc-bg {
+  position: fixed;
+  inset: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+  z-index: 0;
+  pointer-events: none;
+}
+.sc-scene .sc-playhead {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: rgba(255,120,68,0.15);
+  z-index: 10;
+  pointer-events: none;
+}
+.sc-scene .sc-playhead-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,120,68,0.4);
+  position: absolute;
+  left: 50%;
+  top: -3px;
+  transform: translateX(-50%);
+}
+.sc-scene .sc-info {
+  position: fixed;
+  right: 16px;
+  top: calc(50% - 14px);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: rgba(255,120,68,0.35);
+  z-index: 10;
+  pointer-events: none;
+  font-family: 'SF Mono','Fira Code',monospace;
+}
+.sc-scene .sc-content {
+  max-width: min(88%, 52rem);
+  margin: 0 auto;
+  padding: 50vh 2rem;
+  font-family: Georgia, 'EB Garamond', serif;
+  font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+  line-height: 2;
+  position: relative;
+  z-index: 2;
+}
+.sc-scene .sc-dead-zone {
+  height: 50vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 2rem;
+}
+.sc-scene .sc-dead-zone span {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: #2a2620;
+  font-style: italic;
+  font-family: 'SF Mono','Fira Code',monospace;
+}
+.sc-scene .sc-enter {
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #c8c0b4;
+  margin-bottom: 3em;
+  padding-bottom: 1em;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  font-family: 'SF Mono','Fira Code',monospace;
+}
+.sc-scene .sc-exit {
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #c8c0b4;
+  margin-top: 3em;
+  padding-top: 1em;
+  border-top: 1px solid rgba(255,255,255,0.03);
+  font-style: italic;
+  font-family: 'SF Mono','Fira Code',monospace;
+}
+.sc-scene .sc-dead-zone-after {
+  height: 70vh;
+}
+.sc-scene .sc-block {
+  margin-bottom: 1.6em;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  position: relative;
+  z-index: 2;
+}
+.sc-scene .sc-block.sc-vis {
+  opacity: 1;
+  transform: translateY(0);
+}
+.sc-scene .sc-block.sc-past {
+  opacity: 0.3;
+}
+.sc-scene .sc-block-dialogue {
+  color: #d4c090;
+}
+.sc-scene .sc-block-dialogue .sc-speaker {
+  font-family: 'SF Mono','Fira Code',monospace;
+  font-size: 0.65em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #a08040;
+  display: block;
+  margin-bottom: 0.3em;
+}
+.sc-scene .sc-block-emphasis {
+  font-style: italic;
+  color: #e0c8b0;
+  text-align: center;
+}
+.sc-scene .sc-block-quote {
+  border-left: 2px solid rgba(200,192,180,0.3);
+  padding-left: 1.5em;
+}
+.sc-scene .sc-block-internal {
+  font-style: italic;
+  padding-left: 2em;
+}
+.sc-scene .sc-block-break {
+  text-align: center;
+  color: #3a3530;
+  letter-spacing: 0.3em;
+}
+.sc-scene .sc-block-h1 {
+  font-size: 1.8em;
+  font-weight: bold;
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #c8c0b4;
+}
+.sc-scene .sc-block-h2 {
+  font-size: 1.4em;
+  font-weight: bold;
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #c8c0b4;
+}
+.sc-scene .sc-block-h3 {
+  font-size: 1.15em;
+  font-weight: bold;
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #c8c0b4;
+}
+.sc-scene .sc-block-divider {
+  border-top: 1px solid rgba(200,192,180,0.15);
+  margin: 1.6em 0;
+}
+.sc-scene .sc-block-linebreak {
+  height: 1.2em;
+  margin: 0;
+}
+.sc-scene .sc-block-sticky {
+  display: flex;
+  gap: 1.5em;
+  align-items: flex-start;
+  min-height: 300px;
+  margin-bottom: 1.6em;
+  position: relative;
+  z-index: 2;
+}
+.sc-scene .sc-block-sticky .sc-block {
+  margin-bottom: 0;
+}
+.sc-scene .sc-block-sticky .sc-sticky-img {
+  position: sticky;
+  top: 0;
+  width: 40%;
+  flex-shrink: 0;
+}
+.sc-scene .sc-block-sticky .sc-sticky-img input[type="checkbox"] {
+  display: none;
+}
+.sc-scene .sc-block-sticky .sc-sticky-img input:checked ~ .sc-enlarge-overlay {
+  display: block !important;
+}
+.sc-scene .sc-block-sticky .sc-sticky-img img {
+  width: 100%;
+  border-radius: 4px;
+  opacity: 0.9;
+}
+.sc-scene .sc-block-sticky .sc-sticky-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding-top: 15vh;
+}
+body.sc-overlay-hidden .sc-playhead,
+body.sc-overlay-hidden .sc-playhead-dot,
+body.sc-overlay-hidden .sc-info,
+body.sc-overlay-hidden .sc-dead-zone span {
+  display: none !important;
+}
+/* ── Sticky-image enlarge: collapse stacking contexts so overlay reaches root ── */
+body:has(.sc-sticky-img input:checked) .sc-scene .sc-content {
+  z-index: auto;
+}
+body:has(.sc-sticky-img input:checked) .sc-block-sticky {
+  z-index: auto;
+}
+body:has(.sc-sticky-img input:checked) .sc-sticky-img {
+  position: static;
+}
+.sc-scene a {
+  color: #e8c078;
+  text-decoration: underline;
+  text-decoration-color: rgba(232, 192, 120, 0.4);
+}
+.sc-scene a:hover {
+  color: #f0d898;
+  text-decoration-color: rgba(240, 216, 152, 0.7);
+}
+
+/* ── Dark mode ─────────────────────────────── */
+
+body.dark-mode {
+  background: #121212;
+  color: #e0e0e0;
+}
+
+body.dark-mode .dialogue {
+  border-left-color: rgba(200, 200, 200, 0.25);
+}
+
+body.dark-mode .toc-content a:hover {
+  color: #ccc;
+}
+
+body.dark-mode img {
+  opacity: 0.9;
+}
+
+body.dark-mode .scene-audio {
+  border-color: rgba(200, 200, 200, 0.15);
+}
+
+body.dark-mode .chapter a,
+body.dark-mode .scene a,
+body.dark-mode .copyright-page a {
+  color: #5bb8f5;
+  text-decoration-color: rgba(91, 184, 245, 0.4);
+}
+
+body.dark-mode .chapter a:hover,
+body.dark-mode .scene a:hover,
+body.dark-mode .copyright-page a:hover {
+  color: #7dcaff;
+  text-decoration-color: rgba(125, 202, 255, 0.8);
+}
+
+/* ── Sticky Footer ─────────────────────────── */
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #1a1a1a;
+  color: #ccc;
+  padding: 12px 20px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-size: 0.9em;
+  z-index: 1000;
+}
+
+.footer-info {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.footer-title {
+  font-weight: bold;
+  color: #707070;
+}
+
+.footer-author {
+  color: #999;
+}
+
+.footer-copyright {
+  color: #777;
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.4em;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.playhead-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+}
+.playhead-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.playhead-toggle svg {
+  width: 22px;
+  height: 22px;
+  fill: #ff7844;
+  transition: opacity 0.2s;
+}
+.playhead-toggle.sc-off svg {
+  opacity: 0.35;
+}
+
+.footer-buttons {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+/* ── Responsive ────────────────────────────── */
+
+@media (max-width: 600px) {
+  body {
+    margin: 0.5em;
+    padding-bottom: 70px;
+  }
+
+  .book-title {
+    font-size: 1.5em;
+  }
+
+  h1 {
+    font-size: 1.3em;
+  }
+
+  .footer {
+    padding: 10px 15px;
+    font-size: 0.8em;
+  }
+
+  .footer-info {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+}
+  </style>
+</head>
+<body class="dark-mode">
+
+  <section class="cover-page" style="text-align:center; margin:0; padding:2em 0;">
+    <img src="images/cover.jpg" alt="Cover" style="max-width:100%; max-height:90vh; object-fit:contain;"/>
+  </section>
+
+  <section class="title-page">
+    <p class="book-title">BARDEN DIGBY</p>
+    <p class="book-subtitle">A Story</p>
+    <p class="book-author">Linda A Lavid</p>
+    <p class="book-publisher">Plum Barn Press</p>
+  </section>
+
+  <section class="copyright-page" id="section-1">
+<section class="copyright-page" epub:type="copyright-page">
+<p></p>
+<p></p>
+<p>Copyright © 2023 by Linda A Lavid</p>
+<br>
+<p>All rights reserved.</p>
+<br>
+<p>No part of this book may be reproduced in any form or by any electronic or mechanical means, including information storage and retrieval systems, without written permission from the author, except for the use of brief quotations in a book review.</p>
+<br>
+<br>
+<br>
+<p></p>
+</section>
+  </section>
+
+  <div class="contents-page">
+    <h1 class="toc-title">CONTENTS</h1>
+    <div class="toc-contents">
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-3"><span class="toc-item-title">Barden Digby abstract</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-4"><span class="toc-item-title">Barden Digby, Home, Bentley</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-5"><span class="toc-item-title">Barden at home</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-6"><span class="toc-item-title">Chapter 1</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-7"><span class="toc-item-title">Chapter 2</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-8"><span class="toc-item-title">Chapter 3</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-9"><span class="toc-item-title">Chapter 4</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-10"><span class="toc-item-title">Chapter 5</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-11"><span class="toc-item-title">Chapter 6</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-12"><span class="toc-item-title">Chapter 7</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-13"><span class="toc-item-title">Chapter 8</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-14"><span class="toc-item-title">Chapter 9</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-15"><span class="toc-item-title">Chapter 10</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-16"><span class="toc-item-title">About the Author</span></a></p></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-3" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Barden Digby abstract">
+    <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&nbsp;</span></div>
+      <div class="sc-enter">Barden Digby abstract</div>
+      <div class="sc-block" data-idx="0" style="text-align:left"><img src="images/022.jpeg" alt="Barden Digby abstract" style="max-width:825px;border-radius:4px;opacity:0.9;display:block"/>
+          <span style="font-family:'SF Mono',monospace;font-size:0.55em;color:#5a554e;letter-spacing:0.06em;margin-top:0.4em;display:block">Barden Digby abstract</span></div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="3"></div>
+      <div class="sc-exit">&nbsp;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-4" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Barden Digby, Home, Bentley">
+    <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&nbsp;</span></div>
+      <div class="sc-enter">Barden Digby, Home, Bentley</div>
+      <div class="sc-block" data-idx="0" style="text-align:left"><img src="images/020.jpeg" alt="Barden and the Bentley" style="max-width:260px;border-radius:4px;opacity:0.9;display:block"/>
+          <span style="font-family:'SF Mono',monospace;font-size:0.55em;color:#5a554e;letter-spacing:0.06em;margin-top:0.4em;display:block">Barden and the Bentley</span></div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="3"></div>
+      <div class="sc-exit">&nbsp;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-5" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Barden at home">
+    <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&nbsp;</span></div>
+      <div class="sc-enter">Barden at home</div>
+      <div class="sc-block" data-idx="0" style="text-align:left"><img src="images/021.jpeg" alt="Barden at home" style="max-width:260px;border-radius:4px;opacity:0.9;display:block"/>
+          <span style="font-family:'SF Mono',monospace;font-size:0.55em;color:#5a554e;letter-spacing:0.06em;margin-top:0.4em;display:block">Barden at home</span></div>
+      <div class="sc-exit">&nbsp;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-6" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Chapter 1">
+    <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&nbsp;</span></div>
+      <div class="sc-enter">Chapter 1</div>
+      <div class="sc-block-sticky" data-idx="0">
+        <div class="sc-sticky-img" data-idx="0"><input type="checkbox" id="sc-enlarge-1"/><label for="sc-enlarge-1" style="cursor:zoom-in;display:block"><img src="images/001.jpeg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-1" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/001.jpeg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+          <div class="sc-block" data-idx="0">Barden Digby  lived to be an old man, crotchety and mean, rambling around a 10,000 square foot house, catching mice, saving bags from grocery stores and thinking about Leonora, a wife he once had when he wore suits and took a limo to work where he had met her, a girlfriend to one of his underlings, a woman who had the most remarkable speaking voice, not too sweet, not too throaty,</div>
+          <div class="sc-block" data-idx="0">a woman who wasn't so much a beauty as a creature, unique like something of another world, like a slender fluttery poppy, or a calm, understated Ukrainian flag, or so he felt before he made his move one rainy Friday at the end of a long week after he had sent the boyfriend out of the office, telling the man he need not return because it was Friday and it would be silly to double back during rush hour in the rain which gave Barden an opportunity to corral Leonora as she waited for the bus, and get his driver to pull over and ask her if she needed a ride,</div>
+          <div class="sc-block" data-idx="0">when she stooped down to see who was sitting in the car and looked confused but eventually nodded and agreed to enter the car, sliding beside him, when Barden asked where she'd like to be dropped off and she gave him an address Barden knew, from personnel records, to be her home, not that he was stalking her, he was a kinder, gentler person back then,</div>
+          <div class="sc-block" data-idx="0">quite proper in all things woman and man, so much so that once they were underway he only talked about the weather, the dismal rain and grayness while the two of them in intimacy, breathed the same air without contrivance and once the weather discussion ended, he asked if she had any plans for the weekend to which she responded “nothing really” which in turn encouraged him to mention how he always had Friday night dinner at the Yacht Club for their bouillabaisse that was worth every penny and asked if she ever had bouillabaisse</div>
+          <div class="sc-block" data-idx="0">and she said,  'bullaba-hula?” which Barden found beguiling in a woman not so terribly young and asked his driver to take the route along the river to give him a bit of extra time to work his magic, if one called it that, and Barden rambled on about what made a fish stew extraordinary and that it wasn't only the fresh-caught fish per se but the broth made from its bones with the aromatics of leeks, garlic, fennel, and most importantly, saffron, as Leonora watched the passing scenery, and Barden continued about the proper wine pairing, preferring</div>
+          <div class="sc-block" data-idx="0">a nice Pinot Gris but not necessarily a late season one that tended to be a little too sweet for his palate, when suddenly Leonora spoke up,  “Can you drink river water?”  that seemed pulled from the air with no connection to what was being discussed when he answered with some wryness,  “Yes, but not without consequences.” then continued his litany of local restaurants, many upscale but pathetic in their commitment to making a proper dish by either not bothering with simmering the stock long enough or adding an anemic amount of saffron to then wonder aloud if she had ever been to Marseilles to which she asked if the problem with river water was due to paramecium, making Barden smile,</div>
+          <div class="sc-block" data-idx="0">amused by the woman's remarkable vocabulary – paramecium –  and its possible meaning, that he immediately got down to business and suggested  she join him for dinner to which she nodded in a haphazard way that Barden took as a yes.</div>
+        </div>
+      </div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block" data-idx="2" style="text-align:left"><img src="images/002.jpeg" alt="The Ride" style="max-width:260px;border-radius:4px;opacity:0.9;display:block"/>
+          <span style="font-family:'SF Mono',monospace;font-size:0.55em;color:#5a554e;letter-spacing:0.06em;margin-top:0.4em;display:block">The Ride</span></div>
+      <div class="sc-block sc-block-linebreak" data-idx="3"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="4"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="5"></div>
+      <div class="sc-exit">&nbsp;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-7" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Chapter 2">
+    <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&nbsp;</span></div>
+      <div class="sc-enter">Chapter 2</div>
+      <div class="sc-block-sticky" data-idx="0">
+        <div class="sc-sticky-img" data-idx="0"><input type="checkbox" id="sc-enlarge-2"/><label for="sc-enlarge-2" style="cursor:zoom-in;display:block"><img src="images/003.jpeg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-2" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/003.jpeg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+          <div class="sc-block" data-idx="0">When Harold, the head waiter, asked Barden if he wanted to be seated at his regular table, Barden's eyes swept the room and quickly decided “we” – he actually said <em>we</em> – “would prefer a spot by the window” and pointed to a cornered nook away from the bar and kitchen where he and Leonora could sit facing the lake in their own bubble of whispered words and gentle laughter, hopefully with minimal interruption from patrons who tended to usually,</div>
+          <div class="sc-block" data-idx="0">on evenings when he was alone, saunter over, help themselves to his bottle of wine, and make small talk until the wine was gone which on this particular evening, now that Barden had a guest, was not likely to happen, filling him with pride that made him walk straighter as they – he dark-suited, she in pink – sashayed around tables to be seated, and where Barden hoped to assess the intimacies of Leonora amidst white linen, soft candlelight,</div>
+          <div class="sc-block" data-idx="0">and the romantic mood set by the foggy mist that had settled on the lake and where he had stumbled into an unworldly perfect movie, like a scene from Casablanca when Barden suddenly remembered Leonora had a boyfriend, but as the evening progressed with drinks and dinner, Barden conveniently figured a boyfriend wasn't a husband and she touched his arm twice which had to mean something on the continuum of attraction</div>
+          <div class="sc-block" data-idx="0">because he sure liked it, deciding to return the favor at dessert when he cracked the brûlée, scooped a small spoonful and held it out, as she opened her mouth slowly, licked her lips and said “naughty boy” before allowing him to feed her and in that moment Barden understood, firsthand, what love was, a feeling that lasted beyond dinner and continued as they rode the nighttime streets, softened and glimmered from the rain, huddled close,</div>
+          <div class="sc-block" data-idx="0">and where Barden wanted to tell the driver to ride into the horizon of another dawn, wondering aloud to Leonora, “What makes you happy?” and she said, “Dreams”  and again he was charmed by her, the whole of her, the inside and outside of her, as he reached for her hand, soft, warm, hoping to feel, however faint, the beating of her heart in unison with his, which he believed he did when his breath caught and she smiled before</div>
+          <div class="sc-block" data-idx="0">turning to the window becoming an iridescent beauty in the moonlight who glowed from some interior place, perhaps in his eyes only, again thinking of the boyfriend who must be an oaf to not have made plans, to not have insisted on returning to the office, to ignore her like a vase of roses, unwatered, wilted, forgotten in a dusty distant corner that would serve him right should she choose another man, Barden specifically, who would treat her well,</div>
+          <div class="sc-block" data-idx="0">honorably, sincerely, who would make her dreams come true, no matter the cost or time because he was a resourceful man who understood the nature of possibilities and the abstract reasoning it took to have ideas turn into reality like he did this very evening, a take charge fellow, who made a split-second decision on a mundane Friday evening that manifested into unexpected magic and who could do it again, he was certain, if he tried,</div>
+          <div class="sc-block" data-idx="0">“Your dreams,” he said, “tell me one before we part.” and she became eerily silent, leaving Barden hanging, wondering if he had gone too far, when suddenly she answered, “I want to jump off the highest mountain, fly, and never land” and Barden, hearing her words, felt cuffs tighten and a heavy iron door slam shut, a prisoner of love.</div>
+        </div>
+      </div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block" data-idx="2" style="text-align:left"><img src="images/004.jpeg" alt="Image" style="max-width:260px;border-radius:4px;opacity:0.9;display:block"/>
+          <span style="font-family:'SF Mono',monospace;font-size:0.55em;color:#5a554e;letter-spacing:0.06em;margin-top:0.4em;display:block">Image</span></div>
+      <div class="sc-block sc-block-linebreak" data-idx="3"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="4"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="5"></div>
+      <div class="sc-exit">&nbsp;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <article class="scene" id="section-8">
+    <h1 class="scene-title">Chapter 3</h1>
+<article class="scene" epub:type="chapter">
+
+<p></p>
+<p></p>
+<div class="sticky-wrap">
+<div class="sticky-img-wrap" style="--sticky-bg: url('images/005.jpeg')">
+<input type="checkbox" id="enlarge-8-1">
+<label class="img-label" for="enlarge-8-1">
+<img class="sticky-img" src="images/005.jpeg" alt="Leonora's pale yellow dress enters Barden's office">
+</label>
+<label class="enlarge-overlay" for="enlarge-8-1"></label>
+<p class="sticky-caption">Leonora's pale yellow dress enters Barden's office</p>
+</div>
+<div class="sticky-text">
+<p>Barden's weekend crawled past, everything he did from having meals, reading spreadsheets, making phone calls, and going for his regular walks only kept his mind occupied for short periods, the rest of the time he indulged in fantasy, what his life would be like with his love, Leonora, and what exactly the plan was, specifically how he'd get rid of the boyfriend, Jason, the unkempt character who wore skinny ties, loosened from the neck and who, </p>
+<p></p>
+<p>when explaining his quotas, ran long on excuses and short on sales even though he had one quality Barden couldn't deny: Jason could sweet talk the ladies, no matter the age or station, a trait Barden simply didn't have or want to have because he, Barden, was a no-frills, honest man who had to keep everything afloat, so much so that office birthday parties and </p>
+<p></p>
+<p>promotions would often find him, the company president, manning the phones for the allotted thirty minutes while the staff got to eat cake, and which commonly became known as “Let us eat cake” celebrations which Barden didn't mind since it kept everyone in good humor while he enjoyed the luxury of being alone, but his reclusive behavior would have to be modified since he had to run reconnaissance on the Leonora/Jason situation and determine where their relationship stood, how serious they were and if he had a chance, </p>
+<p></p>
+<p>because if there were a chance, Barden would grab it by the horns and wrangle it down, after all she had kissed him on the cheek, and yes, he did turn for more, but they were interrupted when the car door opened and she jumped out, still it was for the best because there were no embarrassing moments that would cause him to avoid her at the office, and now he was confident, heading for work with a new pinstripe shirt, paisley tie and a close shave that didn't go unnoticed by his secretary, “You smell nice,” and Barden felt it was such a good omen, that he settled into his office to do some work until, say... ten-ish?, to then pass by the main office where Leonora had her desk, but as the morning wore on, </p>
+<p></p>
+<p>his resolve weakened, eaten away by second guessing and past realities – s<em>eriously, he was old enough to be her father, and when was the last time he had a girlfriend? and could he really count his widowed neighbor who hooked up with a high school sweetheart years earlier? – </em>until, close to lunch, his secretary poked in, </p>
+<p>“Leonora Kelley would like to see you” and with quickened pulse Barden nodded as a vision in the palest yellow floated in, such a ray of sunshine filling his gloomy office that he wanted to reach out, but he remained seated as the door quietly closed and she moved toward him, </p>
+<p></p>
+<p>her eyes locked onto his, when time slowed, his office melted away, and they were the only two souls, entwined energies,  in the universe, reborn into the light that was different than any infatuation he ever had, and suddenly he didn't want to have secrets or pretensions, he only wanted to speak the truth and have the cards fall as they may, </p>
+<p></p>
+<p>realizing there were a limited number of synchronistic events in one's life, when the delicate gossamer thread that tethered the earthly world with the divine could break at any moment and he had only one chance to jump into the vortex, when, he suddenly stood, walked around his desk, enveloped her in his arms, saying without doubt or fear, “Leonora, will you marry me?”</p>
+</div>
+</div>
+<p></p>
+<p></p>
+<br>
+<br>
+<br>
+<p></p>
+</article>
+  </article>
+
+  <article class="scene" id="section-9">
+    <h1 class="scene-title">Chapter 4</h1>
+<article class="scene" epub:type="chapter">
+
+<p></p>
+<p></p>
+<p></p>
+<div class="sticky-wrap">
+<div class="sticky-img-wrap" style="--sticky-bg: url('images/006.jpeg')">
+<input type="checkbox" id="enlarge-9-1">
+<label class="img-label" for="enlarge-9-1">
+<img class="sticky-img" src="images/006.jpeg" alt="Jason, Barden, Leonora pizza while moving">
+</label>
+<label class="enlarge-overlay" for="enlarge-9-1"></label>
+<p class="sticky-caption">Jason, Barden, Leonora pizza while moving</p>
+</div>
+<div class="sticky-text">
+<p>A month after his proposal, Barden's world was upended, everything he knew or thought he knew had transformed into an amorphous blur because she said yes, and not just to marriage, but to all the peripherals that came as a consequence to that yes, which Barden agreed to because he quickly learned making his wonderful fiancée happy was first and foremost, not that she ever pouted or got angry, he simply liked seeing her smile and spin around, </p>
+<p></p>
+<p>like a dancing fairy, saying he was the most wonderful man she had ever found, and he too felt part of a magical world of wishes even though practical matters took up a lot of their time with discussions that ran into the night, now that she was living with him, well not exactly with him but in the west wing, a decision they both made after she left her job because, as Leonora suggested and Barden concurred, they didn't want any suggestion of impropriety given he was the company president and she a secretary and </p>
+<p></p>
+<p>there was no real rush since they had the grand expanse of a lifetime together, besides it was fun getting to know each other without the pressure or embarrassment of...well...stuff which Barden had concerns about since he wasn't now or ever like Jason, a far younger man who he got to know a little better after Jason helped Leonora move which turned out, contrary to Barden's concern, an uncomplicated situation one Sunday afternoon when a number of other employees, along with Jason, helped transport boxes from her place to his </p>
+<p></p>
+<p>and after they finished,  Barden had the idea to buy and join the crew for pizza and beer while surreptitiously watching them, Leonora and Jason, which thankfully put his mind to rest since she sat close to Barden even though Jason had everyone laughing with his knock-knock joke: “Knock Knock, Who's there? Fuck. Fuck Who? Fuck You.” and some anecdote he told that was “woke”, (whatever that meant) and during which time Leonora only listened while holding and privately squeezing Barden's hand, </p>
+<p></p>
+<p>convincing him he was the only insider to her love, after all when he wasn't at work, they spent every moment together handling the mountains of to-do lists for both arranging a wedding and setting up a new household where their combined executive and secretarial skills demonstrated, as a couple, they were  delightfully in sync in any number of matters (practical and otherwise), but also agreeing on prices, </p>
+<p></p>
+<p>which Barden greatly appreciated since Leonora was careful with money, an unexpected trait they both shared, not that she didn't like nice things and went over the moon for Latvian lace, a nice Moët et Chandon, and begged Barden to settle on Ruby who applied for the wedding catering job because Ruby said her speciality was Creole cooking and, yes, </p>
+<p></p>
+<p>she could make a chocolate doberge cake for the dessert, which made Leonora jump for joy telling Barden their love was special, ergo they deserved a charming unique wedding, small, intimate but with a New Orleans flair which Barden, as usual, agreed to because it was nothing short of a miracle that they had found each other in a dispassionate world, </p>
+<p></p>
+<p>dull and constricting, where people – some clawing for position, others being clawed – tried to get through the day and where Barden, at age 66, found his own nirvana with a woman who completed him, his only secret being that he was making plans to surprise her, retire, and travel the world, just the two of them on a great adventure where they would “Never land”, a dream that she had passed onto Barden.</p>
+</div>
+</div>
+<p></p>
+<p></p>
+<br>
+<br>
+<br>
+<p></p>
+</article>
+  </article>
+
+  <article class="scene" id="section-10">
+    <h1 class="scene-title">Chapter 5</h1>
+<article class="scene" epub:type="chapter">
+
+<p></p>
+<p></p>
+<p></p>
+<div class="sticky-wrap">
+<div class="sticky-img-wrap" style="--sticky-bg: url('images/007.jpeg')">
+<input type="checkbox" id="enlarge-10-1">
+<label class="img-label" for="enlarge-10-1">
+<img class="sticky-img" src="images/007.jpeg" alt="Leonora, Barden, Ruby wedding">
+</label>
+<label class="enlarge-overlay" for="enlarge-10-1"></label>
+<p class="sticky-caption">Leonora, Barden, Ruby wedding</p>
+</div>
+<div class="sticky-text">
+<p>Time passes at its own pace, fast or slow, memorable or not, but with Barden time was altogether different – there was his life before Leonora and his life afterwards – or as he saw it, his life and non-life, one of light, the other of absence; each life quite different yet much the same in routine: up at seven, morning breakfast of toast, coffee, later a walk then lunch (lately cottage cheese with pineapple), another walk and a somewhat erstwhile dinner at seven in the dining room with linens and china, </p>
+<p></p>
+<p>cooked by Ruby, the woman who had first catered the wedding, and who later moved into the carriage house on the insistence of Leonora, the bonafide mistress of the estate, who threw dinner-themed parties – Midnight on the Seine, Opera Éjszaka, Día De Los Muertos – while Ruby and a number of wait staff were called upon to make the magic happen for twenty or so guests every month, an idea Leonora had after the couple's worldwide tour that first year of marriage when everything was rosy and exciting but also exhausting, </p>
+<p></p>
+<p>when Barden became aware of age, not just the numerics, but how time could be measured in a myriad of ways that went beyond the cultural references of Robert Palmer and the Challenger explosion, specifically the worn body parts of knees, hips, brain functions and the amount of time it took to rest and rejuvenate such parts, further complicated by pretending he could keep up with a woman thirty-five years younger who he didn't want to disappoint in any way, which of course happened in the bedroom, not that it couldn't be negotiated or so he thought, when certain realities hit after the honeymoon </p>
+<p></p>
+<p>when her phone became an appendage with constant dings of messages, emails, calls, some taken in private because she didn't want to disturb his sleep (he wasn't sleeping),  or interrupt his work (he had none), or talk over the whispered commentary on the whatever hole (seriously, it was golf) when suspicions crept in of who she was communicating with, suspicions that he later found out weren't unwarranted, </p>
+<p></p>
+<p>namely a Brandon, a Riley, an Evan, all of whom in reality were the one and only Jason, who, in her words and vehement defense, was just a friend  and who for some undefined reason she had to keep secret, suggesting Barden was insecure, jealous, intolerant, and when matters got heated, old, senile, decrepit until Barden had enough and told her to get out, which she did, leaving Barden alone but still afloat until the second wave hit, a wave he hadn't expected, </p>
+<p></p>
+<p>specifically Ruby gave notice because her daughter was being deployed and Ruby had to care for her two granddaughters, Violet and Vivian, for an unspecified amount of time, all of whom he had  gotten to know over the almost three years she had been with Barden, leaving him to fend for himself in more ways that he had ever expected, without a job or anybody to talk to, he moped around in the dark, </p>
+<p></p>
+<p>suddenly becoming concerned with how much electricity, gas and water he used, not that he didn't have money, he was simply shrinking, taking up less space, watching his carbon footprint that included saving plastic shopping bags, eating ramen noodles, and wearing the same clothes for days at a time, until out of the blue, Leonora called, asking if she could visit, to which he said yes because he wasn't sure if she had been a dream or a momentary lapse or a brief spiral into another dimension and he needed to be sure his imagination wasn't playing tricks.</p>
+</div>
+</div>
+<p></p>
+<figure>
+<img src="images/008.jpeg" alt="Barden and Leonora honeymoon">
+<figcaption>Barden and Leonora honeymoon</figcaption>
+</figure>
+<p></p>
+<br>
+<br>
+<br>
+<p></p>
+</article>
+  </article>
+
+  <div class="sc-scene" id="section-11" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:2,&quot;fadeOut&quot;:3,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Chapter 6">
+    <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&nbsp;</span></div>
+      <div class="sc-enter">Chapter 6</div>
+      <div class="sc-block-sticky" data-idx="0">
+        <div class="sc-sticky-img" data-idx="0"><input type="checkbox" id="sc-enlarge-3"/><label for="sc-enlarge-3" style="cursor:zoom-in;display:block"><img src="images/009.jpeg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-3" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/009.jpeg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+
+        </div>
+      </div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block-sticky" data-idx="2">
+        <div class="sc-sticky-img" data-idx="2"><input type="checkbox" id="sc-enlarge-4"/><label for="sc-enlarge-4" style="cursor:zoom-in;display:block"><img src="images/010.jpeg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-4" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/010.jpeg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+
+        </div>
+      </div>
+      <div class="sc-block-sticky" data-idx="3">
+        <div class="sc-sticky-img" data-idx="3"><input type="checkbox" id="sc-enlarge-5"/><label for="sc-enlarge-5" style="cursor:zoom-in;display:block"><img src="images/011.jpeg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-5" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/011.jpeg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+          <div class="sc-block" data-idx="3">After Leonora called, Barden went into high gear, rushing around the first floor with a trash bag tossing anything that was anywhere that belonged somewhere else, so that Leonora wouldn't have a clue his life had degraded into a sorry pit of self-loathing that had manifested into an old man's home – dark, dusty, dank – with lingering smells reminiscent of unwashed socks and bus terminals, that, after two hours, remained odoriferous and thus became apparent that he had to open some windows and actually, perhaps, somehow,</div>
+          <div class="sc-block" data-idx="3">clean or vacuum or whatever, which made him wonder about the state of his bedroom, particularly the sheets (were they attached in some way?) but after further thought he figured the two of them ending up in his second-floor bedroom would be unlikely for a number of reasons, first being he wasn't a machine (this brought a wry smile to his face) and</div>
+          <div class="sc-block" data-idx="3">second/third/fourth, ad nauseam, he wasn't going to be that easy or gullible or desperate, and there'd have to be some ground rules established with a clear understanding of where their relationship was going, and, besides, if matters did get romantic, there were six other uninhabited, yet fully furnished bedrooms, they could occupy which then reminded him of the bathrooms (four in total, none cleaned in the past year) and how he was so overwhelmed he decided to call Ruby, who immediately set him straight with a brilliant idea,</div>
+        </div>
+      </div>
+      <div class="sc-block sc-block-linebreak" data-idx="4"></div>
+      <div class="sc-block-sticky" data-idx="5">
+        <div class="sc-sticky-img" data-idx="5"><input type="checkbox" id="sc-enlarge-6"/><label for="sc-enlarge-6" style="cursor:zoom-in;display:block"><img src="images/012.jpeg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-6" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/012.jpeg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+          <div class="sc-block" data-idx="5">“Barden, meet her out for  dinner” where he now sits, with a second drink, having gone twice to the men's room, and wondering when it would be okay to leave or if  he should order dinner since he was already out and could use a nice meal, having been told by Brian, his server, that the pistachio crusted salmon was prepared with garlic, butter and smoked paprika when a familiar clickety-clack drew his attention to the woman of the hour, a slip of her former self (or had he misremembered?), who had her eyes on him as she walked across the room and who reached out as if she were about to trip and whose hand felt icy as he stood and pulled out the chair when she thanked him,</div>
+          <div class="sc-block" data-idx="5">which she had never done before, and he wondered who this person had become while they, like old times, considered the menu, drink choices and, of all things, how nice the weather was, all inanities considering how their last meeting had her flailing, screaming, and spitting words into his face, a visual he often replayed, reminding himself that he was, kinda sorta, better alone now after being once married, divorced with his dismal batting average in all things romantic, and yet here he sat with Leonora waiting,</div>
+          <div class="sc-block" data-idx="5">wondering why she had called him, when he leaned back during coffee and asked “Why did you want to see me?” and she sighed as if relieved, “I need money”, to which he echoed, “Money? You need money?” to which she answered, “Yes” which made Barden wonder out loud “Is it a want or a need?” to which she stiffened and said,  “Does it make any difference?” and he answered,</div>
+          <div class="sc-block" data-idx="5">“Well, I guess not. How much?” “Ten thousand...”</div>
+          <div class="sc-block" data-idx="5">“I see,” he said, “and would that be a loan or a gift?” when her face turned to stone,</div>
+          <div class="sc-block" data-idx="5">“Seriously, Barden?” and he pulled a check from his wallet as she gushed how he was the absolute greatest. At the same time, he smiled, asking what name she was going by and saying that it was a great pleasure seeing her again (which seemed to confuse her) before he got up and paid the bill on his way out.</div>
+        </div>
+      </div>
+      <div class="sc-block sc-block-linebreak" data-idx="6"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="7"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="8"></div>
+      <div class="sc-exit">&nbsp;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <article class="scene" id="section-12">
+    <h1 class="scene-title">Chapter 7</h1>
+<article class="scene" epub:type="chapter">
+
+<p></p>
+<p></p>
+<div class="sticky-wrap">
+<div class="sticky-img-wrap" style="--sticky-bg: url('images/014.jpeg')">
+<input type="checkbox" id="enlarge-12-1">
+<label class="img-label" for="enlarge-12-1">
+<img class="sticky-img" src="images/014.jpeg" alt="Ruby helps Barden">
+</label>
+<label class="enlarge-overlay" for="enlarge-12-1"></label>
+<p class="sticky-caption">Ruby helps Barden</p>
+</div>
+<div class="sticky-text">
+<p>The following week Barden found himself cycling through moods and roundabout thoughts, triggered, by of all things, that garbage bag he had partially filled that, for some reason, he couldn't throw out but kept dragging from one part of the living room to another, reasoning, since it wasn't full, it would be wasteful to toss away and besides he had more stuff to add, like the pile of New Yorkers he hadn't read but had folded open to articles he thought were interesting, </p>
+<p></p>
+<p>reasoning that certainly some were important to read for amusement or educational value that could improve the quality of his life, but every time he fanned through the pages in an effort to cull the pile, he ended up in the recliner staring off, neither here nor there, until one afternoon the kitchen doorbell, an ancient electromechanical abomination that woke up the dead and wouldn't stop ringing,  encouraged him to un-recline, answer, </p>
+<p></p>
+<p>finding of all people, Ruby, standing at the door, “Barden, I've been calling for days”, with a surprised Barden (was his phone missing?) responding, “Nice to see you. Is everything okay?” because it was his nature, above all else, to steady ships, put things right, when she said, “Yes, of course. But how are you?” and he thought it was kind of her to ask but unnecessary, when she wondered if he'd mind going into the living room and when they did so, she said, </p>
+<p></p>
+<p>“Lordy, Barden, what's going on here?” to which he answered simply and honestly, “I'm cleaning...See over there,” and he pointed to the garbage bag, “But what happened to the service?” “Oh, I stopped it months ago. I'm only one person, I eat take-out and –”  to which Ruby interrupted, “Yes, but, well, just as a suggestion, if you want to entertain ladies you might, you know...be ready for those...um... spur of the moments visits” and Barden smiled, wondering if she was referring to herself, “You mean like now?” and Ruby laughed, </p>
+<p></p>
+<p>“No, like Leonora,” and she stopped for a moment, seemingly looking for a place to sit but finding none, except for the lone recliner, that to be honest, appeared also in use with this morning's shower towel and his glasses on the armrest , that she remained standing and continued, “So how did it go?” and it was then Barden recalled it was Ruby's idea to have dinner out, “Good. We had a nice prime rib with blue cheese,” to which Ruby smiled politely, </p>
+<p></p>
+<p>then said, “And?”... “And I wrote her a check.” a comment that stopped the conversation cold, until Ruby asked, “How did you feel about that?” and Barden, while he felt like crying, instead shrugged, after all there was no need for hysterics or, even worse, being pitied, he was a grown man, once married and divorced, like millions of others for chrissakes, and Ruby, out of the blue, said that it was hard getting over someone, when Barden realized, </p>
+<p></p>
+<p>after three years, he didn't know, except for her great cooking and having a daughter with two children, anything else about Ruby, then said, “Yes, it is hard. How did you manage?”, there was a pause, “Dharma” she said, and Barden wondered, “Is Dharma a friend of yours?” to which she smiled kindly, a look she often had given to her grandchildren, </p>
+<p></p>
+<p>“Dharma is inner vision and truth. We can talk more if you're interested. Meanwhile, please answer your phone,” Barden nodded as they returned to the kitchen when Ruby, before leaving, walked to the refrigerator and peeked inside, “Just as I suspected, used dishes and silverware. Promise me you'll call the service,” and Barden agreed as he walked her to her car and waved goodbye.</p>
+</div>
+</div>
+<p></p>
+<p></p>
+</article>
+  </article>
+
+  <article class="scene" id="section-13">
+    <h1 class="scene-title">Chapter 8</h1>
+<article class="scene" epub:type="chapter">
+
+<p></p>
+<p></p>
+<div class="sticky-wrap">
+<div class="sticky-img-wrap" style="--sticky-bg: url('images/013.jpeg')">
+<input type="checkbox" id="enlarge-13-1">
+<label class="img-label" for="enlarge-13-1">
+<img class="sticky-img" src="images/013.jpeg" alt="Barden lends Leonora the Bentley">
+</label>
+<label class="enlarge-overlay" for="enlarge-13-1"></label>
+<p class="sticky-caption">Barden lends Leonora the Bentley</p>
+</div>
+<div class="sticky-text">
+<p>Three months later, Barden has breakfast regularly at a local diner, one of the longer lasting adjustments he has made while manifesting his dharma, specifically the part about accepting change, which Barden interpreted as getting out of his comfort zone, that is now, ironically, becoming old hat and routine, </p>
+<p></p>
+<p>not just in what he orders – coffee, two scrambled eggs, one pancake, two slices of crispy bacon –  but with the people he's come to know, Lily the waitress, Maureen the cook, and various old guys with whom he sits and mostly listens to, rarely giving an opinion because dharma discourages anything that would suggest sophomoric banter, so he often nods, agrees, and when mildly confronted with a question, </p>
+<p></p>
+<p>puts more maple syrup on his plate because everything tastes better with maple syrup except when his fingers get sticky, which becomes a lesson in accepting what he can not control, that is, essentially everything in life as he has come to realize when his mind wanders (inevitably to Leonora) and when it's difficult to measure if he is making any progress in discovering his inner most truth, yet still forges ahead, taking late morning walks in the cemetery, </p>
+<p></p>
+<p>a venue that had won out over the ridiculously redundant treadmill, and which has given him more food for thought than anything else he's tried, and in unexpected ways, like reading the tombstones of memorialized children from the early 1900s, who possibly died during the Spanish Flu or some other mishap, and enjoying the bucolic grounds, the quietude and the slow pace of the swans paddling around the pond which he sits and watches, </p>
+<p></p>
+<p>mostly clueless to any reason why he should be sitting and watching birds in a cemetery, when he then thinks dharma may be knocking on a door that needs opening but unsure where the door is and how exactly to open it, and maybe the point is to simply head in a direction and see what happens, recalling <em>it's not the destination but the journey</em>, which is backwards from the way he's lived his life where there was always a bullseye to aim, shoot for, and to hell with anything in his way, </p>
+<p></p>
+<p>like of course Leonora who may have been the brass ring rather than the ball and chain, and the marriage and divorce, a fugue state, rather than awareness or anything resembling dharma, which he has learned from his fruitless pining away and acceptance of  any crumb tossed his way, like her phone call a month earlier asking if he wouldn't mind lending her his car, not the BMW sedan but the classic Bentley, </p>
+<p></p>
+<p>stating she was taking a 'friend' out for a birthday dinner and he said yes just to see, not imagine, her in his house again, foolishly setting out a bottle of champagne and some chocolate covered strawberries which she found 'charming' and 'thoughtful of him' to think of 'her friend's birthday' as she didn't sit down but left fully loaded along with the keys, leaving Barden balling his eyes out not from having his heart broken but, worse, being broken, </p>
+<p></p>
+<p>a loser who couldn't get a grip that, in retrospect, may have been a turning point since the following day, he woke up, skipped breakfast and went for a nowhere drive, playfully making random turns because he saw a pretty plant here, a willow tree there until he turned, magically, into the cemetery where he drove into so much beauty, he had to stop and walk instead; and when, just recently, he began to tell his story to the trees, swans, gravestones and anything else that would listen.</p>
+</div>
+</div>
+<p></p>
+<p></p>
+</article>
+  </article>
+
+  <article class="scene" id="section-14">
+    <h1 class="scene-title">Chapter 9</h1>
+<article class="scene" epub:type="chapter">
+
+<p></p>
+<p></p>
+<div class="sticky-wrap">
+<div class="sticky-img-wrap" style="--sticky-bg: url('images/016.jpeg')">
+<input type="checkbox" id="enlarge-14-1">
+<label class="img-label" for="enlarge-14-1">
+<img class="sticky-img" src="images/016.jpeg" alt="Barden cemetary">
+</label>
+<label class="enlarge-overlay" for="enlarge-14-1"></label>
+<p class="sticky-caption">Barden cemetary</p>
+</div>
+<div class="sticky-text">
+<p>As life so goes, tiresome repeats are often around the corner, due to unfinished business or the recurrent unlearned lesson that beats on the door relentless to be answered, such as, in Barden's case, another Leonora incident, after she had called hysterical one early morning (2AM) stating she needed to speak with him tout suite, when he rubbed his eyes and mumbled,</p>
+<p></p>
+<p>“Now?” and she said with exasperation, “No, of course not. Sometime this week,” and he asked “When?” and she said, “God Barden, make up your mind,” that confused him (maybe he misunderstood?) and remarkably out of character he said, “Listen, call me tomorrow,” and hung up, barely remembering their conversation until the following day when she called again, telling him how rude he was and that he was taking advantage of her and he said he was sorry because he always said he was sorry and she suggested that she stop by sometime during the day, which made him, for reasons he couldn't define, say that it wouldn't be possible and that if she needed money,</p>
+<p></p>
+<p>he could mail her a check, to which she screamed in his ear, “There's no way you're getting my address,” and hung up, leaving Barden perplexed, until Leonora's phone number came up again that evening, when she acted like nothing had happened and they agreed to meet for lunch at the Yacht Club on Friday, which would give Barden a couple of days to lose sleep and have stomach issues until he was such a wreck, he called Ruby and asked if she could meet him at the cemetery, where they, the following day, sat at the pond while she fed the ducks cracked corn and asked</p>
+<p></p>
+<p>“How you doing?” and he answered with a non-sequitur ,“I'm having lunch with Leonora tomorrow. She wants money. I don't know what to do – ” he paused then looked at Ruby, “how did you get over someone?” she laughed, “It took a while, but once I figured it out, it was easy peasy,” she patted his arm, “Barden, just head downstream,” which naturally confused Barden, and she continued, “Downstream is easy, no resistance, while upstream is a struggle, working against the current.</p>
+<p></p>
+<p>Always go downstream, always do what feels better,” “But,” Barden said, “I can't say no to her,” and Ruby kindly smiled, “Barden, when you give her money, how does that make you feel?”, a question that Barden had no trouble answering, “Like a chump, a loser,” to which she said, “Sounds like you're heading upstream. Why not take a chance, tell her no, and see how that feels. You may be surprised,”  and Barden, on the drive home, thought of dharma and how one needs courage to walk into the mystery and figured he would, if the opportunity arose, give Ruby's advice a try and on that Friday when he showed up at the club,</p>
+</div>
+</div>
+<p></p>
+<br>
+<div class="sticky-wrap">
+<div class="sticky-img-wrap" style="--sticky-bg: url('images/017.jpeg')">
+<input type="checkbox" id="enlarge-14-2">
+<label class="img-label" for="enlarge-14-2">
+<img class="sticky-img" src="images/017.jpeg" alt="Barden writes check to Leonora">
+</label>
+<label class="enlarge-overlay" for="enlarge-14-2"></label>
+<p class="sticky-caption">Barden writes check to Leonora</p>
+</div>
+<div class="sticky-text">
+<p>Leonora, as usual, had him waiting twenty minutes before breezing in, smiling and saying hello to the people they knew, then sat down, taking her time to order a drink and consider the menu, when Barden pulled out his checkbook and asked how much she wanted and she smiled sweetly, “Barden, you decide. You're always so generous,” and suddenly, remarkably, Barden had a chance to attempt a downstream move, “You sure?” and she reached for his hand, giving it a squeeze, </p>
+<p></p>
+<p>“Of course,” and Barden, on the edge of a diving board with a roiling sea below him, took a deep breath, and made his move: picked up the checkbook and slid it into his jacket pocket, when Leonora's smile disintegrated into a scowl, and she leaned forward, whispering, </p>
+<p></p>
+<p>“What do you think you're doing?” her glance skittered around the room, “Seriously, you want a scene?” and Barden, feeling remarkably calm, said, “Your call, my dear.”</p>
+</div>
+</div>
+<p></p>
+<br>
+<br>
+<br>
+<p></p>
+</article>
+  </article>
+
+  <article class="scene" id="section-15">
+    <h1 class="scene-title">Chapter 10</h1>
+<article class="scene" epub:type="chapter">
+
+<p></p>
+<p></p>
+<div class="sticky-wrap">
+<div class="sticky-img-wrap" style="--sticky-bg: url('images/018.jpeg')">
+<input type="checkbox" id="enlarge-15-1">
+<label class="img-label" for="enlarge-15-1">
+<img class="sticky-img" src="images/018.jpeg" alt="Barden's last blackmail payment to Leonora">
+</label>
+<label class="enlarge-overlay" for="enlarge-15-1"></label>
+<p class="sticky-caption">Barden's last blackmail payment to Leonora</p>
+</div>
+<div class="sticky-text">
+<p>Leonora's words came out between tight lips, like a hiss, “I'll get a lawyer. You owe me – ” Barden interrupted, “Leonora, this was all settled in the divorce. I'm sorry – ”  and he stopped, (God, why was he still apologizing?), when she picked up the slack, </p>
+<p></p>
+<p>“Do you have any idea what you've done? I lost my job because of you, not to mention the sexual harassment I endured, not to mention the hush money you've been paying me to keep my mouth shut. And yes, the statute of limitations has not run out. It's your call. </p>
+<p></p>
+<p>Now write me a check or I'll sue for mill....” , as she rambled on, Barden wondered if: one, she thought he was senile; two, she hated him; three, both, when he raised his hand, “Enough.” and he pulled out his checkbook, “But this will be the last one I write,” when under her breath, she spit out the words, “Really? Well, it better be enough,” and Barden, before he handed the check over, pulled out his phone and took a picture of it, as Leonora laughed, </p>
+<p></p>
+<p>“A pic? Knock yourself out,” when Barden stayed solemn and slid the check across the table, watching her eyes zero in on the amount, $10,000, and waited to see if something else caught her eye, when suddenly her smile evaporated, and yes, she had clearly seen what he had written across the bottom: last blackmail payment, to which she looked up, </p>
+<p></p>
+<p>“What the Fuck!” and Barden said quietly, “I'll be getting an Order of Protection, best to never call or come near me. Now would you like a drink to celebrate or is this goodbye?” when, judging by the way she got up and walked away, it was goodbye, that to be honest made him feel sad, almost like crying, and he wondered where he was in the stream of things, up or down?,</p>
+</div>
+</div>
+<br>
+<p></p>
+<div class="sticky-wrap">
+<div class="sticky-img-wrap" style="--sticky-bg: url('images/019.jpeg')">
+<input type="checkbox" id="enlarge-15-2">
+<label class="img-label" for="enlarge-15-2">
+<img class="sticky-img" src="images/019.jpeg" alt="Barden and Ruby at cemetary pond">
+</label>
+<label class="enlarge-overlay" for="enlarge-15-2"></label>
+<p class="sticky-caption">Barden and Ruby at cemetary pond</p>
+</div>
+<div class="sticky-text">
+<p>when later, once home, he called Ruby and asked if she could meet on Monday late morning at the cemetery, where she approached him with a big smile, and he told her, </p>
+<p></p>
+<p>“I was being blackmailed and didn't even know it. How often does that happen?” and, as she fed the birds, she asked if there was anything she could do, and he tried not to weep, until he began talking about the stream and how it wasn't working for him because he wanted to cry, when Ruby said, “Barden, holding back tears is upstream. </p>
+<p></p>
+<p>To head downstream all you have to do is let go. A good cry is always downstream,” and he continued to hold back tears, when she asked, “You okay?” and he couldn't speak, just grit his teeth harder, as she reached over, touched his hand, a soft warm kind hand that he had never received from anyone at anytime, and wondered why was he so unloved, unloveable and out of the blue, Ruby said, “It's okay,” and he couldn't stop his eyes from welling up or when a river of tears fell down his cheek, and he wanted to wipe his face but didn't want to let go  of Ruby's hand, </p>
+<p></p>
+<p>when the dam broke, the sobbing began, and she put her arm around his heaving shoulders, curling into himself, trying to catch his breath, remembering when he was a child and how he could never stop crying...until he did, and raised his head, seeing the ducks skimming across the lake, reminding him of ballerinas, and he looked at Ruby, “Would you join me for dinner sometime?” and she nodded, wiping a tear from her eye.</p>
+</div>
+</div>
+<br>
+<p></p>
+<figure>
+<img src="images/015.jpeg" alt="Barden at cemetary">
+<figcaption>Barden at cemetary</figcaption>
+</figure>
+<p></p>
+</article>
+  </article>
+
+  <section class="chapter" id="section-16">
+    <h1>About the Author</h1>
+<section class="chapter" epub:type="chapter">
+
+<p></p>
+<p>Linda A Lavid is a writer from Western New York. She ‘streamed’ Barden while she was selling her art and books at a farmer’s market. Unfettered by periods and capitals, she later soldiered on through the editing. She wants to write another story about Barden but can’t find a suitable title. And so it goes. ;)</p>
+</section>
+  </section>
+
+  <div class="footer">
+    <div class="footer-buttons">
+      <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">&#9728;&#65039;</button>
+      <button class="playhead-toggle" id="playheadToggle" title="Toggle Scenecraft overlays"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 2H6c-1.2 0-2 .9-2 2v16c0 1.1.8 2 2 2h13c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 18H6V4h2v8l2.5-1.5L13 12V4h6v16z"/></svg></button>
+    </div>
+    <div class="footer-info">
+      <span class="footer-title">Barden Digby</span>
+      <span class="footer-author">by Linda A Lavid</span>
+      <span class="footer-copyright">&copy; 2026</span>
+    </div>
+  </div>
+
+  <script>
+    // Theme toggle functionality
+    var themeToggle = document.getElementById('themeToggle');
+    var body = document.body;
+
+    var savedTheme = localStorage.getItem('html-ebook-theme');
+    if (savedTheme === 'light' && body.classList.contains('dark-mode')) {
+      body.classList.remove('dark-mode');
+      themeToggle.textContent = '🌙';
+    } else if (savedTheme === 'dark' && !body.classList.contains('dark-mode')) {
+      body.classList.add('dark-mode');
+      themeToggle.textContent = '☀️';
+    }
+
+    themeToggle.addEventListener('click', function() {
+      body.classList.toggle('dark-mode');
+      var isDark = body.classList.contains('dark-mode');
+      themeToggle.textContent = isDark ? '☀️' : '🌙';
+      localStorage.setItem('html-ebook-theme', isDark ? 'dark' : 'light');
+    });
+
+    // Playhead overlay toggle
+    var playheadToggle = document.getElementById('playheadToggle');
+    if (playheadToggle) {
+      var savedPlayhead = localStorage.getItem('html-ebook-playhead');
+      if (savedPlayhead === 'hidden') {
+        body.classList.add('sc-overlay-hidden');
+        playheadToggle.classList.add('sc-off');
+      }
+      playheadToggle.addEventListener('click', function() {
+        body.classList.toggle('sc-overlay-hidden');
+        var isHidden = body.classList.contains('sc-overlay-hidden');
+        playheadToggle.classList.toggle('sc-off', isHidden);
+        localStorage.setItem('html-ebook-playhead', isHidden ? 'hidden' : 'visible');
+      });
+    }
+
+
+    // SceneCraft scroll-driven immersive audio/visual engine
+    (function() {
+      var scenes = document.querySelectorAll('.sc-scene');
+      if (!scenes.length) return;
+
+      var DLG_FADE = 0.5;
+      function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+
+      function createFadeIn(audioEl, vol, dur) {
+        audioEl.volume = 0;
+        audioEl.play().catch(function(){});
+        return { el: audioEl, state: 'in', start: Date.now(), dur: dur * 1000, targetVol: vol };
+      }
+      function createFadeOut(obj, dur) {
+        if (!obj || !obj.el) return null;
+        return { el: obj.el, state: 'out', start: Date.now(), dur: dur * 1000, startVol: obj.el.volume };
+      }
+      function tickFade(obj) {
+        if (!obj || !obj.el) return null;
+        var t = obj.dur > 0 ? clamp((Date.now() - obj.start) / obj.dur, 0, 1) : 1;
+        if (obj.state === 'in') {
+          obj.el.volume = t * (obj.targetVol || 1);
+          if (t >= 1) obj.state = 'playing';
+        } else if (obj.state === 'out') {
+          obj.el.volume = (1 - t) * (obj.startVol || 1);
+          if (t >= 1) { obj.el.pause(); return null; }
+        }
+        return obj;
+      }
+      function killAudio(obj) {
+        if (obj && obj.el) { obj.el.pause(); obj.el.src = ''; }
+        return null;
+      }
+
+      // Per-scene state
+      var sceneStates = [];
+      scenes.forEach(function(sceneEl, si) {
+        var cfg = null;
+        try { cfg = JSON.parse(sceneEl.dataset.scConfig || 'null'); } catch(e) {}
+        sceneStates.push({
+          el: sceneEl,
+          cfg: cfg,
+          inScene: false,
+          ambient: null,
+          ambientOut: null,
+          voice: null,
+          voiceOut: null,
+          activeDlg: -1,
+          dlgObj: null,
+          dlgOut: null,
+          activeStk: -1,
+          stkObj: null,
+          stkOut: null,
+          activePara: -1,
+          paraObj: null,
+          paraOut: null,
+          blocks: sceneEl.querySelectorAll('.sc-block'),
+          stickyWraps: sceneEl.querySelectorAll('.sc-block-sticky'),
+          enterEl: sceneEl.querySelector('.sc-enter'),
+          exitEl: sceneEl.querySelector('.sc-exit'),
+          bgEl: sceneEl.querySelector('.sc-bg'),
+          infoEl: sceneEl.querySelector('.sc-info'),
+        });
+      });
+
+      var playheadY = window.innerHeight * 0.5;
+      window.addEventListener('resize', function() { playheadY = window.innerHeight * 0.5; });
+
+      function doEnter(s) {
+        if (s.inScene || !s.cfg) return;
+        s.inScene = true;
+        var c = s.cfg;
+        if (s.infoEl) s.infoEl.textContent = s.el.dataset.scTitle || '';
+
+        // Wallpaper
+        if (c.wallpaperFilename && s.bgEl) {
+          var url = s.el.dataset['scImg_' + c.wallpaperFilename.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase()];
+          if (url) {
+            s.bgEl.style.backgroundImage = "url('" + url + "')";
+            s.bgEl.style.backgroundPosition = c.wallpaperPosition || 'center';
+            s.bgEl.style.opacity = String(c.wallpaperOpacity || 0.25);
+          }
+        }
+
+        // Ambient audio
+        s.ambientOut = killAudio(s.ambientOut);
+        if (c.ambientFilename) {
+          var aUrl = s.el.dataset['scAud_' + c.ambientFilename.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase()];
+          if (aUrl) {
+            var a = new Audio(aUrl);
+            a.loop = !!c.ambientLoop;
+            s.ambient = createFadeIn(a, c.ambientVolume || 0.5, c.fadeIn || 2);
+          }
+        }
+
+      }
+
+      function doExit(s) {
+        if (!s.inScene || !s.cfg) return;
+        s.inScene = false;
+        var c = s.cfg;
+        if (s.infoEl) s.infoEl.textContent = '';
+        if (s.bgEl) s.bgEl.style.opacity = '0';
+
+        if (s.ambient) { s.ambientOut = createFadeOut(s.ambient, c.fadeOut || 3); s.ambient = null; }
+        if (s.voice) { s.voiceOut = createFadeOut(s.voice, c.fadeOut || 3); s.voice = null; }
+        s.dlgObj = killAudio(s.dlgObj);
+        s.dlgOut = killAudio(s.dlgOut);
+        s.activeDlg = -1;
+        s.stkObj = killAudio(s.stkObj);
+        s.stkOut = killAudio(s.stkOut);
+        s.activeStk = -1;
+        s.paraObj = killAudio(s.paraObj);
+        s.paraOut = killAudio(s.paraOut);
+        s.activePara = -1;
+      }
+
+      function tick() {
+        for (var si = 0; si < sceneStates.length; si++) {
+          var s = sceneStates[si];
+          if (!s.cfg) continue;
+          var c = s.cfg;
+
+          // Tick fades
+          s.ambientOut = tickFade(s.ambientOut);
+          s.voiceOut = tickFade(s.voiceOut);
+          if (s.ambient && s.ambient.state === 'in') tickFade(s.ambient);
+          if (s.voice && s.voice.state === 'in') tickFade(s.voice);
+          s.dlgObj = tickFade(s.dlgObj);
+          s.dlgOut = tickFade(s.dlgOut);
+          s.stkObj = tickFade(s.stkObj);
+          s.stkOut = tickFade(s.stkOut);
+          s.paraObj = tickFade(s.paraObj);
+          s.paraOut = tickFade(s.paraOut);
+
+          // Block visibility
+          for (var bi = 0; bi < s.blocks.length; bi++) {
+            var b = s.blocks[bi];
+            var rect = b.getBoundingClientRect();
+            var center = rect.top + rect.height / 2;
+            if (center < playheadY + 100) b.classList.add('sc-vis'); else b.classList.remove('sc-vis');
+            if (center < playheadY - window.innerHeight * 0.3) b.classList.add('sc-past'); else b.classList.remove('sc-past');
+          }
+
+          // Scene zone detection
+          var enterBottom = s.enterEl ? s.enterEl.getBoundingClientRect().bottom : 0;
+          var exitTop = s.exitEl ? s.exitEl.getBoundingClientRect().top : window.innerHeight;
+          if (enterBottom <= playheadY && exitTop > playheadY) {
+            doEnter(s);
+          } else {
+            doExit(s);
+          }
+
+          // Per-dialogue voice
+          if (s.inScene) {
+            var currentDlg = -1;
+            for (var di = 0; di < s.blocks.length; di++) {
+              var db = s.blocks[di];
+              var dr = db.getBoundingClientRect();
+              var dataIdx = parseInt(db.dataset.idx || '-1', 10);
+              if (dr.top < playheadY && dr.bottom > playheadY && db.classList.contains('sc-block-dialogue')) {
+                currentDlg = dataIdx;
+              }
+            }
+            if (currentDlg !== s.activeDlg) {
+              if (s.dlgObj && s.dlgObj.el) {
+                s.dlgOut = killAudio(s.dlgOut);
+                s.dlgOut = createFadeOut(s.dlgObj, DLG_FADE);
+                s.dlgObj = null;
+              }
+              s.activeDlg = currentDlg;
+              if (currentDlg >= 0 && c.dialogueClips) {
+                var clip = c.dialogueClips[currentDlg];
+                if (clip && clip.filename) {
+                  var dUrl = s.el.dataset['scAud_' + clip.filename.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase()];
+                  if (dUrl) {
+                    var da = new Audio(dUrl);
+                    s.dlgObj = createFadeIn(da, clip.volume || c.dialogueVolume || 0.8, DLG_FADE);
+                  }
+                }
+              }
+            }
+          }
+
+          // Per-sticky audio
+          if (s.inScene) {
+            var currentStk = -1;
+            for (var swi = 0; swi < s.stickyWraps.length; swi++) {
+              var sw = s.stickyWraps[swi];
+              var sIdx = parseInt(sw.dataset.idx || '-1', 10);
+              if (sw.querySelector('.sc-block.sc-vis')) {
+                currentStk = sIdx;
+              }
+            }
+            if (currentStk !== s.activeStk) {
+              if (s.stkObj && s.stkObj.el) {
+                s.stkOut = killAudio(s.stkOut);
+                s.stkOut = createFadeOut(s.stkObj, DLG_FADE);
+                s.stkObj = null;
+              }
+              s.activeStk = currentStk;
+              if (currentStk >= 0 && c.stickyClips) {
+                var sClip = c.stickyClips[currentStk];
+                if (sClip && sClip.filename) {
+                  var sUrl = s.el.dataset['scAud_' + sClip.filename.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase()];
+                  if (sUrl) {
+                    var sa = new Audio(sUrl);
+                    s.stkObj = createFadeIn(sa, sClip.volume || c.stickyVolume || 0.8, DLG_FADE);
+                  }
+                }
+              }
+            }
+          }
+
+          // Per-para audio
+          if (s.inScene) {
+            var currentPara = -1;
+            for (var pi = 0; pi < s.blocks.length; pi++) {
+              var pb = s.blocks[pi];
+              var pr = pb.getBoundingClientRect();
+              var pIdx = parseInt(pb.dataset.idx || '-1', 10);
+              if (pr.top < playheadY && pr.bottom > playheadY && !pb.classList.contains('sc-block-dialogue') && pb.classList.contains('sc-block-para')) {
+                currentPara = pIdx;
+              }
+            }
+            if (currentPara !== s.activePara) {
+              if (s.paraObj && s.paraObj.el) {
+                s.paraOut = killAudio(s.paraOut);
+                s.paraOut = createFadeOut(s.paraObj, DLG_FADE);
+                s.paraObj = null;
+              }
+              s.activePara = currentPara;
+              if (currentPara >= 0 && c.paraClips) {
+                var pClip = c.paraClips[currentPara];
+                if (pClip && pClip.filename) {
+                  var pUrl = s.el.dataset['scAud_' + pClip.filename.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase()];
+                  if (pUrl) {
+                    var pa = new Audio(pUrl);
+                    s.paraObj = createFadeIn(pa, pClip.volume || c.paraVolume || 0.8, DLG_FADE);
+                  }
+                }
+              }
+            }
+          }
+        }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    })();
+  </script>
+</body>
+</html>
