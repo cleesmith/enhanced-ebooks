@@ -193,7 +193,11 @@
   <header class="header">
     <span class="header-title">
       Art by Slip the Trap &copy; 2026
-      <small><em style="margin-left:20px; font-size:10px;">click to enlarge image; scroll thru using left/right arrows or spacebar; ESC back to thumbnails</em></small>
+      <small>
+        <em style="margin-left:20px; font-size:10px;">
+          click to enlarge image: scroll thru using left/right arrows or spacebar; ESC back to thumbnails
+        </em>
+      </small>
     </span>
 
     <button class="toggle" id="themeToggle" aria-label="Toggle dark mode">
@@ -215,17 +219,20 @@
 <script>
 (function () {
   var pad = function(n) { return String(n).padStart(2, "0"); };
-  var src = function(n) { return "images/" + pad(n) + ".png"; };
+  var exts = [".png", ".jpg"];
 
   var grid  = document.getElementById("grid");
-  var found = [];
+  var found = [];    // stores { n: number, ext: string }
 
   /* ── auto-detect images sequentially ──
-     Adds each image as a real DOM element (works on file://).
-     Stops at the first one that fails to load.              */
+     For each number, tries .png then .jpg.
+     Stops when neither extension exists.   */
 
-  function tryLoad(n) {
+  function tryLoad(n, extIdx) {
     if (n > 99) return;
+    if (extIdx >= exts.length) return; /* neither ext found — done */
+
+    var file = "images/" + pad(n) + exts[extIdx];
 
     var div = document.createElement("div");
     div.className = "thumb";
@@ -235,13 +242,15 @@
 
     img.onload = function () {
       var idx = found.length;
-      found.push(n);
+      found.push({ n: n, ext: exts[extIdx] });
       div.addEventListener("click", function() { openLightbox(idx); });
       grid.appendChild(div);
-      tryLoad(n + 1);
+      tryLoad(n + 1, 0);
     };
 
-    img.onerror = function () { /* first miss — done */ };
+    img.onerror = function () {
+      tryLoad(n, extIdx + 1);  /* try next extension */
+    };
 
     var label = document.createElement("span");
     label.className   = "num";
@@ -250,10 +259,10 @@
     div.appendChild(img);
     div.appendChild(label);
 
-    img.src = src(n);
+    img.src = file;
   }
 
-  tryLoad(1);
+  tryLoad(1, 0);
 
   /* ── theme toggle ── */
 
@@ -282,6 +291,8 @@
   }
 
   function closeLightbox() { lb.classList.remove("open"); }
+
+  function src(entry) { return "images/" + pad(entry.n) + entry.ext; }
 
   function showImage() {
     lbImg.src = src(found[cur]);

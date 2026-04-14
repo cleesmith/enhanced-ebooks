@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inktober 2023 by Slip the Trap</title>
+<style>
+  :root, [data-theme="light"] {
+    --bg:          #f2f0ec;
+    --bg-header:   #e8e5df;
+    --text:        #1a1a1a;
+    --text-muted:  #6b6560;
+    --border:      #d4d0c8;
+    --thumb-bg:    #ffffff;
+    --thumb-shadow: 0 1px 4px rgba(0,0,0,.08), 0 0 1px rgba(0,0,0,.06);
+    --thumb-hover:  0 4px 16px rgba(0,0,0,.12), 0 0 1px rgba(0,0,0,.08);
+    --overlay:     #000000;
+    --toggle-bg:   #d4d0c8;
+    --toggle-knob: #ffffff;
+    --icon-sun:    none;
+    --icon-moon:   block;
+    --counter-bg:  rgba(0,0,0,.06);
+  }
+
+  [data-theme="dark"] {
+    --bg:          #111110;
+    --bg-header:   #1a1918;
+    --text:        #e8e5df;
+    --text-muted:  #8a8580;
+    --border:      #2a2826;
+    --thumb-bg:    #1e1d1b;
+    --thumb-shadow: 0 1px 4px rgba(0,0,0,.3), 0 0 1px rgba(0,0,0,.2);
+    --thumb-hover:  0 4px 16px rgba(0,0,0,.5), 0 0 1px rgba(0,0,0,.3);
+    --overlay:     #000000;
+    --toggle-bg:   #3a3835;
+    --toggle-knob: #e8e5df;
+    --icon-sun:    block;
+    --icon-moon:   none;
+    --counter-bg:  rgba(255,255,255,.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Segoe UI", "Helvetica Neue", "Noto Sans", sans-serif;
+    min-height: 100vh;
+    transition: background .35s ease, color .35s ease;
+    overflow-x: hidden;
+  }
+
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 clamp(12px, 3vw, 32px);
+    height: 54px;
+    background: var(--bg-header);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: background .35s ease, border-color .35s ease;
+  }
+
+  .header-title {
+    font-size: clamp(11px, 2.4vw, 15px);
+    font-weight: 600;
+    letter-spacing: .03em;
+    white-space: nowrap;
+    user-select: none;
+  }
+
+  .toggle {
+    position: relative;
+    width: 48px;
+    height: 26px;
+    background: var(--toggle-bg);
+    border: none;
+    border-radius: 13px;
+    cursor: pointer;
+    transition: background .3s ease;
+    flex-shrink: 0;
+  }
+
+  .toggle::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    background: var(--toggle-knob);
+    border-radius: 50%;
+    transition: transform .3s ease;
+  }
+
+  [data-theme="dark"] .toggle::after { transform: translateX(22px); }
+
+  .toggle-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 14px;
+    height: 14px;
+    pointer-events: none;
+  }
+
+  .toggle .icon-sun  { left: 6px;  display: var(--icon-sun);  }
+  .toggle .icon-moon { right: 6px; display: var(--icon-moon); }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(clamp(100px, 18vw, 220px), 1fr));
+    gap: clamp(6px, 1.2vw, 14px);
+    padding: clamp(8px, 2vw, 20px);
+    padding-bottom: 40px;
+  }
+
+  .thumb {
+    position: relative;
+    aspect-ratio: 1;
+    background: var(--thumb-bg);
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: var(--thumb-shadow);
+    transition: box-shadow .25s ease, transform .25s ease;
+  }
+
+  .thumb:hover {
+    box-shadow: var(--thumb-hover);
+    transform: translateY(-2px);
+  }
+
+  .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .thumb .num {
+    position: absolute;
+    bottom: 4px;
+    right: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-muted);
+    opacity: .5;
+    pointer-events: none;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: var(--overlay);
+    animation: fadeIn .2s ease;
+  }
+
+  .lightbox.open { display: flex; }
+
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  .lightbox img {
+    max-width: calc(100vw - 32px);
+    max-height: calc(100vh - 32px);
+    object-fit: contain;
+    border-radius: 4px;
+    user-select: none;
+    -webkit-user-drag: none;
+    animation: zoomIn .25s ease;
+  }
+
+  @keyframes zoomIn {
+    from { transform: scale(.92); opacity: 0; }
+    to   { transform: scale(1);   opacity: 1; }
+  }
+
+
+</style>
+</head>
+<body data-theme="light">
+
+  <header class="header">
+    <span class="header-title">
+      Inktober 2023 by Slip the Trap &copy; 2026
+      <small>
+        <em style="margin-left:20px; font-size:10px;">
+          click to enlarge image: scroll thru using left/right arrows or spacebar; ESC back to thumbnails
+        </em>
+      </small>
+    </span>
+
+    <button class="toggle" id="themeToggle" aria-label="Toggle dark mode">
+      <svg class="toggle-icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      </svg>
+      <svg class="toggle-icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+      </svg>
+    </button>
+  </header>
+
+  <div class="grid" id="grid"></div>
+
+  <div class="lightbox" id="lightbox">
+    <img id="lbImg" src="" alt="">
+  </div>
+
+<script>
+(function () {
+  var pad = function(n) { return String(n).padStart(2, "0"); };
+  var exts = [".png", ".jpg"];
+
+  var grid  = document.getElementById("grid");
+  var found = [];    // stores { n: number, ext: string }
+
+  /* ── auto-detect images sequentially ──
+     For each number, tries .png then .jpg.
+     Stops when neither extension exists.   */
+
+  function tryLoad(n, extIdx) {
+    if (n > 99) return;
+    if (extIdx >= exts.length) return; /* neither ext found — done */
+
+    var file = "images/" + pad(n) + exts[extIdx];
+
+    var div = document.createElement("div");
+    div.className = "thumb";
+
+    var img = document.createElement("img");
+    img.alt = pad(n);
+
+    img.onload = function () {
+      var idx = found.length;
+      found.push({ n: n, ext: exts[extIdx] });
+      div.addEventListener("click", function() { openLightbox(idx); });
+      grid.appendChild(div);
+      tryLoad(n + 1, 0);
+    };
+
+    img.onerror = function () {
+      tryLoad(n, extIdx + 1);  /* try next extension */
+    };
+
+    var label = document.createElement("span");
+    label.className   = "num";
+    label.textContent = pad(n);
+
+    div.appendChild(img);
+    div.appendChild(label);
+
+    img.src = file;
+  }
+
+  tryLoad(1, 0);
+
+  /* ── theme toggle ── */
+
+  var root   = document.body;
+  var toggle = document.getElementById("themeToggle");
+
+  if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    root.setAttribute("data-theme", "dark");
+  }
+
+  toggle.addEventListener("click", function () {
+    root.setAttribute("data-theme",
+      root.getAttribute("data-theme") === "dark" ? "light" : "dark");
+  });
+
+  /* ── lightbox ── */
+
+  var lb      = document.getElementById("lightbox");
+  var lbImg   = document.getElementById("lbImg");
+  var cur     = 0;
+
+  function openLightbox(idx) {
+    cur = idx;
+    showImage();
+    lb.classList.add("open");
+  }
+
+  function closeLightbox() { lb.classList.remove("open"); }
+
+  function src(entry) { return "images/" + pad(entry.n) + entry.ext; }
+
+  function showImage() {
+    lbImg.src = src(found[cur]);
+  }
+
+  function next() { if (!found.length) return; cur = (cur + 1) % found.length; showImage(); }
+  function prev() { if (!found.length) return; cur = (cur - 1 + found.length) % found.length; showImage(); }
+
+  document.addEventListener("keydown", function(e) {
+    if (!lb.classList.contains("open")) return;
+    if (e.code === "Space")          { e.preventDefault(); next(); }
+    else if (e.code === "ArrowRight") next();
+    else if (e.code === "ArrowLeft")  prev();
+    else if (e.code === "Escape") closeLightbox();
+  });
+})();
+</script>
+
+</body>
+</html>
