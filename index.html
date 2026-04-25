@@ -38,7 +38,8 @@
     }
 
     .theme-toggle,
-    .coffee-icon {
+    .coffee-icon,
+    .book-icon {
       background: none;
       border: none;
       color: var(--text);
@@ -53,7 +54,8 @@
       transition: transform 0.15s, opacity 0.15s;
     }
     .theme-toggle:hover,
-    .coffee-icon:hover {
+    .coffee-icon:hover,
+    .book-icon:hover {
       transform: scale(1.15);
       opacity: 0.85;
     }
@@ -119,7 +121,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 1.5rem;
+      gap: 2.5rem;
       padding: 0.15rem 0;
       font-size: 0.75rem;
       line-height: 1;
@@ -151,7 +153,14 @@
     </button>
 
     <span>Everything Ebooks &copy; 2026</span>
-    
+
+    <a href="https://www.amazon.com/stores/author/B0CFK82R1L/allbooks"
+       target="_blank"
+       rel="noopener noreferrer"
+       title="Books by Clee Smith on Amazon"
+       aria-label="Books by Clee Smith on Amazon"
+       class="book-icon">&#128218;</a>
+
     <a href="https://ko-fi.com/slipthetrap"
        target="_blank"
        rel="noopener noreferrer"
