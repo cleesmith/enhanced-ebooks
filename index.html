@@ -37,7 +37,8 @@
       transition: background 0.3s, color 0.3s;
     }
 
-    .theme-toggle {
+    .theme-toggle,
+    .coffee-icon {
       background: none;
       border: none;
       color: var(--text);
@@ -48,6 +49,13 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      text-decoration: none;
+      transition: transform 0.15s, opacity 0.15s;
+    }
+    .theme-toggle:hover,
+    .coffee-icon:hover {
+      transform: scale(1.15);
+      opacity: 0.85;
     }
     /* Show sun in dark mode (click to go light), moon in light mode (click to go dark) */
     .icon-sun { display: inline; }
@@ -111,7 +119,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.4rem;
+      gap: 1.5rem;
       padding: 0.15rem 0;
       font-size: 0.75rem;
       line-height: 1;
@@ -137,11 +145,19 @@
   </main>
 
   <footer>
-    <span>Everything Ebooks &copy; 2026</span>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode" title="Toggle dark/light mode">
       <span class="icon-sun">&#9728;&#65039;</span>
       <span class="icon-moon">&#127769;</span>
     </button>
+
+    <span>Everything Ebooks &copy; 2026</span>
+    
+    <a href="https://ko-fi.com/slipthetrap"
+       target="_blank"
+       rel="noopener noreferrer"
+       title="Donate / Buy Me a Coffee via Ko-fi"
+       aria-label="Donate via Ko-fi"
+       class="coffee-icon">&#9749;</a>
   </footer>
 
   <script>
