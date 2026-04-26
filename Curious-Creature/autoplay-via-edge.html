@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curious Creature &#8212; Edge Read Aloud</title>
+  <base href="/Curious-Creature/" />
+  <style>
+/* EverythingEbooks — EPUB-matching base styles */
+
+html {
+  font-size: 100%;
+}
+
+body {
+  font-family: serif;
+  line-height: 1.6;
+  margin: 1em auto;
+  padding: 0 1.5rem;
+  padding-bottom: 70px;
+  text-align: left;
+  max-width: min(92%, 1400px);
+  background: #fffaf5;
+  color: #222;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Title page */
+.title-page {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.title-page p {
+  text-indent: 0;
+  text-align: center;
+}
+
+.book-title {
+  text-align: center;
+  font-size: 1.8em;
+  font-weight: bold;
+  margin: 0;
+  padding-top: 25%;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.book-subtitle {
+  text-align: center;
+  font-size: 1.1em;
+  font-style: italic;
+  margin: 0;
+  padding-top: 5%;
+}
+
+.book-author {
+  text-align: center;
+  font-size: 1.3em;
+  margin: 0;
+  padding-top: 20%;
+  font-weight: normal;
+}
+
+.book-publisher {
+  text-align: center;
+  font-size: 1em;
+  margin: 0;
+  padding-top: 20%;
+  font-weight: normal;
+}
+
+/* Copyright page */
+.copyright-page {
+  margin: 2em 0;
+}
+
+.copyright-page p {
+  text-align: left;
+  margin: 0.8em 0;
+  text-indent: 0;
+  font-size: 0.9em;
+}
+
+/* Contents page */
+.contents-page {
+  margin: 2em 0;
+}
+
+.toc-title {
+  text-align: center;
+  font-size: 1.5em;
+  margin: 2em 0;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.toc-contents {
+  margin: 1em 0;
+  padding: 0;
+}
+
+.toc-item {
+  margin: 1em 0;
+  text-align: left;
+}
+
+.toc-content {
+  margin: 0;
+  text-indent: 0;
+}
+
+.toc-content a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s;
+}
+
+.toc-content a:hover {
+  text-decoration: underline;
+}
+
+.toc-item-title {
+  display: inline;
+}
+
+.toc-section-header {
+  margin: 2em 0 0.5em 0;
+}
+
+.toc-section-title {
+  font-weight: bold;
+  font-style: italic;
+  margin: 0;
+  text-indent: 0;
+}
+
+/* Chapter styles */
+.chapter {
+  margin: 0;
+}
+
+h1 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 3em 0 2em 0;
+  text-align: center;
+}
+
+p {
+  margin: 0 0 1em 0;
+  text-indent: 1.5em;
+  text-align: justify;
+  line-height: 1.6;
+}
+
+pre {
+  margin: 1em 0;
+  text-align: left;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-x: auto;
+  font-family: monospace;
+}
+
+/* First paragraph after chapter heading */
+.chapter p:first-of-type {
+  text-indent: 0;
+  margin-top: 1.5em;
+}
+
+/* Inline images */
+.image-container {
+  text-align: center;
+  margin: 1.5em 0;
+}
+
+.image-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Figures (resized images from editor) */
+figure {
+  text-align: center;
+  margin: 1.5em auto;
+  max-width: 100%;
+}
+
+figure img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+figure[data-align="left"] {
+  margin-left: 0;
+  margin-right: auto;
+  text-align: left;
+}
+
+figure[data-align="right"] {
+  margin-left: auto;
+  margin-right: 0;
+  text-align: right;
+}
+
+figcaption {
+  font-size: 0.85em;
+  text-align: center;
+  margin-top: 0.5em;
+  font-style: italic;
+}
+
+/* Audio blocks (non-VN) */
+.audio-block {
+  text-align: center;
+  margin: 1.5em 0;
+}
+
+.audio-block audio {
+  width: 80%;
+  max-width: 400px;
+}
+
+.audio-block .caption {
+  font-size: 0.85em;
+  font-style: italic;
+  margin-top: 0.5em;
+}
+
+/* Scene overrides — no indent, left-aligned */
+.scene p {
+  text-indent: 0;
+  text-align: left;
+}
+
+/* About author page */
+.about-author-page {
+  margin: 2em 0;
+}
+
+.about-author-page h1 {
+  text-align: center;
+  font-size: 1.5em;
+  margin: 2em 0;
+  font-weight: bold;
+}
+
+.about-author-page p {
+  text-align: left;
+  text-indent: 1.5em;
+  margin: 0 0 1em 0;
+}
+
+.about-author-page p:first-of-type {
+  text-indent: 0;
+}
+
+/* Navigation styles */
+nav h1 {
+  text-align: center;
+  font-size: 1.5em;
+  margin: 2em 0;
+  font-weight: bold;
+}
+
+nav ol {
+  list-style: none;
+  margin: 1em 0;
+  padding: 0;
+}
+
+nav li {
+  margin: 1em 0;
+  text-align: left;
+}
+
+nav a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.chapter a,
+.scene a,
+.copyright-page a {
+  color: #1a6fb5;
+  text-decoration: underline;
+  text-decoration-color: rgba(26, 111, 181, 0.4);
+}
+
+.chapter a:hover,
+.scene a:hover,
+.copyright-page a:hover {
+  color: #155a94;
+  text-decoration-color: rgba(21, 90, 148, 0.8);
+}
+
+
+/* ── Dark mode ─────────────────────────────── */
+
+body.dark-mode {
+  background: #121212;
+  color: #e0e0e0;
+}
+
+body.dark-mode .dialogue {
+  border-left-color: rgba(200, 200, 200, 0.25);
+}
+
+body.dark-mode .toc-content a:hover {
+  color: #ccc;
+}
+
+body.dark-mode img {
+  opacity: 0.9;
+}
+
+body.dark-mode .scene-audio {
+  border-color: rgba(200, 200, 200, 0.15);
+}
+
+body.dark-mode .chapter a,
+body.dark-mode .scene a,
+body.dark-mode .copyright-page a {
+  color: #5bb8f5;
+  text-decoration-color: rgba(91, 184, 245, 0.4);
+}
+
+body.dark-mode .chapter a:hover,
+body.dark-mode .scene a:hover,
+body.dark-mode .copyright-page a:hover {
+  color: #7dcaff;
+  text-decoration-color: rgba(125, 202, 255, 0.8);
+}
+
+/* ── Sticky Footer ─────────────────────────── */
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #1a1a1a;
+  color: #ccc;
+  padding: 12px 20px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-size: 0.9em;
+  z-index: 1000;
+}
+
+.footer-info {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.footer-title {
+  font-weight: bold;
+  color: #707070;
+}
+
+.footer-author {
+  color: #999;
+}
+
+.footer-copyright {
+  color: #777;
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.4em;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.playhead-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+}
+.playhead-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.playhead-toggle svg {
+  width: 22px;
+  height: 22px;
+  fill: #ff7844;
+  transition: opacity 0.2s;
+}
+.playhead-toggle.sc-off svg {
+  opacity: 0.35;
+}
+
+.footer-buttons {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+/* ── Responsive ────────────────────────────── */
+
+@media (max-width: 600px) {
+  body {
+    margin: 0.5em;
+    padding-bottom: 70px;
+  }
+
+  .book-title {
+    font-size: 1.5em;
+  }
+
+  h1 {
+    font-size: 1.3em;
+  }
+
+  .footer {
+    padding: 10px 15px;
+    font-size: 0.8em;
+  }
+
+  .footer-info {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+}
+  </style>
+</head>
+<body class="dark-mode">
+
+  <section class="title-page">
+    <p class="book-title">CURIOUS CREATURE</p>
+    <p class="book-author">Clee Smith</p>
+    <p class="book-publisher">Slip the Trap</p>
+  </section>
+
+  <section class="copyright-page" id="section-1">
+<section class="copyright-page" epub:type="copyright-page">
+<section class="copyright-page" epub:type="copyright-page">
+
+<br>
+<br>
+<br>
+<p>Copyright © 2026 by Clee Smith</p>
+<br>
+<p>All rights reserved.</p>
+<br>
+<p>No part of this book may be reproduced in any form or by any electronic or mechanical means, including information storage and retrieval systems, without written permission from the author, except for the use of brief quotations in a book review.</p>
+
+<br>
+<br>
+<br>
+
+</section>
+</section>
+  </section>
+
+  <section class="chapter">
+    <h1>Curious Creature</h1>
+    <p style="text-indent:0;text-align:center">Written by Clee Smith.</p>
+  </section>
+
+  <section class="chapter" id="section-3">
+    <h1>Title</h1>
+    <p>Curious Creature</p>
+    <br/>
+    <p>by Clee Smith</p>
+    <br/>
+    <p>published by Slip the Trap</p>
+    <br/>
+    <br/>
+    <br/>
+  </section>
+
+  <section class="chapter" id="section-4">
+    <h1>Home</h1>
+    <div class="image-container"><img src="images/001.jpg" alt="Image" style="max-width:100%;height:auto"/></div>
+    <p>On a quiet little sill, in a quiet little house,</p>
+    <p>sat a quiet little jar with one small cherry inside.</p>
+    <p>Curi had looked at it every single day.</p>
+    <p>Today, for the first time, Curi wondered.</p>
+    <p>Where did you come from, little cherry?</p>
+    <br/>
+    <br/>
+    <br/>
+  </section>
+
+  <section class="chapter" id="section-5">
+    <h1>Bus</h1>
+    <div class="image-container"><img src="images/003.jpg" alt="Image" style="max-width:100%;height:auto"/></div>
+    <p>So Curi wrapped up warm,</p>
+    <p>closed the door behind her,</p>
+    <p>and raced to catch the very first bus</p>
+    <p>to the very last stop.</p>
+    <br/>
+    <br/>
+    <br/>
+  </section>
+
+  <section class="chapter" id="section-6">
+    <h1>Path</h1>
+    <div class="image-container"><img src="images/005.jpg" alt="Image" style="max-width:100%;height:auto"/></div>
+    <p>The bus drove off.</p>
+    <p>The road ran out.</p>
+    <p>And there, waiting, was a path</p>
+    <p>that went somewhere Curi had never been.</p>
+    <br/>
+    <br/>
+    <br/>
+  </section>
+
+  <section class="chapter" id="section-7">
+    <h1>Cave</h1>
+    <div class="image-container"><img src="images/007.jpg" alt="Image" style="max-width:100%;height:auto"/></div>
+    <p>Curi took one small step.</p>
+    <p>Then another.</p>
+    <p>Then another after that.</p>
+    <p>The trees leaned close to listen.</p>
+    <p>Then into the cave.</p>
+    <br/>
+    <br/>
+    <br/>
+  </section>
+
+  <section class="chapter" id="section-8">
+    <h1>Web</h1>
+    <div class="image-container"><img src="images/009.jpg" alt="Image" style="max-width:100%;height:auto"/></div>
+    <p>The cave's exit was hung with a web of frost,</p>
+    <p>sharp and bright and beautiful.</p>
+    <p>Curi did not break it.</p>
+    <p>Curi ducked underneath,</p>
+    <p>gentle as a held breath.</p>
+    <br/>
+    <br/>
+    <br/>
+  </section>
+
+  <section class="chapter" id="section-9">
+    <h1>Prickly</h1>
+    <div class="image-container"><img src="images/010.jpg" alt="Image" style="max-width:100%;height:auto"/></div>
+    <p>A prickly plant puffed up its leaves.</p>
+    <p>I am not for touching, it seemed to say.</p>
+    <p>That is alright, thought Curi.</p>
+    <p>And tiptoed all the way around.</p>
+    <br/>
+    <br/>
+    <br/>
+  </section>
+
+  <section class="chapter" id="section-10">
+    <h1>Massive</h1>
+    <div class="image-container"><img src="images/012.jpg" alt="Image" style="max-width:100%;height:auto"/></div>
+    <p>Something very tall was watching.</p>
+    <p>Something very tall and very shy.</p>
+    <p>Hello, said Curi.</p>
+    <p>The something very tall bent down its branches</p>
+    <p>and pointed up the mountain.</p>
+    <br/>
+    <br/>
+    <br/>
+  </section>
+
+  <section class="chapter" id="section-11">
+    <h1>Saddle</h1>
+    <div class="image-container"><img src="images/014.jpg" alt="Image" style="max-width:100%;height:auto"/></div>
+    <p>Up and up and up,</p>
+    <p>between two quiet peaks,</p>
+    <p>where, peeking through a hole,</p>
+    <p>a soft round sun</p>
+    <p>was waiting like a friend.</p>
+    <p>Curi had never been so high.</p>
+    <br/>
+    <br/>
+    <br/>
+  </section>
+
+  <section class="chapter" id="section-12">
+    <h1>Celestial</h1>
+    <div class="image-container"><img src="images/016.jpg" alt="Image" style="max-width:100%;height:auto"/></div>
+    <p>Then the sky began to fall.</p>
+    <p>Not rain. Not snow.</p>
+    <p>Stars. Bright, burning, beautiful stars,</p>
+    <p>streaking down in long white lines.</p>
+    <p>Curi opened a little umbrella</p>
+    <p>and watched, and watched, and watched.</p>
+    <br/>
+    <br/>
+    <br/>
+  </section>
+
+  <section class="chapter" id="section-13">
+    <h1>Sparkle</h1>
+    <div class="image-container"><img src="images/017.jpg" alt="Image" style="max-width:100%;height:auto"/></div>
+    <p>One small star came down close,</p>
+    <p>so close it landed right beside her,</p>
+    <p>no bigger than a seed.</p>
+    <p>Curi picked it up very carefully</p>
+    <p>and tucked it away for the journey home.</p>
+  </section>
+
+  <section class="chapter" id="section-14">
+    <h1>Back Home</h1>
+    <div class="image-container"><img src="images/018.jpg" alt="Image" style="max-width:100%;height:auto"/></div>
+    <p>On a quiet little sill, in a quiet little house,</p>
+    <p>sat a quiet little jar.</p>
+    <p>One small cherry.</p>
+    <p>And one small, shining something</p>
+    <p>that had not been there before.</p>
+    <p>Curi smiled.</p>
+    <p>The world, it turned out,</p>
+    <p>was much, much bigger than a window.</p>
+    <p>And tomorrow, maybe,</p>
+    <p>there would be somewhere new to wonder about.</p>
+    <br/>
+    <br/>
+    <br/>
+  </section>
+
+  <section class="chapter" id="section-15">
+    <h1>Wonders</h1>
+    <figure><img src="images/019.jpg" alt="Wonders: bird, drip, toad, turtle" style="max-width:100%;height:auto"/><figcaption>Wonders: bird, drip, toad, turtle</figcaption></figure>
+  </section>
+
+  <section class="chapter" id="section-16">
+    <h1>A Poem</h1>
+    <br/>
+    <br/>
+    <br/>
+    <p>If you wonder where a cherry grows,</p>
+    <p>follow where the wander goes.</p>
+    <br/>
+    <p>Out the door and down the lane,</p>
+    <p>out past sun and out past rain.</p>
+    <br/>
+    <p>Through the woods where hush hangs deep,</p>
+    <p>under webs too bright to keep.</p>
+    <br/>
+    <p>Up where mountain meets the sky —</p>
+    <p>that's how high a small thing flies.</p>
+    <br/>
+    <p>Catch a star the night lets fall,</p>
+    <p>small enough to hold it all.</p>
+    <br/>
+    <p>Bring a little shining home —</p>
+    <p>and the world is yours to roam.</p>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+  </section>
+
+  <section class="chapter" id="section-17">
+    <h1>Curi, cherry, jar, and the cat</h1>
+<section class="chapter" epub:type="chapter">
+
+<figure>
+<img src="images/002.png" alt="01 bonus">
+<figcaption>Curi, cherry, cat</figcaption>
+</figure>
+
+</section>
+  </section>
+
+  <section class="chapter" id="section-18">
+    <h1>Curi and the drip</h1>
+<section class="chapter" epub:type="chapter">
+
+<figure>
+<img src="images/004.png" alt="02bonus">
+<figcaption>Curi, leaf, drip</figcaption>
+</figure>
+
+</section>
+  </section>
+
+  <section class="chapter" id="section-19">
+    <h1>Curi and the toad</h1>
+<section class="chapter" epub:type="chapter">
+
+<figure>
+<img src="images/006.png" alt="03bonus">
+<figcaption>Curi and toad</figcaption>
+</figure>
+
+</section>
+  </section>
+
+  <section class="chapter" id="section-20">
+    <h1>Curi and the turtle</h1>
+<section class="chapter" epub:type="chapter">
+
+<figure>
+<img src="images/008.png" alt="04bonus">
+<figcaption>Curi and turtle</figcaption>
+</figure>
+
+</section>
+  </section>
+
+  <section class="chapter" id="section-21">
+    <h1>Curi, and the mountain peaks, puka, saddle</h1>
+<section class="chapter" epub:type="chapter">
+
+<figure>
+<img src="images/011.png" alt="06bonus">
+<figcaption>Curi and puka</figcaption>
+</figure>
+
+</section>
+  </section>
+
+  <section class="chapter" id="section-22">
+    <h1>Curi and the hot air star balloon</h1>
+<section class="chapter" epub:type="chapter">
+
+<figure>
+<img src="images/015.png" alt="09bonus">
+<figcaption>Curi star balloon</figcaption>
+</figure>
+
+</section>
+  </section>
+
+  <section class="chapter" id="section-23">
+    <h1>About the Author</h1>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <p>Clee Smith <strong><em>r</em></strong>eads, w<strong><em>r</em></strong>ites, a<strong><em>r</em></strong>ithmetics, and sometimes reuses artwork from Inktober 2023.</p>
+    <br/>
+    <br/>
+    <p>Both the ebook and paperback are available on <a target="_blank" rel="noopener" href="https://a.co/d/05YDHWvQ">Amazon</a>.</p>
+    <br/>
+    <br/>
+    <br/>
+  </section>
+
+  <section class="chapter" id="section-24">
+    <h1>A thanks, the end</h1>
+    <br/>
+    <br/>
+    <br/>
+    <p>🤗 Thank  you. 🤓</p>
+    <p>⌛ The End</p>
+    <br/>
+    <br/>
+    <br/>
+  </section>
+
+  <div class="footer">
+    <div class="footer-buttons">
+      <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">&#9728;&#65039;</button>
+    </div>
+    <div class="footer-info">
+      <span class="footer-title">Curious Creature</span>
+      <span class="footer-author">by Clee Smith</span>
+      <span class="footer-copyright">&copy; 2026</span>
+    </div>
+  </div>
+
+  <script>
+    var themeToggle = document.getElementById('themeToggle');
+    var body = document.body;
+
+    var savedTheme = localStorage.getItem('html-ebook-theme');
+    if (savedTheme === 'light' && body.classList.contains('dark-mode')) {
+      body.classList.remove('dark-mode');
+      themeToggle.textContent = '🌙';
+    } else if (savedTheme === 'dark' && !body.classList.contains('dark-mode')) {
+      body.classList.add('dark-mode');
+      themeToggle.textContent = '☀️';
+    }
+
+    themeToggle.addEventListener('click', function() {
+      body.classList.toggle('dark-mode');
+      var isDark = body.classList.contains('dark-mode');
+      themeToggle.textContent = isDark ? '☀️' : '🌙';
+      localStorage.setItem('html-ebook-theme', isDark ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

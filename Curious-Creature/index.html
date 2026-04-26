@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curious Creature</title>
+  <base href="/Curious-Creature/" />
+  <style>
+/* EverythingEbooks — EPUB-matching base styles */
+
+html {
+  font-size: 100%;
+}
+
+body {
+  font-family: serif;
+  line-height: 1.6;
+  margin: 1em auto;
+  padding: 0 1.5rem;
+  padding-bottom: 70px;
+  text-align: left;
+  max-width: min(92%, 1400px);
+  background: #fffaf5;
+  color: #222;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Title page */
+.title-page {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.title-page p {
+  text-indent: 0;
+  text-align: center;
+}
+
+.book-title {
+  text-align: center;
+  font-size: 1.8em;
+  font-weight: bold;
+  margin: 0;
+  padding-top: 25%;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.book-subtitle {
+  text-align: center;
+  font-size: 1.1em;
+  font-style: italic;
+  margin: 0;
+  padding-top: 5%;
+}
+
+.book-author {
+  text-align: center;
+  font-size: 1.3em;
+  margin: 0;
+  padding-top: 20%;
+  font-weight: normal;
+}
+
+.book-publisher {
+  text-align: center;
+  font-size: 1em;
+  margin: 0;
+  padding-top: 20%;
+  font-weight: normal;
+}
+
+/* Copyright page */
+.copyright-page {
+  margin: 2em 0;
+}
+
+.copyright-page p {
+  text-align: left;
+  margin: 0.8em 0;
+  text-indent: 0;
+  font-size: 0.9em;
+}
+
+/* Contents page */
+.contents-page {
+  margin: 2em 0;
+}
+
+.toc-title {
+  text-align: center;
+  font-size: 1.5em;
+  margin: 2em 0;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.toc-contents {
+  margin: 1em 0;
+  padding: 0;
+}
+
+.toc-item {
+  margin: 1em 0;
+  text-align: left;
+}
+
+.toc-content {
+  margin: 0;
+  text-indent: 0;
+}
+
+.toc-content a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s;
+}
+
+.toc-content a:hover {
+  text-decoration: underline;
+}
+
+.toc-item-title {
+  display: inline;
+}
+
+.toc-section-header {
+  margin: 2em 0 0.5em 0;
+}
+
+.toc-section-title {
+  font-weight: bold;
+  font-style: italic;
+  margin: 0;
+  text-indent: 0;
+}
+
+/* Chapter styles */
+.chapter {
+  margin: 0;
+}
+
+h1 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 3em 0 2em 0;
+  text-align: center;
+}
+
+p {
+  margin: 0 0 1em 0;
+  text-indent: 1.5em;
+  text-align: justify;
+  line-height: 1.6;
+}
+
+pre {
+  margin: 1em 0;
+  text-align: left;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-x: auto;
+  font-family: monospace;
+}
+
+/* First paragraph after chapter heading */
+.chapter p:first-of-type {
+  text-indent: 0;
+  margin-top: 1.5em;
+}
+
+/* Inline images */
+.image-container {
+  text-align: center;
+  margin: 1.5em 0;
+}
+
+.image-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Figures (resized images from editor) */
+figure {
+  text-align: center;
+  margin: 1.5em auto;
+  max-width: 100%;
+}
+
+figure img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+figure[data-align="left"] {
+  margin-left: 0;
+  margin-right: auto;
+  text-align: left;
+}
+
+figure[data-align="right"] {
+  margin-left: auto;
+  margin-right: 0;
+  text-align: right;
+}
+
+figcaption {
+  font-size: 0.85em;
+  text-align: center;
+  margin-top: 0.5em;
+  font-style: italic;
+}
+
+/* Audio blocks (non-VN) */
+.audio-block {
+  text-align: center;
+  margin: 1.5em 0;
+}
+
+.audio-block audio {
+  width: 80%;
+  max-width: 400px;
+}
+
+.audio-block .caption {
+  font-size: 0.85em;
+  font-style: italic;
+  margin-top: 0.5em;
+}
+
+/* Scene overrides — no indent, left-aligned */
+.scene p {
+  text-indent: 0;
+  text-align: left;
+}
+
+/* About author page */
+.about-author-page {
+  margin: 2em 0;
+}
+
+.about-author-page h1 {
+  text-align: center;
+  font-size: 1.5em;
+  margin: 2em 0;
+  font-weight: bold;
+}
+
+.about-author-page p {
+  text-align: left;
+  text-indent: 1.5em;
+  margin: 0 0 1em 0;
+}
+
+.about-author-page p:first-of-type {
+  text-indent: 0;
+}
+
+/* Navigation styles */
+nav h1 {
+  text-align: center;
+  font-size: 1.5em;
+  margin: 2em 0;
+  font-weight: bold;
+}
+
+nav ol {
+  list-style: none;
+  margin: 1em 0;
+  padding: 0;
+}
+
+nav li {
+  margin: 1em 0;
+  text-align: left;
+}
+
+nav a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.chapter a,
+.scene a,
+.copyright-page a {
+  color: #1a6fb5;
+  text-decoration: underline;
+  text-decoration-color: rgba(26, 111, 181, 0.4);
+}
+
+.chapter a:hover,
+.scene a:hover,
+.copyright-page a:hover {
+  color: #155a94;
+  text-decoration-color: rgba(21, 90, 148, 0.8);
+}
+
+
+/* ── SceneCraft immersive scroll-driven styles ──── */
+.sc-scene {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  background: #060608;
+  color: #c8c0b4;
+  overflow: clip;
+}
+.sc-scene .sc-bg {
+  position: fixed;
+  inset: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+  z-index: 0;
+  pointer-events: none;
+}
+.sc-scene .sc-playhead {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: rgba(255,120,68,0.15);
+  z-index: 10;
+  pointer-events: none;
+}
+.sc-scene .sc-playhead-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,120,68,0.4);
+  position: absolute;
+  left: 50%;
+  top: -3px;
+  transform: translateX(-50%);
+}
+.sc-scene .sc-info {
+  position: fixed;
+  right: 16px;
+  top: calc(50% - 14px);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: rgba(255,120,68,0.35);
+  z-index: 10;
+  pointer-events: none;
+  font-family: 'SF Mono','Fira Code',monospace;
+}
+.sc-scene .sc-content {
+  max-width: min(88%, 52rem);
+  margin: 0 auto;
+  padding: 50vh 2rem;
+  font-family: Georgia, 'EB Garamond', serif;
+  font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+  line-height: 2;
+  position: relative;
+  z-index: 2;
+}
+.sc-scene .sc-dead-zone {
+  height: 50vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 2rem;
+}
+.sc-scene .sc-dead-zone span {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: #2a2620;
+  font-style: italic;
+  font-family: 'SF Mono','Fira Code',monospace;
+}
+.sc-scene .sc-enter {
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #c8c0b4;
+  margin-bottom: 3em;
+  padding-bottom: 1em;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  font-family: 'SF Mono','Fira Code',monospace;
+}
+.sc-scene .sc-exit {
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #c8c0b4;
+  margin-top: 3em;
+  padding-top: 1em;
+  border-top: 1px solid rgba(255,255,255,0.03);
+  font-style: italic;
+  font-family: 'SF Mono','Fira Code',monospace;
+}
+.sc-scene .sc-dead-zone-after {
+  height: 70vh;
+}
+.sc-scene .sc-block {
+  margin-bottom: 1.6em;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  position: relative;
+  z-index: 2;
+}
+.sc-scene .sc-block.sc-vis {
+  opacity: 1;
+  transform: translateY(0);
+}
+.sc-scene .sc-block.sc-past {
+  opacity: 0.3;
+}
+.sc-scene .sc-block-dialogue {
+  color: #d4c090;
+}
+.sc-scene .sc-block-dialogue .sc-speaker {
+  font-family: 'SF Mono','Fira Code',monospace;
+  font-size: 0.65em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #a08040;
+  display: block;
+  margin-bottom: 0.3em;
+}
+.sc-scene .sc-block-emphasis {
+  font-style: italic;
+  color: #e0c8b0;
+  text-align: center;
+}
+.sc-scene .sc-block-quote {
+  border-left: 2px solid rgba(200,192,180,0.3);
+  padding-left: 1.5em;
+}
+.sc-scene .sc-block-internal {
+  font-style: italic;
+  padding-left: 2em;
+}
+.sc-scene .sc-block-break {
+  text-align: center;
+  color: #3a3530;
+  letter-spacing: 0.3em;
+}
+.sc-scene .sc-block-h1 {
+  font-size: 1.8em;
+  font-weight: bold;
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #c8c0b4;
+}
+.sc-scene .sc-block-h2 {
+  font-size: 1.4em;
+  font-weight: bold;
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #c8c0b4;
+}
+.sc-scene .sc-block-h3 {
+  font-size: 1.15em;
+  font-weight: bold;
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #c8c0b4;
+}
+.sc-scene .sc-block-divider {
+  border-top: 1px solid rgba(200,192,180,0.15);
+  margin: 1.6em 0;
+}
+.sc-scene .sc-block-linebreak {
+  height: 1.2em;
+  margin: 0;
+}
+.sc-scene .sc-block-sticky {
+  display: flex;
+  gap: 1.5em;
+  align-items: flex-start;
+  min-height: 300px;
+  margin-bottom: 1.6em;
+  position: relative;
+  z-index: 2;
+}
+.sc-scene .sc-block-sticky .sc-block {
+  margin-bottom: 0;
+}
+.sc-scene .sc-block-sticky .sc-sticky-img {
+  position: sticky;
+  top: 0;
+  width: 40%;
+  flex-shrink: 0;
+}
+.sc-scene .sc-block-sticky .sc-sticky-img input[type="checkbox"] {
+  display: none;
+}
+.sc-scene .sc-block-sticky .sc-sticky-img input:checked ~ .sc-enlarge-overlay {
+  display: block !important;
+}
+.sc-scene .sc-block-sticky .sc-sticky-img img {
+  width: 100%;
+  border-radius: 4px;
+  opacity: 0.9;
+}
+.sc-scene .sc-block-sticky .sc-sticky-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding-top: 15vh;
+}
+body.sc-overlay-hidden .sc-playhead,
+body.sc-overlay-hidden .sc-playhead-dot,
+body.sc-overlay-hidden .sc-info,
+body.sc-overlay-hidden .sc-dead-zone span {
+  display: none !important;
+}
+/* ── Sticky-image enlarge: collapse stacking contexts so overlay reaches root ── */
+body:has(.sc-sticky-img input:checked) .sc-scene .sc-content {
+  z-index: auto;
+}
+body:has(.sc-sticky-img input:checked) .sc-block-sticky {
+  z-index: auto;
+}
+body:has(.sc-sticky-img input:checked) .sc-sticky-img {
+  position: static;
+}
+.sc-scene a {
+  color: #e8c078;
+  text-decoration: underline;
+  text-decoration-color: rgba(232, 192, 120, 0.4);
+}
+.sc-scene a:hover {
+  color: #f0d898;
+  text-decoration-color: rgba(240, 216, 152, 0.7);
+}
+
+/* ── Dark mode ─────────────────────────────── */
+
+body.dark-mode {
+  background: #121212;
+  color: #e0e0e0;
+}
+
+body.dark-mode .dialogue {
+  border-left-color: rgba(200, 200, 200, 0.25);
+}
+
+body.dark-mode .toc-content a:hover {
+  color: #ccc;
+}
+
+body.dark-mode img {
+  opacity: 0.9;
+}
+
+body.dark-mode .scene-audio {
+  border-color: rgba(200, 200, 200, 0.15);
+}
+
+body.dark-mode .chapter a,
+body.dark-mode .scene a,
+body.dark-mode .copyright-page a {
+  color: #5bb8f5;
+  text-decoration-color: rgba(91, 184, 245, 0.4);
+}
+
+body.dark-mode .chapter a:hover,
+body.dark-mode .scene a:hover,
+body.dark-mode .copyright-page a:hover {
+  color: #7dcaff;
+  text-decoration-color: rgba(125, 202, 255, 0.8);
+}
+
+/* ── Sticky Footer ─────────────────────────── */
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #1a1a1a;
+  color: #ccc;
+  padding: 12px 20px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-size: 0.9em;
+  z-index: 1000;
+}
+
+.footer-info {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.footer-title {
+  font-weight: bold;
+  color: #707070;
+}
+
+.footer-author {
+  color: #999;
+}
+
+.footer-copyright {
+  color: #777;
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.4em;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.playhead-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+}
+.playhead-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.playhead-toggle svg {
+  width: 22px;
+  height: 22px;
+  fill: #ff7844;
+  transition: opacity 0.2s;
+}
+.playhead-toggle.sc-off svg {
+  opacity: 0.35;
+}
+
+.footer-buttons {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+/* ── Responsive ────────────────────────────── */
+
+@media (max-width: 600px) {
+  body {
+    margin: 0.5em;
+    padding-bottom: 70px;
+  }
+
+  .book-title {
+    font-size: 1.5em;
+  }
+
+  h1 {
+    font-size: 1.3em;
+  }
+
+  .footer {
+    padding: 10px 15px;
+    font-size: 0.8em;
+  }
+
+  .footer-info {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+}
+  </style>
+</head>
+<body class="dark-mode">
+
+  <section class="cover-page" style="text-align:center; margin:0; padding:2em 0;">
+    <img src="images/cover.jpg" alt="Cover" style="max-width:100%; max-height:90vh; object-fit:contain;"/>
+  </section>
+
+  <section class="title-page">
+    <p class="book-title">CURIOUS CREATURE</p>
+    <p class="book-author">Clee Smith</p>
+    <p class="book-publisher">Slip the Trap</p>
+  </section>
+
+  <section class="copyright-page" id="section-1">
+<section class="copyright-page" epub:type="copyright-page">
+<section class="copyright-page" epub:type="copyright-page">
+<p></p>
+<br>
+<br>
+<br>
+<p>Copyright © 2026 by Clee Smith</p>
+<br>
+<p>All rights reserved.</p>
+<br>
+<p>No part of this book may be reproduced in any form or by any electronic or mechanical means, including information storage and retrieval systems, without written permission from the author, except for the use of brief quotations in a book review.</p>
+<p></p>
+<br>
+<br>
+<br>
+<p></p>
+</section>
+</section>
+  </section>
+
+  <div class="contents-page">
+    <h1 class="toc-title">CONTENTS</h1>
+    <div class="toc-contents">
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-3"><span class="toc-item-title">Title</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-4"><span class="toc-item-title">Home</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-5"><span class="toc-item-title">Bus</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-6"><span class="toc-item-title">Path</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-7"><span class="toc-item-title">Cave</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-8"><span class="toc-item-title">Web</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-9"><span class="toc-item-title">Prickly</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-10"><span class="toc-item-title">Massive</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-11"><span class="toc-item-title">Saddle</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-12"><span class="toc-item-title">Celestial</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-13"><span class="toc-item-title">Sparkle</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-14"><span class="toc-item-title">Back Home</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-15"><span class="toc-item-title">Wonders</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-16"><span class="toc-item-title">A Poem</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-17"><span class="toc-item-title">Curi, cherry, jar, and the cat</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-18"><span class="toc-item-title">Curi and the drip</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-19"><span class="toc-item-title">Curi and the toad</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-20"><span class="toc-item-title">Curi and the turtle</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-21"><span class="toc-item-title">Curi, and the mountain peaks, puka, saddle</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-22"><span class="toc-item-title">Curi and the hot air star balloon</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-23"><span class="toc-item-title">About the Author</span></a></p></div>
+      <div class="toc-item"><p class="toc-content"><a href="./index.html#section-24"><span class="toc-item-title">A thanks, the end</span></a></p></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-3" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:&quot;001.mp3&quot;,&quot;ambientVolume&quot;:1,&quot;ambientLoop&quot;:false,&quot;fadeIn&quot;:1,&quot;fadeOut&quot;:1,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Title" data-sc-aud_001_mp3="audio/001.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&nbsp;</span></div>
+      <div class="sc-enter">Title</div>
+      <div class="sc-block sc-block-para" data-idx="0">Curious Creature</div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-para" data-idx="2">by Clee Smith</div>
+      <div class="sc-block sc-block-linebreak" data-idx="3"></div>
+      <div class="sc-block sc-block-para" data-idx="4">published by Slip the Trap</div>
+      <div class="sc-block sc-block-linebreak" data-idx="5"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="6"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="7"></div>
+      <div class="sc-exit">&nbsp;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-4" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:1,&quot;ambientLoop&quot;:false,&quot;fadeIn&quot;:1,&quot;fadeOut&quot;:1,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{&quot;0&quot;:{&quot;filename&quot;:&quot;002.mp3&quot;,&quot;volume&quot;:0.8}},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Home" data-sc-aud_002_mp3="audio/002.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&nbsp;</span></div>
+      <div class="sc-enter">Home</div>
+      <div class="sc-block-sticky" data-idx="0">
+        <div class="sc-sticky-img" data-idx="0"><input type="checkbox" id="sc-enlarge-1"/><label for="sc-enlarge-1" style="cursor:zoom-in;display:block"><img src="images/001.jpg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-1" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/001.jpg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+          <div class="sc-block" data-idx="0">On a quiet little sill, in a quiet little house,</div>
+          <div class="sc-block" data-idx="0">sat a quiet little jar with one small cherry inside.</div>
+          <div class="sc-block" data-idx="0">Curi had looked at it every single day.</div>
+          <div class="sc-block" data-idx="0">Today, for the first time, Curi wondered.</div>
+          <div class="sc-block" data-idx="0">Where did you come from, little cherry?</div>
+        </div>
+      </div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="3"></div>
+      <div class="sc-exit">&nbsp;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-5" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:1,&quot;fadeOut&quot;:1,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{&quot;0&quot;:{&quot;filename&quot;:&quot;003.mp3&quot;,&quot;volume&quot;:1}},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Bus" data-sc-aud_003_mp3="audio/003.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&nbsp;</span></div>
+      <div class="sc-enter">Bus</div>
+      <div class="sc-block-sticky" data-idx="0">
+        <div class="sc-sticky-img" data-idx="0"><input type="checkbox" id="sc-enlarge-2"/><label for="sc-enlarge-2" style="cursor:zoom-in;display:block"><img src="images/003.jpg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-2" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/003.jpg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+          <div class="sc-block" data-idx="0">So Curi wrapped up warm,</div>
+          <div class="sc-block" data-idx="0">closed the door behind her,</div>
+          <div class="sc-block" data-idx="0">and raced to catch the very first bus</div>
+          <div class="sc-block" data-idx="0">to the very last stop.</div>
+        </div>
+      </div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="3"></div>
+      <div class="sc-exit">&nbsp;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-6" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:1,&quot;fadeOut&quot;:1,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{&quot;0&quot;:{&quot;filename&quot;:&quot;004.mp3&quot;,&quot;volume&quot;:1}},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Path" data-sc-aud_004_mp3="audio/004.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&nbsp;</span></div>
+      <div class="sc-enter">Path</div>
+      <div class="sc-block-sticky" data-idx="0">
+        <div class="sc-sticky-img" data-idx="0"><input type="checkbox" id="sc-enlarge-3"/><label for="sc-enlarge-3" style="cursor:zoom-in;display:block"><img src="images/005.jpg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-3" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/005.jpg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+          <div class="sc-block" data-idx="0">The bus drove off.</div>
+          <div class="sc-block" data-idx="0">The road ran out.</div>
+          <div class="sc-block" data-idx="0">And there, waiting, was a path</div>
+          <div class="sc-block" data-idx="0">that went somewhere Curi had never been.</div>
+        </div>
+      </div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="3"></div>
+      <div class="sc-exit">&nbsp;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-7" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:1,&quot;fadeOut&quot;:1,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{&quot;0&quot;:{&quot;filename&quot;:&quot;005.mp3&quot;,&quot;volume&quot;:1}},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Cave" data-sc-aud_005_mp3="audio/005.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&nbsp;</span></div>
+      <div class="sc-enter">Cave</div>
+      <div class="sc-block-sticky" data-idx="0">
+        <div class="sc-sticky-img" data-idx="0"><input type="checkbox" id="sc-enlarge-4"/><label for="sc-enlarge-4" style="cursor:zoom-in;display:block"><img src="images/007.jpg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-4" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/007.jpg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+          <div class="sc-block" data-idx="0">Curi took one small step.</div>
+          <div class="sc-block" data-idx="0">Then another.</div>
+          <div class="sc-block" data-idx="0">Then another after that.</div>
+          <div class="sc-block" data-idx="0">The trees leaned close to listen.</div>
+          <div class="sc-block" data-idx="0">Then into the cave.</div>
+        </div>
+      </div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="3"></div>
+      <div class="sc-exit">&nbsp;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-8" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:1,&quot;fadeOut&quot;:1,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{&quot;0&quot;:{&quot;filename&quot;:&quot;006.mp3&quot;,&quot;volume&quot;:1}},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Web" data-sc-aud_006_mp3="audio/006.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&nbsp;</span></div>
+      <div class="sc-enter">Web</div>
+      <div class="sc-block-sticky" data-idx="0">
+        <div class="sc-sticky-img" data-idx="0"><input type="checkbox" id="sc-enlarge-5"/><label for="sc-enlarge-5" style="cursor:zoom-in;display:block"><img src="images/009.jpg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-5" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/009.jpg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+          <div class="sc-block" data-idx="0">The cave's exit was hung with a web of frost,</div>
+          <div class="sc-block" data-idx="0">sharp and bright and beautiful.</div>
+          <div class="sc-block" data-idx="0">Curi did not break it.</div>
+          <div class="sc-block" data-idx="0">Curi ducked underneath,</div>
+          <div class="sc-block" data-idx="0">gentle as a held breath.</div>
+        </div>
+      </div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="3"></div>
+      <div class="sc-exit">&nbsp;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-9" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:1,&quot;fadeOut&quot;:1,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{&quot;0&quot;:{&quot;filename&quot;:&quot;007.mp3&quot;,&quot;volume&quot;:1}},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Prickly" data-sc-aud_007_mp3="audio/007.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&nbsp;</span></div>
+      <div class="sc-enter">Prickly</div>
+      <div class="sc-block-sticky" data-idx="0">
+        <div class="sc-sticky-img" data-idx="0"><input type="checkbox" id="sc-enlarge-6"/><label for="sc-enlarge-6" style="cursor:zoom-in;display:block"><img src="images/010.jpg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-6" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/010.jpg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+          <div class="sc-block" data-idx="0">A prickly plant puffed up its leaves.</div>
+          <div class="sc-block" data-idx="0">I am not for touching, it seemed to say.</div>
+          <div class="sc-block" data-idx="0">That is alright, thought Curi.</div>
+          <div class="sc-block" data-idx="0">And tiptoed all the way around.</div>
+        </div>
+      </div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="3"></div>
+      <div class="sc-exit">&nbsp;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-10" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:1,&quot;fadeOut&quot;:1,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{&quot;0&quot;:{&quot;filename&quot;:&quot;008.mp3&quot;,&quot;volume&quot;:1}},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Massive" data-sc-aud_008_mp3="audio/008.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&nbsp;</span></div>
+      <div class="sc-enter">Massive</div>
+      <div class="sc-block-sticky" data-idx="0">
+        <div class="sc-sticky-img" data-idx="0"><input type="checkbox" id="sc-enlarge-7"/><label for="sc-enlarge-7" style="cursor:zoom-in;display:block"><img src="images/012.jpg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-7" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/012.jpg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+          <div class="sc-block" data-idx="0">Something very tall was watching.</div>
+          <div class="sc-block" data-idx="0">Something very tall and very shy.</div>
+          <div class="sc-block" data-idx="0">Hello, said Curi.</div>
+          <div class="sc-block" data-idx="0">The something very tall bent down its branches</div>
+          <div class="sc-block" data-idx="0">and pointed up the mountain.</div>
+        </div>
+      </div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="3"></div>
+      <div class="sc-exit">&nbsp;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-11" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:1,&quot;fadeOut&quot;:1,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{&quot;0&quot;:{&quot;filename&quot;:&quot;010.mp3&quot;,&quot;volume&quot;:1}},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Saddle" data-sc-aud_010_mp3="audio/010.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&nbsp;</span></div>
+      <div class="sc-enter">Saddle</div>
+      <div class="sc-block-sticky" data-idx="0">
+        <div class="sc-sticky-img" data-idx="0"><input type="checkbox" id="sc-enlarge-8"/><label for="sc-enlarge-8" style="cursor:zoom-in;display:block"><img src="images/014.jpg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-8" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/014.jpg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+          <div class="sc-block" data-idx="0">Up and up and up,</div>
+          <div class="sc-block" data-idx="0">between two quiet peaks,</div>
+          <div class="sc-block" data-idx="0">where, peeking through a hole,</div>
+          <div class="sc-block" data-idx="0">a soft round sun</div>
+          <div class="sc-block" data-idx="0">was waiting like a friend.</div>
+          <div class="sc-block" data-idx="0">Curi had never been so high.</div>
+        </div>
+      </div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="3"></div>
+      <div class="sc-exit">&nbsp;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-12" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:1,&quot;fadeOut&quot;:1,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{&quot;0&quot;:{&quot;filename&quot;:&quot;011.mp3&quot;,&quot;volume&quot;:1}},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Celestial" data-sc-aud_011_mp3="audio/011.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&nbsp;</span></div>
+      <div class="sc-enter">Celestial</div>
+      <div class="sc-block-sticky" data-idx="0">
+        <div class="sc-sticky-img" data-idx="0"><input type="checkbox" id="sc-enlarge-9"/><label for="sc-enlarge-9" style="cursor:zoom-in;display:block"><img src="images/016.jpg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-9" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/016.jpg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+          <div class="sc-block" data-idx="0">Then the sky began to fall.</div>
+          <div class="sc-block" data-idx="0">Not rain. Not snow.</div>
+          <div class="sc-block" data-idx="0">Stars. Bright, burning, beautiful stars,</div>
+          <div class="sc-block" data-idx="0">streaking down in long white lines.</div>
+          <div class="sc-block" data-idx="0">Curi opened a little umbrella</div>
+          <div class="sc-block" data-idx="0">and watched, and watched, and watched.</div>
+        </div>
+      </div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="3"></div>
+      <div class="sc-exit">&nbsp;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-13" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:1,&quot;fadeOut&quot;:1,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{&quot;0&quot;:{&quot;filename&quot;:&quot;012.mp3&quot;,&quot;volume&quot;:1}},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Sparkle" data-sc-aud_012_mp3="audio/012.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&nbsp;</span></div>
+      <div class="sc-enter">Sparkle</div>
+      <div class="sc-block-sticky" data-idx="0">
+        <div class="sc-sticky-img" data-idx="0"><input type="checkbox" id="sc-enlarge-10"/><label for="sc-enlarge-10" style="cursor:zoom-in;display:block"><img src="images/017.jpg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-10" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/017.jpg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+          <div class="sc-block" data-idx="0">One small star came down close,</div>
+          <div class="sc-block" data-idx="0">so close it landed right beside her,</div>
+          <div class="sc-block" data-idx="0">no bigger than a seed.</div>
+          <div class="sc-block" data-idx="0">Curi picked it up very carefully</div>
+          <div class="sc-block" data-idx="0">and tucked it away for the journey home.</div>
+        </div>
+      </div>
+      <div class="sc-exit">&nbsp;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-14" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:1,&quot;fadeOut&quot;:1,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{&quot;0&quot;:{&quot;filename&quot;:&quot;013.mp3&quot;,&quot;volume&quot;:1}},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Back Home" data-sc-aud_013_mp3="audio/013.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&nbsp;</span></div>
+      <div class="sc-enter">Back Home</div>
+      <div class="sc-block-sticky" data-idx="0">
+        <div class="sc-sticky-img" data-idx="0"><input type="checkbox" id="sc-enlarge-11"/><label for="sc-enlarge-11" style="cursor:zoom-in;display:block"><img src="images/018.jpg" alt="Sticky image"/></label><label class="sc-enlarge-overlay" for="sc-enlarge-11" style="display:none;position:fixed;inset:0;z-index:9999;background:center/contain no-repeat url('images/018.jpg');background-color:#000;cursor:zoom-out"></label></div>
+        <div class="sc-sticky-text">
+          <div class="sc-block" data-idx="0">On a quiet little sill, in a quiet little house,</div>
+          <div class="sc-block" data-idx="0">sat a quiet little jar.</div>
+          <div class="sc-block" data-idx="0">One small cherry.</div>
+          <div class="sc-block" data-idx="0">And one small, shining something</div>
+          <div class="sc-block" data-idx="0">that had not been there before.</div>
+          <div class="sc-block" data-idx="0">Curi smiled.</div>
+          <div class="sc-block" data-idx="0">The world, it turned out,</div>
+          <div class="sc-block" data-idx="0">was much, much bigger than a window.</div>
+          <div class="sc-block" data-idx="0">And tomorrow, maybe,</div>
+          <div class="sc-block" data-idx="0">there would be somewhere new to wonder about.</div>
+        </div>
+      </div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="3"></div>
+      <div class="sc-exit">&nbsp;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-15" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:&quot;014.mp3&quot;,&quot;ambientVolume&quot;:1,&quot;ambientLoop&quot;:false,&quot;fadeIn&quot;:1,&quot;fadeOut&quot;:1,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="Wonders" data-sc-aud_014_mp3="audio/014.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&nbsp;</span></div>
+      <div class="sc-enter">Wonders</div>
+      <div class="sc-block" data-idx="0" style="text-align:left"><img src="images/019.jpg" alt="Wonders: bird, drip, toad, turtle" style="max-width:260px;border-radius:4px;opacity:0.9;display:block"/>
+          <span style="font-family:'SF Mono',monospace;font-size:0.55em;color:#5a554e;letter-spacing:0.06em;margin-top:0.4em;display:block">Wonders: bird, drip, toad, turtle</span></div>
+      <div class="sc-exit">&nbsp;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-16" data-sc-config='{&quot;wallpaperFilename&quot;:null,&quot;wallpaperOpacity&quot;:0.25,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:&quot;015.mp3&quot;,&quot;ambientVolume&quot;:1,&quot;ambientLoop&quot;:false,&quot;fadeIn&quot;:1,&quot;fadeOut&quot;:1,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="A Poem" data-sc-aud_015_mp3="audio/015.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&nbsp;</span></div>
+      <div class="sc-enter">A Poem</div>
+      <div class="sc-block sc-block-linebreak" data-idx="0"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block sc-block-para" data-idx="3">If you wonder where a cherry grows,</div>
+      <div class="sc-block sc-block-para" data-idx="4">follow where the wander goes.</div>
+      <div class="sc-block sc-block-linebreak" data-idx="5"></div>
+      <div class="sc-block sc-block-para" data-idx="6">Out the door and down the lane,</div>
+      <div class="sc-block sc-block-para" data-idx="7">out past sun and out past rain.</div>
+      <div class="sc-block sc-block-linebreak" data-idx="8"></div>
+      <div class="sc-block sc-block-para" data-idx="9">Through the woods where hush hangs deep,</div>
+      <div class="sc-block sc-block-para" data-idx="10">under webs too bright to keep.</div>
+      <div class="sc-block sc-block-linebreak" data-idx="11"></div>
+      <div class="sc-block sc-block-para" data-idx="12">Up where mountain meets the sky —</div>
+      <div class="sc-block sc-block-para" data-idx="13">that's how high a small thing flies.</div>
+      <div class="sc-block sc-block-linebreak" data-idx="14"></div>
+      <div class="sc-block sc-block-para" data-idx="15">Catch a star the night lets fall,</div>
+      <div class="sc-block sc-block-para" data-idx="16">small enough to hold it all.</div>
+      <div class="sc-block sc-block-linebreak" data-idx="17"></div>
+      <div class="sc-block sc-block-para" data-idx="18">Bring a little shining home —</div>
+      <div class="sc-block sc-block-para" data-idx="19">and the world is yours to roam.</div>
+      <div class="sc-block sc-block-linebreak" data-idx="20"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="21"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="22"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="23"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="24"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="25"></div>
+      <div class="sc-exit">&nbsp;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <section class="chapter" id="section-17">
+    <h1>Curi, cherry, jar, and the cat</h1>
+<section class="chapter" epub:type="chapter">
+
+<p></p>
+<figure>
+<img src="images/002.png" alt="01 bonus">
+<figcaption>Curi, cherry, cat</figcaption>
+</figure>
+<p></p>
+</section>
+  </section>
+
+  <section class="chapter" id="section-18">
+    <h1>Curi and the drip</h1>
+<section class="chapter" epub:type="chapter">
+
+<p></p>
+<figure>
+<img src="images/004.png" alt="02bonus">
+<figcaption>Curi, leaf, drip</figcaption>
+</figure>
+<p></p>
+</section>
+  </section>
+
+  <section class="chapter" id="section-19">
+    <h1>Curi and the toad</h1>
+<section class="chapter" epub:type="chapter">
+
+<p></p>
+<figure>
+<img src="images/006.png" alt="03bonus">
+<figcaption>Curi and toad</figcaption>
+</figure>
+<p></p>
+</section>
+  </section>
+
+  <section class="chapter" id="section-20">
+    <h1>Curi and the turtle</h1>
+<section class="chapter" epub:type="chapter">
+
+<p></p>
+<figure>
+<img src="images/008.png" alt="04bonus">
+<figcaption>Curi and turtle</figcaption>
+</figure>
+<p></p>
+</section>
+  </section>
+
+  <section class="chapter" id="section-21">
+    <h1>Curi, and the mountain peaks, puka, saddle</h1>
+<section class="chapter" epub:type="chapter">
+
+<p></p>
+<figure>
+<img src="images/011.png" alt="06bonus">
+<figcaption>Curi and puka</figcaption>
+</figure>
+<p></p>
+</section>
+  </section>
+
+  <section class="chapter" id="section-22">
+    <h1>Curi and the hot air star balloon</h1>
+<section class="chapter" epub:type="chapter">
+
+<p></p>
+<figure>
+<img src="images/015.png" alt="09bonus">
+<figcaption>Curi star balloon</figcaption>
+</figure>
+<p></p>
+</section>
+  </section>
+
+  <div class="sc-scene" id="section-23" data-sc-config='{&quot;wallpaperFilename&quot;:&quot;020.jpg&quot;,&quot;wallpaperOpacity&quot;:0.23,&quot;wallpaperPosition&quot;:&quot;center&quot;,&quot;ambientFilename&quot;:&quot;016.mp3&quot;,&quot;ambientVolume&quot;:1,&quot;ambientLoop&quot;:false,&quot;fadeIn&quot;:1,&quot;fadeOut&quot;:1,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="About the Author" data-sc-img_020_jpg="images/020.jpg" data-sc-aud_016_mp3="audio/016.mp3">
+    <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&nbsp;</span></div>
+      <div class="sc-enter">About the Author</div>
+      <div class="sc-block sc-block-linebreak" data-idx="0"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="3"></div>
+      <div class="sc-block sc-block-para" data-idx="4">Clee Smith <strong><em>r</em></strong>eads, w<strong><em>r</em></strong>ites, a<strong><em>r</em></strong>ithmetics, and sometimes reuses artwork from Inktober 2023.</div>
+      <div class="sc-block sc-block-linebreak" data-idx="5"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="6"></div>
+      <div class="sc-block sc-block-para" data-idx="7">Both the ebook and paperback are available on <a target="_blank" rel="noopener" href="https://a.co/d/05YDHWvQ">Amazon</a>.</div>
+      <div class="sc-block sc-block-linebreak" data-idx="8"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="9"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="10"></div>
+      <div class="sc-exit">&nbsp;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="sc-scene" id="section-24" data-sc-config='{&quot;wallpaperFilename&quot;:&quot;020.jpg&quot;,&quot;wallpaperOpacity&quot;:0.13,&quot;wallpaperPosition&quot;:&quot;bottom&quot;,&quot;ambientFilename&quot;:null,&quot;ambientVolume&quot;:0.5,&quot;ambientLoop&quot;:true,&quot;fadeIn&quot;:5,&quot;fadeOut&quot;:5,&quot;dialogueClips&quot;:{},&quot;dialogueVolume&quot;:0.8,&quot;stickyClips&quot;:{},&quot;stickyVolume&quot;:0.8,&quot;paraClips&quot;:{},&quot;paraVolume&quot;:0.8}' data-sc-title="A thanks, the end" data-sc-img_020_jpg="images/020.jpg">
+    <div class="sc-bg"></div>
+    <div class="sc-playhead"><div class="sc-playhead-dot"></div></div>
+    <div class="sc-info"></div>
+    <div class="sc-content">
+      <div class="sc-dead-zone"><span>&nbsp;</span></div>
+      <div class="sc-enter">A thanks, the end</div>
+      <div class="sc-block sc-block-linebreak" data-idx="0"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="1"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="2"></div>
+      <div class="sc-block sc-block-para" data-idx="3">🤗 Thank  you. 🤓</div>
+      <div class="sc-block sc-block-para" data-idx="4">⌛ The End</div>
+      <div class="sc-block sc-block-linebreak" data-idx="5"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="6"></div>
+      <div class="sc-block sc-block-linebreak" data-idx="7"></div>
+      <div class="sc-exit">&nbsp;</div>
+      <div class="sc-dead-zone-after"></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-buttons">
+      <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">&#9728;&#65039;</button>
+      <button class="playhead-toggle" id="playheadToggle" title="Toggle Scenecraft overlays"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 2H6c-1.2 0-2 .9-2 2v16c0 1.1.8 2 2 2h13c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 18H6V4h2v8l2.5-1.5L13 12V4h6v16z"/></svg></button>
+    </div>
+    <div class="footer-info">
+      <span class="footer-title">Curious Creature</span>
+      <span class="footer-author">by Clee Smith</span>
+      <span class="footer-copyright">&copy; 2026</span>
+    </div>
+  </div>
+
+  <script>
+    // Theme toggle functionality
+    var themeToggle = document.getElementById('themeToggle');
+    var body = document.body;
+
+    var savedTheme = localStorage.getItem('html-ebook-theme');
+    if (savedTheme === 'light' && body.classList.contains('dark-mode')) {
+      body.classList.remove('dark-mode');
+      themeToggle.textContent = '🌙';
+    } else if (savedTheme === 'dark' && !body.classList.contains('dark-mode')) {
+      body.classList.add('dark-mode');
+      themeToggle.textContent = '☀️';
+    }
+
+    themeToggle.addEventListener('click', function() {
+      body.classList.toggle('dark-mode');
+      var isDark = body.classList.contains('dark-mode');
+      themeToggle.textContent = isDark ? '☀️' : '🌙';
+      localStorage.setItem('html-ebook-theme', isDark ? 'dark' : 'light');
+    });
+
+    // Playhead overlay toggle
+    var playheadToggle = document.getElementById('playheadToggle');
+    if (playheadToggle) {
+      var savedPlayhead = localStorage.getItem('html-ebook-playhead');
+      if (savedPlayhead === 'hidden') {
+        body.classList.add('sc-overlay-hidden');
+        playheadToggle.classList.add('sc-off');
+      }
+      playheadToggle.addEventListener('click', function() {
+        body.classList.toggle('sc-overlay-hidden');
+        var isHidden = body.classList.contains('sc-overlay-hidden');
+        playheadToggle.classList.toggle('sc-off', isHidden);
+        localStorage.setItem('html-ebook-playhead', isHidden ? 'hidden' : 'visible');
+      });
+    }
+
+
+    // SceneCraft scroll-driven immersive audio/visual engine
+    (function() {
+      var scenes = document.querySelectorAll('.sc-scene');
+      if (!scenes.length) return;
+
+      var DLG_FADE = 0.5;
+      function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+
+      function createFadeIn(audioEl, vol, dur) {
+        audioEl.volume = 0;
+        audioEl.play().catch(function(){});
+        return { el: audioEl, state: 'in', start: Date.now(), dur: dur * 1000, targetVol: vol };
+      }
+      function createFadeOut(obj, dur) {
+        if (!obj || !obj.el) return null;
+        return { el: obj.el, state: 'out', start: Date.now(), dur: dur * 1000, startVol: obj.el.volume };
+      }
+      function tickFade(obj) {
+        if (!obj || !obj.el) return null;
+        var t = obj.dur > 0 ? clamp((Date.now() - obj.start) / obj.dur, 0, 1) : 1;
+        if (obj.state === 'in') {
+          obj.el.volume = t * (obj.targetVol || 1);
+          if (t >= 1) obj.state = 'playing';
+        } else if (obj.state === 'out') {
+          obj.el.volume = (1 - t) * (obj.startVol || 1);
+          if (t >= 1) { obj.el.pause(); return null; }
+        }
+        return obj;
+      }
+      function killAudio(obj) {
+        if (obj && obj.el) { obj.el.pause(); obj.el.src = ''; }
+        return null;
+      }
+
+      // Per-scene state
+      var sceneStates = [];
+      scenes.forEach(function(sceneEl, si) {
+        var cfg = null;
+        try { cfg = JSON.parse(sceneEl.dataset.scConfig || 'null'); } catch(e) {}
+        sceneStates.push({
+          el: sceneEl,
+          cfg: cfg,
+          inScene: false,
+          ambient: null,
+          ambientOut: null,
+          voice: null,
+          voiceOut: null,
+          activeDlg: -1,
+          dlgObj: null,
+          dlgOut: null,
+          activeStk: -1,
+          stkObj: null,
+          stkOut: null,
+          activePara: -1,
+          paraObj: null,
+          paraOut: null,
+          blocks: sceneEl.querySelectorAll('.sc-block'),
+          stickyWraps: sceneEl.querySelectorAll('.sc-block-sticky'),
+          enterEl: sceneEl.querySelector('.sc-enter'),
+          exitEl: sceneEl.querySelector('.sc-exit'),
+          bgEl: sceneEl.querySelector('.sc-bg'),
+          infoEl: sceneEl.querySelector('.sc-info'),
+        });
+      });
+
+      var playheadY = window.innerHeight * 0.5;
+      window.addEventListener('resize', function() { playheadY = window.innerHeight * 0.5; });
+
+      function doEnter(s) {
+        if (s.inScene || !s.cfg) return;
+        s.inScene = true;
+        var c = s.cfg;
+        if (s.infoEl) s.infoEl.textContent = s.el.dataset.scTitle || '';
+
+        // Wallpaper
+        if (c.wallpaperFilename && s.bgEl) {
+          var url = s.el.dataset['scImg_' + c.wallpaperFilename.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase()];
+          if (url) {
+            s.bgEl.style.backgroundImage = "url('" + url + "')";
+            s.bgEl.style.backgroundPosition = c.wallpaperPosition || 'center';
+            s.bgEl.style.opacity = String(c.wallpaperOpacity || 0.25);
+          }
+        }
+
+        // Ambient audio
+        s.ambientOut = killAudio(s.ambientOut);
+        if (c.ambientFilename) {
+          var aUrl = s.el.dataset['scAud_' + c.ambientFilename.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase()];
+          if (aUrl) {
+            var a = new Audio(aUrl);
+            a.loop = !!c.ambientLoop;
+            s.ambient = createFadeIn(a, c.ambientVolume || 0.5, c.fadeIn || 2);
+          }
+        }
+
+      }
+
+      function doExit(s) {
+        if (!s.inScene || !s.cfg) return;
+        s.inScene = false;
+        var c = s.cfg;
+        if (s.infoEl) s.infoEl.textContent = '';
+        if (s.bgEl) s.bgEl.style.opacity = '0';
+
+        if (s.ambient) { s.ambientOut = createFadeOut(s.ambient, c.fadeOut || 3); s.ambient = null; }
+        if (s.voice) { s.voiceOut = createFadeOut(s.voice, c.fadeOut || 3); s.voice = null; }
+        s.dlgObj = killAudio(s.dlgObj);
+        s.dlgOut = killAudio(s.dlgOut);
+        s.activeDlg = -1;
+        s.stkObj = killAudio(s.stkObj);
+        s.stkOut = killAudio(s.stkOut);
+        s.activeStk = -1;
+        s.paraObj = killAudio(s.paraObj);
+        s.paraOut = killAudio(s.paraOut);
+        s.activePara = -1;
+      }
+
+      function tick() {
+        for (var si = 0; si < sceneStates.length; si++) {
+          var s = sceneStates[si];
+          if (!s.cfg) continue;
+          var c = s.cfg;
+
+          // Tick fades
+          s.ambientOut = tickFade(s.ambientOut);
+          s.voiceOut = tickFade(s.voiceOut);
+          if (s.ambient && s.ambient.state === 'in') tickFade(s.ambient);
+          if (s.voice && s.voice.state === 'in') tickFade(s.voice);
+          s.dlgObj = tickFade(s.dlgObj);
+          s.dlgOut = tickFade(s.dlgOut);
+          s.stkObj = tickFade(s.stkObj);
+          s.stkOut = tickFade(s.stkOut);
+          s.paraObj = tickFade(s.paraObj);
+          s.paraOut = tickFade(s.paraOut);
+
+          // Block visibility
+          for (var bi = 0; bi < s.blocks.length; bi++) {
+            var b = s.blocks[bi];
+            var rect = b.getBoundingClientRect();
+            var center = rect.top + rect.height / 2;
+            if (center < playheadY + 100) b.classList.add('sc-vis'); else b.classList.remove('sc-vis');
+            if (center < playheadY - window.innerHeight * 0.3) b.classList.add('sc-past'); else b.classList.remove('sc-past');
+          }
+
+          // Scene zone detection
+          var enterBottom = s.enterEl ? s.enterEl.getBoundingClientRect().bottom : 0;
+          var exitTop = s.exitEl ? s.exitEl.getBoundingClientRect().top : window.innerHeight;
+          if (enterBottom <= playheadY && exitTop > playheadY) {
+            doEnter(s);
+          } else {
+            doExit(s);
+          }
+
+          // Per-dialogue voice
+          if (s.inScene) {
+            var currentDlg = -1;
+            for (var di = 0; di < s.blocks.length; di++) {
+              var db = s.blocks[di];
+              var dr = db.getBoundingClientRect();
+              var dataIdx = parseInt(db.dataset.idx || '-1', 10);
+              if (dr.top < playheadY && dr.bottom > playheadY && db.classList.contains('sc-block-dialogue')) {
+                currentDlg = dataIdx;
+              }
+            }
+            if (currentDlg !== s.activeDlg) {
+              if (s.dlgObj && s.dlgObj.el) {
+                s.dlgOut = killAudio(s.dlgOut);
+                s.dlgOut = createFadeOut(s.dlgObj, DLG_FADE);
+                s.dlgObj = null;
+              }
+              s.activeDlg = currentDlg;
+              if (currentDlg >= 0 && c.dialogueClips) {
+                var clip = c.dialogueClips[currentDlg];
+                if (clip && clip.filename) {
+                  var dUrl = s.el.dataset['scAud_' + clip.filename.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase()];
+                  if (dUrl) {
+                    var da = new Audio(dUrl);
+                    s.dlgObj = createFadeIn(da, clip.volume || c.dialogueVolume || 0.8, DLG_FADE);
+                  }
+                }
+              }
+            }
+          }
+
+          // Per-sticky audio
+          if (s.inScene) {
+            var currentStk = -1;
+            for (var swi = 0; swi < s.stickyWraps.length; swi++) {
+              var sw = s.stickyWraps[swi];
+              var sIdx = parseInt(sw.dataset.idx || '-1', 10);
+              if (sw.querySelector('.sc-block.sc-vis')) {
+                currentStk = sIdx;
+              }
+            }
+            if (currentStk !== s.activeStk) {
+              if (s.stkObj && s.stkObj.el) {
+                s.stkOut = killAudio(s.stkOut);
+                s.stkOut = createFadeOut(s.stkObj, DLG_FADE);
+                s.stkObj = null;
+              }
+              s.activeStk = currentStk;
+              if (currentStk >= 0 && c.stickyClips) {
+                var sClip = c.stickyClips[currentStk];
+                if (sClip && sClip.filename) {
+                  var sUrl = s.el.dataset['scAud_' + sClip.filename.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase()];
+                  if (sUrl) {
+                    var sa = new Audio(sUrl);
+                    s.stkObj = createFadeIn(sa, sClip.volume || c.stickyVolume || 0.8, DLG_FADE);
+                  }
+                }
+              }
+            }
+          }
+
+          // Per-para audio
+          if (s.inScene) {
+            var currentPara = -1;
+            for (var pi = 0; pi < s.blocks.length; pi++) {
+              var pb = s.blocks[pi];
+              var pr = pb.getBoundingClientRect();
+              var pIdx = parseInt(pb.dataset.idx || '-1', 10);
+              if (pr.top < playheadY && pr.bottom > playheadY && !pb.classList.contains('sc-block-dialogue') && pb.classList.contains('sc-block-para')) {
+                currentPara = pIdx;
+              }
+            }
+            if (currentPara !== s.activePara) {
+              if (s.paraObj && s.paraObj.el) {
+                s.paraOut = killAudio(s.paraOut);
+                s.paraOut = createFadeOut(s.paraObj, DLG_FADE);
+                s.paraObj = null;
+              }
+              s.activePara = currentPara;
+              if (currentPara >= 0 && c.paraClips) {
+                var pClip = c.paraClips[currentPara];
+                if (pClip && pClip.filename) {
+                  var pUrl = s.el.dataset['scAud_' + pClip.filename.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase()];
+                  if (pUrl) {
+                    var pa = new Audio(pUrl);
+                    s.paraObj = createFadeIn(pa, pClip.volume || c.paraVolume || 0.8, DLG_FADE);
+                  }
+                }
+              }
+            }
+          }
+        }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    })();
+  </script>
+</body>
+</html>
