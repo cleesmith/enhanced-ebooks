@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Passage Builder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #080808;
+      --surface: #101010;
+      --surface-2: #161412;
+      --text: #d4c9b8;
+      --text-dim: #7a7068;
+      --accent: #b8966e;
+      --accent-dim: #5c4a32;
+      --border: #2a2420;
+      --hover: #1a1512;
+      --danger: #a8584a;
+      --ok: #6e9b6a;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1rem;
+      line-height: 1.6;
+      min-height: 100vh;
+      padding-bottom: 6rem;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.4;
+    }
+
+    .wrap {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 0;
+    }
+
+    header { margin-bottom: 2.5rem; }
+
+    h1 {
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+      font-size: 1.5rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .sub {
+      color: var(--text-dim);
+      font-style: italic;
+      margin-top: 0.4rem;
+      font-size: 0.95rem;
+    }
+
+    label.field-label,
+    .section-label {
+      display: block;
+      font-family: 'Cinzel', serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 0.35rem;
+    }
+
+    input[type=text], textarea, select {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 0.98rem;
+      padding: 0.55rem 0.7rem;
+      border-radius: 3px;
+      transition: border-color 0.2s;
+    }
+    input[type=text]:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    textarea { resize: vertical; min-height: 5rem; line-height: 1.7; }
+    select { cursor: pointer; }
+
+    .hint {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      font-style: italic;
+      margin-top: 0.25rem;
+    }
+
+    /* Title block */
+    .title-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 2px solid var(--accent);
+      padding: 1.1rem 1.25rem;
+      border-radius: 3px;
+      margin-bottom: 1.75rem;
+    }
+
+    /* Passage card */
+    .passage-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      margin-bottom: 1.25rem;
+      overflow: hidden;
+    }
+    .passage-card.is-start { border-left: 2px solid var(--accent); }
+
+    .card-head {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.7rem 1rem;
+      background: var(--surface-2);
+      border-bottom: 1px solid var(--border);
+    }
+    .card-index {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+    .start-badge {
+      font-family: 'Cinzel', serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--accent);
+      padding: 0.2rem 0.5rem;
+      border-radius: 2px;
+    }
+    .card-head .spacer { flex: 1; }
+
+    .card-body { padding: 1.1rem 1rem 1.25rem; }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.9rem;
+      margin-bottom: 0.9rem;
+    }
+    .row.single { grid-template-columns: 1fr; }
+    @media (max-width: 560px) { .row { grid-template-columns: 1fr; } }
+
+    .field { display: flex; flex-direction: column; }
+
+    /* Choices */
+    .choices-block {
+      margin-top: 1.1rem;
+      border-top: 1px dashed var(--border);
+      padding-top: 1rem;
+    }
+    .choice-row {
+      display: grid;
+      grid-template-columns: 1fr 0.8fr auto;
+      gap: 0.6rem;
+      align-items: end;
+      margin-bottom: 0.6rem;
+    }
+    @media (max-width: 560px) {
+      .choice-row { grid-template-columns: 1fr; }
+    }
+    .ending-note {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      font-style: italic;
+      margin: 0.4rem 0 0.2rem;
+    }
+
+    /* Buttons */
+    button {
+      font-family: 'Cinzel', serif;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 3px;
+      transition: all 0.2s;
+    }
+    .btn {
+      background: transparent;
+      border: 1px solid var(--accent-dim);
+      color: var(--accent);
+      font-size: 0.62rem;
+      padding: 0.5rem 1rem;
+    }
+    .btn:hover {
+      border-color: var(--accent);
+      background: rgba(184,150,110,0.07);
+    }
+    .btn-small {
+      font-size: 0.55rem;
+      padding: 0.4rem 0.7rem;
+    }
+    .btn-danger {
+      border-color: #4a2a26;
+      color: var(--danger);
+    }
+    .btn-danger:hover {
+      border-color: var(--danger);
+      background: rgba(168,88,74,0.08);
+    }
+    .btn-primary {
+      background: var(--accent);
+      border: 1px solid var(--accent);
+      color: var(--bg);
+      font-weight: 600;
+    }
+    .btn-primary:hover { background: #c9a87e; }
+    .btn-x {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      font-size: 0.8rem;
+      width: 2rem;
+      height: 2rem;
+      padding: 0;
+      line-height: 1;
+    }
+    .btn-x:hover { border-color: var(--danger); color: var(--danger); }
+
+    .add-passage-row { margin: 0.5rem 0 2rem; }
+
+    /* Sticky action bar */
+    .actionbar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, var(--bg) 70%, transparent);
+      padding: 1rem 1.5rem 1.4rem;
+      z-index: 600;
+      display: flex;
+      justify-content: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    /* Issues panel */
+    .issues {
+      margin: 1.5rem 0;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 0.9rem 1.1rem;
+      background: var(--surface);
+      font-size: 0.9rem;
+    }
+    .issues.ok { border-left: 2px solid var(--ok); }
+    .issues.warn { border-left: 2px solid var(--accent); }
+    .issues.err { border-left: 2px solid var(--danger); }
+    .issues ul { list-style: none; }
+    .issues li { padding: 0.15rem 0; }
+    .issues li.err::before  { content: '\2716  '; color: var(--danger); }
+    .issues li.warn::before { content: '\26A0  '; color: var(--accent); }
+    .issues li.ok::before   { content: '\2713  '; color: var(--ok); }
+    .issues-title {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 0.5rem;
+    }
+
+    .hidden-input { display: none; }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <h1>Passage Builder</h1>
+    <p class="sub">Compose a branching story, then export it as a standalone player page.</p>
+  </header>
+
+  <div class="title-block">
+    <label class="field-label" for="storyTitle">Story Title</label>
+    <input type="text" id="storyTitle" placeholder="My Story">
+    <p class="hint">Shown on the splash screen and in the toolbar of the exported page.</p>
+  </div>
+
+  <div id="passages"></div>
+
+  <div class="add-passage-row">
+    <button class="btn" id="addPassage">+ Add Passage</button>
+  </div>
+
+  <div id="issues"></div>
+</div>
+
+<div class="actionbar">
+  <button class="btn" id="saveConfig">Save Project</button>
+  <button class="btn" id="loadConfigBtn">Load Project</button>
+  <button class="btn btn-primary" id="generateBtn">Generate &amp; Download</button>
+  <input type="file" id="loadConfig" class="hidden-input" accept=".json,application/json">
+</div>
+
+<!-- The story-engine template. -->
+<script type="text/template" id="engineTemplate"><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Story</title>
+  <script src="https://www.youtube.com/iframe_api"></SCRIPT_TAG>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #080808;
+      --surface: #101010;
+      --text: #d4c9b8;
+      --text-dim: #7a7068;
+      --accent: #b8966e;
+      --accent-dim: #5c4a32;
+      --choice-border: #2a2420;
+      --choice-hover: #1a1512;
+      --divider: #1c1a18;
+      --fade-duration: 1.2s;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      line-height: 1.9;
+      min-height: 100vh;
+      cursor: default;
+    }
+
+    /* Grain texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.4;
+    }
+
+    #toolbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: clamp(0.75rem, 2vw, 1.25rem) clamp(1rem, 4vw, 3rem);
+      z-index: 500;
+      background: linear-gradient(to bottom, rgba(8,8,8,0.95) 60%, transparent);
+    }
+
+    #story-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(0.6rem, 1.2vw, 0.8rem);
+      letter-spacing: 0.25em;
+      color: var(--text-dim);
+      text-transform: uppercase;
+    }
+
+    /* Story container */
+    #story {
+      max-width: min(92vw, 1200px);
+      margin: 0 auto;
+      padding: clamp(4rem, 8vw, 7rem) clamp(1rem, 4vw, 3rem) 6rem;
+    }
+
+    .passage {
+      opacity: 0;
+      transform: translateY(16px);
+      animation: passageIn var(--fade-duration) ease forwards;
+      margin-bottom: 0.5rem;
+      scroll-margin-top: 4rem;
+    }
+
+    @keyframes passageIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Video aspect ratios and wrapping */
+    .video-wrap {
+      position: relative;
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-bottom: 2rem;
+    }
+
+    .yt-watch-link {
+      text-align: left;
+      margin-top: 1.5rem;
+    }
+    .yt-watch-link a {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .yt-watch-link a:hover {
+      color: var(--accent);
+    }
+
+    .video-frame {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      height: min(56.25vw, 85vh);
+      overflow: hidden;
+      background: #000 center / cover no-repeat;
+      z-index: 1;
+    }
+
+    .video-frame iframe {
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    .video-frame.yt-ready iframe {
+      opacity: 1;
+    }
+
+    .video-cover {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      background: transparent;
+      pointer-events: auto;
+      cursor: default;
+    }
+
+    .video-frame iframe,
+    .video-frame > div:not(.video-cover) {
+      position: absolute;
+      top: -60px;
+      left: -2px;
+      width: calc(100% + 4px) !important;
+      height: calc(100% + 120px) !important;
+      border: none;
+      pointer-events: none;
+    }
+
+    .video-overlay {
+      position: relative;
+      z-index: 2;
+      margin-top: calc(-1 * min(22.5vw, 34vh));
+      padding: 4rem clamp(1.5rem, 8vw, 8rem) 2.5rem;
+      background: transparent;
+      pointer-events: auto;
+    }
+
+    .video-overlay .narrative-text,
+    .video-overlay .passage-heading,
+    .video-overlay .choices,
+    .video-overlay .yt-watch-link {
+      max-width: min(680px, 80vw);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .video-overlay .narrative-text,
+    .video-overlay .passage-heading,
+    .video-overlay .yt-watch-link {
+      background: rgba(8, 8, 8, 0.62);
+      padding: 0.6rem 1.1rem;
+      border-radius: 4px;
+    }
+
+    .video-overlay .choices {
+      background: rgba(8, 8, 8, 0.62);
+      padding: 0.8rem 1.1rem;
+      border-radius: 4px;
+    }
+
+    @media (max-width: 640px) {
+      .video-wrap {
+        width: 100%;
+        margin-left: 0;
+      }
+
+      .video-frame {
+        position: relative;
+        height: auto;
+        aspect-ratio: 16 / 9;
+      }
+
+      .video-frame iframe,
+      .video-frame > div {
+        top: -30px;
+        height: calc(100% + 60px) !important;
+      }
+
+      .video-overlay {
+        margin-top: 0;
+        background: var(--bg);
+        padding: 1.25rem 1rem 0.5rem;
+      }
+
+      .video-overlay .narrative-text,
+      .video-overlay .passage-heading,
+      .video-overlay .choices {
+        max-width: 100%;
+      }
+    }
+
+    /* Narrative text */
+    .narrative-text {
+      margin: 1.5rem 0;
+      color: var(--text);
+    }
+
+    .narrative-text p + p {
+      margin-top: 1em;
+    }
+
+    /* Speaker / heading */
+    .passage-heading {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 2rem 0 0.5rem;
+    }
+
+    /* Choices */
+    .choices {
+      margin: 2.5rem 0 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .choices-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 1rem;
+    }
+
+    .choice-btn {
+      background: transparent;
+      border: none;
+      border-left: 2px solid var(--choice-border);
+      color: var(--text);
+      padding: 0.85rem 1.5rem;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1rem;
+      line-height: 1.5;
+      cursor: pointer;
+      text-align: left;
+      transition: border-color 0.2s, color 0.2s, background 0.2s, padding-left 0.2s;
+      width: 100%;
+    }
+
+    .choice-btn:hover {
+      border-left-color: var(--accent);
+      color: var(--accent);
+      background: var(--choice-hover);
+      padding-left: 2rem;
+    }
+
+    .choice-btn.chosen {
+      border-left-color: var(--accent);
+      color: var(--accent);
+      cursor: default;
+      padding-left: 2rem;
+    }
+
+    .choice-btn.chosen::before {
+      content: '▸ ';
+      font-size: 0.8em;
+    }
+
+    .choice-btn.not-chosen {
+      opacity: 0.12;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    /* Divider */
+    .passage-divider {
+      border: none;
+      margin: clamp(4rem, 10vh, 7rem) 0;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      color: var(--text-dim);
+      scroll-margin-top: 30vh;
+    }
+
+    .passage-divider::before,
+    .passage-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #3a3530;
+    }
+
+    .divider-glyph {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      color: #7a6a58;
+    }
+
+    /* End */
+    .end-block {
+      margin: 4rem 0 2rem;
+      text-align: center;
+    }
+
+    .end-ornament {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 0.5rem;
+    }
+
+    .end-rule {
+      width: 60px;
+      height: 1px;
+      background: var(--accent-dim);
+      margin: 1rem auto;
+    }
+
+    /* Splash screen */
+    #splash {
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+      z-index: 900;
+      transition: opacity 0.8s ease;
+    }
+
+    #splash.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    #splash-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.4rem, 4vw, 2.4rem);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-align: center;
+    }
+
+    #splash-rule {
+      width: 60px;
+      height: 1px;
+      background: var(--accent-dim);
+      margin: -1rem auto 0;
+    }
+
+    #begin-btn {
+      background: transparent;
+      border: 1px solid var(--accent-dim);
+      color: var(--accent);
+      padding: 0.75rem 2.5rem;
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    #begin-btn:hover {
+      border-color: var(--accent);
+      background: rgba(184,150,110,0.06);
+      letter-spacing: 0.4em;
+    }
+
+  </style>
+</head>
+<body>
+
+<div id="splash">
+  <p id="splash-title">My Story</p>
+  <div id="splash-rule"></div>
+  <button id="begin-btn" onclick="beginStory()">Begin</button>
+</div>
+
+<div id="toolbar">
+  <span id="story-title">Story</span>
+</div>
+
+<div id="story"></div>
+
+<script>
+const STORY_TITLE = __STORY_TITLE__;
+const story = __STORY_OBJECT__;
+
+document.getElementById("splash-title").textContent = STORY_TITLE;
+document.getElementById("story-title").textContent = STORY_TITLE;
+
+function beginStory() {
+  const splash = document.getElementById("splash");
+  splash.classList.add("hidden");
+  setTimeout(() => splash.remove(), 900);
+  renderPassage("start");
+}
+
+const storyEl = document.getElementById("story");
+
+const ytPlayers = {};
+let ytPlayerIdCounter = 0;
+let ytApiReady = false;
+const ytPendingPlayers = [];
+
+function onYouTubeIframeAPIReady() {
+  ytApiReady = true;
+  ytPendingPlayers.forEach(fn => fn());
+  ytPendingPlayers.length = 0;
+}
+
+function createYTPlayer(divId, videoId) {
+  const init = () => {
+    ytPlayers[divId] = new YT.Player(divId, {
+      videoId: videoId,
+      playerVars: {
+        autoplay: 1,
+        controls: 0,
+        rel: 0,
+        modestbranding: 1,
+        iv_load_policy: 3,
+        color: 'white',
+        playsinline: 1
+      },
+      events: {
+        onReady: (e) => {
+          ytPlayers[divId]._ready = true;
+          e.target.playVideo();
+        },
+        onStateChange: (e) => {
+          const frame = e.target.getIframe().closest('.video-frame');
+          if (!frame) return;
+          if (e.data === YT.PlayerState.PLAYING && !frame.classList.contains('yt-ready')) {
+            setTimeout(() => frame.classList.add('yt-ready'), 1500);
+          }
+          if (e.data === YT.PlayerState.ENDED) {
+            frame.classList.remove('yt-ready');
+          }
+        }
+      }
+    });
+  };
+  if (ytApiReady) init();
+  else ytPendingPlayers.push(init);
+}
+
+function stopAllPlayers() {
+  Object.values(ytPlayers).forEach(p => {
+    try { if (p._ready) p.stopVideo(); } catch(e) {}
+  });
+}
+
+function makeDivider() {
+  const hr = document.createElement("div");
+  hr.className = "passage-divider";
+  hr.innerHTML = '<span class="divider-glyph">&#10022;</span>';
+  return hr;
+}
+
+function renderPassage(id, delay = 0) {
+  const passage = story[id];
+  if (!passage) return;
+
+  const div = document.createElement("div");
+  div.className = "passage";
+  div.style.animationDelay = delay + "ms";
+
+  let overlayHTML = "";
+
+  if (passage.heading) {
+    overlayHTML += `<p class="passage-heading">${passage.heading}</p>`;
+  }
+
+  if (passage.text) {
+    const paras = passage.text.split(/\n\n+/).map(p => `<p>${p.replace(/\n/g, '<br>')}</p>`).join('');
+    overlayHTML += `<div class="narrative-text">${paras}</div>`;
+  }
+
+  if (passage.video) {
+    const videoWrap = document.createElement("div");
+    videoWrap.className = "video-wrap";
+    videoWrap.dataset.videoId = passage.video;
+
+    const videoFrame = document.createElement("div");
+    videoFrame.className = "video-frame";
+    const playerId = "yt-player-" + (ytPlayerIdCounter++);
+    videoFrame.innerHTML = `<div id="${playerId}"></div><div class="video-cover"></div>`;
+    videoFrame.style.backgroundImage = `url('https://img.youtube.com/vi/${passage.video}/maxresdefault.jpg')`;
+
+    const spacer = document.createElement("div");
+    spacer.className = "video-spacer";
+
+    const overlay = document.createElement("div");
+    overlay.className = "video-overlay";
+    overlay.innerHTML = overlayHTML;
+
+    if (passage.choices && passage.choices.length > 0) {
+      overlay.appendChild(buildChoices(passage.choices));
+    } else {
+      overlay.innerHTML += `<div class="end-block"><div class="end-rule"></div><p class="end-ornament">End</p><div class="end-rule"></div></div>`;
+    }
+
+    const ytLink = document.createElement("p");
+    ytLink.className = "yt-watch-link";
+    ytLink.innerHTML = `<a href="https://www.youtube.com/watch?v=${passage.video}" target="_blank" rel="noopener" title="Watch on YouTube">On YouTube</a>`;
+    overlay.appendChild(ytLink);
+
+    videoWrap.appendChild(videoFrame);
+    videoWrap.appendChild(spacer);
+    videoWrap.appendChild(overlay);
+    div.appendChild(videoWrap);
+
+    setTimeout(() => createYTPlayer(playerId, passage.video), 50);
+
+  } else {
+    div.innerHTML += overlayHTML;
+
+    if (passage.choices && passage.choices.length > 0) {
+      div.appendChild(buildChoices(passage.choices));
+    } else {
+      div.innerHTML += `<div class="end-block"><div class="end-rule"></div><p class="end-ornament">End</p><div class="end-rule"></div></div>`;
+    }
+  }
+
+  storyEl.appendChild(div);
+}
+
+function buildChoices(choices) {
+  const wrap = document.createElement("div");
+  wrap.className = "choices";
+  wrap.innerHTML = '<p class="choices-label">What do you do?</p>';
+
+  choices.forEach(choice => {
+    const btn = document.createElement("button");
+    btn.className = "choice-btn";
+    btn.textContent = choice.label;
+
+    btn.addEventListener("click", function handler() {
+      wrap.querySelectorAll(".choice-btn").forEach(b => {
+        b.removeEventListener("click", handler);
+        b.classList.add(b === btn ? "chosen" : "not-chosen");
+      });
+
+      stopAllPlayers();
+
+      setTimeout(() => {
+        const divider = makeDivider();
+        storyEl.appendChild(divider);
+        renderPassage(choice.next, 0);
+        const newPassage = storyEl.lastElementChild;
+        setTimeout(() => {
+          newPassage.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 350);
+      }, 300);
+    });
+
+    wrap.appendChild(btn);
+  });
+
+  return wrap;
+}
+</SCRIPT_TAG>
+</body>
+</html>
+</script>
+
+<script>
+(function () {
+  "use strict";
+
+  // ---- State ----------------------------------------------------------
+  const FIELDS = ["video", "heading", "text"];
+
+  let state = {
+    title: "My Story",
+    passages: [
+      {
+        id: "start",
+        video: "", heading: "",
+        text: "",
+        choices: []
+      }
+    ]
+  };
+
+  const passagesEl = document.getElementById("passages");
+  const issuesEl   = document.getElementById("issues");
+  const titleInput = document.getElementById("storyTitle");
+
+  titleInput.value = state.title;
+  titleInput.addEventListener("input", function () {
+    state.title = titleInput.value;
+  });
+
+  // ---- Helpers --------------------------------------------------------
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;")
+                     .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+
+  function extractVideoId(v) {
+    v = (v || "").trim();
+    if (!v) return "";
+    let m = v.match(/[?&]v=([A-Za-z0-9_-]{6,})/);
+    if (m) return m[1];
+    m = v.match(/youtu\.be\/([A-Za-z0-9_-]{6,})/);
+    if (m) return m[1];
+    m = v.match(/(?:embed|shorts)\/([A-Za-z0-9_-]{6,})/);
+    if (m) return m[1];
+    return v;
+  }
+
+  function slugify(s) {
+    return (s || "story").toLowerCase().trim()
+      .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "") || "story";
+  }
+
+  // ---- Rendering ------------------------------------------------------
+  function render() {
+    const ids = state.passages.map(p => p.id);
+    passagesEl.innerHTML = state.passages.map((p, i) => passageCard(p, i, ids)).join("");
+    renderIssues();
+  }
+
+  function passageCard(p, i, ids) {
+    const isStart = p.id.trim() === "start";
+    return `
+      <div class="passage-card ${isStart ? "is-start" : ""}">
+        <div class="card-head">
+          <span class="card-index">Passage ${i + 1}</span>
+          ${isStart ? '<span class="start-badge">Entry</span>' : ""}
+          <span class="spacer"></span>
+          <button class="btn btn-x" data-act="del-passage" data-p="${i}" title="Delete passage">&#10005;</button>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="field">
+              <label class="field-label">Passage ID</label>
+              <input type="text" data-p="${i}" data-field="id" value="${esc(p.id)}" placeholder="unique-id">
+            </div>
+            <div class="field">
+              <label class="field-label">YouTube Video ID</label>
+              <input type="text" data-p="${i}" data-field="video" value="${esc(p.video)}" placeholder="dQw4w9WgXcQ (or paste a URL)">
+            </div>
+          </div>
+          <div class="row single">
+            <div class="field">
+              <label class="field-label">Heading</label>
+              <input type="text" data-p="${i}" data-field="heading" value="${esc(p.heading)}" placeholder="optional small label above the text">
+            </div>
+          </div>
+          <div class="row single">
+            <div class="field">
+              <label class="field-label">Narrative Text</label>
+              <textarea data-p="${i}" data-field="text" placeholder="The narrative text. Leave a blank line between paragraphs.">${esc(p.text)}</textarea>
+            </div>
+          </div>
+
+          <div class="choices-block">
+            <span class="section-label">Choices</span>
+            ${p.choices.map((c, j) => choiceRow(c, i, j, ids)).join("")}
+            ${p.choices.length === 0
+              ? '<p class="ending-note">No choices &mdash; this passage is an ending.</p>'
+              : ""}
+            <button class="btn btn-small" data-act="add-choice" data-p="${i}">+ Add Choice</button>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  function choiceRow(c, i, j, ids) {
+    const opts = ids.slice();
+    if (c.next && opts.indexOf(c.next) === -1) opts.push(c.next);
+    const optHTML = ['<option value="">&mdash; choose target &mdash;</option>']
+      .concat(opts.map(id =>
+        `<option value="${esc(id)}" ${id === c.next ? "selected" : ""}>${esc(id)}</option>`))
+      .join("");
+    return `
+      <div class="choice-row">
+        <div class="field">
+          <label class="field-label">Choice Label</label>
+          <input type="text" data-p="${i}" data-c="${j}" data-cf="label" value="${esc(c.label)}" placeholder="What the reader clicks">
+        </div>
+        <div class="field">
+          <label class="field-label">Goes To Passage</label>
+          <select data-p="${i}" data-c="${j}" data-cf="next">${optHTML}</select>
+        </div>
+        <button class="btn btn-x" data-act="del-choice" data-p="${i}" data-c="${j}" title="Delete choice">&#10005;</button>
+      </div>`;
+  }
+
+  // ---- Validation -----------------------------------------------------
+  function validate() {
+    const errs = [], warns = [], oks = [];
+    const ids = state.passages.map(p => p.id.trim());
+
+    const seen = {};
+    let dup = false, empty = false, spaced = false;
+    ids.forEach(id => {
+      if (id === "") empty = true;
+      if (/\s/.test(id)) spaced = true;
+      if (seen[id]) dup = true;
+      seen[id] = true;
+    });
+    if (empty)  errs.push("One or more passages have an empty ID.");
+    if (dup)    errs.push("Two or more passages share the same ID. IDs must be unique.");
+    if (spaced) warns.push("A passage ID contains spaces. Use letters, numbers and hyphens.");
+
+    if (ids.indexOf("start") === -1)
+      errs.push('There must be one passage with the ID "start" \u2014 it is the entry point.');
+
+    state.passages.forEach((p, i) => {
+      p.choices.forEach((c, j) => {
+        const where = 'Passage ' + (i + 1) + ' (' + (p.id || "?") + '), choice ' + (j + 1);
+        if (!c.label.trim()) warns.push(where + " has no label.");
+        if (!c.next.trim())  warns.push(where + " has no target passage.");
+        else if (ids.indexOf(c.next.trim()) === -1)
+          warns.push(where + ' points to "' + c.next + '", which does not exist.');
+      });
+    });
+
+    if (ids.indexOf("start") !== -1 && !dup && !empty) {
+      const byId = {};
+      state.passages.forEach(p => { byId[p.id.trim()] = p; });
+      const seenR = {}, queue = ["start"];
+      while (queue.length) {
+        const id = queue.shift();
+        if (seenR[id] || !byId[id]) continue;
+        seenR[id] = true;
+        byId[id].choices.forEach(c => {
+          if (c.next.trim() && !seenR[c.next.trim()]) queue.push(c.next.trim());
+        });
+      }
+      const unreached = ids.filter(id => !seenR[id]);
+      if (unreached.length)
+        warns.push("Unreachable from start: " + unreached.join(", ") + ".");
+    }
+
+    if (!errs.length && !warns.length)
+      oks.push("Story is valid and ready to export.");
+
+    return { errs, warns, oks };
+  }
+
+  function renderIssues() {
+    const v = validate();
+    let cls = "ok";
+    if (v.errs.length) cls = "err";
+    else if (v.warns.length) cls = "warn";
+    const items = v.errs.map(t => '<li class="err">' + esc(t) + "</li>")
+      .concat(v.warns.map(t => '<li class="warn">' + esc(t) + "</li>"))
+      .concat(v.oks.map(t => '<li class="ok">' + esc(t) + "</li>"))
+      .join("");
+    issuesEl.className = "issues " + cls;
+    issuesEl.innerHTML =
+      '<div class="issues-title">Story Check</div><ul>' + items + "</ul>";
+    return v;
+  }
+
+  // ---- Event delegation ----------------------------------------------
+  passagesEl.addEventListener("input", function (e) {
+    const t = e.target;
+    const p = t.dataset.p;
+    if (p === undefined) return;
+    const pi = +p;
+
+    if (t.dataset.cf) {
+      const ci = +t.dataset.c;
+      state.passages[pi].choices[ci][t.dataset.cf] = t.value;
+    } else if (t.dataset.field === "id") {
+      state.passages[pi].id = t.value;
+    } else if (FIELDS.indexOf(t.dataset.field) !== -1) {
+      state.passages[pi][t.dataset.field] = t.value;
+    }
+    renderIssues();
+  });
+
+  passagesEl.addEventListener("change", function (e) {
+    const t = e.target;
+    if (t.dataset.p === undefined) return;
+    const pi = +t.dataset.p;
+
+    if (t.dataset.cf === "next") {
+      state.passages[pi].choices[+t.dataset.c].next = t.value;
+      renderIssues();
+      return;
+    }
+    if (t.dataset.field === "id") { render(); return; }
+    if (t.dataset.field === "video") {
+      const cleaned = extractVideoId(t.value);
+      if (cleaned !== t.value) {
+        state.passages[pi].video = cleaned;
+        t.value = cleaned;
+      }
+    }
+  });
+
+  passagesEl.addEventListener("click", function (e) {
+    const btn = e.target.closest("button[data-act]");
+    if (!btn) return;
+    const pi = +btn.dataset.p;
+    const act = btn.dataset.act;
+
+    if (act === "del-passage") {
+      if (state.passages.length === 1) {
+        alert("A story needs at least one passage.");
+        return;
+      }
+      if (confirm("Delete passage " + (pi + 1) + "?"))
+        { state.passages.splice(pi, 1); render(); }
+    } else if (act === "add-choice") {
+      state.passages[pi].choices.push({ label: "", next: "" });
+      render();
+    } else if (act === "del-choice") {
+      state.passages[pi].choices.splice(+btn.dataset.c, 1);
+      render();
+    }
+  });
+
+  document.getElementById("addPassage").addEventListener("click", function () {
+    state.passages.push({
+      id: "", video: "", heading: "",
+      text: "", choices: []
+    });
+    render();
+    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+  });
+
+  // ---- Build story object & final HTML -------------------------------
+  function buildStoryObject() {
+    const obj = {};
+    state.passages.forEach(function (p) {
+      const id = p.id.trim();
+      obj[id] = {
+        video:   p.video.trim()   || null,
+        heading: p.heading.trim() || null,
+        text:    p.text,
+        choices: p.choices.map(function (c) {
+          return { label: c.label, next: c.next.trim() };
+        })
+      };
+    });
+    return obj;
+  }
+
+  function generateHTML() {
+    const tpl = document.getElementById("engineTemplate").textContent
+      .split("</SCRIPT_TAG>").join("</scr" + "ipt>");
+
+    const titleJSON = JSON.stringify((state.title || "Untitled").trim() || "Untitled");
+    const storyJSON = JSON.stringify(buildStoryObject(), null, 2);
+
+    return tpl
+      .replace("__STORY_TITLE__",  function () { return titleJSON; })
+      .replace("__STORY_OBJECT__", function () { return storyJSON; });
+  }
+
+  function download(filename, content, type) {
+    const blob = new Blob([content], { type: type || "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+  }
+
+  document.getElementById("generateBtn").addEventListener("click", function () {
+    const v = renderIssues();
+    if (v.errs.length) {
+      alert("Cannot export yet \u2014 fix the errors listed in Story Check first.");
+      return;
+    }
+    if (v.warns.length &&
+        !confirm("There are warnings in Story Check. Export anyway?")) return;
+    download(slugify(state.title) + ".html", generateHTML(), "text/html");
+  });
+
+  // ---- Save / load project -------------------------------------------
+  document.getElementById("saveConfig").addEventListener("click", function () {
+    download(slugify(state.title) + ".storyproject.json",
+             JSON.stringify(state, null, 2), "application/json");
+  });
+
+  document.getElementById("loadConfigBtn").addEventListener("click", function () {
+    document.getElementById("loadConfig").click();
+  });
+
+  document.getElementById("loadConfig").addEventListener("change", function (e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function () {
+      try {
+        const data = JSON.parse(reader.result);
+        if (!data || !Array.isArray(data.passages))
+          throw new Error("Not a story project file.");
+
+        data.passages = data.passages.map(function (p) {
+          return {
+            id: p.id || "",
+            video: p.video || "", heading: p.heading || "",
+            text: p.text || "",
+            choices: Array.isArray(p.choices)
+              ? p.choices.map(function (c) {
+                  return { label: c.label || "", next: c.next || "" };
+                })
+              : []
+          };
+        });
+        state = { title: data.title || "My Story", passages: data.passages };
+        titleInput.value = state.title;
+        render();
+      } catch (err) {
+        alert("Could not load file: " + err.message);
+      }
+      e.target.value = "";
+    };
+    reader.readAsText(file);
+  });
+
+  // ---- Go -------------------------------------------------------------
+  render();
+})();
+</script>
+</body>
+</html>
