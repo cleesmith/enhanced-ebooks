@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Story</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #080808;
+      --surface: #101010;
+      --text: #d4c9b8;
+      --text-dim: #7a7068;
+      --accent: #b8966e;
+      --accent-dim: #5c4a32;
+      --choice-border: #2a2420;
+      --choice-hover: #1a1512;
+      --divider: #1c1a18;
+      --fade-duration: 1.2s;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      line-height: 1.9;
+      min-height: 100vh;
+      cursor: default;
+    }
+
+    /* Grain texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.4;
+    }
+
+    #toolbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: clamp(0.75rem, 2vw, 1.25rem) clamp(1rem, 4vw, 3rem);
+      z-index: 500;
+      background: linear-gradient(to bottom, rgba(8,8,8,0.95) 60%, transparent);
+    }
+
+    #story-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(0.6rem, 1.2vw, 0.8rem);
+      letter-spacing: 0.25em;
+      color: var(--text-dim);
+      text-transform: uppercase;
+    }
+
+    /* Story container */
+    #story {
+      max-width: min(92vw, 1200px);
+      margin: 0 auto;
+      padding: clamp(4rem, 8vw, 7rem) clamp(1rem, 4vw, 3rem) 6rem;
+    }
+
+    .passage {
+      opacity: 0;
+      transform: translateY(16px);
+      animation: passageIn var(--fade-duration) ease forwards;
+      margin-bottom: 0.5rem;
+      scroll-margin-top: 4rem;
+    }
+
+    @keyframes passageIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Video aspect ratios and wrapping */
+    .video-wrap {
+      position: relative;
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-bottom: 2rem;
+    }
+
+    .yt-watch-link {
+      text-align: left;
+      margin-top: 1.5rem;
+    }
+    .yt-watch-link a {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .yt-watch-link a:hover {
+      color: var(--accent);
+    }
+
+    .video-frame {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      height: min(56.25vw, 85vh);
+      overflow: hidden;
+      background: #000 center / cover no-repeat;
+      z-index: 1;
+    }
+
+    .video-frame iframe {
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    .video-frame.yt-ready iframe {
+      opacity: 1;
+    }
+
+    .video-cover {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      background: transparent;
+      pointer-events: auto;
+      cursor: default;
+    }
+
+    .video-frame iframe,
+    .video-frame > div:not(.video-cover) {
+      position: absolute;
+      top: -60px;
+      left: -2px;
+      width: calc(100% + 4px) !important;
+      height: calc(100% + 120px) !important;
+      border: none;
+      pointer-events: none;
+    }
+
+    .video-overlay {
+      position: relative;
+      z-index: 2;
+      margin-top: calc(-1 * min(22.5vw, 34vh));
+      padding: 4rem clamp(1.5rem, 8vw, 8rem) 2.5rem;
+      background: transparent;
+      pointer-events: auto;
+    }
+
+    .video-overlay .narrative-text,
+    .video-overlay .passage-heading,
+    .video-overlay .choices,
+    .video-overlay .yt-watch-link {
+      max-width: min(680px, 80vw);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .video-overlay .narrative-text,
+    .video-overlay .passage-heading,
+    .video-overlay .yt-watch-link {
+      background: rgba(8, 8, 8, 0.62);
+      padding: 0.6rem 1.1rem;
+      border-radius: 4px;
+    }
+
+    .video-overlay .choices {
+      background: rgba(8, 8, 8, 0.62);
+      padding: 0.8rem 1.1rem;
+      border-radius: 4px;
+    }
+
+    @media (max-width: 640px) {
+      .video-wrap {
+        width: 100%;
+        margin-left: 0;
+      }
+
+      .video-frame {
+        position: relative;
+        height: auto;
+        aspect-ratio: 16 / 9;
+      }
+
+      .video-frame iframe,
+      .video-frame > div {
+        top: -30px;
+        height: calc(100% + 60px) !important;
+      }
+
+      .video-overlay {
+        margin-top: 0;
+        background: var(--bg);
+        padding: 1.25rem 1rem 0.5rem;
+      }
+
+      .video-overlay .narrative-text,
+      .video-overlay .passage-heading,
+      .video-overlay .choices {
+        max-width: 100%;
+      }
+    }
+
+    /* Narrative text */
+    .narrative-text {
+      margin: 1.5rem 0;
+      color: var(--text);
+    }
+
+    .narrative-text p + p {
+      margin-top: 1em;
+    }
+
+    /* Speaker / heading */
+    .passage-heading {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 2rem 0 0.5rem;
+    }
+
+    /* Choices */
+    .choices {
+      margin: 2.5rem 0 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .choices-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 1rem;
+    }
+
+    .choice-btn {
+      background: transparent;
+      border: none;
+      border-left: 2px solid var(--choice-border);
+      color: var(--text);
+      padding: 0.85rem 1.5rem;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1rem;
+      line-height: 1.5;
+      cursor: pointer;
+      text-align: left;
+      transition: border-color 0.2s, color 0.2s, background 0.2s, padding-left 0.2s;
+      width: 100%;
+    }
+
+    .choice-btn:hover {
+      border-left-color: var(--accent);
+      color: var(--accent);
+      background: var(--choice-hover);
+      padding-left: 2rem;
+    }
+
+    .choice-btn.chosen {
+      border-left-color: var(--accent);
+      color: var(--accent);
+      cursor: default;
+      padding-left: 2rem;
+    }
+
+    .choice-btn.chosen::before {
+      content: '▸ ';
+      font-size: 0.8em;
+    }
+
+    .choice-btn.not-chosen {
+      opacity: 0.12;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    /* Divider */
+    .passage-divider {
+      border: none;
+      margin: clamp(4rem, 10vh, 7rem) 0;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      color: var(--text-dim);
+      scroll-margin-top: 30vh;
+    }
+
+    .passage-divider::before,
+    .passage-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #3a3530;
+    }
+
+    .divider-glyph {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      color: #7a6a58;
+    }
+
+    /* End */
+    .end-block {
+      margin: 4rem 0 2rem;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .replay-hint {
+      font-family: 'Cinzel', serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent-dim);
+      margin-bottom: 0.5rem;
+      transition: color 0.2s;
+    }
+
+    .end-block:hover .end-ornament { color: var(--text); }
+    .end-block:hover .replay-hint { color: var(--accent); }
+
+    .end-ornament {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 0.5rem;
+    }
+
+    .end-rule {
+      width: 60px;
+      height: 1px;
+      background: var(--accent-dim);
+      margin: 1rem auto;
+    }
+
+    /* Splash screen */
+    #splash {
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+      z-index: 900;
+      transition: opacity 0.8s ease;
+    }
+
+    #splash.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    #splash-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.4rem, 4vw, 2.4rem);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-align: center;
+    }
+
+    #splash-rule {
+      width: 60px;
+      height: 1px;
+      background: var(--accent-dim);
+      margin: -1rem auto 0;
+    }
+
+    #splash-loading {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent-dim);
+    }
+
+    #begin-btn {
+      background: transparent;
+      border: 1px solid var(--accent-dim);
+      color: var(--accent);
+      padding: 0.75rem 2.5rem;
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    #begin-btn:hover {
+      border-color: var(--accent);
+      background: rgba(184,150,110,0.06);
+      letter-spacing: 0.4em;
+    }
+
+  </style>
+</head>
+<body>
+
+<div id="splash">
+  <p id="splash-title">My Story</p>
+  <div id="splash-rule"></div>
+  <p id="splash-loading">loading…</p>
+  <button id="begin-btn" onclick="beginStory()" style="display:none">Begin</button>
+</div>
+
+<div id="toolbar">
+  <span id="story-title">Story</span>
+</div>
+
+<div id="story"></div>
+
+<script>
+const STORY_TITLE = "Smuffin - Private Eye";
+const story = {
+  "start": {
+    "video": "Ez7O7ALydLE",
+    "heading": "First case",
+    "text": "https://youtube.com/live/Ez7O7ALydLE?feature=share\n\nThe light came through the blinds the way it always does in this town — in stripes, like the place had already decided who was guilty before I walked in.\n\nI got up on my hind legs and put my paws where the answers were. The door. Locked, naturally. Nothing in this line of work ever opens easy.\nSo I let the claws do the talking. Four clean lines down the wood, slow, so whoever was on the other side would know Smuffin had come calling. I worked the knob, batted it, leaned my whole weight into the thing. It didn't so much as flinch.\n\nThen I felt it — that itch on the back of the neck. I turned, eyes wide, the shadows sliding across my face. Somebody was watching me. Or nobody was. In my business that's the same problem.\n\nTwo ways out of a jam like this one. The door right in front of me, if I could ever crack it. Or the window across the room, blinds half-drawn, sitting there all night like it had something to confess.\n",
+    "choices": [
+      {
+        "label": "Open door",
+        "next": "open-door"
+      },
+      {
+        "label": "Go to window",
+        "next": "go-to-window"
+      }
+    ]
+  },
+  "open-door": {
+    "video": "xMkV-nLu0Ro",
+    "heading": "Open door",
+    "text": "https://youtube.com/live/xMkV-nLu0Ro?feature=share",
+    "choices": []
+  },
+  "go-to-window": {
+    "video": "13zORQ_6Bx8",
+    "heading": "Window",
+    "text": "https://youtube.com/live/13zORQ_6Bx8?feature=share",
+    "choices": [
+      {
+        "label": "Look out window",
+        "next": "window"
+      }
+    ]
+  },
+  "window": {
+    "video": "puHmbUas3AQ",
+    "heading": "Window",
+    "text": "https://youtube.com/live/puHmbUas3AQ?feature=share",
+    "choices": [
+      {
+        "label": "Turn away, look out window again",
+        "next": "window-again"
+      }
+    ]
+  },
+  "window-again": {
+    "video": "acWJmCCAl-k",
+    "heading": "Breath on glass",
+    "text": "https://youtube.com/live/acWJmCCAl-k?feature=share",
+    "choices": []
+  }
+};
+
+document.getElementById("splash-title").textContent = STORY_TITLE;
+document.getElementById("story-title").textContent = STORY_TITLE;
+
+function beginStory() {
+  if (!beginReady) return;
+  const splash = document.getElementById("splash");
+  splash.classList.add("hidden");
+  setTimeout(() => splash.remove(), 900);
+  // the start passage is already rendered and its video preloaded behind the
+  // splash; just play it now that we have the user's click
+  if (firstIframe) {
+    firstIframe._wantPlay = true;
+    ytSend(firstIframe, { event: "command", func: "playVideo", args: [] });
+  } else {
+    renderPassage("start");
+  }
+}
+
+const storyEl = document.getElementById("story");
+
+// ---- YouTube control via a raw <iframe> + postMessage --------------
+// No official IFrame API script is loaded. Each embed is a plain
+// <iframe> we create ourselves, and we talk to it with postMessage
+// using a wildcard ("*") target origin. Because the official widget
+// script is never loaded, its origin-handshake console warning never
+// appears.
+
+const ytIframes = [];
+let beginReady = false;
+let firstIframe = null;
+
+function revealBegin() {
+  if (beginReady) return;
+  beginReady = true;
+  const ld = document.getElementById("splash-loading");
+  if (ld) ld.style.display = "none";
+  const btn = document.getElementById("begin-btn");
+  if (btn) btn.style.display = "";
+}
+
+function ytSend(iframe, payload) {
+  try {
+    if (iframe.contentWindow) {
+      iframe.contentWindow.postMessage(JSON.stringify(payload), "*");
+    }
+  } catch (e) {}
+}
+
+function createVideoIframe(videoId, autostart) {
+  const iframe = document.createElement("iframe");
+  // autoplay stays OFF in the URL; play is triggered explicitly so the first
+  // video can be preloaded silently behind the splash and started on Begin.
+  iframe.src = "https://www.youtube.com/embed/" + videoId +
+    "?enablejsapi=1&autoplay=0&controls=0&rel=0&modestbranding=1" +
+    "&iv_load_policy=3&playsinline=1";
+  iframe.title = "video";
+  iframe.setAttribute("frameborder", "0");
+  iframe.setAttribute("allow",
+    "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share");
+  iframe._wantPlay = !!autostart;
+  iframe._tries = 0;
+  ytIframes.push(iframe);
+  // Poll the player: keep asking it to report (so we learn when it is ready)
+  // and, once we want it to, tell it to play — until it is actually playing.
+  iframe._poll = setInterval(function () {
+    ytSend(iframe, { event: "listening" });
+    if (iframe._wantPlay) {
+      ytSend(iframe, { event: "command", func: "playVideo", args: [] });
+    }
+    if (++iframe._tries > 80) { clearInterval(iframe._poll); iframe._poll = null; }
+  }, 250);
+  return iframe;
+}
+
+function stopAllPlayers() {
+  ytIframes.forEach(iframe => {
+    if (iframe._poll) { clearInterval(iframe._poll); iframe._poll = null; }
+    ytSend(iframe, { event: "command", func: "stopVideo", args: [] });
+  });
+}
+
+window.addEventListener("message", (e) => {
+  // which of our iframes sent this message?
+  let matched = null;
+  for (const iframe of ytIframes) {
+    if (iframe.contentWindow === e.source) { matched = iframe; break; }
+  }
+  if (!matched) return;
+
+  // first reply from a player means it is alive and ready for commands
+  if (!matched._ready) {
+    matched._ready = true;
+    if (matched === firstIframe) revealBegin();
+  }
+
+  let data = e.data;
+  if (typeof data === "string") {
+    try { data = JSON.parse(data); } catch (err) { return; }
+  }
+  if (!data || typeof data !== "object") return;
+
+  let state = null;
+  if (data.event === "onStateChange" && typeof data.info === "number") {
+    state = data.info;
+  } else if (data.event === "infoDelivery" && data.info &&
+             typeof data.info.playerState === "number") {
+    state = data.info.playerState;
+  }
+  if (state === null) return;
+
+  const frame = matched.closest(".video-frame");
+  if (!frame) return;
+
+  if (state === 1) {                                  // playing
+    if (matched._poll) { clearInterval(matched._poll); matched._poll = null; }
+    if (!frame.classList.contains("yt-ready")) frame.classList.add("yt-ready");
+  } else if (state === 0) {                           // ended
+    frame.classList.remove("yt-ready");
+  }
+});
+
+function makeDivider() {
+  const hr = document.createElement("div");
+  hr.className = "passage-divider";
+  hr.innerHTML = '<span class="divider-glyph">&#10022;</span>';
+  return hr;
+}
+
+function renderPassage(id, delay = 0, autostart = true) {
+  const passage = story[id];
+  if (!passage) return;
+
+  const div = document.createElement("div");
+  div.className = "passage";
+  div.style.animationDelay = delay + "ms";
+
+  let overlayHTML = "";
+
+  if (passage.heading) {
+    overlayHTML += `<p class="passage-heading">${passage.heading}</p>`;
+  }
+
+  if (passage.text) {
+    const paras = passage.text.split(/\n\n+/).map(p => `<p>${p.replace(/\n/g, '<br>')}</p>`).join('');
+    overlayHTML += `<div class="narrative-text">${paras}</div>`;
+  }
+
+  if (passage.video) {
+    const videoWrap = document.createElement("div");
+    videoWrap.className = "video-wrap";
+    videoWrap.dataset.videoId = passage.video;
+
+    const videoFrame = document.createElement("div");
+    videoFrame.className = "video-frame";
+    videoFrame.style.backgroundImage = `url('https://img.youtube.com/vi/${passage.video}/hqdefault.jpg')`;
+    videoFrame.appendChild(createVideoIframe(passage.video, autostart));
+    const videoCover = document.createElement("div");
+    videoCover.className = "video-cover";
+    videoFrame.appendChild(videoCover);
+
+    const spacer = document.createElement("div");
+    spacer.className = "video-spacer";
+
+    const overlay = document.createElement("div");
+    overlay.className = "video-overlay";
+    overlay.innerHTML = overlayHTML;
+
+    if (passage.choices && passage.choices.length > 0) {
+      overlay.appendChild(buildChoices(passage.choices));
+    } else {
+      overlay.innerHTML += `<div class="end-block" onclick="location.reload()" title="Read it again"><div class="end-rule"></div><p class="end-ornament">End</p><p class="replay-hint">play again</p><div class="end-rule"></div></div>`;
+    }
+
+    const ytLink = document.createElement("p");
+    ytLink.className = "yt-watch-link";
+    ytLink.innerHTML = `<a href="https://www.youtube.com/watch?v=${passage.video}" target="_blank" rel="noopener" title="Watch on YouTube">On YouTube</a>`;
+    overlay.appendChild(ytLink);
+
+    videoWrap.appendChild(videoFrame);
+    videoWrap.appendChild(spacer);
+    videoWrap.appendChild(overlay);
+    div.appendChild(videoWrap);
+
+  } else {
+    div.innerHTML += overlayHTML;
+
+    if (passage.choices && passage.choices.length > 0) {
+      div.appendChild(buildChoices(passage.choices));
+    } else {
+      div.innerHTML += `<div class="end-block" onclick="location.reload()" title="Read it again"><div class="end-rule"></div><p class="end-ornament">End</p><p class="replay-hint">play again</p><div class="end-rule"></div></div>`;
+    }
+  }
+
+  storyEl.appendChild(div);
+}
+
+function buildChoices(choices) {
+  const wrap = document.createElement("div");
+  wrap.className = "choices";
+  wrap.innerHTML = '<p class="choices-label">What do you do?</p>';
+
+  choices.forEach(choice => {
+    const btn = document.createElement("button");
+    btn.className = "choice-btn";
+    btn.textContent = choice.label;
+
+    btn.addEventListener("click", function handler() {
+      wrap.querySelectorAll(".choice-btn").forEach(b => {
+        b.removeEventListener("click", handler);
+        b.classList.add(b === btn ? "chosen" : "not-chosen");
+      });
+
+      stopAllPlayers();
+
+      setTimeout(() => {
+        const divider = makeDivider();
+        storyEl.appendChild(divider);
+        renderPassage(choice.next, 0);
+        const newPassage = storyEl.lastElementChild;
+        setTimeout(() => {
+          newPassage.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 350);
+      }, 300);
+    });
+
+    wrap.appendChild(btn);
+  });
+
+  return wrap;
+}
+
+// Preload the start passage now (hidden behind the splash) so its video is
+// loaded and ready before the reader ever sees a Begin button.
+renderPassage("start", 0, false);
+firstIframe = ytIframes[0] || null;
+if (!firstIframe) revealBegin();          // text-only start: nothing to wait for
+setTimeout(revealBegin, 6000);            // safety net if the player never reports
+</script>
+</body>
+</html>
