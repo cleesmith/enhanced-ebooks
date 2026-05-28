@@ -318,7 +318,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Story</title>
-  <script src="https://www.youtube.com/iframe_api"></SCRIPT_TAG>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
   <style>
@@ -737,57 +736,78 @@ function beginStory() {
 
 const storyEl = document.getElementById("story");
 
-const ytPlayers = {};
-let ytPlayerIdCounter = 0;
-let ytApiReady = false;
-const ytPendingPlayers = [];
+// ---- YouTube control via a raw <iframe> + postMessage --------------
+// No official IFrame API script is loaded. Each embed is a plain
+// <iframe> we create ourselves, and we talk to it with postMessage
+// using a wildcard ("*") target origin. Because the official widget
+// script is never loaded, its origin-handshake console warning never
+// appears.
 
-function onYouTubeIframeAPIReady() {
-  ytApiReady = true;
-  ytPendingPlayers.forEach(fn => fn());
-  ytPendingPlayers.length = 0;
+const ytIframes = [];
+
+function ytSend(iframe, payload) {
+  try {
+    if (iframe.contentWindow) {
+      iframe.contentWindow.postMessage(JSON.stringify(payload), "*");
+    }
+  } catch (e) {}
 }
 
-function createYTPlayer(divId, videoId) {
-  const init = () => {
-    ytPlayers[divId] = new YT.Player(divId, {
-      videoId: videoId,
-      playerVars: {
-        autoplay: 1,
-        controls: 0,
-        rel: 0,
-        modestbranding: 1,
-        iv_load_policy: 3,
-        color: 'white',
-        playsinline: 1
-      },
-      events: {
-        onReady: (e) => {
-          ytPlayers[divId]._ready = true;
-          e.target.playVideo();
-        },
-        onStateChange: (e) => {
-          const frame = e.target.getIframe().closest('.video-frame');
-          if (!frame) return;
-          if (e.data === YT.PlayerState.PLAYING && !frame.classList.contains('yt-ready')) {
-            setTimeout(() => frame.classList.add('yt-ready'), 1500);
-          }
-          if (e.data === YT.PlayerState.ENDED) {
-            frame.classList.remove('yt-ready');
-          }
-        }
-      }
-    });
-  };
-  if (ytApiReady) init();
-  else ytPendingPlayers.push(init);
+function createVideoIframe(videoId) {
+  const iframe = document.createElement("iframe");
+  iframe.src = "https://www.youtube.com/embed/" + videoId +
+    "?enablejsapi=1&autoplay=1&controls=0&rel=0&modestbranding=1" +
+    "&iv_load_policy=3&playsinline=1";
+  iframe.title = "video";
+  iframe.setAttribute("frameborder", "0");
+  iframe.setAttribute("allow",
+    "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share");
+  ytIframes.push(iframe);
+  iframe.addEventListener("load", () => {
+    ytSend(iframe, { event: "listening" });
+    ytSend(iframe, { event: "command", func: "playVideo", args: [] });
+    setTimeout(() => ytSend(iframe, { event: "listening" }), 600);
+  });
+  return iframe;
 }
 
 function stopAllPlayers() {
-  Object.values(ytPlayers).forEach(p => {
-    try { if (p._ready) p.stopVideo(); } catch(e) {}
+  ytIframes.forEach(iframe => {
+    ytSend(iframe, { event: "command", func: "stopVideo", args: [] });
   });
 }
+
+window.addEventListener("message", (e) => {
+  let data = e.data;
+  if (typeof data === "string") {
+    try { data = JSON.parse(data); } catch (err) { return; }
+  }
+  if (!data || typeof data !== "object") return;
+
+  let state = null;
+  if (data.event === "onStateChange" && typeof data.info === "number") {
+    state = data.info;
+  } else if (data.event === "infoDelivery" && data.info &&
+             typeof data.info.playerState === "number") {
+    state = data.info.playerState;
+  }
+  if (state === null) return;
+
+  let frame = null;
+  for (const iframe of ytIframes) {
+    if (iframe.contentWindow === e.source) {
+      frame = iframe.closest(".video-frame");
+      break;
+    }
+  }
+  if (!frame) return;
+
+  if (state === 1 && !frame.classList.contains("yt-ready")) {
+    setTimeout(() => frame.classList.add("yt-ready"), 1500);
+  } else if (state === 0) {
+    frame.classList.remove("yt-ready");
+  }
+});
 
 function makeDivider() {
   const hr = document.createElement("div");
@@ -822,9 +842,11 @@ function renderPassage(id, delay = 0) {
 
     const videoFrame = document.createElement("div");
     videoFrame.className = "video-frame";
-    const playerId = "yt-player-" + (ytPlayerIdCounter++);
-    videoFrame.innerHTML = `<div id="${playerId}"></div><div class="video-cover"></div>`;
-    videoFrame.style.backgroundImage = `url('https://img.youtube.com/vi/${passage.video}/maxresdefault.jpg')`;
+    videoFrame.style.backgroundImage = `url('https://img.youtube.com/vi/${passage.video}/hqdefault.jpg')`;
+    videoFrame.appendChild(createVideoIframe(passage.video));
+    const videoCover = document.createElement("div");
+    videoCover.className = "video-cover";
+    videoFrame.appendChild(videoCover);
 
     const spacer = document.createElement("div");
     spacer.className = "video-spacer";
@@ -848,8 +870,6 @@ function renderPassage(id, delay = 0) {
     videoWrap.appendChild(spacer);
     videoWrap.appendChild(overlay);
     div.appendChild(videoWrap);
-
-    setTimeout(() => createYTPlayer(playerId, passage.video), 50);
 
   } else {
     div.innerHTML += overlayHTML;
