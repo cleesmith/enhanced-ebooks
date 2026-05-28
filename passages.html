@@ -685,6 +685,14 @@
       margin: -1rem auto 0;
     }
 
+    #splash-loading {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent-dim);
+    }
+
     #begin-btn {
       background: transparent;
       border: 1px solid var(--accent-dim);
@@ -711,7 +719,8 @@
 <div id="splash">
   <p id="splash-title">My Story</p>
   <div id="splash-rule"></div>
-  <button id="begin-btn" onclick="beginStory()">Begin</button>
+  <p id="splash-loading">loading…</p>
+  <button id="begin-btn" onclick="beginStory()" style="display:none">Begin</button>
 </div>
 
 <div id="toolbar">
@@ -728,10 +737,18 @@ document.getElementById("splash-title").textContent = STORY_TITLE;
 document.getElementById("story-title").textContent = STORY_TITLE;
 
 function beginStory() {
+  if (!beginReady) return;
   const splash = document.getElementById("splash");
   splash.classList.add("hidden");
   setTimeout(() => splash.remove(), 900);
-  renderPassage("start");
+  // the start passage is already rendered and its video preloaded behind the
+  // splash; just play it now that we have the user's click
+  if (firstIframe) {
+    firstIframe._wantPlay = true;
+    ytSend(firstIframe, { event: "command", func: "playVideo", args: [] });
+  } else {
+    renderPassage("start");
+  }
 }
 
 const storyEl = document.getElementById("story");
@@ -744,6 +761,17 @@ const storyEl = document.getElementById("story");
 // appears.
 
 const ytIframes = [];
+let beginReady = false;
+let firstIframe = null;
+
+function revealBegin() {
+  if (beginReady) return;
+  beginReady = true;
+  const ld = document.getElementById("splash-loading");
+  if (ld) ld.style.display = "none";
+  const btn = document.getElementById("begin-btn");
+  if (btn) btn.style.display = "";
+}
 
 function ytSend(iframe, payload) {
   try {
@@ -753,31 +781,53 @@ function ytSend(iframe, payload) {
   } catch (e) {}
 }
 
-function createVideoIframe(videoId) {
+function createVideoIframe(videoId, autostart) {
   const iframe = document.createElement("iframe");
+  // autoplay stays OFF in the URL; play is triggered explicitly so the first
+  // video can be preloaded silently behind the splash and started on Begin.
   iframe.src = "https://www.youtube.com/embed/" + videoId +
-    "?enablejsapi=1&autoplay=1&controls=0&rel=0&modestbranding=1" +
+    "?enablejsapi=1&autoplay=0&controls=0&rel=0&modestbranding=1" +
     "&iv_load_policy=3&playsinline=1";
   iframe.title = "video";
   iframe.setAttribute("frameborder", "0");
   iframe.setAttribute("allow",
     "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share");
+  iframe._wantPlay = !!autostart;
+  iframe._tries = 0;
   ytIframes.push(iframe);
-  iframe.addEventListener("load", () => {
+  // Poll the player: keep asking it to report (so we learn when it is ready)
+  // and, once we want it to, tell it to play — until it is actually playing.
+  iframe._poll = setInterval(function () {
     ytSend(iframe, { event: "listening" });
-    ytSend(iframe, { event: "command", func: "playVideo", args: [] });
-    setTimeout(() => ytSend(iframe, { event: "listening" }), 600);
-  });
+    if (iframe._wantPlay) {
+      ytSend(iframe, { event: "command", func: "playVideo", args: [] });
+    }
+    if (++iframe._tries > 80) { clearInterval(iframe._poll); iframe._poll = null; }
+  }, 250);
   return iframe;
 }
 
 function stopAllPlayers() {
   ytIframes.forEach(iframe => {
+    if (iframe._poll) { clearInterval(iframe._poll); iframe._poll = null; }
     ytSend(iframe, { event: "command", func: "stopVideo", args: [] });
   });
 }
 
 window.addEventListener("message", (e) => {
+  // which of our iframes sent this message?
+  let matched = null;
+  for (const iframe of ytIframes) {
+    if (iframe.contentWindow === e.source) { matched = iframe; break; }
+  }
+  if (!matched) return;
+
+  // first reply from a player means it is alive and ready for commands
+  if (!matched._ready) {
+    matched._ready = true;
+    if (matched === firstIframe) revealBegin();
+  }
+
   let data = e.data;
   if (typeof data === "string") {
     try { data = JSON.parse(data); } catch (err) { return; }
@@ -793,18 +843,13 @@ window.addEventListener("message", (e) => {
   }
   if (state === null) return;
 
-  let frame = null;
-  for (const iframe of ytIframes) {
-    if (iframe.contentWindow === e.source) {
-      frame = iframe.closest(".video-frame");
-      break;
-    }
-  }
+  const frame = matched.closest(".video-frame");
   if (!frame) return;
 
-  if (state === 1 && !frame.classList.contains("yt-ready")) {
-    frame.classList.add("yt-ready");
-  } else if (state === 0) {
+  if (state === 1) {                                  // playing
+    if (matched._poll) { clearInterval(matched._poll); matched._poll = null; }
+    if (!frame.classList.contains("yt-ready")) frame.classList.add("yt-ready");
+  } else if (state === 0) {                           // ended
     frame.classList.remove("yt-ready");
   }
 });
@@ -816,7 +861,7 @@ function makeDivider() {
   return hr;
 }
 
-function renderPassage(id, delay = 0) {
+function renderPassage(id, delay = 0, autostart = true) {
   const passage = story[id];
   if (!passage) return;
 
@@ -843,7 +888,7 @@ function renderPassage(id, delay = 0) {
     const videoFrame = document.createElement("div");
     videoFrame.className = "video-frame";
     videoFrame.style.backgroundImage = `url('https://img.youtube.com/vi/${passage.video}/hqdefault.jpg')`;
-    videoFrame.appendChild(createVideoIframe(passage.video));
+    videoFrame.appendChild(createVideoIframe(passage.video, autostart));
     const videoCover = document.createElement("div");
     videoCover.className = "video-cover";
     videoFrame.appendChild(videoCover);
@@ -918,6 +963,13 @@ function buildChoices(choices) {
 
   return wrap;
 }
+
+// Preload the start passage now (hidden behind the splash) so its video is
+// loaded and ready before the reader ever sees a Begin button.
+renderPassage("start", 0, false);
+firstIframe = ytIframes[0] || null;
+if (!firstIframe) revealBegin();          // text-only start: nothing to wait for
+setTimeout(revealBegin, 6000);            // safety net if the player never reports
 </SCRIPT_TAG>
 </body>
 </html>
