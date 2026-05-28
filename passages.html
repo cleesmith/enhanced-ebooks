@@ -803,7 +803,7 @@ window.addEventListener("message", (e) => {
   if (!frame) return;
 
   if (state === 1 && !frame.classList.contains("yt-ready")) {
-    setTimeout(() => frame.classList.add("yt-ready"), 1500);
+    frame.classList.add("yt-ready");
   } else if (state === 0) {
     frame.classList.remove("yt-ready");
   }
