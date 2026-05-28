@@ -632,7 +632,21 @@
     .end-block {
       margin: 4rem 0 2rem;
       text-align: center;
+      cursor: pointer;
     }
+
+    .replay-hint {
+      font-family: 'Cinzel', serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent-dim);
+      margin-bottom: 0.5rem;
+      transition: color 0.2s;
+    }
+
+    .end-block:hover .end-ornament { color: var(--text); }
+    .end-block:hover .replay-hint { color: var(--accent); }
 
     .end-ornament {
       font-family: 'Cinzel', serif;
@@ -903,7 +917,7 @@ function renderPassage(id, delay = 0, autostart = true) {
     if (passage.choices && passage.choices.length > 0) {
       overlay.appendChild(buildChoices(passage.choices));
     } else {
-      overlay.innerHTML += `<div class="end-block"><div class="end-rule"></div><p class="end-ornament">End</p><div class="end-rule"></div></div>`;
+      overlay.innerHTML += `<div class="end-block" onclick="location.reload()" title="Read it again"><div class="end-rule"></div><p class="end-ornament">End</p><p class="replay-hint">play again</p><div class="end-rule"></div></div>`;
     }
 
     const ytLink = document.createElement("p");
@@ -922,7 +936,7 @@ function renderPassage(id, delay = 0, autostart = true) {
     if (passage.choices && passage.choices.length > 0) {
       div.appendChild(buildChoices(passage.choices));
     } else {
-      div.innerHTML += `<div class="end-block"><div class="end-rule"></div><p class="end-ornament">End</p><div class="end-rule"></div></div>`;
+      div.innerHTML += `<div class="end-block" onclick="location.reload()" title="Read it again"><div class="end-rule"></div><p class="end-ornament">End</p><p class="replay-hint">play again</p><div class="end-rule"></div></div>`;
     }
   }
 
