@@ -393,6 +393,18 @@
       color: var(--accent-dim);
     }
 
+    #splash-loading.splash-error {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.05rem;
+      letter-spacing: normal;
+      text-transform: none;
+      line-height: 1.7;
+      color: var(--text);
+      max-width: 34ch;
+      text-align: center;
+      padding: 0 1.5rem;
+    }
+
     #begin-btn {
       background: transparent;
       border: 1px solid var(--accent-dim);
@@ -435,7 +447,7 @@ const story = {
   "start": {
     "video": "Ez7O7ALydLE",
     "heading": "First case",
-    "text": "https://youtube.com/live/Ez7O7ALydLE?feature=share\n\nThe light came through the blinds the way it always does in this town — in stripes, like the place had already decided who was guilty before I walked in.\n\nI got up on my hind legs and put my paws where the answers were. The door. Locked, naturally. Nothing in this line of work ever opens easy.\nSo I let the claws do the talking. Four clean lines down the wood, slow, so whoever was on the other side would know Smuffin had come calling. I worked the knob, batted it, leaned my whole weight into the thing. It didn't so much as flinch.\n\nThen I felt it — that itch on the back of the neck. I turned, eyes wide, the shadows sliding across my face. Somebody was watching me. Or nobody was. In my business that's the same problem.\n\nTwo ways out of a jam like this one. The door right in front of me, if I could ever crack it. Or the window across the room, blinds half-drawn, sitting there all night like it had something to confess.\n",
+    "text": "The light came through the blinds the way it always does in this town — in stripes, like the place had already decided who was guilty before I walked in.\n\nI got up on my hind legs and put my paws where the answers were. The door. Locked, naturally. Nothing in this line of work ever opens easy.\nSo I let the claws do the talking. Four clean lines down the wood, slow, so whoever was on the other side would know Smuffin had come calling. I worked the knob, batted it, leaned my whole weight into the thing. It didn't so much as flinch.\n\nThen I felt it — that itch on the back of the neck. I turned, eyes wide, the shadows sliding across my face. Somebody was watching me. Or nobody was. In my business that's the same problem.\n\nTwo ways out of a jam like this one. The door right in front of me, if I could ever crack it. Or the window across the room, blinds half-drawn, sitting there all night like it had something to confess.\n",
     "choices": [
       {
         "label": "Open door",
@@ -450,13 +462,13 @@ const story = {
   "open-door": {
     "video": "xMkV-nLu0Ro",
     "heading": "Open door",
-    "text": "https://youtube.com/live/xMkV-nLu0Ro?feature=share",
+    "text": "The door gave. After all that, after all night, it just gave — swung open like it had been unlocked the whole time and only waiting for me to stop trying so hard.\n\nOn the other side: woods. Gray trees, gray mist, a path cut through the middle of it like somebody wanted me to follow. So I did. That's the job. You walk the line they leave for you and you see where it ends.\n\nI went deep. \n\nFar enough that the room behind me was gone and the only sound was my own paws on the dirt. I stopped once, looked back, looked ahead. Both directions the same. Kept going anyway. A Private Eye doesn't quit a trail just because it gets lonesome.\n\nThe path curved. The mist thinned. And there, at the end of all that walking, was a door.\n\nThe door. My door. Same scratch marks, four clean lines, right where I'd left them.\n\nI'd gone out into the whole wide night to crack the case, and the case walked me in a circle and set me back on my own doorstep. In this town every door you open is one you've already closed. I stepped through.\n\nAnd the light came through the blinds the way it always does.\n",
     "choices": []
   },
   "go-to-window": {
     "video": "13zORQ_6Bx8",
     "heading": "Window",
-    "text": "https://youtube.com/live/13zORQ_6Bx8?feature=share",
+    "text": "The door wasn't going to give. Some doors are like that — they'd rather hold their secrets than make my night easy. So I quit leaning on it. No sense arguing with wood.\n\nI turned and crossed the room, slow, the stripes of light sliding off my back as I went. A Private Eye doesn't run. Running's for folks who already know how the story ends.\n\nThe window was right where I'd left it. I dropped low, set the back legs, and put it all into one jump — up onto the sill, soft as you please.\n\nThen I sat. Squared myself to the glass and took a look at what the night had to show me.\n",
     "choices": [
       {
         "label": "Look out window",
@@ -467,7 +479,7 @@ const story = {
   "window": {
     "video": "puHmbUas3AQ",
     "heading": "Window",
-    "text": "https://youtube.com/live/puHmbUas3AQ?feature=share",
+    "text": "She had her back to me, the woman in red, standing in that courtyard like she'd been poured there and left to set. I watched her the way you watch anything that won't move first. Patient. The glass between us cold against my whiskers.\n\nA Private Eye learns to wait. Most cases crack the second somebody turns around.\nSo she turned around.\n\nAnd the night did the one thing I never let it do — it caught me off guard. Because the face under that dark hair, looking back across the yard, looking right through the glass at me, was mine. Same eyes. Same orange. Same crooked little knowing in the stare.\nThe dame in the red coat was me. Or I was her. In my business that's the same problem.\nI'd been sitting here calling her a stranger, and the whole time the only thing I'd been tailing was myself.",
     "choices": [
       {
         "label": "Turn away, look out window again",
@@ -478,7 +490,7 @@ const story = {
   "window-again": {
     "video": "acWJmCCAl-k",
     "heading": "Breath on glass",
-    "text": "https://youtube.com/live/acWJmCCAl-k?feature=share",
+    "text": "I don't spook. It's the first thing they teach you and the last thing you forget. But I'll admit it — I stepped back off that sill like the glass had teeth.\n\nCouldn't be. \n\nYou don't tail a stranger for half the night and find your own face waiting at the finish. I dropped to the floor and walked it off, slow circles, telling myself what every bad detective tells himself: you saw wrong, you're tired, the light plays tricks in a town like this.\n\nThen I did what the good ones do. I went back to check.\n\nUp onto the sill again, nose to the glass, ready to stare her down for round two.\n\nBut the courtyard was empty. No red coat. No dame. No me. Just cracked pavement and a closed door that wasn't telling.\n\nThe only thing on that window was a little cloud of fog, blooming and shrinking, blooming and shrinking. My own breath. The one piece of evidence left at the scene, and it belonged to me.\n",
     "choices": []
   }
 };
@@ -513,14 +525,41 @@ const storyEl = document.getElementById("story");
 const ytIframes = [];
 let beginReady = false;
 let firstIframe = null;
+let primerOk = false;       // the primer (always-available video) has replied
+let outageShown = false;    // an outage message is currently displayed
 
 function revealBegin() {
-  if (beginReady) return;
+  if (beginReady || outageShown) return;
   beginReady = true;
   const ld = document.getElementById("splash-loading");
   if (ld) ld.style.display = "none";
   const btn = document.getElementById("begin-btn");
   if (btn) btn.style.display = "";
+}
+
+// Shown when the primer never reports back and the story actually needs
+// YouTube — i.e. the reader is offline or YouTube is unreachable. The
+// primer video is always available, so a silent player can only mean an
+// infrastructure problem, not a bad video.
+function showOutage(message) {
+  if (beginReady || outageShown) return;   // already proceeded or already shown
+  outageShown = true;
+  const splash = document.getElementById("splash");
+  if (splash) splash.classList.remove("hidden");
+  const ld = document.getElementById("splash-loading");
+  if (ld) {
+    ld.classList.add("splash-error");
+    ld.style.display = "";
+    ld.innerHTML = message ||
+      "Can\u2019t reach YouTube right now.<br>" +
+      "Check your internet connection, then reload the page.";
+  }
+  const btn = document.getElementById("begin-btn");
+  if (btn) {
+    btn.textContent = "Reload";
+    btn.onclick = function () { location.reload(); };
+    btn.style.display = "";
+  }
 }
 
 function ytSend(iframe, payload) {
@@ -564,7 +603,76 @@ function stopAllPlayers() {
   });
 }
 
+// ---- Prime the pump -------------------------------------------------
+// A known, always-available video loaded hidden and silent at startup.
+// It is never shown or played; just loading its embed makes the browser
+// do YouTube's one-time cold-start work — DNS, TLS, and caching the
+// player's scripts — and opens a connection the real passage videos can
+// reuse. That makes every later video (and the entry video too) boot
+// noticeably faster. To turn this off, delete the primePump() call near
+// the bottom. To make it conditional on a text-only start instead,
+// change that call to:  if (!firstIframe) primePump();
+const PRIME_VIDEO_ID = "wxcmEhC4-oY";
+let primerIframe = null;
+
+function primePump() {
+  if (primerIframe) return;
+  const holder = document.createElement("div");
+  holder.setAttribute("aria-hidden", "true");
+  holder.style.cssText =
+    "position:fixed;left:-9999px;top:-9999px;width:1px;height:1px;" +
+    "opacity:0;pointer-events:none;overflow:hidden;";
+
+  const iframe = document.createElement("iframe");
+  // autoplay stays off and audio is muted: we want the player warmed, not
+  // streaming the whole clip and wasting the reader's bandwidth.
+  iframe.src = "https://www.youtube.com/embed/" + PRIME_VIDEO_ID +
+    "?enablejsapi=1&autoplay=0&mute=1&controls=0&rel=0&modestbranding=1" +
+    "&iv_load_policy=3&playsinline=1";
+  iframe.title = "preload";
+  iframe.setAttribute("frameborder", "0");
+  iframe.setAttribute("tabindex", "-1");
+  iframe.setAttribute("aria-hidden", "true");
+
+  holder.appendChild(iframe);
+  document.body.appendChild(holder);
+  primerIframe = iframe;
+
+  // Nudge the embedded player so it fully initializes (which is what gets
+  // its scripts cached and its connection established), then stop nudging.
+  // The primer is deliberately NOT added to ytIframes, so it never affects
+  // the splash/Begin logic or the message handler below.
+  let tries = 0;
+  const poll = setInterval(function () {
+    try {
+      if (iframe.contentWindow) {
+        iframe.contentWindow.postMessage(
+          JSON.stringify({ event: "listening" }), "*");
+      }
+    } catch (e) {}
+    if (++tries > 20) clearInterval(poll);   // ~5s of warming, then leave it idle
+  }, 250);
+}
+
 window.addEventListener("message", (e) => {
+  // Is this the primer (our always-available canary)? Any reply from it means
+  // YouTube is reachable; an onError from it means a real infrastructure
+  // problem. The primer is intentionally not in ytIframes, so handle it here.
+  if (primerIframe && e.source === primerIframe.contentWindow) {
+    let pd = e.data;
+    if (typeof pd === "string") { try { pd = JSON.parse(pd); } catch (err) { return; } }
+    if (!pd || typeof pd !== "object") return;
+    if (pd.event === "onError") {            // player loaded but reported trouble
+      showOutage();
+      return;
+    }
+    primerOk = true;                         // YouTube confirmed reachable
+    // Text-only start whose later passages use video: now that we know
+    // YouTube is up, it is safe to let the reader begin.
+    if (!beginReady && !firstIframe) revealBegin();
+    return;
+  }
+
   // which of our iframes sent this message?
   let matched = null;
   for (const iframe of ytIframes) {
@@ -714,12 +822,40 @@ function buildChoices(choices) {
   return wrap;
 }
 
+// Prime YouTube's machinery first (see primePump above) so the connection
+// and player scripts are already warm when the real videos load — this
+// speeds up the entry video as well as every later passage video.
+primePump();
+
 // Preload the start passage now (hidden behind the splash) so its video is
 // loaded and ready before the reader ever sees a Begin button.
 renderPassage("start", 0, false);
 firstIframe = ytIframes[0] || null;
-if (!firstIframe) revealBegin();          // text-only start: nothing to wait for
-setTimeout(revealBegin, 6000);            // safety net if the player never reports
+
+// Does this story use YouTube at all? If no passage has a video, an outage
+// is irrelevant and we should never block the reader with a YouTube error.
+const storyHasVideo = Object.keys(story).some(function (k) {
+  return story[k] && story[k].video;
+});
+
+if (!storyHasVideo) {
+  revealBegin();              // pure text story: nothing depends on YouTube
+}
+// If there is an entry video, its first reply reveals Begin (see handler).
+// If the start is text-only but later passages use video, the primer's first
+// reply reveals Begin (see handler) once YouTube is confirmed reachable.
+
+// Decision / safety timeout. By now the primer canary should have answered if
+// YouTube is reachable. If it has not and this story needs video, the reader
+// is offline or YouTube is down — show a clear error instead of a dead Begin.
+setTimeout(function () {
+  if (beginReady || outageShown) return;     // already resolved one way or another
+  if (primerOk || !storyHasVideo) {
+    revealBegin();                           // YouTube reachable, or no video needed
+  } else {
+    showOutage();                            // no internet / YouTube unreachable
+  }
+}, 9000);
 </script>
 </body>
 </html>
