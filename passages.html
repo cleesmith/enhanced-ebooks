@@ -707,6 +707,18 @@
       color: var(--accent-dim);
     }
 
+    #splash-loading.splash-error {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.05rem;
+      letter-spacing: normal;
+      text-transform: none;
+      line-height: 1.7;
+      color: var(--text);
+      max-width: 34ch;
+      text-align: center;
+      padding: 0 1.5rem;
+    }
+
     #begin-btn {
       background: transparent;
       border: 1px solid var(--accent-dim);
@@ -777,14 +789,41 @@ const storyEl = document.getElementById("story");
 const ytIframes = [];
 let beginReady = false;
 let firstIframe = null;
+let primerOk = false;       // the primer (always-available video) has replied
+let outageShown = false;    // an outage message is currently displayed
 
 function revealBegin() {
-  if (beginReady) return;
+  if (beginReady || outageShown) return;
   beginReady = true;
   const ld = document.getElementById("splash-loading");
   if (ld) ld.style.display = "none";
   const btn = document.getElementById("begin-btn");
   if (btn) btn.style.display = "";
+}
+
+// Shown when the primer never reports back and the story actually needs
+// YouTube — i.e. the reader is offline or YouTube is unreachable. The
+// primer video is always available, so a silent player can only mean an
+// infrastructure problem, not a bad video.
+function showOutage(message) {
+  if (beginReady || outageShown) return;   // already proceeded or already shown
+  outageShown = true;
+  const splash = document.getElementById("splash");
+  if (splash) splash.classList.remove("hidden");
+  const ld = document.getElementById("splash-loading");
+  if (ld) {
+    ld.classList.add("splash-error");
+    ld.style.display = "";
+    ld.innerHTML = message ||
+      "Can\u2019t reach YouTube right now.<br>" +
+      "Check your internet connection, then reload the page.";
+  }
+  const btn = document.getElementById("begin-btn");
+  if (btn) {
+    btn.textContent = "Reload";
+    btn.onclick = function () { location.reload(); };
+    btn.style.display = "";
+  }
 }
 
 function ytSend(iframe, payload) {
@@ -828,7 +867,76 @@ function stopAllPlayers() {
   });
 }
 
+// ---- Prime the pump -------------------------------------------------
+// A known, always-available video loaded hidden and silent at startup.
+// It is never shown or played; just loading its embed makes the browser
+// do YouTube's one-time cold-start work — DNS, TLS, and caching the
+// player's scripts — and opens a connection the real passage videos can
+// reuse. That makes every later video (and the entry video too) boot
+// noticeably faster. To turn this off, delete the primePump() call near
+// the bottom. To make it conditional on a text-only start instead,
+// change that call to:  if (!firstIframe) primePump();
+const PRIME_VIDEO_ID = "wxcmEhC4-oY";
+let primerIframe = null;
+
+function primePump() {
+  if (primerIframe) return;
+  const holder = document.createElement("div");
+  holder.setAttribute("aria-hidden", "true");
+  holder.style.cssText =
+    "position:fixed;left:-9999px;top:-9999px;width:1px;height:1px;" +
+    "opacity:0;pointer-events:none;overflow:hidden;";
+
+  const iframe = document.createElement("iframe");
+  // autoplay stays off and audio is muted: we want the player warmed, not
+  // streaming the whole clip and wasting the reader's bandwidth.
+  iframe.src = "https://www.youtube.com/embed/" + PRIME_VIDEO_ID +
+    "?enablejsapi=1&autoplay=0&mute=1&controls=0&rel=0&modestbranding=1" +
+    "&iv_load_policy=3&playsinline=1";
+  iframe.title = "preload";
+  iframe.setAttribute("frameborder", "0");
+  iframe.setAttribute("tabindex", "-1");
+  iframe.setAttribute("aria-hidden", "true");
+
+  holder.appendChild(iframe);
+  document.body.appendChild(holder);
+  primerIframe = iframe;
+
+  // Nudge the embedded player so it fully initializes (which is what gets
+  // its scripts cached and its connection established), then stop nudging.
+  // The primer is deliberately NOT added to ytIframes, so it never affects
+  // the splash/Begin logic or the message handler below.
+  let tries = 0;
+  const poll = setInterval(function () {
+    try {
+      if (iframe.contentWindow) {
+        iframe.contentWindow.postMessage(
+          JSON.stringify({ event: "listening" }), "*");
+      }
+    } catch (e) {}
+    if (++tries > 20) clearInterval(poll);   // ~5s of warming, then leave it idle
+  }, 250);
+}
+
 window.addEventListener("message", (e) => {
+  // Is this the primer (our always-available canary)? Any reply from it means
+  // YouTube is reachable; an onError from it means a real infrastructure
+  // problem. The primer is intentionally not in ytIframes, so handle it here.
+  if (primerIframe && e.source === primerIframe.contentWindow) {
+    let pd = e.data;
+    if (typeof pd === "string") { try { pd = JSON.parse(pd); } catch (err) { return; } }
+    if (!pd || typeof pd !== "object") return;
+    if (pd.event === "onError") {            // player loaded but reported trouble
+      showOutage();
+      return;
+    }
+    primerOk = true;                         // YouTube confirmed reachable
+    // Text-only start whose later passages use video: now that we know
+    // YouTube is up, it is safe to let the reader begin.
+    if (!beginReady && !firstIframe) revealBegin();
+    return;
+  }
+
   // which of our iframes sent this message?
   let matched = null;
   for (const iframe of ytIframes) {
@@ -978,12 +1086,40 @@ function buildChoices(choices) {
   return wrap;
 }
 
+// Prime YouTube's machinery first (see primePump above) so the connection
+// and player scripts are already warm when the real videos load — this
+// speeds up the entry video as well as every later passage video.
+primePump();
+
 // Preload the start passage now (hidden behind the splash) so its video is
 // loaded and ready before the reader ever sees a Begin button.
 renderPassage("start", 0, false);
 firstIframe = ytIframes[0] || null;
-if (!firstIframe) revealBegin();          // text-only start: nothing to wait for
-setTimeout(revealBegin, 6000);            // safety net if the player never reports
+
+// Does this story use YouTube at all? If no passage has a video, an outage
+// is irrelevant and we should never block the reader with a YouTube error.
+const storyHasVideo = Object.keys(story).some(function (k) {
+  return story[k] && story[k].video;
+});
+
+if (!storyHasVideo) {
+  revealBegin();              // pure text story: nothing depends on YouTube
+}
+// If there is an entry video, its first reply reveals Begin (see handler).
+// If the start is text-only but later passages use video, the primer's first
+// reply reveals Begin (see handler) once YouTube is confirmed reachable.
+
+// Decision / safety timeout. By now the primer canary should have answered if
+// YouTube is reachable. If it has not and this story needs video, the reader
+// is offline or YouTube is down — show a clear error instead of a dead Begin.
+setTimeout(function () {
+  if (beginReady || outageShown) return;     // already resolved one way or another
+  if (primerOk || !storyHasVideo) {
+    revealBegin();                           // YouTube reachable, or no video needed
+  } else {
+    showOutage();                            // no internet / YouTube unreachable
+  }
+}, 9000);
 </SCRIPT_TAG>
 </body>
 </html>
@@ -1065,7 +1201,7 @@ setTimeout(revealBegin, 6000);            // safety net if the player never repo
             </div>
             <div class="field">
               <label class="field-label">YouTube Video ID</label>
-              <input type="text" data-p="${i}" data-field="video" value="${esc(p.video)}" placeholder="dQw4w9WgXcQ (or paste a URL)">
+              <input type="text" data-p="${i}" data-field="video" value="${esc(p.video)}" placeholder="optional &mdash; ID or pasted URL">
             </div>
           </div>
           <div class="row single">
@@ -1077,7 +1213,7 @@ setTimeout(revealBegin, 6000);            // safety net if the player never repo
           <div class="row single">
             <div class="field">
               <label class="field-label">Narrative Text</label>
-              <textarea data-p="${i}" data-field="text" placeholder="The narrative text. Leave a blank line between paragraphs.">${esc(p.text)}</textarea>
+              <textarea data-p="${i}" data-field="text" placeholder="optional &mdash; the narrative text. Leave a blank line between paragraphs.">${esc(p.text)}</textarea>
             </div>
           </div>
 
@@ -1135,6 +1271,14 @@ setTimeout(revealBegin, 6000);            // safety net if the player never repo
       errs.push('There must be one passage with the ID "start" \u2014 it is the entry point.');
 
     state.passages.forEach((p, i) => {
+      const hasVideo   = !!p.video.trim();
+      const hasText    = !!p.text.trim();
+      const hasChoices = p.choices.length > 0;
+      if (!hasVideo && !hasText) {
+        errs.push('Passage ' + (i + 1) + ' (' + (p.id || "?") + ') needs a video or some text' +
+          (hasChoices ? ' \u2014 choices on their own are not enough.' : '.'));
+      }
+
       p.choices.forEach((c, j) => {
         const where = 'Passage ' + (i + 1) + ' (' + (p.id || "?") + '), choice ' + (j + 1);
         if (!c.label.trim()) warns.push(where + " has no label.");
