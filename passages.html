@@ -970,15 +970,7 @@ window.addEventListener("message", (e) => {
 
   if (state === 1) {                                  // playing
     if (matched._poll) { clearInterval(matched._poll); matched._poll = null; }
-    // YouTube briefly flashes a center play/pause button the instant a video
-    // starts. That button is inside the cross-origin iframe, so we cannot
-    // hide it directly. Instead we keep the iframe invisible (showing our own
-    // thumbnail poster) for a beat after playback begins, letting the flash
-    // fade before the video itself crosses into view.
-    if (!frame.classList.contains("yt-ready") && !matched._revealQueued) {
-      matched._revealQueued = true;
-      setTimeout(function () { frame.classList.add("yt-ready"); }, 900);
-    }
+    if (!frame.classList.contains("yt-ready")) frame.classList.add("yt-ready");
   } else if (state === 0) {                           // ended
     frame.classList.remove("yt-ready");
   }
