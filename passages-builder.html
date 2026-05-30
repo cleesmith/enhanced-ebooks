@@ -279,6 +279,167 @@
     }
 
     .hidden-input { display: none; }
+
+    /* ===== Story Map ================================================== */
+    #openMapBtn { position: fixed; top: 1rem; right: 1.5rem; z-index: 650; }
+
+    #mapView {
+      position: fixed; inset: 0;
+      background: var(--bg);
+      z-index: 550;
+      display: none;
+    }
+    #mapView.open { display: block; }
+
+    .map-toolbar {
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 48px;
+      display: flex; align-items: center; gap: 0.5rem;
+      padding: 0 1rem;
+      background: var(--surface-2);
+      border-bottom: 1px solid var(--border);
+      z-index: 3;
+    }
+    .map-toolbar .spacer { flex: 1; }
+    .map-toolbar .zoom-level {
+      font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.15em;
+      color: var(--text-dim); min-width: 3.4rem; text-align: center;
+    }
+    .map-hint {
+      font-size: 0.72rem; color: var(--text-dim); font-style: italic;
+      margin-left: 0.6rem; white-space: nowrap; overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    @media (max-width: 760px) { .map-hint { display: none; } }
+
+    #mapCanvas {
+      position: absolute; top: 48px; left: 0; right: 0; bottom: 0;
+      overflow: hidden; cursor: grab; touch-action: none;
+    }
+    #mapCanvas.panning { cursor: grabbing; }
+
+    #mapWorld {
+      position: absolute; top: 0; left: 0; width: 20000px; height: 20000px;
+      transform-origin: 0 0;
+      background-image:
+        linear-gradient(rgba(184,150,110,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(184,150,110,0.045) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    #mapEdges {
+      position: absolute; top: 0; left: 0; width: 20000px; height: 20000px;
+      pointer-events: none; overflow: visible;
+    }
+    .edge-line { stroke: #5a534a; stroke-width: 2; fill: none; }
+    .edge-hit  { stroke: transparent; stroke-width: 16; fill: none; pointer-events: stroke; }
+    .edge:hover .edge-line { stroke: var(--accent); }
+    .edge-broken .edge-line { stroke: var(--danger); stroke-dasharray: 5 4; }
+    .edge-label { fill: var(--danger); font-size: 11px; font-style: italic;
+                  font-family: 'EB Garamond', serif; }
+    .edge-del { pointer-events: auto; cursor: pointer; opacity: 0;
+                transition: opacity 0.15s; }
+    .edge:hover .edge-del { opacity: 1; }
+    .edge-del circle { fill: var(--surface); stroke: var(--danger); stroke-width: 1; }
+    .edge-del text { fill: var(--danger); font-size: 11px; text-anchor: middle;
+                     font-family: sans-serif; }
+
+    .start-stub  { stroke: var(--ok); stroke-width: 2.5; }
+    .start-dot   { fill: rgba(110,155,106,0.16); stroke: var(--ok); stroke-width: 1.5; }
+    .start-glyph { font-size: 16px; text-anchor: middle; }
+
+    .map-card {
+      position: absolute; width: 200px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 4px; padding: 0.55rem 0.65rem 0.6rem;
+      cursor: grab; user-select: none; overflow: hidden;
+    }
+    .map-card:hover { border-color: var(--accent-dim); }
+    .map-card.selected {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+    .map-card.is-start { border-left: 2px solid var(--ok); }
+    .mc-title {
+      font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.06em;
+      color: var(--accent); margin-bottom: 0.3rem; word-break: break-word;
+    }
+    .mc-title .mc-vid { color: var(--text-dim); font-size: 0.8em; margin-left: 0.3rem; }
+    .mc-body {
+      font-size: 0.78rem; line-height: 1.45; color: var(--text-dim);
+      max-height: 5.6rem; overflow: hidden;
+      display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical;
+    }
+    .mc-empty { font-style: italic; opacity: 0.55; }
+    .mc-handle {
+      position: absolute; right: -7px; top: 50%; transform: translateY(-50%);
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--surface-2); border: 1.5px solid var(--accent-dim);
+      cursor: crosshair; pointer-events: auto;
+    }
+    .mc-handle:hover { border-color: var(--accent); background: var(--accent); }
+
+    #mapWorld.low-detail .mc-body { display: none; }
+
+    .temp-wire { stroke: var(--accent); stroke-width: 2; fill: none;
+                 stroke-dasharray: 4 4; }
+
+    .passage-card.flash { animation: cardFlash 1.5s ease; }
+    @keyframes cardFlash {
+      0%, 30% { box-shadow: 0 0 0 2px var(--accent); }
+      100%    { box-shadow: 0 0 0 0 transparent; }
+    }
+
+    /* in-map passage editor */
+    #passageModal { position: fixed; inset: 0; z-index: 700; display: none; }
+    #passageModal.open { display: block; }
+    .pm-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.62); }
+    .pm-panel {
+      position: relative; z-index: 1;
+      width: min(680px, 92vw); margin: 4vh auto; max-height: 88vh;
+      display: flex; flex-direction: column;
+      background: var(--surface); border: 1px solid var(--border);
+      border-left: 2px solid var(--accent); border-radius: 4px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+    }
+    .pm-head {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.75rem 1rem; background: var(--surface-2);
+      border-bottom: 1px solid var(--border);
+    }
+    .pm-head .spacer { flex: 1; }
+    .pm-title {
+      font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--text-dim);
+    }
+    #pmBody { overflow-y: auto; flex: 1 1 auto; min-height: 0; }
+    .pm-foot {
+      padding: 0.85rem 1rem 1rem; display: flex; justify-content: flex-end;
+      gap: 0.6rem; border-top: 1px solid var(--border); background: var(--surface);
+    }
+
+    /* help panel */
+    #helpModal { position: fixed; inset: 0; z-index: 700; display: none; }
+    #helpModal.open { display: block; }
+    .help-body {
+      overflow-y: auto; flex: 1 1 auto; min-height: 0;
+      padding: 1.1rem 1.3rem 1.4rem; line-height: 1.7;
+    }
+    .help-body h3 {
+      font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--accent);
+      margin: 1.25rem 0 0.35rem; font-weight: 600;
+    }
+    .help-body h3:first-child { margin-top: 0; }
+    .help-body p { margin: 0 0 0.5rem; color: var(--text); }
+    .help-body p .lead { color: var(--text-dim); }
+    .help-body .tips { color: var(--text-dim); font-style: italic; }
+    .help-body code {
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      font-size: 0.82em; color: var(--accent);
+      background: var(--surface-2); padding: 0.05em 0.35em; border-radius: 3px;
+      font-style: normal;
+    }
   </style>
 </head>
 <body>
@@ -305,10 +466,121 @@
 </div>
 
 <div class="actionbar">
-  <button class="btn" id="saveConfig">Save Project</button>
-  <button class="btn" id="loadConfigBtn">Load Project</button>
+  <button class="btn" id="loadConfigBtn">Load</button>
+  <button class="btn" id="saveConfig">Save</button>
   <button class="btn btn-primary" id="generateBtn">Generate &amp; Download</button>
   <input type="file" id="loadConfig" class="hidden-input" accept=".json,application/json">
+</div>
+
+<button class="btn" id="openMapBtn">&#9638; Story Map</button>
+
+<div id="mapView">
+  <div class="map-toolbar">
+    <button class="btn btn-small" id="mapBack">&#8592; Passages</button>
+    <button class="btn btn-small" id="mapNew">+ New</button>
+    <button class="btn btn-small" id="mapEdit">Edit</button>
+    <button class="btn btn-small btn-danger" id="mapDelete">Delete</button>
+    <span class="map-hint">Drag a card to move &middot; drag its right-edge dot onto another card to link &middot; hover a line&rsquo;s &#10005; to unlink &middot; double-click to edit</span>
+    <span class="spacer"></span>
+    <button class="btn btn-small" id="mapZoomOut">&#8722;</button>
+    <span class="zoom-level" id="mapZoomLevel">100%</span>
+    <button class="btn btn-small" id="mapZoomIn">+</button>
+    <button class="btn btn-small" id="mapFit">Fit</button>
+    <button class="btn btn-small" id="mapHelp">? Help</button>
+  </div>
+  <div id="mapCanvas">
+    <div id="mapWorld">
+      <svg id="mapEdges" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arrowHead" viewBox="0 0 10 10" refX="9" refY="5"
+                  markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="context-stroke"></path>
+          </marker>
+        </defs>
+        <g id="edgeLayer"></g>
+        <g id="tempLayer"></g>
+      </svg>
+      <div id="cardLayer"></div>
+    </div>
+  </div>
+</div>
+
+<div id="passageModal">
+  <div class="pm-backdrop"></div>
+  <div class="pm-panel">
+    <div class="pm-head">
+      <span class="pm-title">Edit Passage</span>
+      <span class="spacer"></span>
+      <button class="btn btn-x" id="pmClose" title="Close">&#10005;</button>
+    </div>
+    <div class="card-body" id="pmBody"></div>
+    <div class="pm-foot">
+      <button class="btn btn-primary" id="pmDone">Done</button>
+    </div>
+  </div>
+</div>
+
+<div id="helpModal">
+  <div class="pm-backdrop"></div>
+  <div class="pm-panel">
+    <div class="pm-head">
+      <span class="pm-title">Story Map &mdash; Help</span>
+      <span class="spacer"></span>
+      <button class="btn btn-x" id="helpClose" title="Close">&#10005;</button>
+    </div>
+    <div class="help-body">
+      <h3>Getting around</h3>
+      <p>Drag any empty part of the canvas to move it, or scroll. Zoom with the
+         <code>&minus;</code> and <code>+</code> buttons, or hold Ctrl / &#8984; while
+         scrolling. <code>Fit</code> frames the whole story on screen.</p>
+
+      <h3>The cards</h3>
+      <p>Each card is one passage: its id at the top, a small &#9654; when it has a
+         video, and a preview of its text. The green rocket marks the entry passage &mdash;
+         the one whose id is <code>start</code>.</p>
+
+      <h3>Add a passage</h3>
+      <p>Click <code>+ New</code>. A fresh passage appears in the middle of the view,
+         selected and ready to edit. (You can also add passages from the Passages list.)</p>
+
+      <h3>Move passages</h3>
+      <p>Drag a card anywhere. Its position is remembered and saved with your project,
+         so the layout you arrange is the layout you get back.</p>
+
+      <h3>Link passages</h3>
+      <p>Drag the small dot on a card&rsquo;s right edge onto another card. That adds a
+         choice leading there, drawn as an arrow.</p>
+
+      <h3>Unlink</h3>
+      <p>Hover over a connecting line and click the <code>&#10005;</code> that appears at
+         its middle to remove that choice.</p>
+
+      <h3>Edit a passage</h3>
+      <p>Double-click a card, or select it and click <code>Edit</code>. A dialog opens
+         right over the map with every field &mdash; passage id, YouTube video id, heading,
+         narrative text, and choices. Close it with Done, Esc, or by clicking outside it.</p>
+
+      <h3>Delete a passage</h3>
+      <p>Select a card and click <code>Delete</code>, or press the Delete key. You&rsquo;ll
+         be asked to confirm.</p>
+
+      <h3>Broken links</h3>
+      <p>A red dashed line means a choice points to a passage that doesn&rsquo;t exist
+         (often after a rename or delete). Open the passage and fix or remove that choice.</p>
+
+      <h3>Saving &amp; exporting</h3>
+      <p>Load, Save, and Generate &amp; Download stay at the bottom while you&rsquo;re on the
+         map. Save keeps your layout; Generate &amp; Download builds the playable story page.</p>
+
+      <h3>Good to know</h3>
+      <p class="tips">To link, the target card must already exist &mdash; make it first, then
+         connect to it. New links start without a label, which you add in the editor. And a
+         passage becomes the beginning by being given the id <code>start</code>.</p>
+    </div>
+    <div class="pm-foot">
+      <button class="btn btn-primary" id="helpDone">Got it</button>
+    </div>
+  </div>
 </div>
 
 <!-- The story-engine template. -->
@@ -1139,7 +1411,8 @@ setTimeout(function () {
         id: "start",
         video: "", heading: "",
         text: "",
-        choices: []
+        choices: [],
+        x: 80, y: 80
       }
     ]
   };
@@ -1186,7 +1459,7 @@ setTimeout(function () {
   function passageCard(p, i, ids) {
     const isStart = p.id.trim() === "start";
     return `
-      <div class="passage-card ${isStart ? "is-start" : ""}">
+      <div class="passage-card ${isStart ? "is-start" : ""}" id="pcard-${i}">
         <div class="card-head">
           <span class="card-index">Passage ${i + 1}</span>
           ${isStart ? '<span class="start-badge">Entry</span>' : ""}
@@ -1449,7 +1722,7 @@ setTimeout(function () {
 
   // ---- Save / load project -------------------------------------------
   document.getElementById("saveConfig").addEventListener("click", function () {
-    download(slugify(state.title) + ".storyproject.json",
+    download(slugify(state.title) + ".json",
              JSON.stringify(state, null, 2), "application/json");
   });
 
@@ -1472,6 +1745,8 @@ setTimeout(function () {
             id: p.id || "",
             video: p.video || "", heading: p.heading || "",
             text: p.text || "",
+            x: (typeof p.x === "number" ? p.x : undefined),
+            y: (typeof p.y === "number" ? p.y : undefined),
             choices: Array.isArray(p.choices)
               ? p.choices.map(function (c) {
                   return { label: c.label || "", next: c.next || "" };
@@ -1482,6 +1757,11 @@ setTimeout(function () {
         state = { title: data.title || "My Story", passages: data.passages };
         titleInput.value = state.title;
         render();
+        if (mapView.classList.contains("open")) {
+          selectedIdx = null;
+          ensureLayout();
+          renderMap();
+        }
       } catch (err) {
         alert("Could not load file: " + err.message);
       }
@@ -1489,6 +1769,516 @@ setTimeout(function () {
     };
     reader.readAsText(file);
   });
+
+  // =====================================================================
+  //  STORY MAP  — a canvas view over the same `state`
+  // =====================================================================
+  const mapView    = document.getElementById("mapView");
+  const mapCanvas  = document.getElementById("mapCanvas");
+  const mapWorld   = document.getElementById("mapWorld");
+  const edgeLayer  = document.getElementById("edgeLayer");
+  const tempLayer  = document.getElementById("tempLayer");
+  const cardLayer  = document.getElementById("cardLayer");
+  const openMapBtn = document.getElementById("openMapBtn");
+  const zoomLevelEl = document.getElementById("mapZoomLevel");
+
+  const COL_W = 260, ROW_H = 190, MARGIN = 80;
+  let panX = 40, panY = 40, zoom = 1;
+  let selectedIdx = null;
+  let cardEls = [];
+  let mapEverOpened = false;
+
+  function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+
+  function applyTransform() {
+    mapWorld.style.transform =
+      "translate(" + panX + "px," + panY + "px) scale(" + zoom + ")";
+    mapWorld.classList.toggle("low-detail", zoom < 0.55);
+    zoomLevelEl.textContent = Math.round(zoom * 100) + "%";
+  }
+
+  function uniqueId() {
+    const used = {};
+    state.passages.forEach(function (p) { used[p.id.trim()] = true; });
+    let n = state.passages.length, id;
+    do { id = "passage-" + n; n++; } while (used[id]);
+    return id;
+  }
+
+  function indexById() {
+    const m = {};
+    state.passages.forEach(function (p, i) { m[p.id.trim()] = i; });
+    return m;
+  }
+
+  // Assign x/y to any passage that lacks them (old files, editor-added cards).
+  function ensureLayout() {
+    const missing = state.passages.filter(function (p) {
+      return typeof p.x !== "number" || typeof p.y !== "number";
+    });
+    if (!missing.length) return;
+
+    if (missing.length === state.passages.length) {
+      const idx = indexById();
+      const n = state.passages.length;
+      const depth = new Array(n).fill(-1);
+      const startI = (idx["start"] != null) ? idx["start"] : 0;
+      depth[startI] = 0;
+      const q = [startI];
+      while (q.length) {
+        const i = q.shift();
+        state.passages[i].choices.forEach(function (c) {
+          const t = idx[(c.next || "").trim()];
+          if (t != null && depth[t] < 0) { depth[t] = depth[i] + 1; q.push(t); }
+        });
+      }
+      let maxD = 0;
+      depth.forEach(function (d) { if (d > maxD) maxD = d; });
+      const rowAt = {};
+      state.passages.forEach(function (p, i) {
+        let d = depth[i] < 0 ? maxD + 1 : depth[i];
+        const r = rowAt[d] || 0; rowAt[d] = r + 1;
+        p.x = MARGIN + d * COL_W;
+        p.y = MARGIN + r * ROW_H;
+      });
+    } else {
+      let maxX = 0;
+      state.passages.forEach(function (p) {
+        if (typeof p.x === "number" && p.x > maxX) maxX = p.x;
+      });
+      const baseX = maxX + COL_W;
+      missing.forEach(function (p, k) { p.x = baseX; p.y = MARGIN + k * ROW_H; });
+    }
+  }
+
+  function rectOf(i) {
+    const el = cardEls[i], p = state.passages[i];
+    return { x: p.x, y: p.y, w: el ? el.offsetWidth : 200, h: el ? el.offsetHeight : 90 };
+  }
+
+  function edgePoint(r, tx, ty) {
+    const cx = r.x + r.w / 2, cy = r.y + r.h / 2;
+    const dx = tx - cx, dy = ty - cy;
+    if (dx === 0 && dy === 0) return { x: cx, y: cy };
+    const s = 1 / Math.max(Math.abs(dx) / (r.w / 2), Math.abs(dy) / (r.h / 2));
+    return { x: cx + dx * s, y: cy + dy * s };
+  }
+
+  function curve(a, b) {
+    const c = Math.max(40, Math.abs(b.x - a.x) * 0.5);
+    return "M " + a.x + " " + a.y +
+           " C " + (a.x + c) + " " + a.y + ", " +
+                   (b.x - c) + " " + b.y + ", " + b.x + " " + b.y;
+  }
+
+  function buildEdges() {
+    const idx = indexById();
+    let s = "";
+    state.passages.forEach(function (p, i) {
+      const rs = rectOf(i);
+      const sc = { x: rs.x + rs.w / 2, y: rs.y + rs.h / 2 };
+      let broken = 0;
+      p.choices.forEach(function (c, j) {
+        const next = (c.next || "").trim();
+        if (!next) return;                       // unset target: draw nothing
+        const t = idx[next];
+        if (t != null) {
+          const rt = rectOf(t);
+          const tc = { x: rt.x + rt.w / 2, y: rt.y + rt.h / 2 };
+          const a = edgePoint(rs, tc.x, tc.y);
+          const b = edgePoint(rt, sc.x, sc.y);
+          const d = curve(a, b);
+          const mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2;
+          s += '<g class="edge">' +
+                 '<path class="edge-hit" d="' + d + '"></path>' +
+                 '<path class="edge-line" d="' + d + '" marker-end="url(#arrowHead)"></path>' +
+                 '<g class="edge-del" data-p="' + i + '" data-c="' + j +
+                    '" transform="translate(' + mx + ',' + my + ')">' +
+                   '<circle r="9"></circle><text y="4">\u2715</text></g>' +
+               '</g>';
+        } else {
+          const a = { x: rs.x + rs.w, y: rs.y + 18 + broken * 22 };
+          const b = { x: a.x + 70, y: a.y };
+          broken++;
+          const d = curve(a, b);
+          const mx = (a.x + b.x) / 2;
+          s += '<g class="edge edge-broken">' +
+                 '<path class="edge-hit" d="' + d + '"></path>' +
+                 '<path class="edge-line" d="' + d + '" marker-end="url(#arrowHead)"></path>' +
+                 '<text class="edge-label" x="' + (b.x + 6) + '" y="' + (b.y + 4) + '">' +
+                   esc(next) + '?</text>' +
+                 '<g class="edge-del" data-p="' + i + '" data-c="' + j +
+                    '" transform="translate(' + mx + ',' + (a.y - 12) + ')">' +
+                   '<circle r="9"></circle><text y="4">\u2715</text></g>' +
+               '</g>';
+        }
+      });
+    });
+
+    const startI = idx["start"];
+    if (startI != null) {
+      const r = rectOf(startI), cy = r.y + r.h / 2;
+      s += '<g class="start-marker">' +
+             '<line class="start-stub" x1="' + (r.x - 20) + '" y1="' + cy +
+               '" x2="' + r.x + '" y2="' + cy + '"></line>' +
+             '<circle class="start-dot" cx="' + (r.x - 36) + '" cy="' + cy + '" r="15"></circle>' +
+             '<text class="start-glyph" x="' + (r.x - 36) + '" y="' + (cy + 5) +
+               '">\uD83D\uDE80</text></g>';
+    }
+    edgeLayer.innerHTML = s;
+  }
+
+  function cardHTML(p, i, idx) {
+    const isStart = p.id.trim() === "start";
+    const title = esc(p.id.trim() || "(untitled)") +
+      (p.video.trim() ? ' <span class="mc-vid">\u25B6</span>' : "");
+    const h = p.heading.trim(), tx = p.text.trim();
+    let body = "";
+    if (h) body += "<strong>" + esc(h) + "</strong> ";
+    body += esc(tx);
+    if (!h && !tx) body = '<span class="mc-empty">empty passage</span>';
+    return '<div class="map-card ' + (isStart ? "is-start " : "") +
+        (i === selectedIdx ? "selected" : "") +
+        '" data-idx="' + i + '" style="left:' + p.x + 'px;top:' + p.y + 'px">' +
+        '<div class="mc-title">' + title + '</div>' +
+        '<div class="mc-body">' + body + '</div>' +
+        '<div class="mc-handle" title="Drag onto another card to link"></div>' +
+      '</div>';
+  }
+
+  function renderMap() {
+    ensureLayout();
+    const idx = indexById();
+    cardLayer.innerHTML = state.passages.map(function (p, i) {
+      return cardHTML(p, i, idx);
+    }).join("");
+    cardEls = Array.prototype.slice.call(cardLayer.children);
+    buildEdges();
+    applyTransform();
+  }
+
+  function selectNode(i) {
+    selectedIdx = i;
+    cardEls.forEach(function (el, k) { el.classList.toggle("selected", k === i); });
+  }
+  function clearSelection() {
+    selectedIdx = null;
+    cardEls.forEach(function (el) { el.classList.remove("selected"); });
+  }
+
+  // ---- view toggling --------------------------------------------------
+  function openMap() {
+    ensureLayout();
+    mapView.classList.add("open");
+    openMapBtn.style.display = "none";
+    renderMap();
+    if (!mapEverOpened) { mapEverOpened = true; fitView(); }
+  }
+  function closeMap(focusIndex) {
+    mapView.classList.remove("open");
+    openMapBtn.style.display = "";
+    render();                                    // refresh card editor from state
+    if (typeof focusIndex === "number") {
+      const card = document.getElementById("pcard-" + focusIndex);
+      if (card) {
+        card.scrollIntoView({ behavior: "smooth", block: "center" });
+        card.classList.add("flash");
+        setTimeout(function () { card.classList.remove("flash"); }, 1500);
+      }
+    }
+  }
+  openMapBtn.addEventListener("click", openMap);
+  document.getElementById("mapBack").addEventListener("click", function () { closeMap(); });
+  document.getElementById("mapEdit").addEventListener("click", function () {
+    if (selectedIdx == null) { alert("Select a card first."); return; }
+    openPassageModal(selectedIdx);
+  });
+  document.getElementById("mapDelete").addEventListener("click", function () {
+    if (selectedIdx == null) { alert("Select a card first."); return; }
+    if (state.passages.length === 1) { alert("A story needs at least one passage."); return; }
+    const p = state.passages[selectedIdx];
+    if (!confirm('Delete passage "' + (p.id.trim() || "?") +
+        '"? Links pointing to it will become broken.')) return;
+    state.passages.splice(selectedIdx, 1);
+    clearSelection();
+    renderMap();
+    renderIssues();
+  });
+  document.getElementById("mapNew").addEventListener("click", function () {
+    const cx = (mapCanvas.clientWidth / 2 - panX) / zoom;
+    const cy = (mapCanvas.clientHeight / 2 - panY) / zoom;
+    state.passages.push({
+      id: uniqueId(), video: "", heading: "", text: "", choices: [],
+      x: Math.max(10, cx - 100), y: Math.max(10, cy - 40)
+    });
+    renderMap();
+    selectNode(state.passages.length - 1);
+    renderIssues();
+  });
+
+  // ---- zoom -----------------------------------------------------------
+  function zoomAt(clientX, clientY, factor) {
+    const r = mapCanvas.getBoundingClientRect();
+    const px = clientX - r.left, py = clientY - r.top;
+    const wx = (px - panX) / zoom, wy = (py - panY) / zoom;
+    const nz = clamp(zoom * factor, 0.25, 1.6);
+    panX = px - wx * nz; panY = py - wy * nz; zoom = nz;
+    applyTransform();
+  }
+  function zoomCenter(factor) {
+    const r = mapCanvas.getBoundingClientRect();
+    zoomAt(r.left + mapCanvas.clientWidth / 2, r.top + mapCanvas.clientHeight / 2, factor);
+  }
+  document.getElementById("mapZoomIn").addEventListener("click", function () { zoomCenter(1.2); });
+  document.getElementById("mapZoomOut").addEventListener("click", function () { zoomCenter(1 / 1.2); });
+  document.getElementById("mapFit").addEventListener("click", fitView);
+
+  function fitView() {
+    if (!state.passages.length) return;
+    ensureLayout();
+    let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+    state.passages.forEach(function (p, i) {
+      const el = cardEls[i];
+      const w = el ? el.offsetWidth : 200, h = el ? el.offsetHeight : 90;
+      minX = Math.min(minX, p.x); minY = Math.min(minY, p.y);
+      maxX = Math.max(maxX, p.x + w); maxY = Math.max(maxY, p.y + h);
+    });
+    const pad = 90;
+    minX -= pad + 40; minY -= pad; maxX += pad; maxY += pad;   // extra left pad for rocket
+    const cw = mapCanvas.clientWidth, ch = mapCanvas.clientHeight;
+    const z = clamp(Math.min(cw / (maxX - minX), ch / (maxY - minY)), 0.25, 1.4);
+    zoom = z;
+    panX = (cw - (maxX - minX) * z) / 2 - minX * z;
+    panY = (ch - (maxY - minY) * z) / 2 - minY * z;
+    applyTransform();
+  }
+
+  // ---- pointer interaction -------------------------------------------
+  let drag = null, rafPending = false;
+
+  function scheduleEdges() {
+    if (rafPending) return;
+    rafPending = true;
+    requestAnimationFrame(function () { rafPending = false; buildEdges(); });
+  }
+  function worldFromClient(cx, cy) {
+    const r = mapCanvas.getBoundingClientRect();
+    return { x: (cx - r.left - panX) / zoom, y: (cy - r.top - panY) / zoom };
+  }
+
+  mapCanvas.addEventListener("pointerdown", function (e) {
+    if (e.target.closest(".edge-del")) return;        // delete handled on click
+    const handle = e.target.closest(".mc-handle");
+    const card = e.target.closest(".map-card");
+
+    if (handle && card) {
+      drag = { mode: "wire", src: +card.dataset.idx };
+      e.preventDefault();
+      return;
+    }
+    if (card) {
+      const i = +card.dataset.idx, p = state.passages[i];
+      drag = { mode: "node", idx: i, moved: false,
+               sx: e.clientX, sy: e.clientY, ox: p.x, oy: p.y };
+      card.style.cursor = "grabbing";
+      e.preventDefault();
+      return;
+    }
+    drag = { mode: "pan", sx: e.clientX, sy: e.clientY, opx: panX, opy: panY };
+    mapCanvas.classList.add("panning");
+  });
+
+  window.addEventListener("pointermove", function (e) {
+    if (!drag) return;
+    if (drag.mode === "pan") {
+      panX = drag.opx + (e.clientX - drag.sx);
+      panY = drag.opy + (e.clientY - drag.sy);
+      applyTransform();
+    } else if (drag.mode === "node") {
+      const dx = e.clientX - drag.sx, dy = e.clientY - drag.sy;
+      if (Math.abs(dx) + Math.abs(dy) > 3) drag.moved = true;
+      const p = state.passages[drag.idx];
+      p.x = Math.max(10, drag.ox + dx / zoom);
+      p.y = Math.max(10, drag.oy + dy / zoom);
+      const el = cardEls[drag.idx];
+      el.style.left = p.x + "px"; el.style.top = p.y + "px";
+      scheduleEdges();
+    } else if (drag.mode === "wire") {
+      const w = worldFromClient(e.clientX, e.clientY);
+      const a = edgePoint(rectOf(drag.src), w.x, w.y);
+      tempLayer.innerHTML =
+        '<path class="temp-wire" d="' + curve(a, w) + '" marker-end="url(#arrowHead)"></path>';
+    }
+  });
+
+  window.addEventListener("pointerup", function (e) {
+    if (!drag) return;
+    const d = drag; drag = null;
+    if (d.mode === "pan") {
+      mapCanvas.classList.remove("panning");
+    } else if (d.mode === "node") {
+      const el = cardEls[d.idx]; if (el) el.style.cursor = "";
+      if (!d.moved) selectNode(d.idx);
+    } else if (d.mode === "wire") {
+      tempLayer.innerHTML = "";
+      const el = document.elementFromPoint(e.clientX, e.clientY);
+      const targetCard = el && el.closest(".map-card");
+      if (targetCard) {
+        const t = +targetCard.dataset.idx;
+        if (t !== d.src) {
+          state.passages[d.src].choices.push({ label: "", next: state.passages[t].id.trim() });
+          renderMap();
+          renderIssues();
+        }
+      }
+    }
+  });
+
+  mapCanvas.addEventListener("click", function (e) {
+    if (!e.target.closest(".map-card") && !e.target.closest(".edge-del")) clearSelection();
+  });
+  cardLayer.addEventListener("dblclick", function (e) {
+    const card = e.target.closest(".map-card");
+    if (card) openPassageModal(+card.dataset.idx);
+  });
+  edgeLayer.addEventListener("click", function (e) {
+    const del = e.target.closest(".edge-del");
+    if (!del) return;
+    state.passages[+del.dataset.p].choices.splice(+del.dataset.c, 1);
+    renderMap();
+    renderIssues();
+  });
+
+  mapCanvas.addEventListener("wheel", function (e) {
+    e.preventDefault();
+    if (e.ctrlKey || e.metaKey) {
+      zoomAt(e.clientX, e.clientY, e.deltaY < 0 ? 1.1 : 1 / 1.1);
+    } else {
+      panX -= e.deltaX; panY -= e.deltaY; applyTransform();
+    }
+  }, { passive: false });
+
+  window.addEventListener("keydown", function (e) {
+    const hm = document.getElementById("helpModal");
+    if (hm && hm.classList.contains("open")) {
+      if (e.key === "Escape") { e.preventDefault(); closeHelp(); }
+      return;
+    }
+    if (passageModal.classList.contains("open")) {
+      if (e.key === "Escape") { e.preventDefault(); closePassageModal(); }
+      return;
+    }
+    if (!mapView.classList.contains("open")) return;
+    const tag = (document.activeElement && document.activeElement.tagName) || "";
+    if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+    if ((e.key === "Delete" || e.key === "Backspace") && selectedIdx != null) {
+      e.preventDefault();
+      document.getElementById("mapDelete").click();
+    }
+  });
+
+  // ---- in-map passage editor (modal) ---------------------------------
+  const passageModal = document.getElementById("passageModal");
+  const pmBody = document.getElementById("pmBody");
+  let editIdx = null;
+
+  function pmChoiceRow(c, j, ids) {
+    const opts = ids.slice();
+    if (c.next && opts.indexOf(c.next) === -1) opts.push(c.next);
+    const optHTML = ['<option value="">&mdash; choose target &mdash;</option>']
+      .concat(opts.map(function (id) {
+        return '<option value="' + esc(id) + '"' + (id === c.next ? " selected" : "") +
+          ">" + esc(id) + "</option>";
+      })).join("");
+    return '<div class="choice-row">' +
+        '<div class="field"><label class="field-label">Choice Label</label>' +
+          '<input type="text" data-c="' + j + '" data-cf="label" value="' + esc(c.label) +
+          '" placeholder="What the reader clicks"></div>' +
+        '<div class="field"><label class="field-label">Goes To Passage</label>' +
+          '<select data-c="' + j + '" data-cf="next">' + optHTML + '</select></div>' +
+        '<button class="btn btn-x" data-act="del-choice" data-c="' + j +
+          '" title="Delete choice">&#10005;</button>' +
+      '</div>';
+  }
+
+  function renderPmBody() {
+    const p = state.passages[editIdx];
+    const ids = state.passages.map(function (q) { return q.id.trim(); });
+    pmBody.innerHTML =
+      '<div class="row">' +
+        '<div class="field"><label class="field-label">Passage ID</label>' +
+          '<input type="text" data-field="id" value="' + esc(p.id) + '" placeholder="unique-id"></div>' +
+        '<div class="field"><label class="field-label">YouTube Video ID</label>' +
+          '<input type="text" data-field="video" value="' + esc(p.video) +
+          '" placeholder="optional &mdash; ID or pasted URL"></div>' +
+      '</div>' +
+      '<div class="row single"><div class="field"><label class="field-label">Heading</label>' +
+        '<input type="text" data-field="heading" value="' + esc(p.heading) +
+        '" placeholder="optional small label above the text"></div></div>' +
+      '<div class="row single"><div class="field"><label class="field-label">Narrative Text</label>' +
+        '<textarea data-field="text" placeholder="optional &mdash; the narrative text. Leave a blank line between paragraphs.">' +
+        esc(p.text) + '</textarea></div></div>' +
+      '<div class="choices-block"><span class="section-label">Choices</span>' +
+        p.choices.map(function (c, j) { return pmChoiceRow(c, j, ids); }).join("") +
+        (p.choices.length === 0
+          ? '<p class="ending-note">No choices &mdash; this passage is an ending.</p>' : "") +
+        '<button class="btn btn-small" data-act="add-choice">+ Add Choice</button>' +
+      '</div>';
+  }
+
+  function openPassageModal(idx) {
+    if (idx == null) { alert("Select a card first."); return; }
+    editIdx = idx;
+    renderPmBody();
+    passageModal.classList.add("open");
+    const first = pmBody.querySelector("input,textarea");
+    if (first) first.focus();
+  }
+  function closePassageModal() {
+    passageModal.classList.remove("open");
+    const idx = editIdx;
+    editIdx = null;
+    renderMap();
+    renderIssues();
+    if (idx != null && idx < state.passages.length) selectNode(idx);
+  }
+
+  pmBody.addEventListener("input", function (e) {
+    if (editIdx == null) return;
+    const t = e.target, p = state.passages[editIdx];
+    if (t.dataset.cf) p.choices[+t.dataset.c][t.dataset.cf] = t.value;
+    else if (t.dataset.field === "id") p.id = t.value;
+    else if (FIELDS.indexOf(t.dataset.field) !== -1) p[t.dataset.field] = t.value;
+  });
+  pmBody.addEventListener("change", function (e) {
+    if (editIdx == null) return;
+    const t = e.target, p = state.passages[editIdx];
+    if (t.dataset.field === "video") {
+      const cleaned = extractVideoId(t.value);
+      if (cleaned !== t.value) { p.video = cleaned; t.value = cleaned; }
+    }
+  });
+  pmBody.addEventListener("click", function (e) {
+    if (editIdx == null) return;
+    const btn = e.target.closest("button[data-act]");
+    if (!btn) return;
+    const p = state.passages[editIdx];
+    if (btn.dataset.act === "add-choice") { p.choices.push({ label: "", next: "" }); renderPmBody(); }
+    else if (btn.dataset.act === "del-choice") { p.choices.splice(+btn.dataset.c, 1); renderPmBody(); }
+  });
+
+  document.getElementById("pmClose").addEventListener("click", closePassageModal);
+  document.getElementById("pmDone").addEventListener("click", closePassageModal);
+  passageModal.querySelector(".pm-backdrop").addEventListener("click", closePassageModal);
+
+  // ---- help panel -----------------------------------------------------
+  function openHelp()  { document.getElementById("helpModal").classList.add("open"); }
+  function closeHelp() { document.getElementById("helpModal").classList.remove("open"); }
+  document.getElementById("mapHelp").addEventListener("click", openHelp);
+  document.getElementById("helpClose").addEventListener("click", closeHelp);
+  document.getElementById("helpDone").addEventListener("click", closeHelp);
+  document.getElementById("helpModal")
+    .querySelector(".pm-backdrop").addEventListener("click", closeHelp);
 
   // ---- Go -------------------------------------------------------------
   render();

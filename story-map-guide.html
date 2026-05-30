@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Story Map — Quick Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #080808;
+      --surface: #101010;
+      --surface-2: #161412;
+      --text: #d4c9b8;
+      --text-dim: #7a7068;
+      --accent: #b8966e;
+      --accent-dim: #5c4a32;
+      --border: #2a2420;
+      --ok: #6e9b6a;
+      --danger: #a8584a;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      padding: 3.5rem 1.5rem 5rem;
+    }
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 1000; opacity: 0.4;
+    }
+
+    .wrap { max-width: 720px; margin: 0 auto; }
+
+    header { margin-bottom: 2.5rem; }
+    h1 {
+      font-family: 'Cinzel', serif; font-weight: 600;
+      font-size: 1.6rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--text);
+    }
+    .rule { width: 60px; height: 1px; background: var(--accent-dim); margin: 1rem 0; }
+    .intro { color: var(--text-dim); font-style: italic; max-width: 56ch; }
+
+    section { margin-top: 2rem; }
+    h2 {
+      font-family: 'Cinzel', serif; font-weight: 600;
+      font-size: 0.66rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 0.45rem;
+    }
+    p { margin-bottom: 0.65rem; }
+    p + p { margin-top: 0; }
+
+    .tips {
+      margin-top: 2.75rem;
+      border: 1px solid var(--border); border-left: 2px solid var(--accent);
+      background: var(--surface); border-radius: 3px;
+      padding: 1.1rem 1.25rem;
+    }
+    .tips h2 { color: var(--text-dim); }
+    .tips p { color: var(--text-dim); margin-bottom: 0.55rem; }
+    .tips p:last-child { margin-bottom: 0; }
+
+    code {
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      font-size: 0.82em; color: var(--accent);
+      background: var(--surface-2); padding: 0.05em 0.38em; border-radius: 3px;
+    }
+    .rocket { color: var(--ok); }
+    .x { color: var(--danger); }
+
+    footer {
+      margin-top: 3.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border);
+      color: var(--text-dim); font-size: 0.85rem; font-style: italic;
+    }
+
+    @media print {
+      body { background: #fff; color: #1a1a1a; padding: 1.5rem; }
+      body::before { display: none; }
+      h1, h2 { color: #1a1a1a; }
+      .tips { background: #f5f2ec; border-color: #d8cfbf; }
+      code { background: #ece6da; color: #6b5230; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Story Map</h1>
+      <div class="rule"></div>
+      <p class="intro">A visual view of your whole story. Every passage is a card,
+        every choice is an arrow, and you can arrange, link, and edit it all on one canvas.</p>
+    </header>
+
+    <section>
+      <h2>Opening it</h2>
+      <p>From the Passages editor, click <code>Story Map</code> in the top-right corner.
+        To return, click <code>&#8592; Passages</code> on the map toolbar. The
+        <code>Load</code>, <code>Save</code>, and <code>Generate &amp; Download</code>
+        buttons stay available the whole time, so you never have to leave the map to save
+        or export.</p>
+    </section>
+
+    <section>
+      <h2>Reading the map</h2>
+      <p>Each card is a single passage, showing its id, a small &#9654; if it includes a
+        video, and a preview of its text. Choices appear as curved arrows from one card to
+        another. The <span class="rocket">green rocket</span> marks where the story begins
+        &mdash; the passage whose id is <code>start</code>.</p>
+    </section>
+
+    <section>
+      <h2>Getting around</h2>
+      <p>Drag any empty part of the canvas to pan, or scroll to move. Zoom with the
+        <code>&minus;</code> and <code>+</code> buttons or by holding Ctrl / &#8984; while
+        scrolling, and use <code>Fit</code> to frame the entire story at once. Zoom far out
+        and the cards simplify to just their titles.</p>
+    </section>
+
+    <section>
+      <h2>Adding a passage</h2>
+      <p>Click <code>+ New</code>. A fresh passage drops into the middle of the view,
+        already selected and ready to edit. (Passages can still be created from the Passages
+        list too &mdash; both build the same story.)</p>
+    </section>
+
+    <section>
+      <h2>Arranging passages</h2>
+      <p>Drag a card to move it. Where you place it is remembered and saved with your
+        project, so the layout you design comes back exactly as you left it. The arrows
+        follow as you move.</p>
+    </section>
+
+    <section>
+      <h2>Linking passages</h2>
+      <p>Each card has a small dot on its right edge. Drag from that dot onto another card
+        to create a link &mdash; this adds a choice in the first passage that leads to the
+        second.</p>
+    </section>
+
+    <section>
+      <h2>Removing a link</h2>
+      <p>Hover over a connecting arrow and a small <span class="x">&#10005;</span> appears
+        at its middle. Click it to remove that choice.</p>
+    </section>
+
+    <section>
+      <h2>Editing a passage</h2>
+      <p>Double-click a card, or select it and click <code>Edit</code>. A dialog opens right
+        over the map with every field: passage id, YouTube video id, heading, narrative
+        text, and the full list of choices. Close it with <code>Done</code>, the
+        <kbd>Esc</kbd> key, or by clicking outside it &mdash; the map stays open behind it.</p>
+    </section>
+
+    <section>
+      <h2>Deleting a passage</h2>
+      <p>Select a card and click <code>Delete</code>, or press the Delete key. You&rsquo;ll
+        be asked to confirm first.</p>
+    </section>
+
+    <section>
+      <h2>Spotting broken links</h2>
+      <p>A <span class="x">red dashed</span> line means a choice points to a passage that
+        no longer exists &mdash; usually after a rename or delete. Open that passage and fix
+        or remove the choice, and the warning clears.</p>
+    </section>
+
+    <div class="tips">
+      <h2>Good to know</h2>
+      <p>To link two passages, the target must already exist &mdash; create it first, then
+        connect to it. You can&rsquo;t drop a wire on empty canvas to make a passage.</p>
+      <p>A new link starts without a label. Add the words the reader will click by editing
+        the passage.</p>
+      <p>The entry point is whichever passage has the id <code>start</code>. A passage
+        becomes the beginning simply by being named <code>start</code>.</p>
+    </div>
+
+    <footer>
+      Story Map — quick guide. Tip: use your browser&rsquo;s Print to save this as a PDF.
+    </footer>
+  </div>
+</body>
+</html>
