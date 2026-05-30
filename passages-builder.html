@@ -243,14 +243,22 @@
     .actionbar {
       position: fixed;
       bottom: 0; left: 0; right: 0;
-      background: linear-gradient(to top, var(--bg) 70%, transparent);
-      padding: 1rem 1.5rem 1.4rem;
+      background: linear-gradient(to top, var(--bg) 78%, transparent);
+      padding: 0.8rem 1.5rem 1rem;
       z-index: 600;
       display: flex;
-      justify-content: center;
-      gap: 0.6rem;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
       flex-wrap: wrap;
     }
+    .ab-title {
+      display: flex; align-items: center; gap: 0.55rem;
+      flex: 1 1 240px; max-width: 440px; min-width: 0;
+    }
+    .ab-title .field-label { margin: 0; white-space: nowrap; }
+    .ab-title input[type=text] { margin: 0; min-width: 0; flex: 1; }
+    .ab-actions { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
 
     /* Issues panel */
     .issues {
@@ -450,12 +458,6 @@
     <p class="sub">Compose a branching story, then export it as a standalone player page.</p>
   </header>
 
-  <div class="title-block">
-    <label class="field-label" for="storyTitle">Story Title</label>
-    <input type="text" id="storyTitle" placeholder="My Story">
-    <p class="hint">Shown on the splash screen and in the toolbar of the exported page.</p>
-  </div>
-
   <div id="passages"></div>
 
   <div class="add-passage-row">
@@ -466,10 +468,17 @@
 </div>
 
 <div class="actionbar">
-  <button class="btn" id="loadConfigBtn">Load</button>
-  <button class="btn" id="saveConfig">Save</button>
-  <button class="btn btn-primary" id="generateBtn">Generate &amp; Download</button>
-  <input type="file" id="loadConfig" class="hidden-input" accept=".json,application/json">
+  <div class="ab-title">
+    <label class="field-label" for="storyTitle">Story Title</label>
+    <input type="text" id="storyTitle" placeholder="My Story"
+           title="Shown on the splash screen and in the toolbar of the exported page.">
+  </div>
+  <div class="ab-actions">
+    <button class="btn" id="loadConfigBtn">Load</button>
+    <button class="btn" id="saveConfig">Save</button>
+    <button class="btn btn-primary" id="generateBtn">Generate &amp; Download</button>
+    <input type="file" id="loadConfig" class="hidden-input" accept=".json,application/json">
+  </div>
 </div>
 
 <button class="btn" id="openMapBtn">&#9638; Story Map</button>
