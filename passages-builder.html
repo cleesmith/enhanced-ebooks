@@ -372,7 +372,11 @@
       font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.06em;
       color: var(--accent); margin-bottom: 0.3rem; word-break: break-word;
     }
-    .mc-title .mc-vid { color: var(--text-dim); font-size: 0.8em; margin-left: 0.3rem; }
+    .mc-title .mc-vid {
+      color: var(--text-dim); font-size: 0.88em; margin-left: 0.3rem;
+      cursor: pointer; padding: 0 0.12em;
+    }
+    .mc-title .mc-vid:hover { color: var(--accent); }
     .mc-body {
       font-size: 0.78rem; line-height: 1.45; color: var(--text-dim);
       max-height: 5.6rem; overflow: hidden;
@@ -447,6 +451,32 @@
       font-size: 0.82em; color: var(--accent);
       background: var(--surface-2); padding: 0.05em 0.35em; border-radius: 3px;
       font-style: normal;
+    }
+
+    /* preview button next to a video field */
+    .video-input-row { display: flex; gap: 0.4rem; align-items: stretch; }
+    .video-input-row input[type=text] { flex: 1; min-width: 0; }
+    .video-input-row .btn { white-space: nowrap; }
+
+    /* video preview popup — the frame mirrors the exported player exactly */
+    #videoModal { position: fixed; inset: 0; z-index: 700; display: none; }
+    #videoModal.open { display: block; }
+    #videoModal .pm-panel { width: min(880px, 94vw); }
+    .vp-body { padding: 1rem 1.1rem 1.1rem; }
+    #videoModal .video-frame {
+      position: relative; width: 100%; aspect-ratio: 16 / 9; height: auto;
+      overflow: hidden; background: #000 center / cover no-repeat;
+      border: 1px solid var(--border); border-radius: 3px;
+    }
+    #videoModal .video-frame iframe {
+      position: absolute; top: -34px; left: -2px;
+      width: calc(100% + 4px) !important; height: calc(100% + 68px) !important;
+      border: none; pointer-events: none;
+      opacity: 0; transition: opacity 0.6s ease;
+    }
+    #videoModal .video-frame.yt-ready iframe { opacity: 1; }
+    #videoModal .video-cover {
+      position: absolute; inset: 0; z-index: 3; background: transparent;
     }
   </style>
 </head>
@@ -544,9 +574,20 @@
          scrolling. <code>Fit</code> frames the whole story on screen.</p>
 
       <h3>The cards</h3>
-      <p>Each card is one passage: its id at the top, a small &#9654; when it has a
-         video, and a preview of its text. The green rocket marks the entry passage &mdash;
-         the one whose id is <code>start</code>.</p>
+      <p>Each card is one passage: its id at the top, a small &#9654; you can click to
+         preview its video, and a snippet of its text. The green rocket marks the entry
+         passage &mdash; the one whose id is <code>start</code>.</p>
+
+      <h3>Preview a video</h3>
+      <p>For any passage that has a video, click the &#9654; on its card &mdash; or the
+         <code>&#9654; Preview</code> button beside the video id when editing &mdash; to play
+         it in a popup. It&rsquo;s shown almost exactly as it will appear in the finished
+         story: filling the frame with the player&rsquo;s controls hidden, so you can confirm
+         you&rsquo;ve attached the right clip and that it actually plays. You may spot faint
+         YouTube player remnants near the edges that the published story trims away more
+         fully &mdash; that&rsquo;s expected, the preview just isn&rsquo;t cropped quite as
+         tightly. Close it anytime with the button, Esc, or by clicking outside &mdash; you
+         don&rsquo;t have to watch the whole thing.</p>
 
       <h3>Add a passage</h3>
       <p>Click <code>+ New</code>. A fresh passage appears in the middle of the view,
@@ -588,6 +629,23 @@
     </div>
     <div class="pm-foot">
       <button class="btn btn-primary" id="helpDone">Got it</button>
+    </div>
+  </div>
+</div>
+
+<div id="videoModal">
+  <div class="pm-backdrop"></div>
+  <div class="pm-panel">
+    <div class="pm-head">
+      <span class="pm-title">Video Preview</span>
+      <span class="spacer"></span>
+      <button class="btn btn-x" id="vpClose" title="Close">&#10005;</button>
+    </div>
+    <div class="vp-body">
+      <div class="video-frame" id="vpFrame"></div>
+    </div>
+    <div class="pm-foot">
+      <button class="btn btn-primary" id="vpDone">Close</button>
     </div>
   </div>
 </div>
@@ -1483,7 +1541,10 @@ setTimeout(function () {
             </div>
             <div class="field">
               <label class="field-label">YouTube Video ID</label>
-              <input type="text" data-p="${i}" data-field="video" value="${esc(p.video)}" placeholder="optional &mdash; ID or pasted URL">
+              <div class="video-input-row">
+                <input type="text" data-p="${i}" data-field="video" value="${esc(p.video)}" placeholder="optional &mdash; ID or pasted URL">
+                <button class="btn btn-small" data-act="preview-video" data-p="${i}" title="Preview this video">&#9654; Preview</button>
+              </div>
             </div>
           </div>
           <div class="row single">
@@ -1665,6 +1726,8 @@ setTimeout(function () {
     } else if (act === "del-choice") {
       state.passages[pi].choices.splice(+btn.dataset.c, 1);
       render();
+    } else if (act === "preview-video") {
+      openVideoPreview(pi);
     }
   });
 
@@ -1940,7 +2003,7 @@ setTimeout(function () {
   function cardHTML(p, i, idx) {
     const isStart = p.id.trim() === "start";
     const title = esc(p.id.trim() || "(untitled)") +
-      (p.video.trim() ? ' <span class="mc-vid">\u25B6</span>' : "");
+      (p.video.trim() ? ' <span class="mc-vid" title="Preview video">\u25B6</span>' : "");
     const h = p.heading.trim(), tx = p.text.trim();
     let body = "";
     if (h) body += "<strong>" + esc(h) + "</strong> ";
@@ -2077,6 +2140,7 @@ setTimeout(function () {
 
   mapCanvas.addEventListener("pointerdown", function (e) {
     if (e.target.closest(".edge-del")) return;        // delete handled on click
+    if (e.target.closest(".mc-vid")) return;          // video preview handled on click
     const handle = e.target.closest(".mc-handle");
     const card = e.target.closest(".map-card");
 
@@ -2150,6 +2214,12 @@ setTimeout(function () {
     const card = e.target.closest(".map-card");
     if (card) openPassageModal(+card.dataset.idx);
   });
+  cardLayer.addEventListener("click", function (e) {
+    const vid = e.target.closest(".mc-vid");
+    if (!vid) return;
+    const card = vid.closest(".map-card");
+    if (card) { e.stopPropagation(); openVideoPreview(+card.dataset.idx); }
+  });
   edgeLayer.addEventListener("click", function (e) {
     const del = e.target.closest(".edge-del");
     if (!del) return;
@@ -2168,6 +2238,11 @@ setTimeout(function () {
   }, { passive: false });
 
   window.addEventListener("keydown", function (e) {
+    const vm = document.getElementById("videoModal");
+    if (vm && vm.classList.contains("open")) {
+      if (e.key === "Escape") { e.preventDefault(); closeVideoPreview(); }
+      return;
+    }
     const hm = document.getElementById("helpModal");
     if (hm && hm.classList.contains("open")) {
       if (e.key === "Escape") { e.preventDefault(); closeHelp(); }
@@ -2218,8 +2293,11 @@ setTimeout(function () {
         '<div class="field"><label class="field-label">Passage ID</label>' +
           '<input type="text" data-field="id" value="' + esc(p.id) + '" placeholder="unique-id"></div>' +
         '<div class="field"><label class="field-label">YouTube Video ID</label>' +
-          '<input type="text" data-field="video" value="' + esc(p.video) +
-          '" placeholder="optional &mdash; ID or pasted URL"></div>' +
+          '<div class="video-input-row">' +
+            '<input type="text" data-field="video" value="' + esc(p.video) +
+            '" placeholder="optional &mdash; ID or pasted URL">' +
+            '<button class="btn btn-small" data-act="preview-video" title="Preview this video">&#9654; Preview</button>' +
+          '</div></div>' +
       '</div>' +
       '<div class="row single"><div class="field"><label class="field-label">Heading</label>' +
         '<input type="text" data-field="heading" value="' + esc(p.heading) +
@@ -2274,6 +2352,7 @@ setTimeout(function () {
     const p = state.passages[editIdx];
     if (btn.dataset.act === "add-choice") { p.choices.push({ label: "", next: "" }); renderPmBody(); }
     else if (btn.dataset.act === "del-choice") { p.choices.splice(+btn.dataset.c, 1); renderPmBody(); }
+    else if (btn.dataset.act === "preview-video") { openVideoPreview(editIdx); }
   });
 
   document.getElementById("pmClose").addEventListener("click", closePassageModal);
@@ -2288,6 +2367,88 @@ setTimeout(function () {
   document.getElementById("helpDone").addEventListener("click", closeHelp);
   document.getElementById("helpModal")
     .querySelector(".pm-backdrop").addEventListener("click", closeHelp);
+
+  // ---- video preview (mirrors the exported player exactly) -----------
+  const videoModal = document.getElementById("videoModal");
+  const vpFrame = document.getElementById("vpFrame");
+  let vpIframes = [];
+
+  function vpSend(iframe, payload) {
+    try {
+      if (iframe.contentWindow) iframe.contentWindow.postMessage(JSON.stringify(payload), "*");
+    } catch (err) {}
+  }
+
+  // Same embed + autoplay-via-postMessage the exported story uses: no controls,
+  // chrome cropped, fades in once the player reports that it's playing.
+  function vpCreateIframe(videoId) {
+    const iframe = document.createElement("iframe");
+    iframe.src = "https://www.youtube.com/embed/" + videoId +
+      "?enablejsapi=1&autoplay=0&controls=0&rel=0&modestbranding=1" +
+      "&iv_load_policy=3&playsinline=1";
+    iframe.title = "video";
+    iframe.setAttribute("frameborder", "0");
+    iframe.setAttribute("allow",
+      "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share");
+    iframe._tries = 0;
+    vpIframes.push(iframe);
+    iframe._poll = setInterval(function () {
+      vpSend(iframe, { event: "listening" });
+      vpSend(iframe, { event: "command", func: "playVideo", args: [] });
+      if (++iframe._tries > 80) { clearInterval(iframe._poll); iframe._poll = null; }
+    }, 250);
+    return iframe;
+  }
+
+  window.addEventListener("message", function (e) {
+    let matched = null;
+    for (const f of vpIframes) { if (f.contentWindow === e.source) { matched = f; break; } }
+    if (!matched) return;
+    let data;
+    try { data = JSON.parse(e.data); } catch (err) { return; }
+    let st = null;
+    if (data.event === "onStateChange" && typeof data.info === "number") st = data.info;
+    else if (data.event === "infoDelivery" && data.info &&
+             typeof data.info.playerState === "number") st = data.info.playerState;
+    if (st === null) return;
+    const frame = matched.closest(".video-frame");
+    if (!frame) return;
+    if (st === 1) {
+      if (matched._poll) { clearInterval(matched._poll); matched._poll = null; }
+      frame.classList.add("yt-ready");
+    } else if (st === 0) {
+      frame.classList.remove("yt-ready");
+    }
+  });
+
+  function openVideoPreview(idx) {
+    if (idx == null || !state.passages[idx]) return;
+    const id = extractVideoId((state.passages[idx].video || "").trim());
+    if (!id) { alert("Add a YouTube video ID to this passage first."); return; }
+    vpFrame.classList.remove("yt-ready");
+    vpFrame.style.backgroundImage =
+      "url('https://img.youtube.com/vi/" + id + "/hqdefault.jpg')";
+    vpFrame.innerHTML = "";
+    vpFrame.appendChild(vpCreateIframe(id));
+    const cover = document.createElement("div");
+    cover.className = "video-cover";
+    vpFrame.appendChild(cover);
+    videoModal.classList.add("open");
+  }
+  function closeVideoPreview() {
+    videoModal.classList.remove("open");
+    vpIframes.forEach(function (f) {
+      if (f._poll) { clearInterval(f._poll); f._poll = null; }
+      vpSend(f, { event: "command", func: "stopVideo", args: [] });
+    });
+    vpIframes = [];
+    vpFrame.innerHTML = "";                 // removing the iframe stops playback
+    vpFrame.classList.remove("yt-ready");
+    vpFrame.style.backgroundImage = "";
+  }
+  document.getElementById("vpClose").addEventListener("click", closeVideoPreview);
+  document.getElementById("vpDone").addEventListener("click", closeVideoPreview);
+  videoModal.querySelector(".pm-backdrop").addEventListener("click", closeVideoPreview);
 
   // ---- Go -------------------------------------------------------------
   render();
