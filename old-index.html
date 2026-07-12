@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Enhanced Books</title>
+  <link rel="icon" href="favicon.ico">
+  <style>
+    /* ── Theme custom properties ── */
+    :root {
+      --bg: #222222;
+      --bg-card: #2a2a2a;
+      --text: #e0e0e0;
+      --text-muted: #999999;
+      --border: #3a3a3a;
+      --shadow: rgba(0, 0, 0, 0.4);
+    }
+    html.light {
+      --bg: #f5f5f5;
+      --bg-card: #ffffff;
+      --text: #1a1a1a;
+      --text-muted: #666666;
+      --border: #dddddd;
+      --shadow: rgba(0, 0, 0, 0.12);
+    }
+
+    /* ── Reset & base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .theme-toggle,
+    .coffee-icon,
+    .book-icon {
+      background: none;
+      border: none;
+      color: var(--text);
+      cursor: pointer;
+      padding: 0;
+      font-size: 0.85rem;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: transform 0.15s, opacity 0.15s;
+    }
+    .theme-toggle:hover,
+    .coffee-icon:hover,
+    .book-icon:hover {
+      transform: scale(1.15);
+      opacity: 0.85;
+    }
+    /* Show sun in dark mode (click to go light), moon in light mode (click to go dark) */
+    .icon-sun { display: inline; }
+    .icon-moon { display: none; }
+    html.light .icon-sun { display: none; }
+    html.light .icon-moon { display: inline; }
+
+    /* ── Book grid ── */
+    main {
+      flex: 1;
+      padding: 1.5rem;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .book-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* ── Book card ── */
+    .book-card {
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s;
+    }
+    .book-card:hover { transform: translateY(-4px); }
+    .cover-wrap {
+      aspect-ratio: 28 / 41;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px var(--shadow);
+      background: var(--bg-card);
+    }
+    .cover-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    /* Fallback cover (no image) */
+    .cover-fallback {
+      width: 100%;
+      height: 100%;
+    }
+    .book-title {
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: center;
+    }
+
+    /* ── Footer ── */
+    footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+      padding: 0.15rem 0;
+      font-size: 0.75rem;
+      line-height: 1;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── Responsive tweaks ── */
+    @media (max-width: 500px) {
+      .book-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 1rem;
+      }
+      main { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="book-grid" id="bookGrid">
+      <!-- Books are rendered by JS below -->
+    </div>
+  </main>
+
+  <footer>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode" title="Toggle dark/light mode">
+      <span class="icon-sun">&#9728;&#65039;</span>
+      <span class="icon-moon">&#127769;</span>
+    </button>
+
+    <span>Everything Ebooks &copy; 2026</span>
+
+    <a href="https://www.amazon.com/stores/author/B0CFK82R1L/allbooks"
+       target="_blank"
+       rel="noopener noreferrer"
+       title="Books by Clee Smith on Amazon"
+       aria-label="Books by Clee Smith on Amazon"
+       class="book-icon">&#128218;</a>
+
+    <a href="https://ko-fi.com/slipthetrap"
+       target="_blank"
+       rel="noopener noreferrer"
+       title="Donate / Buy Me a Coffee via Ko-fi"
+       aria-label="Donate via Ko-fi"
+       class="coffee-icon">&#9749;</a>
+  </footer>
+
+  <script>
+    // ── Book data ──
+    // Each book: { title, author (optional), folder, cover (relative to folder, or null for fallback) }
+    var books = [
+      { title: "Smuffin P.I.", author: "", folder: "smuffin/", cover: "images/smuffin-pi.png" },
+      // { title: "Art", author: "", folder: "01-art/", cover: "images/02.png" },
+      { title: "Barden Digby", author: "", folder: "Barden-Digby/", cover: "images/cover.jpg" },
+      { title: "Curious Creature", author: "", folder: "Curious-Creature/", cover: "images/cover.jpg" },
+      { title: "Delta", author: "", folder: "Delta/", cover: "images/cover.jpg" },
+      { title: "EAT", author: "", folder: "EAT/", cover: "images/cover.jpg" },
+      { title: "Everything Ebooks", author: "", folder: "Everything-Ebooks/", cover: "images/cover.jpg" },
+      // { title: "Inktober 2023", author: "", folder: "inktober2023/", cover: "images/31.jpg" },
+      { title: "Spooky Action", author: "", folder: "Spooky-Action/", cover: "images/cover.jpg" },
+      { title: "Vapo Cramb", author: "", folder: "Vapo-Cramb/", cover: "images/cover.jpg" }
+    ];
+
+    // ── Random cover color palette ──
+    var coverColors = [
+      "#00517b", "#8b5e3c", "#4a6741", "#6b4c7a", "#8c4646",
+      "#2e6d7a", "#7a6a3a", "#4b5d8c", "#6d5a3a", "#3d6b5e"
+    ];
+    function randomCoverColor() {
+      return coverColors[Math.floor(Math.random() * coverColors.length)];
+    }
+
+    function applyFallbackCover(wrap) {
+      wrap.innerHTML = "";
+      var fb = document.createElement("div");
+      fb.className = "cover-fallback";
+      fb.style.background = randomCoverColor();
+      wrap.appendChild(fb);
+    }
+
+    // ── Render book grid ──
+    var grid = document.getElementById("bookGrid");
+    books.forEach(function (book) {
+      var a = document.createElement("a");
+      a.className = "book-card";
+      a.href = book.folder;
+
+      var wrap = document.createElement("div");
+      wrap.className = "cover-wrap";
+
+      if (book.cover) {
+        var img = document.createElement("img");
+        img.src = book.folder + book.cover;
+        img.alt = book.title + " cover";
+        img.loading = "lazy";
+        img.onerror = function () { applyFallbackCover(wrap); };
+        wrap.appendChild(img);
+      } else {
+        applyFallbackCover(wrap);
+      }
+
+      a.appendChild(wrap);
+
+      var title = document.createElement("div");
+      title.className = "book-title";
+      title.textContent = book.title;
+      a.appendChild(title);
+
+      grid.appendChild(a);
+    });
+
+    // ── Dark/light toggle ──
+    var toggle = document.getElementById("themeToggle");
+    var root = document.documentElement;
+
+    // Restore saved preference (default: dark)
+    var saved = localStorage.getItem("eb-theme");
+    if (saved === "light") {
+      root.classList.remove("dark");
+      root.classList.add("light");
+    }
+
+    toggle.addEventListener("click", function () {
+      var isLight = root.classList.contains("light");
+      if (isLight) {
+        root.classList.remove("light");
+        root.classList.add("dark");
+        localStorage.setItem("eb-theme", "dark");
+      } else {
+        root.classList.remove("dark");
+        root.classList.add("light");
+        localStorage.setItem("eb-theme", "light");
+      }
+    });
+  </script>
+</body>
+</html>
