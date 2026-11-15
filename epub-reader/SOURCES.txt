@@ -1,0 +1,29 @@
+The EPUB rendering engine in foliate/ was copied from:
+https://github.com/cleesmith/epubbing/tree/2982a1dc7ea03d01a39fd4d40752d9a9910ffac8/packages/foliate-js
+
+This is the Foliate engine used by EE's Booksellers EPUB reader. This small
+standalone reader is a new interface using that engine, not a copy of EE's
+entire application or its Next.js build. The epubbing-site deployment was
+inspected to verify how EE opens its Booksellers EPUBs.
+
+Foliate is copyright John Factotum and contributors, under the MIT license
+included in foliate/LICENSE. The upstream project is:
+https://github.com/johnfactotum/foliate-js
+
+Local adaptation: fixed-layout.js uses a shadow-root style element instead
+of importing construct-style-sheets-polyfill. This removes its bare npm import
+so that fixed-layout EPUBs work directly on a static site. package.json sets
+type:module for Node's use of the bundled ZIP reader during catalogue scans.
+scroller.js also ignores layout callbacks while an iframe has no body,
+which can occur during navigation between the reader and the bookshelf.
+All other engine files are copied unchanged from EE.
+
+Bundled ZIP support: zip.js, BSD 3-Clause license, Gildas Lormeau.
+https://github.com/gildas-lormeau/zip.js
+License: foliate/vendor/zip-LICENSE
+
+Bundled fflate support: fflate, MIT license, Arjun Barrett.
+https://github.com/101arrowz/fflate
+License: foliate/vendor/fflate-LICENSE
+
+No package manager, CDN, worker bundle, or runtime build is required.

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' blob:; script-src 'self'; style-src 'self' blob: 'unsafe-inline'; img-src 'self' blob: data:; font-src 'self' blob: data:; media-src 'self' blob: data:; connect-src 'self' blob:; frame-src blob: data:; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Read EPUB · Enhanced Books</title>
+  <link rel="icon" href="../favicon.ico">
+  <link rel="stylesheet" href="reader.css">
+  <script type="module" src="reader.js"></script>
+</head>
+<body>
+  <header class="toolbar">
+    <a class="control" href="../">‹ Books</a>
+    <h1 id="book-title">Read EPUB</h1>
+    <div class="actions">
+      <button id="contents" disabled>Contents</button>
+      <button id="smaller" aria-label="Smaller text" title="Smaller text" disabled>A−</button>
+      <button id="larger" aria-label="Larger text" title="Larger text" disabled>A+</button>
+      <button id="theme" title="Switch light or dark theme">Light</button>
+      <a class="control" id="download" hidden download>Download EPUB</a>
+    </div>
+  </header>
+  <main id="reading-area" aria-label="Book">
+    <p id="status" role="status">Opening EPUB…</p>
+    <noscript>JavaScript is needed to read this EPUB here. You can download it from the bookshelf.</noscript>
+  </main>
+  <footer class="toolbar">
+    <button id="previous" disabled>← Previous</button>
+    <div class="progress"><span id="chapter"></span><span id="percent"></span></div>
+    <button id="next" disabled>Next →</button>
+  </footer>
+  <dialog id="toc-dialog" aria-labelledby="toc-heading">
+    <div class="dialog-heading"><h2 id="toc-heading">Contents</h2><button id="close-toc" aria-label="Close contents">Close</button></div>
+    <nav id="toc" aria-label="Table of contents"></nav>
+  </dialog>
+</body>
+</html>

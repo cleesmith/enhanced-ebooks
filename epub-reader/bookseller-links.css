@@ -1,0 +1,29 @@
+.opt.epub-opt, .opt.downloads-opt { color:var(--fg); }
+.opt.epub-opt:hover, .opt.downloads-opt:hover { color:var(--accent); }
+.opt.downloads-opt { background:transparent; font-family:inherit; cursor:pointer; }
+.opt:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
+.downloads-dialog {
+  box-sizing:border-box; width:min(540px, calc(100vw - 32px)); max-height:80vh;
+  padding:22px; border:1px solid var(--border); border-radius:12px;
+  color:var(--fg); background:var(--bg); box-shadow:0 16px 60px #0006;
+  font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+.downloads-dialog::backdrop { background:#0009; }
+.downloads-heading { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.downloads-heading h2 { font-size:20px; margin:0; }
+.downloads-close {
+  background:transparent; color:var(--fg); border:1px solid var(--border);
+  border-radius:999px; padding:8px 14px; font:inherit; font-size:13px; cursor:pointer;
+}
+#ee-downloads-book { margin:10px 0 16px; color:var(--muted); font-size:14px; overflow-wrap:anywhere; }
+.downloads-files { padding:0; margin:0; list-style:none; }
+.downloads-files li + li { border-top:1px solid var(--border); }
+.downloads-files a {
+  display:flex; align-items:center; gap:12px; min-height:44px; padding:12px 4px;
+  color:var(--fg); font-size:14px; line-height:1.5; text-decoration:none;
+}
+.downloads-files a span { min-width:0; overflow-wrap:anywhere; }
+.downloads-files svg { flex-shrink:0; width:16px; height:16px; }
+.downloads-files a:hover, .downloads-close:hover { color:var(--accent); }
+.downloads-dialog :focus-visible { outline:2px solid var(--accent); outline-offset:3px; border-radius:4px; }
+@media (max-width:500px) { .downloads-dialog { padding:18px; } }

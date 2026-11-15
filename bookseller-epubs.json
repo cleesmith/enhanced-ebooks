@@ -1,0 +1,35 @@
+{
+  "version": 2,
+  "books": {
+    "Everything-Ebooks": {
+      "file": "Everything-Ebooks/Everything%20Ebooks-booksellers.epub",
+      "bytes": 683773,
+      "downloads": [
+        {
+          "file": "Everything-Ebooks/Everything%20Ebooks-booksellers.epub",
+          "bytes": 683773,
+          "name": "Everything Ebooks-booksellers.epub",
+          "kind": "epub"
+        },
+        {
+          "file": "epub-reader/covers/249aab203f2e1ae8e9c43ddd16a4c670dbfbe44faa0abe614c6985c4d3c416ef/Everything%20Ebooks-epub-cover.jpeg",
+          "name": "Everything Ebooks-epub-cover.jpeg",
+          "kind": "epub-cover",
+          "bytes": 611746,
+          "embeddedCover": {
+            "epub": "Everything-Ebooks/Everything%20Ebooks-booksellers.epub",
+            "entry": "OEBPS/images/cover.jpg",
+            "extension": "jpeg",
+            "sha256": "249aab203f2e1ae8e9c43ddd16a4c670dbfbe44faa0abe614c6985c4d3c416ef"
+          }
+        },
+        {
+          "file": "Everything-Ebooks/EverythingEbooks.pdf",
+          "name": "EverythingEbooks.pdf",
+          "kind": "pdf",
+          "bytes": 98965
+        }
+      ]
+    }
+  }
+}
