@@ -9,8 +9,10 @@ fontSize = Math.min(32, Math.max(12, Number(getSaved('ee-epub-font-size')) || 18
 
 function applyAppearance() {
   document.documentElement.classList.toggle('light', theme === 'light');
-  $('theme').textContent = theme === 'light' ? 'Dark' : 'Light';
-  $('theme').setAttribute('aria-label', 'Switch to ' + (theme === 'light' ? 'dark' : 'light') + ' theme');
+  $('theme').textContent = theme === 'light' ? '\uD83C\uDF19' : '\u2600\uFE0F';
+  const themeLabel = 'Switch to ' + (theme === 'light' ? 'dark' : 'light') + ' theme';
+  $('theme').setAttribute('aria-label', themeLabel);
+  $('theme').title = themeLabel;
   const bg = theme === 'light' ? '#faf8f5' : '#161513';
   const fg = theme === 'light' ? '#26231f' : '#ece9e4';
   const link = theme === 'light' ? '#855027' : '#e2b993';
@@ -194,3 +196,4 @@ openBook().catch(error => {
   updateNavigation();
   applyAppearance();
 });
+
