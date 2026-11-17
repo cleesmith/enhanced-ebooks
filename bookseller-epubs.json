@@ -1,6 +1,42 @@
 {
   "version": 2,
   "books": {
+    "Bob-Johnson-Rides-Again": {
+      "file": "Bob-Johnson-Rides-Again/BobJohnsonRidesAgain-booksellers.epub",
+      "bytes": 93892863,
+      "downloads": [
+        {
+          "file": "Bob-Johnson-Rides-Again/BobJohnsonRidesAgain-booksellers.epub",
+          "bytes": 93892863,
+          "name": "BobJohnsonRidesAgain-booksellers.epub",
+          "kind": "epub"
+        },
+        {
+          "file": "epub-reader/covers/c707d608498eded50975284beada549def3429d129b7758c80482262f100d9b2/BobJohnsonRidesAgain-epub-cover.jpeg",
+          "name": "BobJohnsonRidesAgain-epub-cover.jpeg",
+          "kind": "epub-cover",
+          "bytes": 2318511,
+          "embeddedCover": {
+            "epub": "Bob-Johnson-Rides-Again/BobJohnsonRidesAgain-booksellers.epub",
+            "entry": "OEBPS/images/cover.jpg",
+            "extension": "jpeg",
+            "sha256": "c707d608498eded50975284beada549def3429d129b7758c80482262f100d9b2"
+          }
+        },
+        {
+          "file": "Bob-Johnson-Rides-Again/BobJohnsonRidesAgain-6-9-660-bw-paperback-cover.pdf",
+          "name": "BobJohnsonRidesAgain-6-9-660-bw-paperback-cover.pdf",
+          "kind": "pdf",
+          "bytes": 8560012
+        },
+        {
+          "file": "Bob-Johnson-Rides-Again/BobJohnsonRidesAgain.pdf",
+          "name": "BobJohnsonRidesAgain.pdf",
+          "kind": "pdf",
+          "bytes": 90784321
+        }
+      ]
+    },
     "Everything-Ebooks": {
       "file": "Everything-Ebooks/Everything%20Ebooks-booksellers.epub",
       "bytes": 683773,
